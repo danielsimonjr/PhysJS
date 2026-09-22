@@ -56,6 +56,22 @@ under test and the thing testing it cannot drift into each other.
 created the moment it was authorised, so the record of *why* it exists is written while the reasoning
 is fresh rather than reconstructed later.
 
+## npm handle
+
+**`@danielsimonjr/physjs`** — verified free on the registry 2026-09-22.
+
+**Lowercase, because npm rejects uppercase in new package names.** `PhysJS` is branding only, exactly
+as with its siblings: `MemoryJS` publishes as `@danielsimonjr/memoryjs`, `fourJS` as
+`@danielsimonjr/fourjs`, `MathTS` as `@danielsimonjr/mathts-*`. Written down here so it is not
+rediscovered at publish time.
+
+**Open question, recorded rather than assumed:** this repository currently holds Lean, which is not
+consumable from JavaScript. If a package is published under that handle, what it contains is a design
+decision nobody has made yet — most plausibly the *verified* bridge dictionary as data that UPT and
+the rest of the stack can consume, with each entry carrying the proof it rests on. That is a
+different artifact from the proofs themselves, and it should be designed deliberately rather than
+falling out of "the repo has an npm name".
+
 ## Licence
 
 MIT — matching UPT.

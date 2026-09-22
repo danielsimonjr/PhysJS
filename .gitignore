@@ -1,0 +1,8 @@
+# Lake build output
+/.lake/
+/build/
+/lake-packages/
+
+# editor
+.vscode/
+.idea/

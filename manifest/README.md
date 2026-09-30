@@ -11,5 +11,10 @@
 | `leanProof` | `complete` when the Lean proof of that statement has no `sorry`. `partial` when it does not. |
 | `axioms` | The axioms `#print axioms` reported for the theorem. |
 | `imports` | Present when the proof is an import of a Physlib theorem rather than a new argument. |
+| `planeWave` | Present on a rank-1 entry that also has a rank-1a theorem. Same inner fields as an entry, without a second key. |
 
-The five rank-1 keys cover `bound.delta` at the dispersion relation. `ab-pendulum-linear` covers the transformation and imports Physlib. None of them derives a dispersion relation from a PDE. `ab-kg-oscillator` covers the uniform-mode restriction in Physlib's own terms.
+The five rank-1 keys cover `bound.delta` at the dispersion relation. That top-level `theorem` is the reviewed reference. `ab-pendulum-linear` covers the transformation and imports Physlib.
+
+Rank 1a proves a different statement about the same five bridges: a plane wave solves the PDE iff `ω(k)` obeys the dispersion relation. Each of those entries keeps its reviewed theorem and records the new one under `planeWave`. A second top-level key would not equal the bridge id, and replacing `theorem` would change the covers line the reviewed reference already names. UPT still has one `formalRef` per bridge id. Pointing that reference at `planeWave.theorem` is a UPT change; this file does not make it.
+
+`ab-kg-oscillator` covers the uniform-mode restriction in Physlib's own terms.

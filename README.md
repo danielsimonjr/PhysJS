@@ -34,11 +34,10 @@ Milestone 1 is route A: the rank-1 row.
 | 1 | `ab-telegraph-wave` | `bound.delta` at the dispersion relation |
 | — | `ab-pendulum-linear` | the transformation, not `bound.delta`. A PhysJS theorem that imports Physlib |
 
-Later, still in §4.3 order, and not part of milestone 1:
+Later, still in §4.3 order:
 
 | Rank | Bridge | What a later lemma would cover |
 |---|---|---|
-| 1a | the same five | a plane wave solves the PDE iff the dispersion relation holds |
 | 3 | `ab-spring-lc`, `ab-damped-rlc` | the oscillator dictionary |
 | 4 | `ab-wave-dalembert` | the missing direction of d'Alembert's formula |
 | — | `ab-stokes-einstein`, `ab-heat-diffusion` | not counted. The physics is in the premises |
@@ -72,6 +71,20 @@ The rank-1 lemmas and the pendulum reference are proved. Each Lean proof is comp
 | `ab-pendulum-linear` | `PhysJS.Pendulum.linearizedEquationOfMotion_iff` | complete, imports Physlib |
 
 A wrong-dictionary lemma sits next to each one. It is false for the neighbouring bridge's closed form, so a swapped dictionary does not satisfy the statement.
+
+## Milestone 2, rank 1a
+
+A non-trivial plane wave solves the PDE if and only if `ω(k)` obeys that PDE's dispersion relation. The zero wave is excluded. Each proof is complete. Each one covers that statement only, and none of them proves `covers_bound_delta`.
+
+| Bridge | Theorem | What the equivalence says |
+|---|---|---|
+| `ab-kg-schrodinger` | `PhysJS.KgSchrodinger.planeWave_iff_dispersion` | Klein–Gordon `ω² = c²k² + ω₀²`, and Schrödinger `ω = c²k² / (2ω₀)` |
+| `ab-klein-gordon-wave` | `PhysJS.KleinGordonWave.planeWave_iff_dispersion` | Klein–Gordon as above, and the wave equation `ω² = c²k²` |
+| `ab-stiff-string` | `PhysJS.StiffString.planeWave_iff_dispersion` | stiff `ω² = (F/μ)k² + (EI/μ)k⁴`, and flexible `ω² = (F/μ)k²` |
+| `ab-telegraph-diffusion` | `PhysJS.TelegraphDiffusion.planeWave_iff_dispersion` | telegraph `τσ² + σ + Dq² = 0`, and Fick `σ = −Dq²` |
+| `ab-telegraph-wave` | `PhysJS.TelegraphWave.planeWave_iff_dispersion` | underdamped telegraph `ω² = (D/τ)q² − 1/(4τ²)`, and the wave equation at `c² = D/τ` |
+
+The manifest keeps the rank-1 theorem as the entry's `theorem`. The rank-1a theorem is the entry's `planeWave` object. One `formalRef` per bridge id already names `covers_bound_delta`.
 
 ## Milestone 2, rank 2
 

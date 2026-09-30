@@ -19,10 +19,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   published under `@danielsimonjr/physjs` yet.
 - README target list reordered to the scoping report §4.3. Rank 1 is first.
   A partial proof is marked so that it covers its statement only.
-
-### Not yet
-
-- Milestone 1 bridge lemmas and `manifest/bridges.json`.
+- Milestone 1 theorems for `ab-kg-schrodinger`, `ab-klein-gordon-wave`,
+  `ab-stiff-string`, `ab-telegraph-diffusion`, and `ab-telegraph-wave`.
+  Each is a complete Lean proof that the closed-form error is monotone on the
+  regime and equals `bound.delta` at the edge. Each covers its statement only.
+- `PhysJS.Pendulum.linearizedEquationOfMotion_iff`, a PhysJS theorem that
+  imports Physlib's `linearizedEquationOfMotion_iff`. It covers the
+  transformation, not `bound.delta`.
+- A wrong-dictionary lemma beside each theorem.
+- `manifest/bridges.json`: theorem name, UPT bridge id, covers line.
 
 ## [0.0.0] - 2026-09-22
 

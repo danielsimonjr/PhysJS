@@ -2,10 +2,14 @@
 
 `bridges.json` is the file UPT consumes. One entry is one manifest key:
 
-- the key and the UPT bridge id
-- the Lean theorem name
-- the covers line
+| Field | Meaning |
+|---|---|
+| `key`, `bridgeId` | The UPT bridge id. A `formalRef` names this key. |
+| `theorem` | The Lean name the key resolves to. |
+| `covers` | What that theorem certifies. It does not certify the rest of the bridge. |
+| `coverage` | `covers its statement only`. A partial proof is marked the same way. |
+| `leanProof` | `complete` when the Lean proof of that statement has no `sorry`. `partial` when it does not. |
+| `axioms` | The axioms `#print axioms` reported for the theorem. |
+| `imports` | Present when the proof is an import of a Physlib theorem rather than a new argument. |
 
-A `formalRef` that names the key is resolved when that entry exists and its theorem name matches. The Lean proof is not copied into UPT.
-
-The file arrives with the milestone 1 theorems. Until then this directory only records the contract.
+The five rank-1 keys cover `bound.delta` at the dispersion relation. `ab-pendulum-linear` covers the transformation and imports Physlib. None of them derives a dispersion relation from a PDE.

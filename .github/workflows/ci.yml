@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# This workflow builds and audits. It does not push, tag, or publish.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: lake build and axiom audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      # `lake build` with the Mathlib cache, then an axiom audit.
+      # The audit fails if any declaration in `PhysJS` depends on `sorryAx`
+      # (`sorry` / `admit`), `Lean.ofReduceBool` (`native_decide`), or any
+      # axiom outside propext, Classical.choice, and Quot.sound.
+      - name: Build and axiom audit
+        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
+        with:
+          build: "true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "true"
+          axiom-audit: "true"
+          axiom-audit-root: "PhysJS"
+          axiom-audit-allow: "propext,Classical.choice,Quot.sound"

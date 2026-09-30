@@ -32,6 +32,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   proof that a non-trivial plane wave solves the PDE if and only if `ω(k)`
   obeys that PDE's dispersion relation. The reviewed rank-1 theorem is
   unchanged. The new theorem is the entry's `planeWave` object.
+- `PhysJS.KgOscillator.uniform_solves_equationOfMotion`, a complete proof that a
+  smooth spatially uniform solution of the Klein–Gordon equation solves
+  Physlib's `HarmonicOscillator.EquationOfMotion` with `ω = ω₀`. It covers
+  the uniform-mode restriction in Physlib's own terms.
 
 ## [0.0.0] - 2026-09-22
 

@@ -38,7 +38,6 @@ Later, still in §4.3 order:
 
 | Rank | Bridge | What a later lemma would cover |
 |---|---|---|
-| 2 | `ab-kg-oscillator` | the uniform-mode restriction, in Physlib's terms |
 | 3 | `ab-spring-lc`, `ab-damped-rlc` | the oscillator dictionary |
 | 4 | `ab-wave-dalembert` | the missing direction of d'Alembert's formula |
 | — | `ab-stokes-einstein`, `ab-heat-diffusion` | not counted. The physics is in the premises |
@@ -86,6 +85,10 @@ A non-trivial plane wave solves the PDE if and only if `ω(k)` obeys that PDE's 
 | `ab-telegraph-wave` | `PhysJS.TelegraphWave.planeWave_iff_dispersion` | underdamped telegraph `ω² = (D/τ)q² − 1/(4τ²)`, and the wave equation at `c² = D/τ` |
 
 The manifest keeps the rank-1 theorem as the entry's `theorem`. The rank-1a theorem is the entry's `planeWave` object. One `formalRef` per bridge id already names `covers_bound_delta`.
+
+## Milestone 2, rank 2
+
+`PhysJS.KgOscillator.uniform_solves_equationOfMotion` is a complete proof of the uniform-mode restriction. A field that does not depend on `x` and solves `u_tt = c² u_xx − ω₀² u`, and whose time profile is `ContDiff ℝ ∞`, embeds as a solution of Physlib's `HarmonicOscillator.EquationOfMotion` with `ω = ω₀`. The speed `c` drops out because the second space derivative of a uniform field is zero. The smoothness hypothesis is the one Physlib's Newton-law equivalence asks for. The theorem covers that statement only.
 
 ## Build
 

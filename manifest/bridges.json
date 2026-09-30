@@ -93,6 +93,15 @@
       "leanProof": "complete",
       "imports": "ClassicalMechanics.SimplePendulum.linearizedEquationOfMotion_iff",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "ab-kg-oscillator",
+      "bridgeId": "ab-kg-oscillator",
+      "theorem": "PhysJS.KgOscillator.uniform_solves_equationOfMotion",
+      "covers": "the restriction, in Physlib's own terms",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

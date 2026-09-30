@@ -28,6 +28,19 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   transformation, not `bound.delta`.
 - A wrong-dictionary lemma beside each theorem.
 - `manifest/bridges.json`: theorem name, UPT bridge id, covers line.
+- Rank 1a for the same five bridges. `planeWave_iff_dispersion` is a complete
+  proof that a non-trivial plane wave solves the PDE if and only if `ω(k)`
+  obeys that PDE's dispersion relation. The reviewed rank-1 theorem is
+  unchanged. The new theorem is the entry's `planeWave` object.
+- `PhysJS.KgOscillator.uniform_solves_equationOfMotion`, a complete proof that a
+  smooth spatially uniform solution of the Klein–Gordon equation solves
+  Physlib's `HarmonicOscillator.EquationOfMotion` with `ω = ω₀`. It covers
+  the uniform-mode restriction in Physlib's own terms.
+- `PhysJS.SpringLc.time_rescale_equationOfMotion` and
+  `PhysJS.DampedRlc.time_rescale_equationOfMotion`, complete proofs that time
+  rescaling is an equivalence of smooth solutions between a spring and the
+  oscillator Physlib obtains by `m ↦ L`, `k ↦ 1/C`, and, on the damped side,
+  `γ ↦ R` with equal damping ratios. Each covers the oscillator dictionary.
 - `PhysJS.WaveDalembert.solution_eq_profiles`, a complete proof that a jointly
   `C²` solution of Physlib's one-dimensional wave equation, at nonzero speed,
   is a sum of a right-going profile and a left-going profile. It covers the

@@ -28,6 +28,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   transformation, not `bound.delta`.
 - A wrong-dictionary lemma beside each theorem.
 - `manifest/bridges.json`: theorem name, UPT bridge id, covers line.
+- `PhysJS.SpringLc.time_rescale_equationOfMotion` and
+  `PhysJS.DampedRlc.time_rescale_equationOfMotion`, complete proofs that time
+  rescaling is an equivalence of smooth solutions between a spring and the
+  oscillator Physlib obtains by `m ↦ L`, `k ↦ 1/C`, and, on the damped side,
+  `γ ↦ R` with equal damping ratios. Each covers the oscillator dictionary.
 
 ## [0.0.0] - 2026-09-22
 

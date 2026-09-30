@@ -58,6 +58,24 @@
       "leanProof": "complete",
       "imports": "ClassicalMechanics.SimplePendulum.linearizedEquationOfMotion_iff",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "ab-spring-lc",
+      "bridgeId": "ab-spring-lc",
+      "theorem": "PhysJS.SpringLc.time_rescale_equationOfMotion",
+      "covers": "the oscillator dictionary",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "ab-damped-rlc",
+      "bridgeId": "ab-damped-rlc",
+      "theorem": "PhysJS.DampedRlc.time_rescale_equationOfMotion",
+      "covers": "the oscillator dictionary",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

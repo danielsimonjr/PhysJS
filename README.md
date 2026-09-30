@@ -38,7 +38,6 @@ Later, still in §4.3 order:
 
 | Rank | Bridge | What a later lemma would cover |
 |---|---|---|
-| 4 | `ab-wave-dalembert` | the missing direction of d'Alembert's formula |
 | — | `ab-stokes-einstein`, `ab-heat-diffusion` | not counted. The physics is in the premises |
 
 A reference covers its statement only. A partial proof is marked that way in `manifest/bridges.json` and is not a proof of the rest of the bridge. `formally-proved` in UPT is derived, never hand-set.
@@ -94,6 +93,10 @@ The manifest keeps the rank-1 theorem as the entry's `theorem`. The rank-1a theo
 `PhysJS.SpringLc.time_rescale_equationOfMotion` and `PhysJS.DampedRlc.time_rescale_equationOfMotion` are complete proofs of the oscillator dictionary. Physlib states both sides. An LC circuit is `HarmonicOscillator` with `m ↦ L` and `k ↦ 1/C`. An RLC circuit is `DampedHarmonicOscillator` with the same replacement and `γ ↦ R`. Those names are the dictionary's reading; Physlib has no circuit.
 
 Time rescaling by the ratio of the two angular frequencies, together with a nonzero amplitude factor, is an equivalence of `ContDiff ℝ ∞` solutions. On the damped side the damping ratios `γ / (2 √(m k))` must agree, which is `b / (2 √(m k)) = (R / 2) √(C / L)` in the dictionary's names. Each theorem covers that statement only.
+
+## Milestone 2, rank 4
+
+`PhysJS.WaveDalembert.solution_eq_profiles` is a complete proof of the missing direction of d'Alembert's formula. A jointly `C²` solution of Physlib's `WaveEquation` in dimension one, at a nonzero speed `c`, equals `F(x − c t) + G(x + c t)`. The profiles take values in `EuclideanSpace ℝ (Fin 1)`, and the profile argument is the coordinate `Space.oneEquiv`. The speed is nonzero because that is what the identity requires. The theorem covers that statement only.
 
 ## Build
 

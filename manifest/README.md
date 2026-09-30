@@ -20,3 +20,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `ab-kg-oscillator` covers the uniform-mode restriction in Physlib's own terms.
 
 `ab-spring-lc` and `ab-damped-rlc` cover the oscillator dictionary: time rescaling between Physlib oscillators, with the circuit names read off the parameters.
+
+`ab-wave-dalembert` covers the missing direction of d'Alembert's formula: a jointly `C²` solution of Physlib's one-dimensional `WaveEquation`, at nonzero speed, is a sum of two profiles.

@@ -1,8 +1,16 @@
-# Lake build output
+# Lake
 /.lake/
 /build/
 /lake-packages/
+*.olean
+*.ilean
+*.ilean.timestamp
 
-# editor
+# editors
 .vscode/
 .idea/
+
+# local env
+.env
+.env.*
+*.local

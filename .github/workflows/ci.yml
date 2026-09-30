@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches: [main]
+  # Every pull request, including one stacked on another PhysJS branch.
   pull_request:
-    branches: [main]
   workflow_dispatch:
 
 # This workflow builds and audits. It does not push, tag, or publish.

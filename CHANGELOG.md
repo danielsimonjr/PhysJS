@@ -28,6 +28,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   transformation, not `bound.delta`.
 - A wrong-dictionary lemma beside each theorem.
 - `manifest/bridges.json`: theorem name, UPT bridge id, covers line.
+- `PhysJS.WaveDalembert.solution_eq_profiles`, a complete proof that a jointly
+  `C²` solution of Physlib's one-dimensional wave equation, at nonzero speed,
+  is a sum of a right-going profile and a left-going profile. It covers the
+  missing direction of d'Alembert's formula.
 
 ## [0.0.0] - 2026-09-22
 

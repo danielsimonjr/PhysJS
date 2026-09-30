@@ -74,6 +74,10 @@ The rank-1 lemmas and the pendulum reference are proved. Each Lean proof is comp
 
 A wrong-dictionary lemma sits next to each one. It is false for the neighbouring bridge's closed form, so a swapped dictionary does not satisfy the statement.
 
+## Milestone 2, rank 4
+
+`PhysJS.WaveDalembert.solution_eq_profiles` is a complete proof of the missing direction of d'Alembert's formula. A jointly `C²` solution of Physlib's `WaveEquation` in dimension one, at a nonzero speed `c`, equals `F(x − c t) + G(x + c t)`. The profiles take values in `EuclideanSpace ℝ (Fin 1)`, and the profile argument is the coordinate `Space.oneEquiv`. The speed is nonzero because that is what the identity requires. The theorem covers that statement only.
+
 ## Build
 
 The toolchain is pinned in `lean-toolchain` (`leanprover/lean4:v4.34.1`). Mathlib is `v4.34.1`. Physlib (PhysLean) is pinned by commit in `lakefile.toml`.

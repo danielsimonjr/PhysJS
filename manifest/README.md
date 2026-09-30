@@ -13,3 +13,5 @@
 | `imports` | Present when the proof is an import of a Physlib theorem rather than a new argument. |
 
 The five rank-1 keys cover `bound.delta` at the dispersion relation. `ab-pendulum-linear` covers the transformation and imports Physlib. None of them derives a dispersion relation from a PDE.
+
+`ab-wave-dalembert` covers the missing direction of d'Alembert's formula: a jointly `C²` solution of Physlib's one-dimensional `WaveEquation`, at nonzero speed, is a sum of two profiles.

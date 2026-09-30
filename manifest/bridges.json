@@ -58,6 +58,15 @@
       "leanProof": "complete",
       "imports": "ClassicalMechanics.SimplePendulum.linearizedEquationOfMotion_iff",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "ab-wave-dalembert",
+      "bridgeId": "ab-wave-dalembert",
+      "theorem": "PhysJS.WaveDalembert.solution_eq_profiles",
+      "covers": "the missing direction of d'Alembert's formula",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

@@ -28,6 +28,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   transformation, not `bound.delta`.
 - A wrong-dictionary lemma beside each theorem.
 - `manifest/bridges.json`: theorem name, UPT bridge id, covers line.
+- `PhysJS.KgOscillator.uniform_solves_equationOfMotion`, a complete proof that a
+  smooth spatially uniform solution of the Klein–Gordon equation solves
+  Physlib's `HarmonicOscillator.EquationOfMotion` with `ω = ω₀`. It covers
+  the uniform-mode restriction in Physlib's own terms.
 
 ## [0.0.0] - 2026-09-22
 

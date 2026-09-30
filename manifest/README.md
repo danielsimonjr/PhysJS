@@ -12,4 +12,4 @@
 | `axioms` | The axioms `#print axioms` reported for the theorem. |
 | `imports` | Present when the proof is an import of a Physlib theorem rather than a new argument. |
 
-The five rank-1 keys cover `bound.delta` at the dispersion relation. `ab-pendulum-linear` covers the transformation and imports Physlib. None of them derives a dispersion relation from a PDE.
+The five rank-1 keys cover `bound.delta` at the dispersion relation. `ab-pendulum-linear` covers the transformation and imports Physlib. None of them derives a dispersion relation from a PDE. `ab-kg-oscillator` covers the uniform-mode restriction in Physlib's own terms.

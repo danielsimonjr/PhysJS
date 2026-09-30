@@ -39,7 +39,6 @@ Later, still in §4.3 order, and not part of milestone 1:
 | Rank | Bridge | What a later lemma would cover |
 |---|---|---|
 | 1a | the same five | a plane wave solves the PDE iff the dispersion relation holds |
-| 2 | `ab-kg-oscillator` | the uniform-mode restriction, in Physlib's terms |
 | 3 | `ab-spring-lc`, `ab-damped-rlc` | the oscillator dictionary |
 | 4 | `ab-wave-dalembert` | the missing direction of d'Alembert's formula |
 | — | `ab-stokes-einstein`, `ab-heat-diffusion` | not counted. The physics is in the premises |
@@ -73,6 +72,10 @@ The rank-1 lemmas and the pendulum reference are proved. Each Lean proof is comp
 | `ab-pendulum-linear` | `PhysJS.Pendulum.linearizedEquationOfMotion_iff` | complete, imports Physlib |
 
 A wrong-dictionary lemma sits next to each one. It is false for the neighbouring bridge's closed form, so a swapped dictionary does not satisfy the statement.
+
+## Milestone 2, rank 2
+
+`PhysJS.KgOscillator.uniform_solves_equationOfMotion` is a complete proof of the uniform-mode restriction. A field that does not depend on `x` and solves `u_tt = c² u_xx − ω₀² u`, and whose time profile is `ContDiff ℝ ∞`, embeds as a solution of Physlib's `HarmonicOscillator.EquationOfMotion` with `ω = ω₀`. The speed `c` drops out because the second space derivative of a uniform field is zero. The smoothness hypothesis is the one Physlib's Newton-law equivalence asks for. The theorem covers that statement only.
 
 ## Build
 

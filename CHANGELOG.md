@@ -28,6 +28,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   transformation, not `bound.delta`.
 - A wrong-dictionary lemma beside each theorem.
 - `manifest/bridges.json`: theorem name, UPT bridge id, covers line.
+- Rank 1a for the same five bridges. `planeWave_iff_dispersion` is a complete
+  proof that a non-trivial plane wave solves the PDE if and only if `ω(k)`
+  obeys that PDE's dispersion relation. The reviewed rank-1 theorem is
+  unchanged. The new theorem is the entry's `planeWave` object.
 
 ## [0.0.0] - 2026-09-22
 

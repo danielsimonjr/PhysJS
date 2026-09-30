@@ -59,6 +59,21 @@ packages/              reserved for a later TypeScript package
 
 `packages/engineering-physics/` is the slot for a future engineering-physics npm package, on the same kind of packages layout as [MathTS](https://github.com/danielsimonjr/MathTS). That package is not published from this repository yet.
 
+## Milestone 1
+
+The rank-1 lemmas and the pendulum reference are proved. Each Lean proof is complete: no `sorry`. Each one covers its statement only, which is the covers line in `manifest/bridges.json`.
+
+| Bridge | Theorem | Lean proof |
+|---|---|---|
+| `ab-kg-schrodinger` | `PhysJS.KgSchrodinger.covers_bound_delta` | complete |
+| `ab-klein-gordon-wave` | `PhysJS.KleinGordonWave.covers_bound_delta` | complete |
+| `ab-stiff-string` | `PhysJS.StiffString.covers_bound_delta` | complete |
+| `ab-telegraph-diffusion` | `PhysJS.TelegraphDiffusion.covers_bound_delta` | complete |
+| `ab-telegraph-wave` | `PhysJS.TelegraphWave.covers_bound_delta` | complete |
+| `ab-pendulum-linear` | `PhysJS.Pendulum.linearizedEquationOfMotion_iff` | complete, imports Physlib |
+
+A wrong-dictionary lemma sits next to each one. It is false for the neighbouring bridge's closed form, so a swapped dictionary does not satisfy the statement.
+
 ## Build
 
 The toolchain is pinned in `lean-toolchain` (`leanprover/lean4:v4.34.1`). Mathlib is `v4.34.1`. Physlib (PhysLean) is pinned by commit in `lakefile.toml`.

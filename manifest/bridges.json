@@ -11,7 +11,14 @@
       "covers": "bound.delta exactly, at the dispersion relation",
       "coverage": "covers its statement only",
       "leanProof": "complete",
-      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "planeWave": {
+        "theorem": "PhysJS.KgSchrodinger.planeWave_iff_dispersion",
+        "covers": "a plane wave solves the PDE iff ω(k) obeys the dispersion relation",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     },
     {
       "key": "ab-klein-gordon-wave",
@@ -20,7 +27,14 @@
       "covers": "bound.delta exactly, at the dispersion relation",
       "coverage": "covers its statement only",
       "leanProof": "complete",
-      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "planeWave": {
+        "theorem": "PhysJS.KleinGordonWave.planeWave_iff_dispersion",
+        "covers": "a plane wave solves the PDE iff ω(k) obeys the dispersion relation",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     },
     {
       "key": "ab-stiff-string",
@@ -29,7 +43,14 @@
       "covers": "bound.delta exactly, at the dispersion relation",
       "coverage": "covers its statement only",
       "leanProof": "complete",
-      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "planeWave": {
+        "theorem": "PhysJS.StiffString.planeWave_iff_dispersion",
+        "covers": "a plane wave solves the PDE iff ω(k) obeys the dispersion relation",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     },
     {
       "key": "ab-telegraph-diffusion",
@@ -38,7 +59,14 @@
       "covers": "bound.delta exactly, at the dispersion relation",
       "coverage": "covers its statement only",
       "leanProof": "complete",
-      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "planeWave": {
+        "theorem": "PhysJS.TelegraphDiffusion.planeWave_iff_dispersion",
+        "covers": "a plane wave solves the PDE iff ω(k) obeys the dispersion relation",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     },
     {
       "key": "ab-telegraph-wave",
@@ -47,7 +75,14 @@
       "covers": "bound.delta exactly, at the dispersion relation",
       "coverage": "covers its statement only",
       "leanProof": "complete",
-      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "planeWave": {
+        "theorem": "PhysJS.TelegraphWave.planeWave_iff_dispersion",
+        "covers": "a plane wave solves the PDE iff ω(k) obeys the dispersion relation",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     },
     {
       "key": "ab-pendulum-linear",

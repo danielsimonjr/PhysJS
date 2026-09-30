@@ -38,7 +38,6 @@ Later, still in §4.3 order:
 
 | Rank | Bridge | What a later lemma would cover |
 |---|---|---|
-| 3 | `ab-spring-lc`, `ab-damped-rlc` | the oscillator dictionary |
 | 4 | `ab-wave-dalembert` | the missing direction of d'Alembert's formula |
 | — | `ab-stokes-einstein`, `ab-heat-diffusion` | not counted. The physics is in the premises |
 
@@ -89,6 +88,12 @@ The manifest keeps the rank-1 theorem as the entry's `theorem`. The rank-1a theo
 ## Milestone 2, rank 2
 
 `PhysJS.KgOscillator.uniform_solves_equationOfMotion` is a complete proof of the uniform-mode restriction. A field that does not depend on `x` and solves `u_tt = c² u_xx − ω₀² u`, and whose time profile is `ContDiff ℝ ∞`, embeds as a solution of Physlib's `HarmonicOscillator.EquationOfMotion` with `ω = ω₀`. The speed `c` drops out because the second space derivative of a uniform field is zero. The smoothness hypothesis is the one Physlib's Newton-law equivalence asks for. The theorem covers that statement only.
+
+## Milestone 2, rank 3
+
+`PhysJS.SpringLc.time_rescale_equationOfMotion` and `PhysJS.DampedRlc.time_rescale_equationOfMotion` are complete proofs of the oscillator dictionary. Physlib states both sides. An LC circuit is `HarmonicOscillator` with `m ↦ L` and `k ↦ 1/C`. An RLC circuit is `DampedHarmonicOscillator` with the same replacement and `γ ↦ R`. Those names are the dictionary's reading; Physlib has no circuit.
+
+Time rescaling by the ratio of the two angular frequencies, together with a nonzero amplitude factor, is an equivalence of `ContDiff ℝ ∞` solutions. On the damped side the damping ratios `γ / (2 √(m k))` must agree, which is `b / (2 √(m k)) = (R / 2) √(C / L)` in the dictionary's names. Each theorem covers that statement only.
 
 ## Build
 

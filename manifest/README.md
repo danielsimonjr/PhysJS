@@ -18,3 +18,5 @@ The five rank-1 keys cover `bound.delta` at the dispersion relation. That top-le
 Rank 1a proves a different statement about the same five bridges: a plane wave solves the PDE iff `ω(k)` obeys the dispersion relation. Each of those entries keeps its reviewed theorem and records the new one under `planeWave`. A second top-level key would not equal the bridge id, and replacing `theorem` would change the covers line the reviewed reference already names. UPT still has one `formalRef` per bridge id. Pointing that reference at `planeWave.theorem` is a UPT change; this file does not make it.
 
 `ab-kg-oscillator` covers the uniform-mode restriction in Physlib's own terms.
+
+`ab-spring-lc` and `ab-damped-rlc` cover the oscillator dictionary: time rescaling between Physlib oscillators, with the circuit names read off the parameters.

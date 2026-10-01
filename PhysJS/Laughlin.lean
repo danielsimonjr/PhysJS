@@ -8,7 +8,7 @@ import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.NormNum
 
 /-!
-`be-60`. Derivation step. The Laughlin fraction, not the wavefunction.
+`be-60`. The catalog filling fraction, and the `ν = 1/3` case.
 
 The encoded scalar at filling `ν = 1/3` is
 
@@ -36,6 +36,35 @@ noncomputable def sigma (e h : ℝ) : ℝ :=
 /-- Encoded resistance `R_xy = R_K / ν`. -/
 noncomputable def resistance (e h : ℝ) : ℝ :=
   vonKlitzing e h / filling
+
+/-- Conductance at a general filling `ν`. -/
+noncomputable def sigmaAt (ν e h : ℝ) : ℝ :=
+  ν * e ^ 2 / h
+
+/-- Resistance `R_xy = R_K / ν` at a general filling. -/
+noncomputable def resistanceAt (ν e h : ℝ) : ℝ :=
+  vonKlitzing e h / ν
+
+/-- The catalog equation at `ν = p / q`, for nonzero integers `p` and `q`:
+
+```
+σ_xy = ν e² / h,    R_xy = R_K / ν = (q / p) h / e²
+```
+
+Oddness of `q` is the Laughlin selection rule and is not this identity.
+`fraction` remains the case `ν = 1/3`. Not the Laughlin wavefunction,
+and not the anyon charge `e/3`. -/
+theorem filling_fraction (p q : ℤ) (e h : ℝ) (hp : p ≠ 0) (hq : q ≠ 0)
+    (he : e ≠ 0) (hh : h ≠ 0) :
+    sigmaAt ((p : ℝ) / q) e h = ((p : ℝ) / q) * e ^ 2 / h ∧
+      resistanceAt ((p : ℝ) / q) e h = vonKlitzing e h / ((p : ℝ) / q) ∧
+      resistanceAt ((p : ℝ) / q) e h = ((q : ℝ) / (p : ℝ)) * (h / e ^ 2) := by
+  have hp0 : (p : ℝ) ≠ 0 := mt Int.cast_eq_zero.mp hp
+  have hq0 : (q : ℝ) ≠ 0 := mt Int.cast_eq_zero.mp hq
+  have hν : (p : ℝ) / q ≠ 0 := div_ne_zero hp0 hq0
+  unfold sigmaAt resistanceAt vonKlitzing
+  refine ⟨rfl, rfl, ?_⟩
+  field_simp [hν, hp0, hq0, he, hh]
 
 /-- At `ν = 1/3`, `R_xy = 3 R_K = 3 h / e²`, and the product is `1`.
 At `ν = 1` the conductance and resistance are the integer plateau `C = 1`.

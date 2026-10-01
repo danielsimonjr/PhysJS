@@ -106,6 +106,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `H` and `ρ` are. `L` need not be Hermitian. Dropping the anticommutator
   makes the trace nonzero. It covers that property of `be-11`, not
   Born–Markov coarse-graining, and it is not a formalRef.
+- `PhysJS.Jeans.mass_eq`, a complete proof that the encoded Jeans mass
+  `(5 k T / (G μ m_u))^(3/2) (3 / (4 π ρ))^(1/2)` follows from the virial
+  convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3`
+  fails. It covers that derivation step of `be-65`, not the virial
+  theorem.
 
 ## [0.0.0] - 2026-09-22
 

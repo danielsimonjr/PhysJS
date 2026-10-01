@@ -160,6 +160,9 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-21` | `PhysJS.Kss.saturating` | `η/s = ℏ/(4π k_B)` is the equality `4π k_B (η/s) = ℏ`. The Hawking factor `8π` fails when `ℏ ≠ 0`. Not the inequality `η/s ≥ ℏ/(4π k_B)`. |
 | `be-14`, `be-43` | `PhysJS.PlanckArea.area_law` | `k_B c³ A/(4 G ℏ) = k_B A/(4 ℓ_P²)` for `ℓ_P² = ℏ G/c³`. BE-43 is the same equality on a wormhole area. `ℏ G/c²` fails when `c ≠ 1`, and the factor `2` fails. Not a minimal surface, and not ER=EPR. |
 | `be-37` | `PhysJS.Shapiro.radial_integral` | `∫_{R_near}^{R_far} (2GM/c³) dr/r = (2GM/c³) ln(R_far/R_near)` for `0 < R_near < R_far` and `c ≠ 0`. The factor `1` is half, once `G ≠ 0` and `M ≠ 0`. `log₁₀` is not `ln`. Not the impact-parameter formula, and not Cassini. |
+| `be-54` | `PhysJS.RandallSundrum.positive_tension` | For `σ > 0`, `ρ > 0`, and `G > 0`, `H²_RS − H²_FRW = (8πG/3) ρ²/(2σ) > 0`. The correction `1+ρ/σ` fails. `σ < 0` lies below the Friedmann value. The limit is already `be-19`. Not the five-dimensional Einstein equation. |
+
+The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 
 ## Build
 

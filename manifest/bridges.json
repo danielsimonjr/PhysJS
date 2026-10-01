@@ -385,7 +385,7 @@
       "key": "be-17",
       "bridgeId": "be-17",
       "theorem": "PhysJS.EinsteinCartan.inversion",
-      "covers": "derivation-step: if κ = 8πG/c⁴ ≠ 0 and every component satisfies T = κ S, then S·S = T·T / κ² = (c⁴/(8πG))² T·T. κ² in the numerator is the inversion backwards, and it fails when T·T ≠ 0 and κ⁴ ≠ 1. Not the Einstein–Cartan field equation, and not a Newtonian limit",
+      "covers": "derivation-step: if κ = 8πG/c⁴ ≠ 0 and every component satisfies T = κ S, then S·S = T·T / κ² = (c⁴/(8πG))² T·T. κ² in the numerator is the inversion backwards, and it fails when T·T ≠ 0 and κ⁴ ≠ 1. Not the Einstein–Cartan field equation, and not a Newtonian limit. Hypothesis of torsion_monomial: a positive component is a dimensionally homogeneous function of positive κ and S alone, with [T] = [κ][S]. That forces T = C κ S, and C = f(1, 1) is not fixed. coefficient_not_fixed: C ≠ 1 is not the catalog coefficient. inversion_of_unit_coefficient assumes C = 1. The Einstein trace stays a hypothesis of PhysJS.Einstein.trace_eq",
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]

@@ -139,6 +139,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   shifted index `C + 1` is a different conductance. Replacing `e²` by `e`
   makes the product fail to be `1` when `e ≠ 1`. It covers that
   derivation step of `be-55`, not the TKNN theorem.
+- `PhysJS.Laughlin.fraction`, a complete proof that at `ν = 1/3`,
+  `σ_xy = ν e² / h` and `R_xy = 3 h / e² = 3 R_K`, using the BE-55
+  reciprocal. At `ν = 1` the formula is the integer plateau `C = 1`.
+  `R_K / 3` is that lemma at `C = 3`, the fraction inverted, and it
+  fails. It covers that derivation step of `be-60`, not the Laughlin
+  wavefunction and not the anyon charge `e/3`.
 
 ## [0.0.0] - 2026-09-22
 

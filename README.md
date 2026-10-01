@@ -137,6 +137,14 @@ These rows are manifest entries only. They are not UPT `formalRef`s until the ow
 | `be-29` | `PhysJS.Jarzynski.jensen_work` | For a finite probability and `β > 0`, `⟨W⟩ ≥ ΔF` with `ΔF = −(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two unequal work values. Not Jarzynski's theorem. |
 | `be-11` | `PhysJS.Lindblad.preserve` | One channel of the displayed GKSL generator has trace zero, and it is Hermitian when `H` and `ρ` are. Dropping the anticommutator makes the trace nonzero. Not Born–Markov coarse-graining. |
 
+## Milestone 2b, stretch
+
+These derivation steps come after the counted rows. Each covers its statement only.
+
+| Catalog id | Theorem | What the statement says |
+|---|---|---|
+| `be-65` | `PhysJS.Jeans.mass_eq` | The encoded Jeans mass follows from the virial convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3` fails. Not the virial theorem. |
+
 ## Build
 
 The toolchain is pinned in `lean-toolchain` (`leanprover/lean4:v4.34.1`). Mathlib is `v4.34.1`. Physlib (PhysLean) is pinned by commit in `lakefile.toml`.

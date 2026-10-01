@@ -45,6 +45,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `C²` solution of Physlib's one-dimensional wave equation, at nonzero speed,
   is a sum of a right-going profile and a left-going profile. It covers the
   missing direction of d'Alembert's formula.
+- `PhysJS.Eddington.balance_iff`, a complete proof that the Eddington force
+  balance holds if and only if `L = 4 π G M m_p c / σ_T`. The radius cancels.
+  A factor of two on that luminosity fails the balance. It covers that
+  derivation step of `be-64`, not a hard cap.
 
 ## [0.0.0] - 2026-09-22
 

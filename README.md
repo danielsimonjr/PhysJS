@@ -98,6 +98,14 @@ Time rescaling by the ratio of the two angular frequencies, together with a nonz
 
 `PhysJS.WaveDalembert.solution_eq_profiles` is a complete proof of the missing direction of d'Alembert's formula. A jointly `C²` solution of Physlib's `WaveEquation` in dimension one, at a nonzero speed `c`, equals `F(x − c t) + G(x + c t)`. The profiles take values in `EuclideanSpace ℝ (Fin 1)`, and the profile argument is the coordinate `Space.oneEquiv`. The speed is nonzero because that is what the identity requires. The theorem covers that statement only.
 
+## Milestone 2b, counted
+
+Catalog rows, keyed by `be-` id. A counted proof is a reduction, a limit, or a derivation step. It covers its statement only.
+
+| Catalog id | Theorem | What the statement says |
+|---|---|---|
+| `be-64` | `PhysJS.Eddington.balance_iff` | Thomson force equals gravitational force iff `L = 4 π G M m_p c / σ_T`. The `r²` cancels. Not a hard cap. |
+
 ## Build
 
 The toolchain is pinned in `lean-toolchain` (`leanprover/lean4:v4.34.1`). Mathlib is `v4.34.1`. Physlib (PhysLean) is pinned by commit in `lakefile.toml`.

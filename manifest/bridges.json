@@ -312,6 +312,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-60",
+      "bridgeId": "be-60",
+      "theorem": "PhysJS.Laughlin.fraction",
+      "covers": "derivation-step: at ν = 1/3, σ_xy = ν e²/h and R_xy = 3 h/e² = 3 R_K, from the BE-55 reciprocal. At ν = 1 the formula is the integer plateau C = 1. R_K/3 is that lemma at C = 3, the fraction inverted, and it fails. Not the Laughlin wavefunction, and not the anyon charge e/3",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

@@ -58,3 +58,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-59` covers `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. Clearing `h` recovers `2e`. The factor `2` is the Cooper-pair charge, taken as a premise. Replacing `2e` by `e` is the negative control. The tunneling Hamiltonian is not this row.
 
 `be-55` covers `σ_xy = C e² / h`, `R_H = h / (C e²)`, and `R_K = h / e²`, so `σ_xy R_H = 1` and `R_H = R_K / C`, for a nonzero integer plateau index. Replacing `C` by `C + 1` is the negative control, as is `e` in place of `e²` (they agree at `e = 1`, so that control assumes `e ≠ 1`). TKNN, and the post-2019 exactness of `R_K`, are not this row.
+
+`be-60` covers the Laughlin fraction at `ν = 1/3`: `σ_xy = ν e² / h` and `R_xy = 3 h / e² = 3 R_K`. It follows `PhysJS.QuantumHall.reciprocal` and does not reprove it. At `ν = 1` the formula is that lemma at plateau `C = 1`. `R_K / 3` is the integer plateau `C = 3`, the fraction inverted, and it is the negative control. The Laughlin wavefunction and the anyon charge `e/3` are not this row.

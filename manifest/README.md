@@ -26,3 +26,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-64` covers the derivation step that cancels `r²` in the Eddington force balance. It does not certify a hard cap. The key is the catalog id.
 
 `be-53` covers the sign of the one-loop coefficient: for SU(3), `b₀ > 0` if and only if `N_f ≤ 16`. The closed form of the running is the nested `oneLoop` object. The reference, when it is attached, names the sign theorem only. The row is recorded when both are present. Each covers line claims its own part.
+
+`be-58` covers the low-frequency limit of the quantum Johnson–Nyquist parent. The `+ 1` denominator is the negative control. It does not derive the fluctuation–dissipation theorem.

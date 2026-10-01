@@ -89,6 +89,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   The covers line names BE-54. `σ = +ρ_c/2` is not that polynomial, and
   `σ < 0` is not a physical Randall–Sundrum brane. It covers that
   dictionary of `be-19`, and it is not a formalRef.
+- `PhysJS.Landauer.equal_levels`, a complete proof that equal levels of
+  Physlib's two-state ensemble have thermodynamic entropy `k_B log 2`.
+  At `T ≠ 0`, levels `E` and `E + δ` are not that value. At `T = 0` the
+  closed form does not separate the levels. It covers that property of
+  `be-16`, not `E ≥ T ΔS` and not the Bérut confrontation, and it is not
+  a formalRef.
 
 ## [0.0.0] - 2026-09-22
 

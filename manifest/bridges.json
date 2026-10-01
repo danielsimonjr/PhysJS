@@ -231,6 +231,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-16",
+      "bridgeId": "be-16",
+      "theorem": "PhysJS.Landauer.equal_levels",
+      "covers": "property: equal two-state levels have thermodynamic entropy k_B log 2. At T ≠ 0, levels E and E+δ are not that value. At T = 0 the closed form does not separate the levels. Not E ≥ T ΔS, and not the Bérut confrontation",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

@@ -127,6 +127,14 @@ These rows are manifest entries only. They are not UPT `formalRef`s. Each carrie
 | `be-24` | `PhysJS.Fret.dictionary` | `η = R₀⁶/(R₀⁶+R⁶)` equals both `1/(1+(R/R₀)⁶)` and `k_FRET/(k_FRET+1/τ_D)`, and `η` decreases. At `R = 2 R₀` the exponent 4 is not 6. Not the dipole–dipole law. |
 | `be-19` | `PhysJS.QuantumBounce.dictionary` | `H²_LQC` equals `H²_RS` at `σ = −ρ_c/2`, both tend to `(8πG/3)ρ + Λ/3`, and `H²_LQC = 0` at `ρ = ρ_c`, `Λ = 0`, naming BE-54. `σ = +ρ_c/2` is not that polynomial. `σ < 0` is not a physical Randall–Sundrum brane. |
 
+## Milestone 2b, properties
+
+These rows are manifest entries only. They are not UPT `formalRef`s until the owner rules on property-level references. Each carries a negative control.
+
+| Catalog id | Theorem | What the statement says |
+|---|---|---|
+| `be-16` | `PhysJS.Landauer.equal_levels` | Equal two-state levels have thermodynamic entropy `k_B log 2`. At `T ≠ 0`, levels `E` and `E + δ` are not that value. Not `E ≥ T ΔS`, and not the Bérut confrontation. |
+
 ## Build
 
 The toolchain is pinned in `lean-toolchain` (`leanprover/lean4:v4.34.1`). Mathlib is `v4.34.1`. Physlib (PhysLean) is pinned by commit in `lakefile.toml`.

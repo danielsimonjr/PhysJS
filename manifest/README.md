@@ -40,3 +40,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-24` is a cross-check, not a formalRef. The efficiency has the three readings `R₀⁶/(R₀⁶+R⁶)`, `1/(1+(R/R₀)⁶)`, and `k_FRET/(k_FRET+1/τ_D)`, and it decreases on `(0, ∞)`. `η(R₀, R₀) = 1/2` holds for any positive power, so it is not the control. At `R = 2 R₀` the exponent 4 is not the exponent 6. The dipole–dipole law is a premise.
 
 `be-19` is a cross-check, not a formalRef. The covers line names BE-54. `H²_LQC` equals `H²_RS` at `σ = −ρ_c/2`. As `ρ_c → ∞` and as `σ → ∞`, both tend to `(8πG/3)ρ + Λ/3`. At `ρ = ρ_c` and `Λ = 0`, `H²_LQC = 0`. `σ = +ρ_c/2` is the negative control. `σ < 0` is not a physical Randall–Sundrum brane.
+
+`be-16` is a property, not a formalRef. Equal levels of the two-state ensemble have thermodynamic entropy `k_B log 2`. At `T ≠ 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the closed form does not separate the levels. The inequality `E ≥ T ΔS` and the Bérut confrontation are not this row.

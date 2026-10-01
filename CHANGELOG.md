@@ -177,6 +177,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   inversion run backwards, and it fails when `T·T ≠ 0` and `κ⁴ ≠ 1`.
   It covers that derivation step of `be-17`, not the Einstein–Cartan
   field equation and not a Newtonian limit.
+- `PhysJS.EffectiveTemperature.sum_eq`, a complete proof that for
+  `T ≠ 0` and `k_B ≠ 0`, the encoded product
+  `T (1 + Σ_active / (k_B T))` equals `T + Σ_active / k_B`, and that
+  sum equals `T` if and only if `Σ_active = 0`. The product
+  `T · Σ_active / (k_B T)`, with the `1` omitted, fails. It covers that
+  derivation step of `be-27`, not the frequency-dependent
+  Cugliandolo–Kurchan `T_eff(ω)`.
 
 ## [0.0.0] - 2026-09-22
 

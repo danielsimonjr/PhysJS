@@ -391,7 +391,7 @@
       "axioms": ["propext", "Classical.choice", "Quot.sound"],
       "torsionMonomial": {
         "theorem": "PhysJS.EinsteinCartan.torsion_monomial",
-        "covers": "derivation-step: if a positive component is a dimensionally homogeneous function of positive κ and S alone, with [T] = [κ][S], then T = C κ S with C = f(1, 1). C is not fixed. Not the Einstein–Cartan field equation",
+        "covers": "derivation-step: [κ] and [S] are independent base dimensions and [T] = [κ][S]. If a positive component is dimensionally homogeneous in those dimensions, every positive pair is a unit change of (1, 1) and T = C κ S with C = f(1, 1). C is not fixed. Not the Einstein–Cartan field equation",
         "coverage": "covers its statement only",
         "leanProof": "complete",
         "axioms": ["propext", "Classical.choice", "Quot.sound"]

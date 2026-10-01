@@ -83,6 +83,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `k_FRET/(k_FRET+1/τ_D)`, and that it decreases. At `R = 2 R₀` the
   exponent 4 is not the exponent 6. It covers that dictionary of `be-24`,
   not the dipole–dipole law, and it is not a formalRef.
+- `PhysJS.QuantumBounce.dictionary`, a complete cross-check that
+  `H²_LQC` equals `H²_RS` at `σ = −ρ_c/2`, that both tend to
+  `(8πG/3)ρ + Λ/3`, and that `H²_LQC = 0` at `ρ = ρ_c` and `Λ = 0`.
+  The covers line names BE-54. `σ = +ρ_c/2` is not that polynomial, and
+  `σ < 0` is not a physical Randall–Sundrum brane. It covers that
+  dictionary of `be-19`, and it is not a formalRef.
 
 ## [0.0.0] - 2026-09-22
 

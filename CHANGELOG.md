@@ -121,6 +121,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   encoded Lorenz number. The integrand is even, so the half-line is half
   of `π²/3`, and claiming the half-line equals `π²/3` fails. It covers
   that derivation step of `be-61`, not the transport law.
+- `PhysJS.ThermalDeBroglie.wavelength_eq`, a complete proof that
+  `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and
+  `ℏ > 0`. The square root is non-negative, so `ℏ > 0` is the hypothesis
+  that makes the two writings agree. The Wave Q form `ℏ / √(m k_B T)`,
+  with `ℏ` in the numerator and no `√(2π)`, fails, as does
+  `ℏ / √(2 m k_B T)`. It covers that derivation step of `be-12`, not
+  Caldeira–Leggett dephasing.
 
 ## [0.0.0] - 2026-09-22
 

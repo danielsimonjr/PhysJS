@@ -30,3 +30,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-58` covers the low-frequency limit of the quantum Johnson–Nyquist parent. The `+ 1` denominator is the negative control. It does not derive the fluctuation–dissipation theorem.
 
 `be-38` covers the Newtonian and deep-MOND limits of `ν(z)`. The mass stays in the deep-MOND force scale. The claim `ν √z → √2` is the negative control. The inversion of `μ(x) = x / √(1 + x²)` is the nested `inversion` object. The reference, when it is attached, names the limit theorem only. The row is recorded when both are present. Each covers line claims its own part. The SPARC confrontation is not this row.
+
+`be-13` covers the four-dimensional contraction of the Einstein equation, `R = 4Λ − κ T`. The contraction does not choose a signature. Under `−,+,+,+`, dust with `u_μ u^μ = −c²` has trace `−ρ c²`. The BE-20 density is the nested `vacuum` object. The reference, when it is attached, names the contraction only. The opposite sign for the vacuum tensor is the negative control. This does not certify Jacobson's thermodynamic derivation. BE-20 does not get its own reference.

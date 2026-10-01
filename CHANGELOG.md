@@ -78,6 +78,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   names BE-57 and `be-42-via-rs`. `T_U(c⁴/(2GM))` is not `T_H(M)`. It
   covers that dictionary of `be-42`, not the Hawking effect, and it is
   not a formalRef.
+- `PhysJS.Fret.dictionary`, a complete cross-check that the Förster
+  efficiency is `R₀⁶/(R₀⁶+R⁶)`, `1/(1+(R/R₀)⁶)`, and
+  `k_FRET/(k_FRET+1/τ_D)`, and that it decreases. At `R = 2 R₀` the
+  exponent 4 is not the exponent 6. It covers that dictionary of `be-24`,
+  not the dipole–dipole law, and it is not a formalRef.
 
 ## [0.0.0] - 2026-09-22
 

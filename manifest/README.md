@@ -36,3 +36,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-34` covers the Kibble–Zurek freeze-out power. `ε̂` is the unique positive solution of `τ₀ ε^{−zν} = ε τ_Q`, and the defect power is `ξ₀^{−d} (τ_Q/τ₀)^{−dν/(1+zν)}`. The exponent with the `1` omitted is the negative control. The Boltzmann factor and the missing `1/a^d` prefactor are not this row.
 
 `be-42` is a cross-check, not a formalRef. The covers line names BE-57 and the edge `be-42-via-rs`. `T_H` at the Schwarzschild radius equals `T_H(M)`, and the Unruh temperature at `c⁴/(4GM)` equals `T_H(M)`. `T_U(c⁴/(2GM))` is the negative control. It does not certify the Hawking effect.
+
+`be-24` is a cross-check, not a formalRef. The efficiency has the three readings `R₀⁶/(R₀⁶+R⁶)`, `1/(1+(R/R₀)⁶)`, and `k_FRET/(k_FRET+1/τ_D)`, and it decreases on `(0, ∞)`. `η(R₀, R₀) = 1/2` holds for any positive power, so it is not the control. At `R = 2 R₀` the exponent 4 is not the exponent 6. The dipole–dipole law is a premise.

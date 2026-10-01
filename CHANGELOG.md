@@ -231,6 +231,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   step of `be-32`, not the Giacomini–Castro-Ruiz–Brukner
   transformation and not a Haar integral. The catalog records this id
   as not-a-bridge, and this lemma does not decide that.
+- `PhysJS.EntropyProduction.nonneg`, a complete proof that
+  `σ = Σ_i J_i X_i` is the definition of `σ`, and that if every
+  product is `≥ 0` then `σ ≥ 0`. One flipped sign, with the other
+  products zero and the flipped product strictly positive, is not
+  `σ`, and that flipped sum is negative. It covers that derivation
+  step of `be-28`, not the variational maximum-entropy-production
+  principle. The catalog records this id as not-a-bridge, and this
+  lemma does not decide that.
 
 ## [0.0.0] - 2026-09-22
 

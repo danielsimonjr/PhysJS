@@ -50,3 +50,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-65` covers the derivation of the encoded Jeans mass from the virial convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3` is the negative control. It does not derive the virial theorem.
 
 `be-51` covers the weak-field line integral `(1+γ)/c² ∫_ℝ G M b / (b² + z²)^{3/2} dz = 2(1+γ) G M / (b c²)`. At `γ = 1` the value is the encoded angle `4 G M / (b c²)`. `γ = 0` is the negative control. It does not integrate a geodesic.
+
+`be-61` covers `∫_ℝ x² e^x / (1+e^x)² dx = π²/3`, the factor in the encoded Lorenz number. The integrand is even, so the half-line integral is half of `π²/3`. Claiming the half-line equals `π²/3` is the negative control. It does not derive the Wiedemann–Franz law.

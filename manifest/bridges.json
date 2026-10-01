@@ -429,8 +429,8 @@
     {
       "key": "be-50",
       "bridgeId": "be-50",
-      "theorem": "PhysJS.TimeSymmetric.residual_iff",
-      "covers": "derivation-step: when A_ret + A_adv ≠ 0, (A_ret − A_adv)/(A_ret + A_adv) = 0 iff A_ret = A_adv. The encoded field is the half-sum (A_ret + A_adv)/2, and twice that field is the residual's denominator. A fully retarded field, A_adv = 0 with A_ret ≠ 0, gives residual 1, not 0. The id is contested. This lemma does not decide the contest. Not the absorber boundary condition as a theory of radiation reaction",
+      "theorem": "PhysJS.TimeSymmetric.wheeler_feynman",
+      "covers": "derivation-step: A_μ(x) = (A_μ^ret(x) + A_μ^adv(x))/2, and twice that component is the sum. The residual (A_ret − A_adv)/(A_ret + A_adv) = 0 iff A_ret = A_adv remains residual_iff, when the sum is nonzero. A fully retarded field gives residual 1. The id is contested. This lemma does not decide the contest. Not the absorber boundary condition as a theory of radiation reaction",
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]

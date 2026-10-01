@@ -420,8 +420,8 @@
     {
       "key": "be-33",
       "bridgeId": "be-33",
-      "theorem": "PhysJS.QuantumCritical.xi_product",
-      "covers": "derivation-step: for T > 0 and T₀ > 0, the encoded scaling ξ(T) = ξ₀ (T/T₀)^{−1/z} gives ξ T = ξ₀ T₀ at z = 1. The retired exponent −ν/z fails −1/z at z = 1 when ν ≠ 1. The old pin −0.71 = −71/100 is that failure. At T = T₀ every exponent agrees, so the comparison assumes T ≠ T₀. Not Hertz–Millis theory, and not a universality class",
+      "theorem": "PhysJS.QuantumCritical.thermal_scaling",
+      "covers": "derivation-step: ξ(T) = ξ₀ (T/T₀)^{−1/z}, and at z = 1 this is ξ(T) = ξ₀ (T/T₀)^{−1} = ξ₀ T₀/T for T > 0 and T₀ > 0. The product ξ T = ξ₀ T₀ remains xi_product. The retired exponent −ν/z fails −1/z at z = 1 when ν ≠ 1. Not Hertz–Millis theory, and not a universality class",
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]

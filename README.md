@@ -115,7 +115,7 @@ The running solution is the nested `oneLoop` object, `PhysJS.YangMills.alphaRun_
 
 The inversion is the nested `inversion` object, `PhysJS.Mond.mu_inversion`: for `z > 0`, `y = z ν(z)` satisfies `y² / √(1 + y²) = z`. That is Milgrom's `μ(x) = x / √(1 + x²)` inverted. The reference names the limit theorem only.
 
-The vacuum density is the nested `vacuum` object, `PhysJS.Einstein.vacuum_density`: with `κ = 8π G / c⁴` and `T_μν = −ρ c² g_μν`, `Λ g = −κ T` rearranges to `ρ = c² Λ / (8π G)`. That is the BE-20 density, recorded on `be-13`. `PhysJS.Einstein.dust_trace` is the mostly-plus dust reading, `R = 4Λ + κ ρ c²`. A plus sign on the vacuum tensor gives the opposite density when `Λ > 0`. The reference names the contraction only.
+The vacuum density is the nested `vacuum` object, `PhysJS.Einstein.vacuum_density`: with `κ = 8π G / c⁴` and `T_μν = −ρ c² g_μν`, `Λ g = −κ T` rearranges to `ρ = c² Λ / (8π G)`. That is the BE-20 density, recorded on `be-13`. The Friedmann corollary is the nested `corollary` object, `PhysJS.Einstein.friedmann_corollary`: `(8πG/3) ρ = Λ c² / 3`, and a fluid of that density added to matter, with the explicit `Λ` set to zero, is `FirstOrderFriedmann` at `k = 0`. The Einstein-static density is twice that term. Dropping `c²` fails when `c² ≠ 1`. BE-20 does not get its own reference. `PhysJS.Einstein.dust_trace` is the mostly-plus dust reading, `R = 4Λ + κ ρ c²`. A plus sign on the vacuum tensor gives the opposite density when `Λ > 0`. The reference names the contraction only.
 
 ## Milestone 2b, cross-checks
 
@@ -164,6 +164,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-17` | `PhysJS.EinsteinCartan.inversion` | If `κ = 8πG/c⁴ ≠ 0` and every component satisfies `T = κ S`, then `S·S = T·T / κ² = (c⁴/(8πG))² T·T`. `κ²` in the numerator fails when `T·T ≠ 0` and `κ⁴ ≠ 1`. Not the Einstein–Cartan field equation, and not a Newtonian limit. |
 | `be-27` | `PhysJS.EffectiveTemperature.sum_eq` | For `T ≠ 0` and `k_B ≠ 0`, `T (1 + Σ_active/(k_B T)) = T + Σ_active/k_B`, and this equals `T` iff `Σ_active = 0`. Omitting the `1` fails. Not the frequency-dependent Cugliandolo–Kurchan `T_eff(ω)`. |
 | `be-22` | `PhysJS.ToricCode.toric` | Four anyons of quantum dimension `1` have `D = √4 = 2` and `γ = ln 2`. The encoded decomposition is `S = α L − γ`, with the `O(L⁻¹)` term dropped. `log₂ 2 = 1` is not `ln 2`. `D = √2` is one anyon pair. Not the Kitaev–Preskill theorem. |
+| `be-20`, nested on `be-13` | `PhysJS.Einstein.friedmann_corollary` | `(8πG/3) ρ = Λ c² / 3` from the vacuum density, and a fluid of that density added to matter, with the explicit `Λ` set to zero, is `FirstOrderFriedmann` at `k = 0`. The Einstein-static density is twice that term. Dropping `c²` fails when `c² ≠ 1`. No separate key. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 

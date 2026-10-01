@@ -194,6 +194,13 @@
         "coverage": "covers its statement only",
         "leanProof": "complete",
         "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      },
+      "corollary": {
+        "theorem": "PhysJS.Einstein.friedmann_corollary",
+        "covers": "derivation-step: the vacuum density gives (8πG/3) ρ = Λ c² / 3, the cosmological term of FirstOrderFriedmann. A fluid of this density added to matter, with the explicit Λ set to zero, is that equation at k = 0. The Einstein-static density Λ c²/(4π G) is twice that term. Dropping c² fails when c² ≠ 1. The density is not reproved. BE-20 has no reference of its own",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
       }
     },
     {

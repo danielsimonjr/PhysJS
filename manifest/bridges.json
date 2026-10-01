@@ -479,6 +479,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-30",
+      "bridgeId": "be-30",
+      "theorem": "PhysJS.Entanglement.first_variation",
+      "covers": "derivation-step: for a smooth curve of full-rank density matrices that stay diagonal in a fixed basis and have trace 1, d/dt S(ρ(t)) = −⟪ρ̇(t), log ρ(t)⟫, the trace inner product. The modular Hamiltonian K = −log ρ is frozen at the base point, and that derivative equals d/dt ⟨K⟩. A finite jump from diag(1/2, 1/2) to diag(3/4, 1/4) leaves ⟨K⟩ unchanged and changes S. Not the holographic first law that identifies K with an area variation",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

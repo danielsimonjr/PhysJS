@@ -154,6 +154,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
 | `be-12` | `PhysJS.ThermalDeBroglie.wavelength_eq` | `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and `ℏ > 0`. The Wave Q form `ℏ / √(m k_B T)` fails, as does `ℏ / √(2 m k_B T)`. Not Caldeira–Leggett dephasing. |
+| `be-59` | `PhysJS.Josephson.frequency_eq` | `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. The factor `2` is the Cooper-pair charge. Replacing it by `e` fails. Not the tunneling Hamiltonian. |
 
 ## Build
 

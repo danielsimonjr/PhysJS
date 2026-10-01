@@ -7,6 +7,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `PhysJS.RandallSundrum.brane_friedmann`, a complete proof of the catalog
+  equation `H² = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3` for `σ ≠ 0`. The same rate
+  equals the Friedmann term plus `(8πG/3) ρ²/(2σ)`. `positive_tension`
+  remains the sign of that excess. It covers that equation of `be-54`,
+  not a derivation from the five-dimensional Einstein equation.
 - Lean 4 lake project. Direct requires: Mathlib `v4.34.1` and Physlib
   `af484f78ee0701290595f8bf892b157b10d64940` (the library Daniel calls PhysLean).
   Toolchain pinned at `leanprover/lean4:v4.34.1`.

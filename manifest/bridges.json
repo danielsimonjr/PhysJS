@@ -195,6 +195,15 @@
         "leanProof": "complete",
         "axioms": ["propext", "Classical.choice", "Quot.sound"]
       }
+    },
+    {
+      "key": "be-34",
+      "bridgeId": "be-34",
+      "theorem": "PhysJS.KibbleZurek.exponent",
+      "covers": "derivation-step: the freeze-out power ε̂ = (τ₀/τ_Q)^(1/(1+zν)) and the defect density without the Boltzmann factor; omitting the 1 in the exponent fails. Not the reheating factor, and not a repair of the missing 1/a^d prefactor",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

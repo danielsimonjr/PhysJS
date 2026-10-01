@@ -223,6 +223,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   does not decide the contest. It covers that derivation step of
   `be-50`, not the absorber boundary condition as a theory of
   radiation reaction.
+- `PhysJS.BornOverlap.modulus_sq`, a complete proof that
+  `|c + s i|² = c² + s²`, which is `Complex.normSq` of one matrix
+  element. A sum of squares above `1` is not a probability in
+  `[0, 1]`, the module's rejection of `c² + s² > 1`. The difference
+  `c² − s²` is not that square when `s ≠ 0`. It covers that derivation
+  step of `be-32`, not the Giacomini–Castro-Ruiz–Brukner
+  transformation and not a Haar integral. The catalog records this id
+  as not-a-bridge, and this lemma does not decide that.
 
 ## [0.0.0] - 2026-09-22
 

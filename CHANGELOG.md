@@ -101,6 +101,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   unequal work values. It covers that property of `be-29`, not
   Jarzynski's theorem and not the Gaussian identity, and it is not a
   formalRef.
+- `PhysJS.Lindblad.preserve`, a complete proof that one channel of the
+  displayed GKSL generator has trace zero, and that it is Hermitian when
+  `H` and `ρ` are. `L` need not be Hermitian. Dropping the anticommutator
+  makes the trace nonzero. It covers that property of `be-11`, not
+  Born–Markov coarse-graining, and it is not a formalRef.
 
 ## [0.0.0] - 2026-09-22
 

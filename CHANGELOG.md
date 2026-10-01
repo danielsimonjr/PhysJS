@@ -7,6 +7,17 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `PhysJS.Dimensional`, a Buckingham-Pi fragment. A dimensionally homogeneous
+  function of positive magnitudes is a monomial times a dimensionless constant
+  when a unit change reaches every positive tuple, and a monomial times a
+  function of one ratio when a single dimensionless group remains. A pure
+  number that labels the dimension assignment is an input, not a conclusion.
+- `PhysJS.Coarsening.length_monomial_at`. Hypothesis: `L` is a dimensionally
+  homogeneous function of `Γ` and `t` alone, and `[Γ] = L^z T⁻¹` for a
+  positive rational `z`. Conclusion: `L = C (Γ t)^{1/z}`, with `C` not fixed.
+  Every such `z` works, so `z = 2` is not derived. `length_monomial` is the
+  case `[Γ] = L² T⁻¹`. `exponent_iff` remains the scaling comparison. This is
+  not the Model A Langevin equation.
 - `PhysJS.EinsteinCartan.torsion_monomial`. Hypothesis: a positive torsion
   component is a dimensionally homogeneous function of positive `κ` and `S`
   alone, with `[T] = [κ][S]`. Conclusion: `T = C κ S` with `C = f(1, 1)`.
@@ -14,7 +25,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   from the catalog coefficient. `inversion_of_unit_coefficient` applies
   `inversion` only after assuming `C = 1`. The Einstein trace stays a
   hypothesis of `PhysJS.Einstein.trace_eq`. `inversion` remains the reference.
-  The shared module is `PhysJS.Dimensional`.
+  The module is the one introduced for `be-15`.
 - Lean 4 lake project. Direct requires: Mathlib `v4.34.1` and Physlib
   `af484f78ee0701290595f8bf892b157b10d64940` (the library Daniel calls PhysLean).
   Toolchain pinned at `leanprover/lean4:v4.34.1`.

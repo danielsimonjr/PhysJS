@@ -163,6 +163,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-54` | `PhysJS.RandallSundrum.positive_tension` | For `σ > 0`, `ρ > 0`, and `G > 0`, `H²_RS − H²_FRW = (8πG/3) ρ²/(2σ) > 0`. The correction `1+ρ/σ` fails. `σ < 0` lies below the Friedmann value. The limit is already `be-19`. Not the five-dimensional Einstein equation. |
 | `be-17` | `PhysJS.EinsteinCartan.inversion` | If `κ = 8πG/c⁴ ≠ 0` and every component satisfies `T = κ S`, then `S·S = T·T / κ² = (c⁴/(8πG))² T·T`. `κ²` in the numerator fails when `T·T ≠ 0` and `κ⁴ ≠ 1`. Not the Einstein–Cartan field equation, and not a Newtonian limit. |
 | `be-27` | `PhysJS.EffectiveTemperature.sum_eq` | For `T ≠ 0` and `k_B ≠ 0`, `T (1 + Σ_active/(k_B T)) = T + Σ_active/k_B`, and this equals `T` iff `Σ_active = 0`. Omitting the `1` fails. Not the frequency-dependent Cugliandolo–Kurchan `T_eff(ω)`. |
+| `be-22` | `PhysJS.ToricCode.toric` | Four anyons of quantum dimension `1` have `D = √4 = 2` and `γ = ln 2`. The encoded decomposition is `S = α L − γ`, with the `O(L⁻¹)` term dropped. `log₂ 2 = 1` is not `ln 2`. `D = √2` is one anyon pair. Not the Kitaev–Preskill theorem. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 

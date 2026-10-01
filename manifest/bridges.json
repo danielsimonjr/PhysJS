@@ -391,6 +391,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-22",
+      "bridgeId": "be-22",
+      "theorem": "PhysJS.ToricCode.toric",
+      "covers": "derivation-step: four anyons of quantum dimension 1 have D = √4 = 2 and γ = ln 2 in nats. The encoded decomposition is S = α L − γ, with the O(L⁻¹) term dropped. log₂ 2 = 1 is the bit convention, not ln 2. D = √2 is one anyon pair, not the toric code. Not the Kitaev–Preskill theorem, and not a quantum-gravity boundary",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

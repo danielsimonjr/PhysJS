@@ -144,6 +144,7 @@ These derivation steps come after the counted rows. Each covers its statement on
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
 | `be-65` | `PhysJS.Jeans.mass_eq` | The encoded Jeans mass follows from the virial convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3` fails. Not the virial theorem. |
+| `be-51` | `PhysJS.Deflection.line_integral` | `(1+γ)/c²` times the weak-field line integral equals `2(1+γ) G M / (b c²)`. At `γ = 1` that is the encoded angle `4 G M / (b c²)`. `γ = 0` is half. Not a geodesic. |
 
 ## Build
 

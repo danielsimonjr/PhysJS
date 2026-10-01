@@ -111,6 +111,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3`
   fails. It covers that derivation step of `be-65`, not the virial
   theorem.
+- `PhysJS.Deflection.line_integral`, a complete proof that
+  `(1+γ)/c² ∫_ℝ G M b / (b² + z²)^{3/2} dz = 2(1+γ) G M / (b c²)`.
+  At `γ = 1` this is the encoded angle `4 G M / (b c²)`. `γ = 0` is
+  half of that angle. It covers that derivation step of `be-51`, not a
+  geodesic.
 
 ## [0.0.0] - 2026-09-22
 

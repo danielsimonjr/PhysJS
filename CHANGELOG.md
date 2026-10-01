@@ -257,6 +257,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   not the infinite sum over `(Δ, ℓ)` and not positivity or unitarity.
   The catalog records this id as not-a-bridge, and this lemma does
   not decide that.
+- `PhysJS.Chandrasekhar.prefactor`, a complete proof that with
+  `n = ρ/(μ_e m_u)`, `p_F = ℏ (3π² n)^{1/3}`, and
+  `P = (1/4) n p_F c`, the pressure is `K_ρ ρ^{4/3}`, and for the
+  `n = 3` Lane–Emden scale the central density cancels, leaving
+  `M = (ω₃⁰ √(3π)/2) (ℏ c/G)^{3/2} (μ_e m_u)^{−2}`. `ω₃⁰` stays
+  symbolic; the decimal `2.01824` is not in the theorem. With
+  `ℏ = c = μ_e = m_u = 1` both routes give the same `K`.
+  `√π/2` in place of `√(3π)/2` fails when `ω₃⁰ ≠ 0`, and dropping
+  `ω₃⁰` fails when `ω₃⁰ ≠ 1`. It covers that derivation step of
+  `be-63`, not stellar rotation or magnetic support.
 
 ## [0.0.0] - 2026-09-22
 

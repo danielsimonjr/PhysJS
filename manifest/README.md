@@ -24,3 +24,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `ab-wave-dalembert` covers the missing direction of d'Alembert's formula: a jointly `C²` solution of Physlib's one-dimensional `WaveEquation`, at nonzero speed, is a sum of two profiles.
 
 `be-64` covers the derivation step that cancels `r²` in the Eddington force balance. It does not certify a hard cap. The key is the catalog id.
+
+`be-53` covers the sign of the one-loop coefficient: for SU(3), `b₀ > 0` if and only if `N_f ≤ 16`. The closed form of the running is the nested `oneLoop` object. The reference, when it is attached, names the sign theorem only. The row is recorded when both are present. Each covers line claims its own part.

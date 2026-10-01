@@ -138,6 +138,22 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-53",
+      "bridgeId": "be-53",
+      "theorem": "PhysJS.YangMills.b0_pos_iff_nf_le",
+      "covers": "derivation-step: b₀ > 0 iff N_f ≤ 16 for SU(3), not a running procedure past one loop",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "oneLoop": {
+        "theorem": "PhysJS.YangMills.alphaRun_hasDerivAt",
+        "covers": "derivation-step: α(t) = α₀ / (1 + b₀ α₀ t / (2π)) solves the one-loop running equation where the denominator is positive",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     }
   ]
 }

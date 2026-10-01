@@ -105,6 +105,9 @@ Catalog rows, keyed by `be-` id. A counted proof is a reduction, a limit, or a d
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
 | `be-64` | `PhysJS.Eddington.balance_iff` | Thomson force equals gravitational force iff `L = 4 π G M m_p c / σ_T`. The `r²` cancels. Not a hard cap. |
+| `be-53` | `PhysJS.YangMills.b0_pos_iff_nf_le` | For SU(3), `b₀ > 0` iff `N_f ≤ 16`. At 16 the value is `1/3`. `N_f = 17` fails. Not a running procedure past one loop. |
+
+The running solution is the nested `oneLoop` object, `PhysJS.YangMills.alphaRun_hasDerivAt`: `α(t) = α₀ / (1 + b₀ α₀ t / (2π))` solves `dα/dt = −(b₀/(2π)) α²` wherever the denominator is positive. `PhysJS.YangMills.beta_alpha_iff` is the same truncation read as `β(g) = −b₀ g³/(16π²)` if and only if `dα/d ln μ = −b₀ α²/(2π)`, with `α = g²/(4π)` and `g ≠ 0`. The reference names the sign theorem only.
 
 ## Build
 

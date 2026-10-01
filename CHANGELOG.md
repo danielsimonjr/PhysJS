@@ -49,6 +49,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   balance holds if and only if `L = 4 π G M m_p c / σ_T`. The radius cancels.
   A factor of two on that luminosity fails the balance. It covers that
   derivation step of `be-64`, not a hard cap.
+- `PhysJS.YangMills.b0_pos_iff_nf_le`, a complete proof that the SU(3)
+  one-loop coefficient is positive if and only if `N_f ≤ 16`. At 16 the value
+  is `1/3`. Seventeen flavors fail the positive claim. The nested `oneLoop`
+  theorem is the closed form of the running equation. It covers those two
+  parts of `be-53`, not a running procedure past one loop.
 
 ## [0.0.0] - 2026-09-22
 

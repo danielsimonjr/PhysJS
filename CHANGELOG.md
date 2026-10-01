@@ -58,6 +58,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Johnson–Nyquist spectrum tends to `4 k_B T R` as `ω → 0⁺`. The same
   expression with `+ 1` in the denominator tends to `0` instead. It covers
   that limit of `be-58`, not the fluctuation–dissipation theorem.
+- `PhysJS.Mond.tendsto_nu_limits`, a complete proof that `ν(z) → 1` as
+  `z → ∞` and `ν(z) √z → 1` as `z → 0⁺`, and that the force ratio
+  `F_N ν(z) / √(m F_N a₀)` tends to `1`. The claim `ν √z → √2` fails. The
+  nested `inversion` theorem inverts `μ(x) = x / √(1 + x²)`. It covers those
+  two parts of `be-38`, not the SPARC confrontation.
 
 ## [0.0.0] - 2026-09-22
 

@@ -163,6 +163,22 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-38",
+      "bridgeId": "be-38",
+      "theorem": "PhysJS.Mond.tendsto_nu_limits",
+      "covers": "limit: ν → 1 as z → ∞, ν √z → 1 as z → 0⁺, and F_N ν(z) / √(m F_N a₀) → 1 as F_N → 0⁺; not ν → √(2/z), and not the SPARC confrontation",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "inversion": {
+        "theorem": "PhysJS.Mond.mu_inversion",
+        "covers": "derivation-step: for z > 0, y = z ν(z) satisfies y² / √(1 + y²) = z, which inverts μ(x) = x / √(1 + x²)",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     }
   ]
 }

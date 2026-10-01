@@ -3,6 +3,7 @@ Copyright (c) 2026 Daniel Simon Jr.
 Released under MIT license as described in the file LICENSE.
 -/
 
+import PhysJS.Dimensional
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Tactic.FieldSimp
@@ -22,6 +23,12 @@ when `ν ≠ 1`. The module's old pin `−0.71 = −71/100` fails `−1/z` at
 `z = 1`. At `T = T₀` every exponent agrees, so that direction assumes
 `T ≠ T₀`. This is not Hertz–Millis theory, and it does not choose a
 universality class.
+
+`scaling_shape` is the Buckingham step. Its hypothesis is that `ξ` is a
+dimensionally homogeneous function of a length `ξ₀` and two temperatures.
+The conclusion is `ξ = ξ₀ φ(T/T₀)`. The function `φ` is not fixed, so the
+exponent `−1/z` is not a conclusion. `every_power_homogeneous` records that
+every real power of the temperature ratio has the same homogeneity.
 -/
 
 namespace PhysJS.QuantumCritical
@@ -110,5 +117,27 @@ theorem old_pin_fails (xi0 T T0 : ℝ) (hxi : xi0 ≠ 0) (hT : 0 < T) (hT0 : 0 <
     -((71 : ℝ) / 100) / 1 ≠ -1 / 1 ∧
       xiRetired xi0 T T0 (71 / 100) 1 * T ≠ xi0 * T0 := by
   exact wrong_exponent xi0 T T0 ((71 : ℝ) / 100) hxi hT hT0 hne (by norm_num)
+
+/-- Hypothesis: `ξ` is dimensionally homogeneous in a length `ξ₀` and two
+temperatures. Then `ξ = ξ₀ φ(T/T₀)` with `φ(u) = f(1, u, 1)`.
+
+`φ` is not fixed. The catalog exponent `−1/z` is not a conclusion, and this
+is not Hertz–Millis theory. -/
+theorem scaling_shape (f : ℝ → ℝ → ℝ → ℝ)
+    (hf : ∀ lams lame s a b, 0 < lams → 0 < lame → 0 < s → 0 < a → 0 < b →
+      f (lams * s) (lame * a) (lame * b) = lams * f s a b)
+    {xi0 T T0 : ℝ} (hxi : 0 < xi0) (hT : 0 < T) (hT0 : 0 < T0) :
+    f xi0 T T0 = xi0 * f 1 (T / T0) 1 :=
+  Dimensional.ratio_shape f hf hxi hT hT0
+
+/-- Every real power of `T/T₀` is dimensionally homogeneous. The exponent is
+not chosen. -/
+theorem every_power_homogeneous (p lams lame xi0 T T0 : ℝ)
+    (hlams : 0 < lams) (hlame : 0 < lame) (hxi : 0 < xi0) (hT : 0 < T) (hT0 : 0 < T0) :
+    0 < lams * xi0 ∧ 0 < T / T0 ∧
+      (lams * xi0) * ((lame * T) / (lame * T0)) ^ p = lams * (xi0 * (T / T0) ^ p) := by
+  refine ⟨mul_pos hlams hxi, div_pos hT hT0, ?_⟩
+  rw [Dimensional.ratio_power_invariant p lame T T0 hlame.ne']
+  exact mul_assoc lams xi0 ((T / T0) ^ p)
 
 end PhysJS.QuantumCritical

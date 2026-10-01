@@ -448,11 +448,25 @@
     {
       "key": "be-33",
       "bridgeId": "be-33",
-      "theorem": "PhysJS.QuantumCritical.thermal_scaling",
+"theorem": "PhysJS.QuantumCritical.thermal_scaling",
       "covers": "derivation-step: ξ(T) = ξ₀ (T/T₀)^{−1/z}, and at z = 1 this is ξ(T) = ξ₀ (T/T₀)^{−1} = ξ₀ T₀/T for T > 0 and T₀ > 0. Not Hertz–Millis theory, and not a universality class",
       "coverage": "covers its statement only",
       "leanProof": "complete",
-      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "scalingShape": {
+        "theorem": "PhysJS.QuantumCritical.scaling_shape",
+        "covers": "derivation-step: if ξ is a dimensionally homogeneous function of a length ξ₀ and two temperatures, then ξ = ξ₀ φ(T/T₀) with φ(u) = f(1, u, 1). φ is not fixed. Not Hertz–Millis theory",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      },
+      "everyPower": {
+        "theorem": "PhysJS.QuantumCritical.every_power_homogeneous",
+        "covers": "derivation-step: for every real p and positive scale factors, (λ_s ξ₀) ((λ_e T)/(λ_e T₀))^p = λ_s (ξ₀ (T/T₀)^p). The exponent p is not chosen. Not Hertz–Millis theory",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     },
     {
       "key": "be-50",

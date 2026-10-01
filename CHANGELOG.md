@@ -45,6 +45,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `inversion` only after assuming `C = 1`. The Einstein trace stays a
   hypothesis of `PhysJS.Einstein.trace_eq`. `inversion` remains the reference.
   The module is the one introduced for `be-15`.
+- `PhysJS.QuantumCritical.scaling_shape`. Hypothesis: `ξ` is a dimensionally
+  homogeneous function of a length `ξ₀` and two temperatures. Conclusion:
+  `ξ = ξ₀ φ(T/T₀)`, and `φ` is not fixed. `every_power_homogeneous` shows that
+  every real power of `T/T₀` has that homogeneity, so the exponent `−1/z` is
+  not derived. Both are nested on `be-33`. The module is the one introduced
+  for `be-15`.
 - Lean 4 lake project. Direct requires: Mathlib `v4.34.1` and Physlib
   `af484f78ee0701290595f8bf892b157b10d64940` (the library Daniel calls PhysLean).
   Toolchain pinned at `leanprover/lean4:v4.34.1`.

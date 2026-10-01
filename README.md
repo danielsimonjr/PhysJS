@@ -124,6 +124,7 @@ These rows are manifest entries only. They are not UPT `formalRef`s. Each carrie
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
 | `be-42` | `PhysJS.HawkingUnruh.dictionary` | `T_H(2GM/c²) = T_H(M)` and `T_U(c⁴/(4GM)) = T_H(M)`, naming BE-57 and `be-42-via-rs`. `T_U(c⁴/(2GM))` is not `T_H(M)`. Not the Hawking effect. |
+| `be-24` | `PhysJS.Fret.dictionary` | `η = R₀⁶/(R₀⁶+R⁶)` equals both `1/(1+(R/R₀)⁶)` and `k_FRET/(k_FRET+1/τ_D)`, and `η` decreases. At `R = 2 R₀` the exponent 4 is not 6. Not the dipole–dipole law. |
 
 ## Build
 

@@ -213,6 +213,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   old pin `−0.71 = −71/100` is that failure. At `T = T₀` every exponent
   agrees, so the comparison assumes `T ≠ T₀`. It covers that derivation
   step of `be-33`, not Hertz–Millis theory and not a universality class.
+- `PhysJS.TimeSymmetric.residual_iff`, a complete proof that when
+  `A_ret + A_adv ≠ 0`, the residual
+  `(A_ret − A_adv) / (A_ret + A_adv)` is `0` if and only if
+  `A_ret = A_adv`. The encoded field is the half-sum
+  `(A_ret + A_adv) / 2`, and twice that field is the residual's
+  denominator. A fully retarded field, `A_adv = 0` with `A_ret ≠ 0`,
+  gives residual `1`, not `0`. The id is contested, and this lemma
+  does not decide the contest. It covers that derivation step of
+  `be-50`, not the absorber boundary condition as a theory of
+  radiation reaction.
 
 ## [0.0.0] - 2026-09-22
 

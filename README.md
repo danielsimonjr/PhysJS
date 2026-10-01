@@ -167,6 +167,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-20`, nested on `be-13` | `PhysJS.Einstein.friedmann_corollary` | `(8πG/3) ρ = Λ c² / 3` from the vacuum density, and a fluid of that density added to matter, with the explicit `Λ` set to zero, is `FirstOrderFriedmann` at `k = 0`. The Einstein-static density is twice that term. Dropping `c²` fails when `c² ≠ 1`. No separate key. |
 | `be-15` | `PhysJS.Coarsening.exponent_iff` | For `Γ = L₀²/t₀ > 0`, `t > 0`, `t ≠ t₀`, and `z > 0`, `L(t) = L₀ (t/t₀)^{1/z}` obeys `L² = Γ t` iff `z = 2`. At `t = t₀` every `z` agrees. `z = 3` gives `L³ ∝ t` and fails. Not the Model A Langevin equation. |
 | `be-33` | `PhysJS.QuantumCritical.xi_product` | For `T > 0` and `T₀ > 0`, `ξ(T) = ξ₀ (T/T₀)^{−1/z}` gives `ξ T = ξ₀ T₀` at `z = 1`. The retired exponent `−ν/z` fails when `ν ≠ 1`. The old pin `−0.71` is that failure, once `T ≠ T₀`. Not Hertz–Millis theory. |
+| `be-50` | `PhysJS.TimeSymmetric.residual_iff` | When `A_ret + A_adv ≠ 0`, `(A_ret − A_adv)/(A_ret + A_adv) = 0` iff `A_ret = A_adv`. The encoded field is the half-sum. A fully retarded field gives residual `1`, not `0`. The id is contested. Not the absorber theory of radiation reaction. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 

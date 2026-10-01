@@ -239,6 +239,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   step of `be-28`, not the variational maximum-entropy-production
   principle. The catalog records this id as not-a-bridge, and this
   lemma does not decide that.
+- `PhysJS.CompositeHiggs.scale_free`, a complete proof that for
+  `f ≠ 0` and `θ = h/f`, `V(h) / f⁴ = −α sin²θ + β [sin⁴θ − sin²θ
+  cos²θ]`. Both terms carry `f⁴`, so the ratio depends on `h` only
+  through `θ`. The pre-correction first term `−α f² sin²θ`, divided
+  by `f⁴`, is `−α sin²θ / f²`. It depends on `f`, and it agrees with
+  `−α sin²θ` only when `f² = 1`. It covers that derivation step of
+  `be-40`, not SILH matching onto a confining theory. The catalog
+  records this id as not-a-bridge, and this lemma does not decide
+  that.
 
 ## [0.0.0] - 2026-09-22
 

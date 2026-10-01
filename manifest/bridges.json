@@ -452,6 +452,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-40",
+      "bridgeId": "be-40",
+      "theorem": "PhysJS.CompositeHiggs.scale_free",
+      "covers": "derivation-step: for f ≠ 0 and θ = h/f, V(h)/f⁴ = −α sin²θ + β [sin⁴θ − sin²θ cos²θ]. Both terms carry f⁴, so the ratio depends on h only through θ. The pre-correction first term −α f² sin²θ, divided by f⁴, is −α sin²θ / f². It depends on f, and it agrees with −α sin²θ only when f² = 1. Not SILH matching onto a confining theory. The catalog records this id as not-a-bridge; this lemma does not decide that",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

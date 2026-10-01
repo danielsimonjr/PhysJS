@@ -150,6 +150,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `k_B ≠ 0`. The Hawking factor `8π` in place of `4π` is twice `ℏ`, not
   `ℏ`, once `ℏ ≠ 0`. It covers that derivation step of `be-21`, not the
   inequality `η/s ≥ ℏ / (4 π k_B)`.
+- `PhysJS.PlanckArea.area_law`, a complete proof that
+  `k_B c³ A / (4 G ℏ) = k_B A / (4 ℓ_P²)` for `ℓ_P² = ℏ G / c³`. The
+  area is an input. BE-43 is that equality on a wormhole area, not a
+  second lemma. `ℓ_P² = ℏ G / c²` fails when `c ≠ 1`, and the factor `2`
+  in place of `4` fails. It covers that derivation step of `be-14` and
+  `be-43`, not a minimal surface and not ER=EPR.
 
 ## [0.0.0] - 2026-09-22
 

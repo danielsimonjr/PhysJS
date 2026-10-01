@@ -373,6 +373,15 @@
         "leanProof": "complete",
         "axioms": ["propext", "Classical.choice", "Quot.sound"]
       }
+    },
+    {
+      "key": "be-17",
+      "bridgeId": "be-17",
+      "theorem": "PhysJS.EinsteinCartan.inversion",
+      "covers": "derivation-step: if κ = 8πG/c⁴ ≠ 0 and every component satisfies T = κ S, then S·S = T·T / κ² = (c⁴/(8πG))² T·T. κ² in the numerator is the inversion backwards, and it fails when T·T ≠ 0 and κ⁴ ≠ 1. Not the Einstein–Cartan field equation, and not a Newtonian limit",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

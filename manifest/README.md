@@ -54,3 +54,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-61` covers `∫_ℝ x² e^x / (1+e^x)² dx = π²/3`, the factor in the encoded Lorenz number. The integrand is even, so the half-line integral is half of `π²/3`. Claiming the half-line equals `π²/3` is the negative control. It does not derive the Wiedemann–Franz law.
 
 `be-12` covers the two writings of the encoded thermal wavelength: `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and `ℏ > 0`. The square root is the non-negative root, so `ℏ > 0` is what makes them agree. The Wave Q form `ℏ / √(m k_B T)`, with `ℏ` in the numerator and no `√(2π)`, is the negative control, as is `ℏ / √(2 m k_B T)`. Caldeira–Leggett dephasing is not this row.
+
+`be-59` covers `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. Clearing `h` recovers `2e`. The factor `2` is the Cooper-pair charge, taken as a premise. Replacing `2e` by `e` is the negative control. The tunneling Hamiltonian is not this row.

@@ -128,6 +128,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   with `ℏ` in the numerator and no `√(2π)`, fails, as does
   `ℏ / √(2 m k_B T)`. It covers that derivation step of `be-12`, not
   Caldeira–Leggett dephasing.
+- `PhysJS.Josephson.frequency_eq`, a complete proof that
+  `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. Clearing the denominator
+  recovers `2e`. The factor `2` is the Cooper-pair charge, taken as a
+  premise. Replacing it by `e` fails. It covers that derivation step of
+  `be-59`, not the tunneling Hamiltonian.
 
 ## [0.0.0] - 2026-09-22
 

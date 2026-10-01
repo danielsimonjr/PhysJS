@@ -147,6 +147,14 @@ These derivation steps come after the counted rows. Each covers its statement on
 | `be-51` | `PhysJS.Deflection.line_integral` | `(1+γ)/c²` times the weak-field line integral equals `2(1+γ) G M / (b c²)`. At `γ = 1` that is the encoded angle `4 G M / (b c²)`. `γ = 0` is half. Not a geodesic. |
 | `be-61` | `PhysJS.Sommerfeld.integral_eq` | `∫_ℝ x² e^x / (1+e^x)² dx = π²/3`, the factor in the encoded Lorenz number. The integrand is even, so the half-line is half of `π²/3`. Claiming the half-line equals `π²/3` fails. Not the transport law. |
 
+## Milestone 2b, bucket A
+
+Owner-approved bucket A rows, easiest first. Each covers its statement only.
+
+| Catalog id | Theorem | What the statement says |
+|---|---|---|
+| `be-12` | `PhysJS.ThermalDeBroglie.wavelength_eq` | `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and `ℏ > 0`. The Wave Q form `ℏ / √(m k_B T)` fails, as does `ℏ / √(2 m k_B T)`. Not Caldeira–Leggett dephasing. |
+
 ## Build
 
 The toolchain is pinned in `lean-toolchain` (`leanprover/lean4:v4.34.1`). Mathlib is `v4.34.1`. Physlib (PhysLean) is pinned by commit in `lakefile.toml`.

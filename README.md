@@ -117,6 +117,14 @@ The inversion is the nested `inversion` object, `PhysJS.Mond.mu_inversion`: for 
 
 The vacuum density is the nested `vacuum` object, `PhysJS.Einstein.vacuum_density`: with `κ = 8π G / c⁴` and `T_μν = −ρ c² g_μν`, `Λ g = −κ T` rearranges to `ρ = c² Λ / (8π G)`. That is the BE-20 density, recorded on `be-13`. `PhysJS.Einstein.dust_trace` is the mostly-plus dust reading, `R = 4Λ + κ ρ c²`. A plus sign on the vacuum tensor gives the opposite density when `Λ > 0`. The reference names the contraction only.
 
+## Milestone 2b, cross-checks
+
+These rows are manifest entries only. They are not UPT `formalRef`s. Each carries a negative control.
+
+| Catalog id | Theorem | What the statement says |
+|---|---|---|
+| `be-42` | `PhysJS.HawkingUnruh.dictionary` | `T_H(2GM/c²) = T_H(M)` and `T_U(c⁴/(4GM)) = T_H(M)`, naming BE-57 and `be-42-via-rs`. `T_U(c⁴/(2GM))` is not `T_H(M)`. Not the Hawking effect. |
+
 ## Build
 
 The toolchain is pinned in `lean-toolchain` (`leanprover/lean4:v4.34.1`). Mathlib is `v4.34.1`. Physlib (PhysLean) is pinned by commit in `lakefile.toml`.

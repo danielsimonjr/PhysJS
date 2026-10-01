@@ -73,6 +73,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   factor. `ε̂` is the unique positive solution. The exponent with the `1`
   omitted fails. It covers that derivation step of `be-34`, not the
   reheating factor and not a repair of the missing `1/a^d` prefactor.
+- `PhysJS.HawkingUnruh.dictionary`, a complete cross-check that
+  `T_H(2GM/c²) = T_H(M)` and `T_U(c⁴/(4GM)) = T_H(M)`. The covers line
+  names BE-57 and `be-42-via-rs`. `T_U(c⁴/(2GM))` is not `T_H(M)`. It
+  covers that dictionary of `be-42`, not the Hawking effect, and it is
+  not a formalRef.
 
 ## [0.0.0] - 2026-09-22
 

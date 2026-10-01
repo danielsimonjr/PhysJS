@@ -157,6 +157,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-59` | `PhysJS.Josephson.frequency_eq` | `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. The factor `2` is the Cooper-pair charge. Replacing it by `e` fails. Not the tunneling Hamiltonian. |
 | `be-55` | `PhysJS.QuantumHall.reciprocal` | `σ_xy = C e²/h`, `R_H = h/(C e²)`, `R_K = h/e²`, so `σ_xy R_H = 1` and `R_H = R_K/C`. The index `C+1` is a different plateau. Replacing `e²` by `e` fails the product when `e ≠ 1`. Not TKNN. |
 | `be-60` | `PhysJS.Laughlin.fraction` | At `ν = 1/3`, `σ_xy = ν e²/h` and `R_xy = 3 h/e² = 3 R_K`, from the BE-55 reciprocal. At `ν = 1` this is the integer plateau `C = 1`. `R_K/3` is the plateau `C = 3` and fails. Not the Laughlin wavefunction. |
+| `be-21` | `PhysJS.Kss.saturating` | `η/s = ℏ/(4π k_B)` is the equality `4π k_B (η/s) = ℏ`. The Hawking factor `8π` fails when `ℏ ≠ 0`. Not the inequality `η/s ≥ ℏ/(4π k_B)`. |
 
 ## Build
 

@@ -145,6 +145,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `R_K / 3` is that lemma at `C = 3`, the fraction inverted, and it
   fails. It covers that derivation step of `be-60`, not the Laughlin
   wavefunction and not the anyon charge `e/3`.
+- `PhysJS.Kss.saturating`, a complete proof that the encoded saturating
+  value `η/s = ℏ / (4 π k_B)` is the equality `4 π k_B (η/s) = ℏ` for
+  `k_B ≠ 0`. The Hawking factor `8π` in place of `4π` is twice `ℏ`, not
+  `ℏ`, once `ℏ ≠ 0`. It covers that derivation step of `be-21`, not the
+  inequality `η/s ≥ ℏ / (4 π k_B)`.
 
 ## [0.0.0] - 2026-09-22
 

@@ -368,8 +368,8 @@
     {
       "key": "be-54",
       "bridgeId": "be-54",
-      "theorem": "PhysJS.RandallSundrum.positive_tension",
-      "covers": "derivation-step: for σ > 0, ρ > 0, and G > 0, H²_RS − H²_FRW = (8πG/3) ρ²/(2σ) > 0. The factor is 1/2. The correction 1+ρ/σ fails. σ < 0 lies below the Friedmann value and is not a physical brane. The limit σ → ∞ is already the be-19 reference. Not a derivation from the five-dimensional Einstein equation",
+      "theorem": "PhysJS.RandallSundrum.brane_friedmann",
+      "covers": "derivation-step: for σ ≠ 0, H²_RS = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3, which equals the Friedmann term plus (8πG/3) ρ²/(2σ). The positive-tension sign of that excess remains positive_tension. The correction 1+ρ/σ fails. Not a derivation from the five-dimensional Einstein equation",
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"],

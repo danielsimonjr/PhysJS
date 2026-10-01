@@ -95,6 +95,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   closed form does not separate the levels. It covers that property of
   `be-16`, not `E ≥ T ΔS` and not the Bérut confrontation, and it is not
   a formalRef.
+- `PhysJS.Jarzynski.jensen_work`, a complete proof that a finite
+  probability and `β > 0` give `⟨W⟩ ≥ ΔF`, where `ΔF` is
+  `−(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two
+  unequal work values. It covers that property of `be-29`, not
+  Jarzynski's theorem and not the Gaussian identity, and it is not a
+  formalRef.
 
 ## [0.0.0] - 2026-09-22
 

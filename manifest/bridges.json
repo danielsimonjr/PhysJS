@@ -154,6 +154,15 @@
         "leanProof": "complete",
         "axioms": ["propext", "Classical.choice", "Quot.sound"]
       }
+    },
+    {
+      "key": "be-58",
+      "bridgeId": "be-58",
+      "theorem": "PhysJS.JohnsonNyquist.tendsto_classical",
+      "covers": "limit: the classical Johnson–Nyquist spectrum is the ω → 0⁺ limit of the quantum parent, not the fluctuation–dissipation theorem",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

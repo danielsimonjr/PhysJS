@@ -54,6 +54,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   is `1/3`. Seventeen flavors fail the positive claim. The nested `oneLoop`
   theorem is the closed form of the running equation. It covers those two
   parts of `be-53`, not a running procedure past one loop.
+- `PhysJS.JohnsonNyquist.tendsto_classical`, a complete proof that the quantum
+  Johnson–Nyquist spectrum tends to `4 k_B T R` as `ω → 0⁺`. The same
+  expression with `+ 1` in the denominator tends to `0` instead. It covers
+  that limit of `be-58`, not the fluctuation–dissipation theorem.
 
 ## [0.0.0] - 2026-09-22
 

@@ -171,6 +171,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   and `Λ ≠ 0`. The limit `σ → ∞` is already the `be-19` reference. It
   covers that derivation step of `be-54`, not a derivation from the
   five-dimensional Einstein equation.
+- `PhysJS.EinsteinCartan.inversion`, a complete proof that if
+  `κ = 8πG/c⁴ ≠ 0` and every component satisfies `T = κ S`, then
+  `S·S = T·T / κ² = (c⁴/(8πG))² T·T`. `κ²` in the numerator is the
+  inversion run backwards, and it fails when `T·T ≠ 0` and `κ⁴ ≠ 1`.
+  It covers that derivation step of `be-17`, not the Einstein–Cartan
+  field equation and not a Newtonian limit.
 
 ## [0.0.0] - 2026-09-22
 

@@ -321,6 +321,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-21",
+      "bridgeId": "be-21",
+      "theorem": "PhysJS.Kss.saturating",
+      "covers": "derivation-step: η/s = ℏ/(4π k_B) is the equality 4π k_B (η/s) = ℏ for k_B ≠ 0. The Hawking factor 8π in place of 4π is 2ℏ, not ℏ, once ℏ ≠ 0. Not the inequality η/s ≥ ℏ/(4π k_B)",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

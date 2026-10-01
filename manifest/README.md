@@ -34,3 +34,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-13` covers the four-dimensional contraction of the Einstein equation, `R = 4Λ − κ T`. The contraction does not choose a signature. Under `−,+,+,+`, dust with `u_μ u^μ = −c²` has trace `−ρ c²`. The BE-20 density is the nested `vacuum` object. The reference, when it is attached, names the contraction only. The opposite sign for the vacuum tensor is the negative control. This does not certify Jacobson's thermodynamic derivation. BE-20 does not get its own reference.
 
 `be-34` covers the Kibble–Zurek freeze-out power. `ε̂` is the unique positive solution of `τ₀ ε^{−zν} = ε τ_Q`, and the defect power is `ξ₀^{−d} (τ_Q/τ₀)^{−dν/(1+zν)}`. The exponent with the `1` omitted is the negative control. The Boltzmann factor and the missing `1/a^d` prefactor are not this row.
+
+`be-42` is a cross-check, not a formalRef. The covers line names BE-57 and the edge `be-42-via-rs`. `T_H` at the Schwarzschild radius equals `T_H(M)`, and the Unruh temperature at `c⁴/(4GM)` equals `T_H(M)`. `T_U(c⁴/(2GM))` is the negative control. It does not certify the Hawking effect.

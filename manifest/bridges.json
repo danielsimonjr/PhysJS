@@ -303,6 +303,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-55",
+      "bridgeId": "be-55",
+      "theorem": "PhysJS.QuantumHall.reciprocal",
+      "covers": "derivation-step: for a nonzero integer C and e ≠ 0, σ_xy = C e²/h, R_H = h/(C e²), and R_K = h/e², so σ_xy R_H = 1 and R_H = R_K/C. The shifted index C+1 is a different conductance. Replacing e² by e fails the product when e ≠ 1. Not TKNN",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

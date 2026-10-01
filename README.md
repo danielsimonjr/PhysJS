@@ -155,6 +155,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 |---|---|---|
 | `be-12` | `PhysJS.ThermalDeBroglie.wavelength_eq` | `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and `ℏ > 0`. The Wave Q form `ℏ / √(m k_B T)` fails, as does `ℏ / √(2 m k_B T)`. Not Caldeira–Leggett dephasing. |
 | `be-59` | `PhysJS.Josephson.frequency_eq` | `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. The factor `2` is the Cooper-pair charge. Replacing it by `e` fails. Not the tunneling Hamiltonian. |
+| `be-55` | `PhysJS.QuantumHall.reciprocal` | `σ_xy = C e²/h`, `R_H = h/(C e²)`, `R_K = h/e²`, so `σ_xy R_H = 1` and `R_H = R_K/C`. The index `C+1` is a different plateau. Replacing `e²` by `e` fails the product when `e ≠ 1`. Not TKNN. |
 
 ## Build
 

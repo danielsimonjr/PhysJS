@@ -133,6 +133,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   recovers `2e`. The factor `2` is the Cooper-pair charge, taken as a
   premise. Replacing it by `e` fails. It covers that derivation step of
   `be-59`, not the tunneling Hamiltonian.
+- `PhysJS.QuantumHall.reciprocal`, a complete proof that
+  `σ_xy = C e² / h`, `R_H = h / (C e²)`, and `R_K = h / e²` satisfy
+  `σ_xy R_H = 1` and `R_H = R_K / C` for a nonzero integer `C`. The
+  shifted index `C + 1` is a different conductance. Replacing `e²` by `e`
+  makes the product fail to be `1` when `e ≠ 1`. It covers that
+  derivation step of `be-55`, not the TKNN theorem.
 
 ## [0.0.0] - 2026-09-22
 

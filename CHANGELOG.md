@@ -197,8 +197,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   added to matter, with the explicit `Λ` set to zero, is that equation
   at `k = 0`. The Einstein-static density `Λ c² / (4π G)` is twice that
   term, and dropping `c²` fails when `c² ≠ 1`. The density is
-  `vacuum_density` and is not reproved. It covers that corollary of
+  `vacuum_density` and is not reproved. It   covers that corollary of
   `be-20`. There is no `be-20` reference.
+- `PhysJS.Coarsening.exponent_iff`, a complete proof that for
+  `Γ = L₀² / t₀ > 0`, `t > 0`, `t ≠ t₀`, and `z > 0`, the scaling
+  `L(t) = L₀ (t / t₀)^{1/z}` obeys `L(t)² = Γ t` if and only if
+  `z = 2`. At `t = t₀` the ratio holds for every `z`. Model B's
+  `z = 3` gives `L³ ∝ t` and fails `L² = Γ t`. It covers that
+  derivation step of `be-15`, not the Model A Langevin equation. The
+  Langevin kinetic coefficient is a different `Γ`.
 
 ## [0.0.0] - 2026-09-22
 

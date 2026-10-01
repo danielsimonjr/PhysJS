@@ -165,6 +165,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-27` | `PhysJS.EffectiveTemperature.sum_eq` | For `T ≠ 0` and `k_B ≠ 0`, `T (1 + Σ_active/(k_B T)) = T + Σ_active/k_B`, and this equals `T` iff `Σ_active = 0`. Omitting the `1` fails. Not the frequency-dependent Cugliandolo–Kurchan `T_eff(ω)`. |
 | `be-22` | `PhysJS.ToricCode.toric` | Four anyons of quantum dimension `1` have `D = √4 = 2` and `γ = ln 2`. The encoded decomposition is `S = α L − γ`, with the `O(L⁻¹)` term dropped. `log₂ 2 = 1` is not `ln 2`. `D = √2` is one anyon pair. Not the Kitaev–Preskill theorem. |
 | `be-20`, nested on `be-13` | `PhysJS.Einstein.friedmann_corollary` | `(8πG/3) ρ = Λ c² / 3` from the vacuum density, and a fluid of that density added to matter, with the explicit `Λ` set to zero, is `FirstOrderFriedmann` at `k = 0`. The Einstein-static density is twice that term. Dropping `c²` fails when `c² ≠ 1`. No separate key. |
+| `be-15` | `PhysJS.Coarsening.exponent_iff` | For `Γ = L₀²/t₀ > 0`, `t > 0`, `t ≠ t₀`, and `z > 0`, `L(t) = L₀ (t/t₀)^{1/z}` obeys `L² = Γ t` iff `z = 2`. At `t = t₀` every `z` agrees. `z = 3` gives `L³ ∝ t` and fails. Not the Model A Langevin equation. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 

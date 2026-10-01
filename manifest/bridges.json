@@ -430,7 +430,7 @@
       "key": "be-50",
       "bridgeId": "be-50",
       "theorem": "PhysJS.TimeSymmetric.wheeler_feynman",
-      "covers": "derivation-step: A_μ(x) = (A_μ^ret(x) + A_μ^adv(x))/2, and twice that component is the sum. The residual (A_ret − A_adv)/(A_ret + A_adv) = 0 iff A_ret = A_adv remains residual_iff, when the sum is nonzero. A fully retarded field gives residual 1. The id is contested. This lemma does not decide the contest. Not the absorber boundary condition as a theory of radiation reaction",
+      "covers": "derivation-step: A_μ(x) = (A_μ^ret(x) + A_μ^adv(x))/2, and twice that component is the sum. The id is contested. This lemma does not decide the contest. Not the absorber boundary condition as a theory of radiation reaction",
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]

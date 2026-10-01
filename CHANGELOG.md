@@ -206,6 +206,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `z = 3` gives `L³ ∝ t` and fails `L² = Γ t`. It covers that
   derivation step of `be-15`, not the Model A Langevin equation. The
   Langevin kinetic coefficient is a different `Γ`.
+- `PhysJS.QuantumCritical.xi_product`, a complete proof that for
+  `T > 0` and `T₀ > 0`, the encoded scaling
+  `ξ(T) = ξ₀ (T / T₀)^{−1/z}` gives `ξ T = ξ₀ T₀` at `z = 1`. The
+  retired exponent `−ν/z` fails `−1/z` at `z = 1` when `ν ≠ 1`. The
+  old pin `−0.71 = −71/100` is that failure. At `T = T₀` every exponent
+  agrees, so the comparison assumes `T ≠ T₀`. It covers that derivation
+  step of `be-33`, not Hertz–Millis theory and not a universality class.
 
 ## [0.0.0] - 2026-09-22
 

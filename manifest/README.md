@@ -56,3 +56,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-12` covers the two writings of the encoded thermal wavelength: `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and `ℏ > 0`. The square root is the non-negative root, so `ℏ > 0` is what makes them agree. The Wave Q form `ℏ / √(m k_B T)`, with `ℏ` in the numerator and no `√(2π)`, is the negative control, as is `ℏ / √(2 m k_B T)`. Caldeira–Leggett dephasing is not this row.
 
 `be-59` covers `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. Clearing `h` recovers `2e`. The factor `2` is the Cooper-pair charge, taken as a premise. Replacing `2e` by `e` is the negative control. The tunneling Hamiltonian is not this row.
+
+`be-55` covers `σ_xy = C e² / h`, `R_H = h / (C e²)`, and `R_K = h / e²`, so `σ_xy R_H = 1` and `R_H = R_K / C`, for a nonzero integer plateau index. Replacing `C` by `C + 1` is the negative control, as is `e` in place of `e²` (they agree at `e = 1`, so that control assumes `e ≠ 1`). TKNN, and the post-2019 exactness of `R_K`, are not this row.

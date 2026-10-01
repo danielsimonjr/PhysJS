@@ -348,6 +348,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-37",
+      "bridgeId": "be-37",
+      "theorem": "PhysJS.Shapiro.radial_integral",
+      "covers": "derivation-step: for 0 < R_near < R_far and c ≠ 0, ∫_{R_near}^{R_far} (2 G M / c³) (dr / r) = (2 G M / c³) ln(R_far / R_near). The factor 1 in place of 2 is half, once G ≠ 0 and M ≠ 0. log₁₀ of the radius ratio is not ln. Not the impact-parameter formula, and not the Cassini measurement",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

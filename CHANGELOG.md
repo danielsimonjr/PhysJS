@@ -184,6 +184,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `T · Σ_active / (k_B T)`, with the `1` omitted, fails. It covers that
   derivation step of `be-27`, not the frequency-dependent
   Cugliandolo–Kurchan `T_eff(ω)`.
+- `PhysJS.ToricCode.toric`, a complete proof that four anyons of
+  quantum dimension `1` have total quantum dimension `D = √4 = 2` and
+  topological term `γ = ln 2` in nats. The encoded decomposition is
+  `S = α L − γ`, with the `O(L⁻¹)` term dropped. `log₂ 2 = 1` is the
+  bit convention, not nats, and `D = √2` is one anyon pair, not the
+  toric code. It covers that derivation step of `be-22`, not the
+  Kitaev–Preskill theorem and not a quantum-gravity boundary.
 
 ## [0.0.0] - 2026-09-22
 

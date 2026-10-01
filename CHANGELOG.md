@@ -248,6 +248,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `be-40`, not SILH matching onto a confining theory. The catalog
   records this id as not-a-bridge, and this lemma does not decide
   that.
+- `PhysJS.Crossing.antisymmetry`, a complete proof that for a real
+  function `g`, `g(u,v) − g(v,u) = −(g(v,u) − g(u,v))`. The swap is
+  the negation of a difference. The residual is `0` for every `g`
+  when `u = v`, including `u = v = 1/4`, so that point is not a
+  control. A block that is not symmetric does not vanish at
+  `u = 1/2`, `v = 1/4`. It covers that derivation step of `be-35`,
+  not the infinite sum over `(Δ, ℓ)` and not positivity or unitarity.
+  The catalog records this id as not-a-bridge, and this lemma does
+  not decide that.
 
 ## [0.0.0] - 2026-09-22
 

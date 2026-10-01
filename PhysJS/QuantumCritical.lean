@@ -10,7 +10,7 @@ import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Linarith
 
 /-!
-`be-33`. Derivation step. The finite-temperature exponent `−1/z`.
+`be-33`. The catalog scaling, and the finite-temperature product at `z = 1`.
 
 For `z > 0`, `T > 0`, and `T₀ > 0`, the encoded scaling is
 
@@ -54,6 +54,26 @@ lemma rpow_eq_rpow_iff {r a b : ℝ} (hr : 0 < r) (hr1 : r ≠ 1) : r ^ a = r ^ 
     exact sub_eq_zero.mp ((mul_eq_zero.mp hsub).resolve_right (log_ne_zero_of_pos_of_ne_one hr hr1))
   · rintro rfl
     rfl
+
+/-- The catalog scaling
+
+```
+ξ(T) = ξ₀ (T / T₀) ^ (−1 / z)
+```
+
+and, at `z = 1`, `ξ(T) = ξ₀ (T / T₀) ^ (−1) = ξ₀ T₀ / T`.
+`xi_product` remains the product `ξ T = ξ₀ T₀`. Not Hertz–Millis theory. -/
+theorem thermal_scaling (xi0 T T0 z : ℝ) (hT : 0 < T) (hT0 : 0 < T0) :
+    xi xi0 T T0 z = xi0 * (T / T0) ^ (-1 / z) ∧
+      xi xi0 T T0 1 = xi0 * (T / T0) ^ (-(1 : ℝ)) ∧
+      xi xi0 T T0 1 = xi0 * T0 / T := by
+  refine ⟨rfl, ?_, ?_⟩
+  · unfold xi
+    norm_num
+  · unfold xi
+    have hexp : (-1 : ℝ) / 1 = -1 := by norm_num
+    rw [hexp, rpow_neg_one, inv_div]
+    field_simp [hT.ne', hT0.ne']
 
 /-- At `z = 1`, `ξ T = ξ₀ T₀`.
 

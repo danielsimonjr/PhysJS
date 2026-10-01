@@ -18,12 +18,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Every such `z` works, so `z = 2` is not derived. `length_monomial` is the
   case `[Γ] = L² T⁻¹`. `exponent_iff` remains the scaling comparison. This is
   not the Model A Langevin equation.
+- `PhysJS.QuantumCritical.thermal_scaling`, the catalog scaling
+  `ξ(T) = ξ₀ (T/T₀)^{−1/z}`. At `z = 1`, for `T > 0` and `T₀ > 0`, this is
+  `ξ₀ (T/T₀)^{−1} = ξ₀ T₀/T`. It is the `be-33` reference. This is not
+  Hertz–Millis theory.
 - `PhysJS.QuantumCritical.scaling_shape`. Hypothesis: `ξ` is a dimensionally
   homogeneous function of a length `ξ₀` and two temperatures. Conclusion:
   `ξ = ξ₀ φ(T/T₀)`, and `φ` is not fixed. `every_power_homogeneous` shows that
   every real power of `T/T₀` has that homogeneity, so the exponent `−1/z` is
-  not derived. `xi_product` remains the reference. This is not Hertz–Millis
-  theory. The module is the one introduced for `be-15`.
+  not derived. Both are nested on `be-33`. The module is the one introduced
+  for `be-15`.
 - Lean 4 lake project. Direct requires: Mathlib `v4.34.1` and Physlib
   `af484f78ee0701290595f8bf892b157b10d64940` (the library Daniel calls PhysLean).
   Toolchain pinned at `leanprover/lean4:v4.34.1`.

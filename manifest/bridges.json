@@ -434,6 +434,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-32",
+      "bridgeId": "be-32",
+      "theorem": "PhysJS.BornOverlap.modulus_sq",
+      "covers": "derivation-step: |c + s i|² = c² + s², which is normSq of one complex matrix element. A sum of squares above 1 is not a probability in [0, 1], the module's rejection of c² + s² > 1. c² − s² is not that square when s ≠ 0. Not the Giacomini–Castro-Ruiz–Brukner transformation, and not a Haar integral. The catalog records this id as not-a-bridge; this lemma does not decide that",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

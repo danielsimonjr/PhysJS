@@ -168,6 +168,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-15` | `PhysJS.Coarsening.exponent_iff` | For `Γ = L₀²/t₀ > 0`, `t > 0`, `t ≠ t₀`, and `z > 0`, `L(t) = L₀ (t/t₀)^{1/z}` obeys `L² = Γ t` iff `z = 2`. At `t = t₀` every `z` agrees. `z = 3` gives `L³ ∝ t` and fails. Not the Model A Langevin equation. |
 | `be-33` | `PhysJS.QuantumCritical.xi_product` | For `T > 0` and `T₀ > 0`, `ξ(T) = ξ₀ (T/T₀)^{−1/z}` gives `ξ T = ξ₀ T₀` at `z = 1`. The retired exponent `−ν/z` fails when `ν ≠ 1`. The old pin `−0.71` is that failure, once `T ≠ T₀`. Not Hertz–Millis theory. |
 | `be-50` | `PhysJS.TimeSymmetric.residual_iff` | When `A_ret + A_adv ≠ 0`, `(A_ret − A_adv)/(A_ret + A_adv) = 0` iff `A_ret = A_adv`. The encoded field is the half-sum. A fully retarded field gives residual `1`, not `0`. The id is contested. Not the absorber theory of radiation reaction. |
+| `be-32` | `PhysJS.BornOverlap.modulus_sq` | `|c + s i|² = c² + s²`, the modulus of one matrix element. A sum of squares above `1` is not a probability in `[0, 1]`. `c² − s²` fails when `s ≠ 0`. Not a quantum-reference-frame transformation. The catalog records this id as not-a-bridge. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 

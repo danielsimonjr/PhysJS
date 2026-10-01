@@ -357,6 +357,22 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-54",
+      "bridgeId": "be-54",
+      "theorem": "PhysJS.RandallSundrum.positive_tension",
+      "covers": "derivation-step: for σ > 0, ρ > 0, and G > 0, H²_RS − H²_FRW = (8πG/3) ρ²/(2σ) > 0. The factor is 1/2. The correction 1+ρ/σ fails. σ < 0 lies below the Friedmann value and is not a physical brane. The limit σ → ∞ is already the be-19 reference. Not a derivation from the five-dimensional Einstein equation",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "friedmann": {
+        "theorem": "PhysJS.RandallSundrum.flat_friedmann",
+        "covers": "derivation-step: H²_FRW with the module Λ equal to Physlib's Λ c² is FirstOrderFriedmann at k = 0. Identifying the two Λ symbols and dropping c² fails when c² ≠ 1 and Λ ≠ 0",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     }
   ]
 }

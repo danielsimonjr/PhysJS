@@ -162,6 +162,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   half that delay, once `G ≠ 0` and `M ≠ 0`. `log₁₀` of the radius ratio
   is not `ln`. It covers that derivation step of `be-37`, not the
   impact-parameter formula and not the Cassini measurement.
+- `PhysJS.RandallSundrum.positive_tension`, a complete proof that for
+  `σ > 0`, `ρ > 0`, and `G > 0`,
+  `H²_RS − H²_FRW = (8πG/3) ρ² / (2σ) > 0`. The correction `1 + ρ/σ`
+  fails, and `σ < 0` lies below the Friedmann value. The nested
+  `flat_friedmann` theorem is the `c²` dictionary onto Physlib's
+  `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1`
+  and `Λ ≠ 0`. The limit `σ → ∞` is already the `be-19` reference. It
+  covers that derivation step of `be-54`, not a derivation from the
+  five-dimensional Einstein equation.
 
 ## [0.0.0] - 2026-09-22
 

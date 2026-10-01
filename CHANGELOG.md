@@ -68,6 +68,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `−,+,+,+`, dust has trace `−ρ c²`. The nested `vacuum` theorem is the
   BE-20 density `ρ = c² Λ / (8π G)`. The opposite vacuum sign fails. It
   covers those two parts of `be-13`, not Jacobson's thermodynamic derivation.
+- `PhysJS.KibbleZurek.exponent`, a complete proof of the freeze-out value
+  `ε̂ = (τ₀/τ_Q)^(1/(1+zν))` and of the defect power without the Boltzmann
+  factor. `ε̂` is the unique positive solution. The exponent with the `1`
+  omitted fails. It covers that derivation step of `be-34`, not the
+  reheating factor and not a repair of the missing `1/a^d` prefactor.
 
 ## [0.0.0] - 2026-09-22
 

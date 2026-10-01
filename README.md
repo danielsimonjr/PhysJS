@@ -109,6 +109,7 @@ Catalog rows, keyed by `be-` id. A counted proof is a reduction, a limit, or a d
 | `be-58` | `PhysJS.JohnsonNyquist.tendsto_classical` | `S_V^q(ω) → 4 k_B T R` as `ω → 0⁺`, for `k_B T > 0` and `ℏ ≠ 0`. A `+ 1` in the denominator does not. Not the fluctuation–dissipation theorem. |
 | `be-38` | `PhysJS.Mond.tendsto_nu_limits` | `ν → 1` as `z → ∞`, and `ν √z → 1` as `z → 0⁺`. Then `F_N ν(z) / √(m F_N a₀) → 1`. The claim `ν √z → √2` fails. Not the SPARC confrontation. |
 | `be-13` | `PhysJS.Einstein.trace_eq` | Contracting `G_μν + Λ g_μν = κ T_μν` in four dimensions gives `R = 4Λ − κ T`. Not Jacobson's thermodynamic derivation. |
+| `be-34` | `PhysJS.KibbleZurek.exponent` | Freeze-out gives `ε̂ = (τ₀/τ_Q)^(1/(1+zν))` and the defect power without the Boltzmann factor. Omitting the `1` in the exponent fails. Not a repair of the missing `1/a^d` prefactor. |
 
 The running solution is the nested `oneLoop` object, `PhysJS.YangMills.alphaRun_hasDerivAt`: `α(t) = α₀ / (1 + b₀ α₀ t / (2π))` solves `dα/dt = −(b₀/(2π)) α²` wherever the denominator is positive. `PhysJS.YangMills.beta_alpha_iff` is the same truncation read as `β(g) = −b₀ g³/(16π²)` if and only if `dα/d ln μ = −b₀ α²/(2π)`, with `α = g²/(4π)` and `g ≠ 0`. The reference names the sign theorem only.
 

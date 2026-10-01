@@ -116,6 +116,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   At `γ = 1` this is the encoded angle `4 G M / (b c²)`. `γ = 0` is
   half of that angle. It covers that derivation step of `be-51`, not a
   geodesic.
+- `PhysJS.Sommerfeld.integral_eq`, a complete proof that
+  `∫_ℝ x² e^x / (1+e^x)² dx = π²/3`. That factor is the `π²/3` in the
+  encoded Lorenz number. The integrand is even, so the half-line is half
+  of `π²/3`, and claiming the half-line equals `π²/3` fails. It covers
+  that derivation step of `be-61`, not the transport law.
 
 ## [0.0.0] - 2026-09-22
 

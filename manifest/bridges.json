@@ -129,6 +129,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-64",
+      "bridgeId": "be-64",
+      "theorem": "PhysJS.Eddington.balance_iff",
+      "covers": "derivation-step: the r² cancellation in the Eddington force balance, not a hard cap",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

@@ -59,7 +59,7 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 
 `be-55` covers `σ_xy = C e² / h`, `R_H = h / (C e²)`, and `R_K = h / e²`, so `σ_xy R_H = 1` and `R_H = R_K / C`, for a nonzero integer plateau index. Replacing `C` by `C + 1` is the negative control, as is `e` in place of `e²` (they agree at `e = 1`, so that control assumes `e ≠ 1`). TKNN, and the post-2019 exactness of `R_K`, are not this row.
 
-`be-60` covers the Laughlin fraction at `ν = 1/3`: `σ_xy = ν e² / h` and `R_xy = 3 h / e² = 3 R_K`. It follows `PhysJS.QuantumHall.reciprocal` and does not reprove it. At `ν = 1` the formula is that lemma at plateau `C = 1`. `R_K / 3` is the integer plateau `C = 3`, the fraction inverted, and it is the negative control. The Laughlin wavefunction and the anyon charge `e/3` are not this row.
+`be-60` covers the catalog filling fraction. For nonzero integers `p` and `q`, with `ν = p / q`, `σ_xy = ν e² / h` and `R_xy = R_K / ν = (q / p) h / e²`. Oddness of `q` is the Laughlin selection rule and is not this identity. `fraction` remains the case `ν = 1/3`: `R_xy = 3 h / e² = 3 R_K`, from `PhysJS.QuantumHall.reciprocal`. At `ν = 1` that lemma is the integer plateau `C = 1`. `R_K / 3` is the integer plateau `C = 3`, the fraction inverted, and it is the negative control. The Laughlin wavefunction and the anyon charge `e/3` are not this row.
 
 `be-21` covers the saturating value `η/s = ℏ / (4 π k_B)`, written as `4 π k_B (η/s) = ℏ` for `k_B ≠ 0`. The Hawking factor `8π`, the one in `PhysJS.HawkingUnruh.hawking`, is the negative control: it equals `2 ℏ`, not `ℏ`, once `ℏ ≠ 0`. The inequality `η/s ≥ ℏ / (4 π k_B)` is not this row.
 

@@ -7,6 +7,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `PhysJS.Laughlin.filling_fraction`, a complete proof of the catalog
+  equation at `ν = p/q`: `σ_xy = ν e²/h` and `R_xy = R_K/ν = (q/p) h/e²`,
+  for nonzero integers `p` and `q`. Oddness of `q` is not this identity.
+  `fraction` remains the case `ν = 1/3`. It covers that equation of
+  `be-60`, not the Laughlin wavefunction and not the anyon charge `e/3`.
 - Lean 4 lake project. Direct requires: Mathlib `v4.34.1` and Physlib
   `af484f78ee0701290595f8bf892b157b10d64940` (the library Daniel calls PhysLean).
   Toolchain pinned at `leanprover/lean4:v4.34.1`.

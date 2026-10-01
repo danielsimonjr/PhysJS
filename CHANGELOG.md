@@ -63,6 +63,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `F_N ν(z) / √(m F_N a₀)` tends to `1`. The claim `ν √z → √2` fails. The
   nested `inversion` theorem inverts `μ(x) = x / √(1 + x²)`. It covers those
   two parts of `be-38`, not the SPARC confrontation.
+- `PhysJS.Einstein.trace_eq`, a complete proof that contracting
+  `G_μν + Λ g_μν = κ T_μν` in four dimensions gives `R = 4Λ − κ T`. Under
+  `−,+,+,+`, dust has trace `−ρ c²`. The nested `vacuum` theorem is the
+  BE-20 density `ρ = c² Λ / (8π G)`. The opposite vacuum sign fails. It
+  covers those two parts of `be-13`, not Jacobson's thermodynamic derivation.
 
 ## [0.0.0] - 2026-09-22
 

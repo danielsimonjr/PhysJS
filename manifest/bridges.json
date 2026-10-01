@@ -179,6 +179,22 @@
         "leanProof": "complete",
         "axioms": ["propext", "Classical.choice", "Quot.sound"]
       }
+    },
+    {
+      "key": "be-13",
+      "bridgeId": "be-13",
+      "theorem": "PhysJS.Einstein.trace_eq",
+      "covers": "reduction: contracting G_μν + Λ g_μν = κ T_μν in four dimensions gives R = 4Λ − κ T, not Jacobson's thermodynamic derivation",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "vacuum": {
+        "theorem": "PhysJS.Einstein.vacuum_density",
+        "covers": "reduction: with κ = 8πG/c⁴, T_μν = −ρ c² g_μν and Λ g = −κ T rearrange to ρ = c² Λ / (8π G). The opposite sign does not. This is the BE-20 density; BE-20 has no reference of its own",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     }
   ]
 }

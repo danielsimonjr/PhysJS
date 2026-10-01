@@ -388,7 +388,28 @@
       "covers": "derivation-step: if κ = 8πG/c⁴ ≠ 0 and every component satisfies T = κ S, then S·S = T·T / κ² = (c⁴/(8πG))² T·T. κ² in the numerator is the inversion backwards, and it fails when T·T ≠ 0 and κ⁴ ≠ 1. Not the Einstein–Cartan field equation, and not a Newtonian limit",
       "coverage": "covers its statement only",
       "leanProof": "complete",
-      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      "axioms": ["propext", "Classical.choice", "Quot.sound"],
+      "torsionMonomial": {
+        "theorem": "PhysJS.EinsteinCartan.torsion_monomial",
+        "covers": "derivation-step: [κ] and [S] are independent base dimensions and [T] = [κ][S]. If a positive component is dimensionally homogeneous in those dimensions, every positive pair is a unit change of (1, 1) and T = C κ S with C = f(1, 1). C is not fixed. Not the Einstein–Cartan field equation",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      },
+      "coefficientNotFixed": {
+        "theorem": "PhysJS.EinsteinCartan.coefficient_not_fixed",
+        "covers": "derivation-step: if C ≠ 1 and κ S ≠ 0, then C κ S ≠ κ S. A factor other than 1 is not the catalog coefficient",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      },
+      "unitCoefficient": {
+        "theorem": "PhysJS.EinsteinCartan.inversion_of_unit_coefficient",
+        "covers": "derivation-step: if C = 1 and every component satisfies T = C κ S, then inversion gives S·S = T·T / κ². C = 1 is a hypothesis. The Einstein trace stays a hypothesis of PhysJS.Einstein.trace_eq",
+        "coverage": "covers its statement only",
+        "leanProof": "complete",
+        "axioms": ["propext", "Classical.choice", "Quot.sound"]
+      }
     },
     {
       "key": "be-27",

@@ -36,6 +36,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Every such `z` works, so `z = 2` is not derived. `length_monomial` is the
   case `[Γ] = L² T⁻¹`. `exponent_iff` remains the scaling comparison. This is
   not the Model A Langevin equation.
+- `PhysJS.EinsteinCartan.torsion_monomial`. `[κ]` and `[S]` are independent
+  base dimensions and `[T] = [κ][S]`. Hypothesis: a positive torsion component
+  is dimensionally homogeneous in those dimensions. Every positive pair is
+  then a unit change of `(1, 1)`. Conclusion: `T = C κ S` with `C = f(1, 1)`.
+  `C = 1` is not derived. `coefficient_not_fixed` separates any other factor
+  from the catalog coefficient. `inversion_of_unit_coefficient` applies
+  `inversion` only after assuming `C = 1`. The Einstein trace stays a
+  hypothesis of `PhysJS.Einstein.trace_eq`. `inversion` remains the reference.
+  The module is the one introduced for `be-15`.
 - Lean 4 lake project. Direct requires: Mathlib `v4.34.1` and Physlib
   `af484f78ee0701290595f8bf892b157b10d64940` (the library Daniel calls PhysLean).
   Toolchain pinned at `leanprover/lean4:v4.34.1`.

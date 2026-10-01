@@ -171,6 +171,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-32` | `PhysJS.BornOverlap.modulus_sq` | `|c + s i|² = c² + s²`, the modulus of one matrix element. A sum of squares above `1` is not a probability in `[0, 1]`. `c² − s²` fails when `s ≠ 0`. Not a quantum-reference-frame transformation. The catalog records this id as not-a-bridge. |
 | `be-28` | `PhysJS.EntropyProduction.nonneg` | `σ = Σ_i J_i X_i` is the definition of `σ`. If every product is `≥ 0` then `σ ≥ 0`. One flipped sign is not `σ`, and that sum is negative. Not the variational maximum-entropy-production principle. The catalog records this id as not-a-bridge. |
 | `be-40` | `PhysJS.CompositeHiggs.scale_free` | For `f ≠ 0` and `θ = h/f`, `V/f⁴ = −α sin²θ + β [sin⁴θ − sin²θ cos²θ]`. Both terms carry `f⁴`, so the ratio depends on `h` only through `θ`. The old first term `−α f² sin²θ` still depends on `f`. Not SILH matching. The catalog records this id as not-a-bridge. |
+| `be-35` | `PhysJS.Crossing.antisymmetry` | `g(u,v) − g(v,u) = −(g(v,u) − g(u,v))`. The residual is `0` for every `g` when `u = v`, including `1/4`, so that point is not a control. A non-symmetric block does not vanish at `u = 1/2`, `v = 1/4`. Not the bootstrap sum. The catalog records this id as not-a-bridge. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 

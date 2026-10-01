@@ -461,6 +461,15 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-35",
+      "bridgeId": "be-35",
+      "theorem": "PhysJS.Crossing.antisymmetry",
+      "covers": "derivation-step: for a real function g, g(u,v) − g(v,u) = −(g(v,u) − g(u,v)). The swap is the negation of a difference. The residual is 0 for every g when u = v, including u = v = 1/4, so that point is not a control. A block that is not symmetric does not vanish at u = 1/2, v = 1/4. Not the infinite sum over (Δ, ℓ), and not positivity or unitarity. The catalog records this id as not-a-bridge; this lemma does not decide that",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

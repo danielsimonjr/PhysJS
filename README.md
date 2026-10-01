@@ -135,6 +135,7 @@ These rows are manifest entries only. They are not UPT `formalRef`s until the ow
 |---|---|---|
 | `be-16` | `PhysJS.Landauer.equal_levels` | Equal two-state levels have thermodynamic entropy `k_B log 2`. At `T ≠ 0`, levels `E` and `E + δ` are not that value. Not `E ≥ T ΔS`, and not the Bérut confrontation. |
 | `be-29` | `PhysJS.Jarzynski.jensen_work` | For a finite probability and `β > 0`, `⟨W⟩ ≥ ΔF` with `ΔF = −(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two unequal work values. Not Jarzynski's theorem. |
+| `be-11` | `PhysJS.Lindblad.preserve` | One channel of the displayed GKSL generator has trace zero, and it is Hermitian when `H` and `ρ` are. Dropping the anticommutator makes the trace nonzero. Not Born–Markov coarse-graining. |
 
 ## Build
 

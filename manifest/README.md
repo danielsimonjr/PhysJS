@@ -44,3 +44,5 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 `be-16` is a property, not a formalRef. Equal levels of the two-state ensemble have thermodynamic entropy `k_B log 2`. At `T ≠ 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the closed form does not separate the levels. The inequality `E ≥ T ΔS` and the Bérut confrontation are not this row.
 
 `be-29` is a property, not a formalRef. `rejected.ts` marks the row not-a-bridge. `ΔF = −(1/β) log(∑ p_i exp(−β W_i))` is the definition used here, and a finite probability with `β > 0` gives `⟨W⟩ ≥ ΔF`. The reversed inequality on two unequal work values is the negative control. Jarzynski's theorem and the Gaussian identity are not this row.
+
+`be-11` is a property, not a formalRef. The encoded scalar is the rate `γ(λ) = γ₀ (λ/λ₀)²`. The entry is one channel of the displayed GKSL generator, which the AST does not encode. Its trace is zero, and it is Hermitian when `H` and `ρ` are. `L` need not be Hermitian. Dropping the anticommutator is the negative control. Born–Markov coarse-graining is not this row.

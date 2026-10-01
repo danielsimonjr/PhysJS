@@ -369,7 +369,7 @@
       "key": "be-54",
       "bridgeId": "be-54",
       "theorem": "PhysJS.RandallSundrum.brane_friedmann",
-      "covers": "derivation-step: for σ ≠ 0, H²_RS = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3, which equals the Friedmann term plus (8πG/3) ρ²/(2σ). The positive-tension sign of that excess remains positive_tension. The correction 1+ρ/σ fails. Not a derivation from the five-dimensional Einstein equation",
+      "covers": "derivation-step: for σ ≠ 0, H²_RS = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3, which equals the Friedmann term plus (8πG/3) ρ²/(2σ). Not a derivation from the five-dimensional Einstein equation",
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"],

@@ -12,6 +12,45 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   equals the Friedmann term plus `(8πG/3) ρ²/(2σ)`. `positive_tension`
   remains the sign of that excess. It covers that equation of `be-54`,
   not a derivation from the five-dimensional Einstein equation.
+- `PhysJS.TimeSymmetric.wheeler_feynman`, a complete proof of the catalog
+  equation `A_μ(x) = (A_μ^ret(x) + A_μ^adv(x))/2`. Twice that component is
+  the sum. `residual_iff` remains the vanishing of the residual. It covers
+  that equation of `be-50`, not the absorber theory of radiation reaction.
+- `PhysJS.QuantumCritical.thermal_scaling`, a complete proof of the catalog
+  scaling `ξ(T) = ξ₀ (T/T₀)^{−1/z}`. At `z = 1`, for `T > 0` and `T₀ > 0`,
+  this is `ξ₀ (T/T₀)^{−1} = ξ₀ T₀/T`. `xi_product` remains `ξ T = ξ₀ T₀`.
+  It covers that equation of `be-33`, not Hertz–Millis theory.
+- `PhysJS.Laughlin.filling_fraction`, a complete proof of the catalog
+  equation at `ν = p/q`: `σ_xy = ν e²/h` and `R_xy = R_K/ν = (q/p) h/e²`,
+  for nonzero integers `p` and `q`. Oddness of `q` is not this identity.
+  `fraction` remains the case `ν = 1/3`. It covers that equation of
+  `be-60`, not the Laughlin wavefunction and not the anyon charge `e/3`.
+- `PhysJS.Dimensional`, a Buckingham-Pi fragment. A dimensionally homogeneous
+  function of positive magnitudes is a monomial times a dimensionless constant
+  when a unit change reaches every positive tuple, and a monomial times a
+  function of one ratio when a single dimensionless group remains. A pure
+  number that labels the dimension assignment is an input, not a conclusion.
+- `PhysJS.Coarsening.length_monomial_at`. Hypothesis: `L` is a dimensionally
+  homogeneous function of `Γ` and `t` alone, and `[Γ] = L^z T⁻¹` for a
+  positive rational `z`. Conclusion: `L = C (Γ t)^{1/z}`, with `C` not fixed.
+  Every such `z` works, so `z = 2` is not derived. `length_monomial` is the
+  case `[Γ] = L² T⁻¹`. `exponent_iff` remains the scaling comparison. This is
+  not the Model A Langevin equation.
+- `PhysJS.EinsteinCartan.torsion_monomial`. `[κ]` and `[S]` are independent
+  base dimensions and `[T] = [κ][S]`. Hypothesis: a positive torsion component
+  is dimensionally homogeneous in those dimensions. Every positive pair is
+  then a unit change of `(1, 1)`. Conclusion: `T = C κ S` with `C = f(1, 1)`.
+  `C = 1` is not derived. `coefficient_not_fixed` separates any other factor
+  from the catalog coefficient. `inversion_of_unit_coefficient` applies
+  `inversion` only after assuming `C = 1`. The Einstein trace stays a
+  hypothesis of `PhysJS.Einstein.trace_eq`. `inversion` remains the reference.
+  The module is the one introduced for `be-15`.
+- `PhysJS.QuantumCritical.scaling_shape`. Hypothesis: `ξ` is a dimensionally
+  homogeneous function of a length `ξ₀` and two temperatures. Conclusion:
+  `ξ = ξ₀ φ(T/T₀)`, and `φ` is not fixed. `every_power_homogeneous` shows that
+  every real power of `T/T₀` has that homogeneity, so the exponent `−1/z` is
+  not derived. Both are nested on `be-33`. The module is the one introduced
+  for `be-15`.
 - Lean 4 lake project. Direct requires: Mathlib `v4.34.1` and Physlib
   `af484f78ee0701290595f8bf892b157b10d64940` (the library Daniel calls PhysLean).
   Toolchain pinned at `leanprover/lean4:v4.34.1`.

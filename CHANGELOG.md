@@ -267,6 +267,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `√π/2` in place of `√(3π)/2` fails when `ω₃⁰ ≠ 0`, and dropping
   `ω₃⁰` fails when `ω₃⁰ ≠ 1`. It covers that derivation step of
   `be-63`, not stellar rotation or magnetic support.
+- `PhysJS.Entanglement.first_variation`, a complete proof that for a
+  smooth curve of full-rank density matrices that stay diagonal in a
+  fixed basis and have trace `1`, `d/dt S(ρ(t)) = −⟪ρ̇(t), log ρ(t)⟫`,
+  the trace inner product. The modular Hamiltonian `K = −log ρ` is
+  frozen at the base point, and that derivative equals `d/dt ⟨K⟩`.
+  A finite jump from `diag(1/2, 1/2)` to `diag(3/4, 1/4)` leaves
+  `⟨K⟩` unchanged and changes `S`. It covers that derivation step of
+  `be-30`, not the holographic first law that identifies `K` with an
+  area variation.
 
 ## [0.0.0] - 2026-09-22
 

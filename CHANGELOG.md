@@ -156,6 +156,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   second lemma. `ℓ_P² = ℏ G / c²` fails when `c ≠ 1`, and the factor `2`
   in place of `4` fails. It covers that derivation step of `be-14` and
   `be-43`, not a minimal surface and not ER=EPR.
+- `PhysJS.Shapiro.radial_integral`, a complete proof that
+  `∫_{R_near}^{R_far} (2 G M / c³) (dr / r) = (2 G M / c³) ln(R_far / R_near)`
+  for `0 < R_near < R_far` and `c ≠ 0`. The factor `1` in place of `2` is
+  half that delay, once `G ≠ 0` and `M ≠ 0`. `log₁₀` of the radius ratio
+  is not `ln`. It covers that derivation step of `be-37`, not the
+  impact-parameter formula and not the Cassini measurement.
 
 ## [0.0.0] - 2026-09-22
 

@@ -191,6 +191,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   bit convention, not nats, and `D = √2` is one anyon pair, not the
   toric code. It covers that derivation step of `be-22`, not the
   Kitaev–Preskill theorem and not a quantum-gravity boundary.
+- `PhysJS.Einstein.friedmann_corollary`, a complete proof that the
+  vacuum density `ρ = c² Λ / (8π G)` gives `(8πG/3) ρ = Λ c² / 3`, the
+  cosmological term of `FirstOrderFriedmann`. A fluid of that density
+  added to matter, with the explicit `Λ` set to zero, is that equation
+  at `k = 0`. The Einstein-static density `Λ c² / (4π G)` is twice that
+  term, and dropping `c²` fails when `c² ≠ 1`. The density is
+  `vacuum_density` and is not reproved. It covers that corollary of
+  `be-20`. There is no `be-20` reference.
 
 ## [0.0.0] - 2026-09-22
 

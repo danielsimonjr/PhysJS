@@ -412,7 +412,7 @@
       "key": "be-15",
       "bridgeId": "be-15",
       "theorem": "PhysJS.Coarsening.exponent_iff",
-      "covers": "derivation-step: for Γ = L₀²/t₀ > 0, t > 0, t ≠ t₀, and z > 0, L(t) = L₀ (t/t₀)^{1/z} obeys L(t)² = Γ t iff z = 2. At t = t₀ the ratio holds for every z. Model B's z = 3 gives L³ ∝ t and fails L² = Γ t. Not the Model A Langevin equation. The Langevin kinetic coefficient is a different Γ",
+      "covers": "derivation-step: for Γ = L₀²/t₀ > 0, t > 0, t ≠ t₀, and z > 0, L(t) = L₀ (t/t₀)^{1/z} obeys L(t)² = Γ t iff z = 2. At t = t₀ the ratio holds for every z. Model B's z = 3 gives L³ ∝ t and fails L² = Γ t. Not the Model A Langevin equation. The Langevin kinetic coefficient is a different Γ. Hypothesis of length_monomial_at: L is a dimensionally homogeneous function of Γ and t alone, and [Γ] = L^z T⁻¹. That forces L = C (Γ t)^{1/z}, and C is not fixed. Every positive rational z is allowed, so the pure number z = 2 is the assignment [Γ] = L² T⁻¹ in length_monomial and is not derived",
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]

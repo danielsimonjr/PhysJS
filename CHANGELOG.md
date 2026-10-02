@@ -5,14 +5,31 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Module comments, theorem docstrings, the README, and `manifest/README.md`
+  now record the UPT `formalRef` kinds at PhysJS `c695865`. `be-11`
+  (`PhysJS.Lindblad.preserve`) and `be-29` (`PhysJS.Jarzynski.jensen_work`)
+  are kind `property`. `be-19` (`PhysJS.QuantumBounce.dictionary`), `be-24`
+  (`PhysJS.Fret.dictionary`), and `be-42` (`PhysJS.HawkingUnruh.dictionary`)
+  are kind `cross-check`. `be-28` (`PhysJS.EntropyProduction.nonneg`) is
+  kind `property` while its covers line still begins with `derivation-step`.
+  Fourteen catalog keys are kind `bridge` while the covers line still begins
+  with `derivation-step`: `be-12`, `be-16` (`PhysJS.Landauer.erasure_eq`,
+  the equal-level two-state case), `be-21`, `be-27`, `be-33`, `be-37`,
+  `be-40`, `be-43`, `be-50`, `be-54`, `be-55`, `be-59`, `be-60`, and `be-63`.
+  Sixteen catalog references stay counted. Ten atlas bridges stay kind
+  `bridge`. No theorem statement or proof changed.
+
 ### Added
 
 - `PhysJS.Landauer.erasure_eq`, a complete proof that the free-energy deficit
   `⟨E⟩ − F` of Physlib's equal-level two-state ensemble is `k_B T log 2`
   for `T > 0`. `equal_levels` remains the entropy step `k_B log 2`. At
-  `T > 0`, levels `E` and `E + δ` are not that deficit. It covers that
-  derivation step of `be-16`, not `E ≥ T ΔS` for an arbitrary erasure
-  protocol and not the Bérut confrontation.
+  `T > 0`, levels `E` and `E + δ` are not that deficit. UPT kind is
+  `bridge` on `erasure_eq`, the equal-level two-state case. The covers
+  line still begins with `derivation-step`. Not `E ≥ T ΔS` for an
+  arbitrary erasure protocol and not the Bérut confrontation.
 - `PhysJS.RandallSundrum.brane_friedmann`, a complete proof of the catalog
   equation `H² = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3` for `σ ≠ 0`. The same rate
   equals the Friedmann term plus `(8πG/3) ρ²/(2σ)`. `positive_tension`
@@ -126,19 +143,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `PhysJS.HawkingUnruh.dictionary`, a complete cross-check that
   `T_H(2GM/c²) = T_H(M)` and `T_U(c⁴/(4GM)) = T_H(M)`. The covers line
   names BE-57 and `be-42-via-rs`. `T_U(c⁴/(2GM))` is not `T_H(M)`. It
-  covers that dictionary of `be-42`, not the Hawking effect, and it is
-  not a formalRef.
+  covers that dictionary of `be-42`, not the Hawking effect. UPT stores
+  it as a `formalRef` of kind `cross-check`.
 - `PhysJS.Fret.dictionary`, a complete cross-check that the Förster
   efficiency is `R₀⁶/(R₀⁶+R⁶)`, `1/(1+(R/R₀)⁶)`, and
   `k_FRET/(k_FRET+1/τ_D)`, and that it decreases. At `R = 2 R₀` the
   exponent 4 is not the exponent 6. It covers that dictionary of `be-24`,
-  not the dipole–dipole law, and it is not a formalRef.
+  not the dipole–dipole law. UPT stores it as a `formalRef` of kind
+  `cross-check`.
 - `PhysJS.QuantumBounce.dictionary`, a complete cross-check that
   `H²_LQC` equals `H²_RS` at `σ = −ρ_c/2`, that both tend to
   `(8πG/3)ρ + Λ/3`, and that `H²_LQC = 0` at `ρ = ρ_c` and `Λ = 0`.
   The covers line names BE-54. `σ = +ρ_c/2` is not that polynomial, and
   `σ < 0` is not a physical Randall–Sundrum brane. It covers that
-  dictionary of `be-19`, and it is not a formalRef.
+  dictionary of `be-19`. UPT stores it as a `formalRef` of kind
+  `cross-check`.
 - `PhysJS.Landauer.equal_levels`, a complete proof that equal levels of
   Physlib's two-state ensemble have thermodynamic entropy `k_B log 2`.
   At `T ≠ 0`, levels `E` and `E + δ` are not that value. At `T = 0` the
@@ -149,13 +168,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   probability and `β > 0` give `⟨W⟩ ≥ ΔF`, where `ΔF` is
   `−(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two
   unequal work values. It covers that property of `be-29`, not
-  Jarzynski's theorem and not the Gaussian identity, and it is not a
-  formalRef.
+  Jarzynski's theorem and not the Gaussian identity. UPT stores it as a
+  `formalRef` of kind `property`.
 - `PhysJS.Lindblad.preserve`, a complete proof that one channel of the
   displayed GKSL generator has trace zero, and that it is Hermitian when
   `H` and `ρ` are. `L` need not be Hermitian. Dropping the anticommutator
   makes the trace nonzero. It covers that property of `be-11`, not
-  Born–Markov coarse-graining, and it is not a formalRef.
+  Born–Markov coarse-graining. UPT stores it as a `formalRef` of kind
+  `property`.
 - `PhysJS.Jeans.mass_eq`, a complete proof that the encoded Jeans mass
   `(5 k T / (G μ m_u))^(3/2) (3 / (4 π ρ))^(1/2)` follows from the virial
   convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3`
@@ -176,41 +196,48 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `ℏ > 0`. The square root is non-negative, so `ℏ > 0` is the hypothesis
   that makes the two writings agree. The Wave Q form `ℏ / √(m k_B T)`,
   with `ℏ` in the numerator and no `√(2π)`, fails, as does
-  `ℏ / √(2 m k_B T)`. It covers that derivation step of `be-12`, not
+  `ℏ / √(2 m k_B T)`. It covers `be-12` (kind `bridge` on `wavelength_eq`;
+  the covers line still begins with `derivation-step`), not
   Caldeira–Leggett dephasing.
 - `PhysJS.Josephson.frequency_eq`, a complete proof that
   `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. Clearing the denominator
   recovers `2e`. The factor `2` is the Cooper-pair charge, taken as a
-  premise. Replacing it by `e` fails. It covers that derivation step of
-  `be-59`, not the tunneling Hamiltonian.
+  premise. Replacing it by `e` fails. It covers `be-59` (kind `bridge` on
+  `frequency_eq`; the covers line still begins with `derivation-step`),
+  not the tunneling Hamiltonian.
 - `PhysJS.QuantumHall.reciprocal`, a complete proof that
   `σ_xy = C e² / h`, `R_H = h / (C e²)`, and `R_K = h / e²` satisfy
   `σ_xy R_H = 1` and `R_H = R_K / C` for a nonzero integer `C`. The
   shifted index `C + 1` is a different conductance. Replacing `e²` by `e`
-  makes the product fail to be `1` when `e ≠ 1`. It covers that
-  derivation step of `be-55`, not the TKNN theorem.
+  makes the product fail to be `1` when `e ≠ 1`. It covers `be-55` (kind
+  `bridge` on `reciprocal`; the covers line still begins with
+  `derivation-step`), not the TKNN theorem.
 - `PhysJS.Laughlin.fraction`, a complete proof that at `ν = 1/3`,
   `σ_xy = ν e² / h` and `R_xy = 3 h / e² = 3 R_K`, using the BE-55
   reciprocal. At `ν = 1` the formula is the integer plateau `C = 1`.
   `R_K / 3` is that lemma at `C = 3`, the fraction inverted, and it
-  fails. It covers that derivation step of `be-60`, not the Laughlin
-  wavefunction and not the anyon charge `e/3`.
+  fails. The formalRef of `be-60` is `filling_fraction`, kind `bridge`.
+  The covers line still begins with `derivation-step`. This case is not
+  the Laughlin wavefunction and not the anyon charge `e/3`.
 - `PhysJS.Kss.saturating`, a complete proof that the encoded saturating
   value `η/s = ℏ / (4 π k_B)` is the equality `4 π k_B (η/s) = ℏ` for
   `k_B ≠ 0`. The Hawking factor `8π` in place of `4π` is twice `ℏ`, not
-  `ℏ`, once `ℏ ≠ 0`. It covers that derivation step of `be-21`, not the
+  `ℏ`, once `ℏ ≠ 0`. It covers `be-21` (kind `bridge` on `saturating`;
+  the covers line still begins with `derivation-step`), not the
   inequality `η/s ≥ ℏ / (4 π k_B)`.
 - `PhysJS.PlanckArea.area_law`, a complete proof that
   `k_B c³ A / (4 G ℏ) = k_B A / (4 ℓ_P²)` for `ℓ_P² = ℏ G / c³`. The
   area is an input. BE-43 is that equality on a wormhole area, not a
   second lemma. `ℓ_P² = ℏ G / c²` fails when `c ≠ 1`, and the factor `2`
-  in place of `4` fails. It covers that derivation step of `be-14` and
-  `be-43`, not a minimal surface and not ER=EPR.
+  in place of `4` fails. `be-14` is kind `derivation-step`. `be-43` is
+  kind `bridge` on this same theorem. Both covers lines still begin with
+  `derivation-step`. Not a minimal surface and not ER=EPR.
 - `PhysJS.Shapiro.radial_integral`, a complete proof that
   `∫_{R_near}^{R_far} (2 G M / c³) (dr / r) = (2 G M / c³) ln(R_far / R_near)`
   for `0 < R_near < R_far` and `c ≠ 0`. The factor `1` in place of `2` is
   half that delay, once `G ≠ 0` and `M ≠ 0`. `log₁₀` of the radius ratio
-  is not `ln`. It covers that derivation step of `be-37`, not the
+  is not `ln`. It covers `be-37` (kind `bridge` on `radial_integral`;
+  the covers line still begins with `derivation-step`), not the
   impact-parameter formula and not the Cassini measurement.
 - `PhysJS.RandallSundrum.positive_tension`, a complete proof that for
   `σ > 0`, `ρ > 0`, and `G > 0`,
@@ -218,8 +245,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   fails, and `σ < 0` lies below the Friedmann value. The nested
   `flat_friedmann` theorem is the `c²` dictionary onto Physlib's
   `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1`
-  and `Λ ≠ 0`. The limit `σ → ∞` is already the `be-19` reference. It
-  covers that derivation step of `be-54`, not a derivation from the
+  and `Λ ≠ 0`. The limit `σ → ∞` is already the `be-19` reference. The
+  formalRef of `be-54` is `brane_friedmann`, kind `bridge`. The covers
+  line still begins with `derivation-step`. Not a derivation from the
   five-dimensional Einstein equation.
 - `PhysJS.EinsteinCartan.inversion`, a complete proof that if
   `κ = 8πG/c⁴ ≠ 0` and every component satisfies `T = κ S`, then
@@ -231,8 +259,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `T ≠ 0` and `k_B ≠ 0`, the encoded product
   `T (1 + Σ_active / (k_B T))` equals `T + Σ_active / k_B`, and that
   sum equals `T` if and only if `Σ_active = 0`. The product
-  `T · Σ_active / (k_B T)`, with the `1` omitted, fails. It covers that
-  derivation step of `be-27`, not the frequency-dependent
+  `T · Σ_active / (k_B T)`, with the `1` omitted, fails. It covers `be-27`
+  (kind `bridge` on `sum_eq`; the covers line still begins with
+  `derivation-step`), not the frequency-dependent
   Cugliandolo–Kurchan `T_eff(ω)`.
 - `PhysJS.ToricCode.toric`, a complete proof that four anyons of
   quantum dimension `1` have total quantum dimension `D = √4 = 2` and
@@ -247,7 +276,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   added to matter, with the explicit `Λ` set to zero, is that equation
   at `k = 0`. The Einstein-static density `Λ c² / (4π G)` is twice that
   term, and dropping `c²` fails when `c² ≠ 1`. The density is
-  `vacuum_density` and is not reproved. It   covers that corollary of
+  `vacuum_density` and is not reproved. It covers that corollary of
   `be-20`. There is no `be-20` reference.
 - `PhysJS.Coarsening.exponent_iff`, a complete proof that for
   `Γ = L₀² / t₀ > 0`, `t > 0`, `t ≠ t₀`, and `z > 0`, the scaling
@@ -261,8 +290,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `ξ(T) = ξ₀ (T / T₀)^{−1/z}` gives `ξ T = ξ₀ T₀` at `z = 1`. The
   retired exponent `−ν/z` fails `−1/z` at `z = 1` when `ν ≠ 1`. The
   old pin `−0.71 = −71/100` is that failure. At `T = T₀` every exponent
-  agrees, so the comparison assumes `T ≠ T₀`. It covers that derivation
-  step of `be-33`, not Hertz–Millis theory and not a universality class.
+  agrees, so the comparison assumes `T ≠ T₀`. The formalRef of `be-33` is
+  `thermal_scaling`, kind `bridge`. The covers line still begins with
+  `derivation-step`. Not Hertz–Millis theory and not a universality class.
 - `PhysJS.TimeSymmetric.residual_iff`, a complete proof that when
   `A_ret + A_adv ≠ 0`, the residual
   `(A_ret − A_adv) / (A_ret + A_adv)` is `0` if and only if
@@ -270,8 +300,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `(A_ret + A_adv) / 2`, and twice that field is the residual's
   denominator. A fully retarded field, `A_adv = 0` with `A_ret ≠ 0`,
   gives residual `1`, not `0`. The id is contested, and this lemma
-  does not decide the contest. It covers that derivation step of
-  `be-50`, not the absorber boundary condition as a theory of
+  does not decide the contest. The formalRef of `be-50` is
+  `wheeler_feynman`, kind `bridge`. The covers line still begins with
+  `derivation-step`. Not the absorber boundary condition as a theory of
   radiation reaction.
 - `PhysJS.BornOverlap.modulus_sq`, a complete proof that
   `|c + s i|² = c² + s²`, which is `Complex.normSq` of one matrix
@@ -285,17 +316,18 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `σ = Σ_i J_i X_i` is the definition of `σ`, and that if every
   product is `≥ 0` then `σ ≥ 0`. One flipped sign, with the other
   products zero and the flipped product strictly positive, is not
-  `σ`, and that flipped sum is negative. It covers that derivation
-  step of `be-28`, not the variational maximum-entropy-production
-  principle. The catalog records this id as not-a-bridge, and this
-  lemma does not decide that.
+  `σ`, and that flipped sum is negative. UPT kind is `property` on
+  `nonneg`. The covers line still begins with `derivation-step`. Not the
+  variational maximum-entropy-production principle. The catalog records
+  this id as not-a-bridge, and this lemma does not decide that.
 - `PhysJS.CompositeHiggs.scale_free`, a complete proof that for
   `f ≠ 0` and `θ = h/f`, `V(h) / f⁴ = −α sin²θ + β [sin⁴θ − sin²θ
   cos²θ]`. Both terms carry `f⁴`, so the ratio depends on `h` only
   through `θ`. The pre-correction first term `−α f² sin²θ`, divided
   by `f⁴`, is `−α sin²θ / f²`. It depends on `f`, and it agrees with
-  `−α sin²θ` only when `f² = 1`. It covers that derivation step of
-  `be-40`, not SILH matching onto a confining theory. The catalog
+  `−α sin²θ` only when `f² = 1`. It covers `be-40` (kind `bridge` on
+  `scale_free`; the covers line still begins with `derivation-step`),
+  not SILH matching onto a confining theory. The catalog
   records this id as not-a-bridge, and this lemma does not decide
   that.
 - `PhysJS.Crossing.antisymmetry`, a complete proof that for a real
@@ -315,8 +347,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   symbolic; the decimal `2.01824` is not in the theorem. With
   `ℏ = c = μ_e = m_u = 1` both routes give the same `K`.
   `√π/2` in place of `√(3π)/2` fails when `ω₃⁰ ≠ 0`, and dropping
-  `ω₃⁰` fails when `ω₃⁰ ≠ 1`. It covers that derivation step of
-  `be-63`, not stellar rotation or magnetic support.
+  `ω₃⁰` fails when `ω₃⁰ ≠ 1`. It covers `be-63` (kind `bridge` on
+  `prefactor`; the covers line still begins with `derivation-step`),
+  not stellar rotation or magnetic support.
 - `PhysJS.Entanglement.first_variation`, a complete proof that for a
   smooth curve of full-rank density matrices that stay diagonal in a
   fixed basis and have trace `1`, `d/dt S(ρ(t)) = −⟪ρ̇(t), log ρ(t)⟫`,

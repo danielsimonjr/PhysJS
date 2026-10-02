@@ -100,7 +100,7 @@ Time rescaling by the ratio of the two angular frequencies, together with a nonz
 
 ## Milestone 2b, counted
 
-Catalog rows, keyed by `be-` id. A counted proof is a reduction, a limit, or a derivation step. It covers its statement only.
+Catalog rows, keyed by `be-` id. A counted proof is a reduction, a limit, or a derivation step. It covers its statement only. UPT stores a `formalRef` for each of these rows and does not light `formally-proved` from a counted reference. Sixteen catalog references are counted. The six in this table are the first. The other ten are `be-65`, `be-51`, `be-61`, `be-14`, `be-17`, `be-22`, `be-15`, `be-32`, `be-35`, and `be-30`.
 
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
@@ -119,7 +119,7 @@ The vacuum density is the nested `vacuum` object, `PhysJS.Einstein.vacuum_densit
 
 ## Milestone 2b, cross-checks
 
-These rows are manifest entries only. They are not UPT `formalRef`s. Each carries a negative control.
+These rows are UPT `formalRef`s of kind `cross-check`, on `PhysJS.HawkingUnruh.dictionary`, `PhysJS.Fret.dictionary`, and `PhysJS.QuantumBounce.dictionary`. Each carries a negative control. Passing one to `deriveEvidence` lights `formally-proved-cross-check`. That label is not the proved-bridge count.
 
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
@@ -129,7 +129,7 @@ These rows are manifest entries only. They are not UPT `formalRef`s. Each carrie
 
 ## Milestone 2b, properties
 
-These rows are manifest entries only. They are not UPT `formalRef`s until the owner rules on property-level references. Each carries a negative control.
+These rows are UPT `formalRef`s of kind `property`, on `PhysJS.Jarzynski.jensen_work` and `PhysJS.Lindblad.preserve`. The owner admitted property-level references on 2026-10-01. Each carries a negative control. Passing one to `deriveEvidence` lights `formally-proved-property`. That label is not the proved-bridge count. `be-28` is the same kind, on `PhysJS.EntropyProduction.nonneg`, and its covers line still begins with `derivation-step`.
 
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
@@ -138,7 +138,7 @@ These rows are manifest entries only. They are not UPT `formalRef`s until the ow
 
 ## Milestone 2b, stretch
 
-These derivation steps come after the counted rows. Each covers its statement only.
+These derivation steps are counted references, three of the sixteen. Each covers its statement only.
 
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
@@ -148,7 +148,7 @@ These derivation steps come after the counted rows. Each covers its statement on
 
 ## Milestone 2b, bucket A
 
-Owner-approved bucket A rows, easiest first. Each covers its statement only.
+Owner-approved bucket A rows, easiest first. Each covers its statement only. Fourteen of these keys are UPT kind `bridge` because the theorem states the catalogued equation. The covers line still begins with `derivation-step`. They are `be-12`, `be-16`, `be-21`, `be-27`, `be-33`, `be-37`, `be-40`, `be-43`, `be-50`, `be-54`, `be-55`, `be-59`, `be-60`, and `be-63`. Passing one of those references to `deriveEvidence` lights `formally-proved`. `be-14` stays a derivation step on the same lemma as `be-43`. `be-28` is kind `property`. The remaining bucket A keys in this table are counted derivation steps. `be-20` is nested on `be-13` and has no key.
 
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
@@ -173,7 +173,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-35` | `PhysJS.Crossing.antisymmetry` | `g(u,v) − g(v,u) = −(g(v,u) − g(u,v))`. The residual is `0` for every `g` when `u = v`, including `1/4`, so that point is not a control. A non-symmetric block does not vanish at `u = 1/2`, `v = 1/4`. Not the bootstrap sum. The catalog records this id as not-a-bridge. |
 | `be-63` | `PhysJS.Chandrasekhar.prefactor` | For `n = 3`, ultra-relativistic degeneracy pressure and the Lane–Emden scale give `M = (ω₃⁰ √(3π)/2) (ℏ c/G)^{3/2} (μ_e m_u)^{−2}`. `ω₃⁰` stays symbolic; `2.01824` is not in the theorem. `ρ_c` cancels. `√π/2` and dropping `ω₃⁰` fail. Not rotation or magnetic support. |
 | `be-30` | `PhysJS.Entanglement.first_variation` | For a full-rank diagonal curve of trace `1`, `d/dt S(ρ) = −Tr(ρ̇ log ρ)`. With `K = −log ρ` frozen, that derivative is `d/dt ⟨K⟩`. The jump from `diag(1/2, 1/2)` to `diag(3/4, 1/4)` leaves `⟨K⟩` fixed and changes `S`. Not an area variation. |
-| `be-16` | `PhysJS.Landauer.erasure_eq` | For `T > 0`, the equal-level two-state ensemble has `⟨E⟩ − F = k_B T log 2`. `equal_levels` remains the entropy `k_B log 2`. Levels `E` and `E + δ` fail that deficit. Not `E ≥ T ΔS` for an arbitrary protocol, and not the Bérut confrontation. |
+| `be-16` | `PhysJS.Landauer.erasure_eq` | Kind `bridge`. For `T > 0`, the equal-level two-state ensemble has `⟨E⟩ − F = k_B T log 2`. The covers line still begins with `derivation-step`. `equal_levels` remains the entropy `k_B log 2`. Levels `E` and `E + δ` fail that deficit. Not `E ≥ T ΔS` for an arbitrary protocol, and not the Bérut confrontation. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 
@@ -190,7 +190,9 @@ CI runs `lake build` with the Mathlib cache, then an axiom audit of the `PhysJS`
 
 ## Manifest
 
-UPT consumes `manifest/bridges.json`. A `formalRef` names a manifest key. The entry carries the theorem name, the UPT bridge id, and the covers line. The key is enough: UPT does not vendor the Lean sources.
+UPT consumes `manifest/bridges.json`. A `formalRef` names a manifest key. Every key in that file is a checked `formalRef`. The entry carries the theorem name, the UPT bridge id, and the covers line. UPT vendors that manifest at a commit and links to the Lean file. It does not vendor the Lean sources.
+
+The kind split is forty-six keys: ten atlas bridges, sixteen counted catalog references, fourteen catalog bridges whose covers line still begins with `derivation-step`, three cross-checks, and three properties (`be-11`, `be-29`, and `be-28`). Nested objects are not second references.
 
 ## What this is not
 

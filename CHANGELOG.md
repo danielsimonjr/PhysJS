@@ -7,6 +7,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `PhysJS.Landauer.erasure_eq`, a complete proof that the free-energy deficit
+  `⟨E⟩ − F` of Physlib's equal-level two-state ensemble is `k_B T log 2`
+  for `T > 0`. `equal_levels` remains the entropy step `k_B log 2`. At
+  `T > 0`, levels `E` and `E + δ` are not that deficit. It covers that
+  derivation step of `be-16`, not `E ≥ T ΔS` for an arbitrary erasure
+  protocol and not the Bérut confrontation.
 - `PhysJS.RandallSundrum.brane_friedmann`, a complete proof of the catalog
   equation `H² = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3` for `σ ≠ 0`. The same rate
   equals the Friedmann term plus `(8πG/3) ρ²/(2σ)`. `positive_tension`
@@ -136,9 +142,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `PhysJS.Landauer.equal_levels`, a complete proof that equal levels of
   Physlib's two-state ensemble have thermodynamic entropy `k_B log 2`.
   At `T ≠ 0`, levels `E` and `E + δ` are not that value. At `T = 0` the
-  closed form does not separate the levels. It covers that property of
-  `be-16`, not `E ≥ T ΔS` and not the Bérut confrontation, and it is not
-  a formalRef.
+  closed form does not separate the levels. It remains the entropy step of
+  `be-16`. The reference is `erasure_eq`. Not `E ≥ T ΔS`, and not the
+  Bérut confrontation.
 - `PhysJS.Jarzynski.jensen_work`, a complete proof that a finite
   probability and `β > 0` give `⟨W⟩ ≥ ΔF`, where `ΔF` is
   `−(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two

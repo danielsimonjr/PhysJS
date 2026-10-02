@@ -41,7 +41,7 @@ Rank 1a proves a different statement about the same five bridges: a plane wave s
 
 `be-19` is a cross-check, not a formalRef. The covers line names BE-54. `H²_LQC` equals `H²_RS` at `σ = −ρ_c/2`. As `ρ_c → ∞` and as `σ → ∞`, both tend to `(8πG/3)ρ + Λ/3`. At `ρ = ρ_c` and `Λ = 0`, `H²_LQC = 0`. `σ = +ρ_c/2` is the negative control. `σ < 0` is not a physical Randall–Sundrum brane.
 
-`be-16` is a property, not a formalRef. Equal levels of the two-state ensemble have thermodynamic entropy `k_B log 2`. At `T ≠ 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the closed form does not separate the levels. The inequality `E ≥ T ΔS` and the Bérut confrontation are not this row.
+`be-16` covers the encoded scale `⟨E⟩ − F = k_B T log 2` for the equal-level two-state ensemble at `T > 0`. `equal_levels` remains the entropy `k_B log 2`. At `T > 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the Helmholtz closed form does not separate the levels. The inequality `E ≥ T ΔS` for an arbitrary protocol and the Bérut confrontation are not this row.
 
 `be-29` is a property, not a formalRef. `rejected.ts` marks the row not-a-bridge. `ΔF = −(1/β) log(∑ p_i exp(−β W_i))` is the definition used here, and a finite probability with `β > 0` gives `⟨W⟩ ≥ ΔF`. The reversed inequality on two unequal work values is the negative control. Jarzynski's theorem and the Gaussian identity are not this row.
 

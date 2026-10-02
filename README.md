@@ -133,7 +133,6 @@ These rows are manifest entries only. They are not UPT `formalRef`s until the ow
 
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
-| `be-16` | `PhysJS.Landauer.equal_levels` | Equal two-state levels have thermodynamic entropy `k_B log 2`. At `T ≠ 0`, levels `E` and `E + δ` are not that value. Not `E ≥ T ΔS`, and not the Bérut confrontation. |
 | `be-29` | `PhysJS.Jarzynski.jensen_work` | For a finite probability and `β > 0`, `⟨W⟩ ≥ ΔF` with `ΔF = −(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two unequal work values. Not Jarzynski's theorem. |
 | `be-11` | `PhysJS.Lindblad.preserve` | One channel of the displayed GKSL generator has trace zero, and it is Hermitian when `H` and `ρ` are. Dropping the anticommutator makes the trace nonzero. Not Born–Markov coarse-graining. |
 
@@ -174,6 +173,7 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only.
 | `be-35` | `PhysJS.Crossing.antisymmetry` | `g(u,v) − g(v,u) = −(g(v,u) − g(u,v))`. The residual is `0` for every `g` when `u = v`, including `1/4`, so that point is not a control. A non-symmetric block does not vanish at `u = 1/2`, `v = 1/4`. Not the bootstrap sum. The catalog records this id as not-a-bridge. |
 | `be-63` | `PhysJS.Chandrasekhar.prefactor` | For `n = 3`, ultra-relativistic degeneracy pressure and the Lane–Emden scale give `M = (ω₃⁰ √(3π)/2) (ℏ c/G)^{3/2} (μ_e m_u)^{−2}`. `ω₃⁰` stays symbolic; `2.01824` is not in the theorem. `ρ_c` cancels. `√π/2` and dropping `ω₃⁰` fail. Not rotation or magnetic support. |
 | `be-30` | `PhysJS.Entanglement.first_variation` | For a full-rank diagonal curve of trace `1`, `d/dt S(ρ) = −Tr(ρ̇ log ρ)`. With `K = −log ρ` frozen, that derivative is `d/dt ⟨K⟩`. The jump from `diag(1/2, 1/2)` to `diag(3/4, 1/4)` leaves `⟨K⟩` fixed and changes `S`. Not an area variation. |
+| `be-16` | `PhysJS.Landauer.erasure_eq` | For `T > 0`, the equal-level two-state ensemble has `⟨E⟩ − F = k_B T log 2`. `equal_levels` remains the entropy `k_B log 2`. Levels `E` and `E + δ` fail that deficit. Not `E ≥ T ΔS` for an arbitrary protocol, and not the Bérut confrontation. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 

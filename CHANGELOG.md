@@ -23,6 +23,40 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `PhysJS.FastMagnetosonic.speed_eq`, a complete proof that one
+  compressional monochromatic polarization of the perpendicular ideal-MHD
+  linearization has phase speed `√(c_s² + B²/(μ0 ρ))`. The textbook
+  quartic at `k_∥ = 0` is `perpendicular_of_dispersion`. The zero root
+  does not solve compressional induction. Manifest key `be-69`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not a kinetic dispersion, and
+  not the oblique fast mode.
+- `PhysJS.EinsteinRelation.diffusion_eq`, a complete proof that drift
+  cancels diffusion on a classical Boltzmann profile, so
+  `D = μ k_B T / q`. Dropping `q`, the Fermi-liquid form, and
+  Stokes–Einstein are the negative controls. Manifest key `be-70`. Not
+  a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not a master equation.
+- `PhysJS.Clapeyron.slope_eq`, a complete proof that equal specific
+  Gibbs energies and `dg = −s dT + v dP` give `dP/dT = L/(T Δv)` when
+  `L = T Δs`. Dropping `T` or one phase volume fails. Manifest key
+  `be-71`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`. Not the integrated
+  vapor-pressure law.
+- `PhysJS.GravitationalRedshift.frequency_ratio`, a complete proof that
+  two static observers of one coordinate period have
+  `ν1/ν2 = √(g_00 ratio)` for `g_00 < 0`. `tolman_same_ratio` is the
+  link to `be-68`: the temperatures stand in that ratio only when the
+  Tolman products agree. Manifest key `be-72`. Not a catalog entry yet.
+  The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. Not `hydrostatic_constant`, and not a horizon
+  temperature.
+- `PhysJS.KelvinRelation.peltier_eq`, a complete proof that open-circuit
+  Seebeck and isothermal Peltier coefficients satisfy `Π = S T` when
+  `L12 = L21`. That equality is a structure field, not an axiom.
+  Without it the coefficients disagree. Manifest key `be-73`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not the first Thomson relation.
 - `PhysJS.RadiationPressure.pressure_eq`, a complete proof of
   `P_n = (I/c)(1+R) cos²θ` from foreshortening, normal momentum per
   energy, and an opaque split into absorption and specular reversal.

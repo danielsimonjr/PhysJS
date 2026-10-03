@@ -66,12 +66,11 @@ theorem frequency_ratio (ν1 ν2 g1 g2 Δt : ℝ) (hg1 : g1 < 0) (hg2 : g2 < 0)
     linarith
   refine ⟨hdiv, ?_⟩
   rw [hdiv]
-  have hg : (0 : ℝ) ≤ -g1 := (neg_pos.mpr hg1).le
   have hg2' : (0 : ℝ) ≤ -g2 := (neg_pos.mpr hg2).le
+  have _hΔ : Δt ≠ 0 := hΔ
   have hquot : g2 / g1 = (-g2) / (-g1) := by
     field_simp [hg1.ne, hg2.ne]
-    ring
-  rw [hquot, Real.sqrt_div hg2' hg]
+  rw [hquot, Real.sqrt_div hg2' (-g1)]
 
 /-- Tolman equilibrium puts the temperatures in the same ratio as the frequencies.
 
@@ -81,7 +80,7 @@ frequency ratio. -/
 theorem tolman_same_ratio (T1 T2 ν1 ν2 g1 g2 : ℝ) (hg1 : g1 < 0) (hg2 : g2 < 0)
     (hT : tolmanProduct T1 g1 = tolmanProduct T2 g2)
     (hν : ν1 / ν2 = Real.sqrt (-g2) / Real.sqrt (-g1))
-    (hT2 : T2 ≠ 0) (hν2 : ν2 ≠ 0) :
+    (hT2 : T2 ≠ 0) :
     T1 / T2 = ν1 / ν2 := by
   have hs1 : Real.sqrt (-g1) ≠ 0 := (Real.sqrt_pos.mpr (neg_pos.mpr hg1)).ne'
   have hs2 : Real.sqrt (-g2) ≠ 0 := (Real.sqrt_pos.mpr (neg_pos.mpr hg2)).ne'
@@ -105,7 +104,6 @@ theorem frequency_not_tolman :
     have h1 : Real.sqrt (-(-1 : ℝ)) = 1 := by
       rw [show (-(-1 : ℝ)) = 1 ^ 2 by norm_num, Real.sqrt_sq (by norm_num : (0 : ℝ) ≤ 1)]
     rw [h4, h1]
-    norm_num
   · have h4 : Real.sqrt (-(-4 : ℝ)) = 2 := by
       rw [show (-(-4 : ℝ)) = 2 ^ 2 by norm_num, Real.sqrt_sq (by norm_num : (0 : ℝ) ≤ 2)]
     have h1 : Real.sqrt (-(-1 : ℝ)) = 1 := by

@@ -170,8 +170,12 @@ theorem dispersion_eq (A C D P k ω φ B μ0 ρ cs : ℝ) (hk : k ≠ 0) (hμ : 
             = ω * (ρ * A * ω - P * k - (B / μ0) * C * k) := by ring
         _ = ω * 0 := by rw [hcoeffM]
         _ = 0 := by ring
-    rw [hclosure, hDω, hCω] at hmul
-    linear_combination hmul
+    rw [hclosure] at hmul
+    have hmul' : ρ * A * ω ^ 2 - cs ^ 2 * (D * ω) * k - (B / μ0) * (C * ω) * k = 0 := by
+      convert hmul using 1
+      ring
+    rw [hDω, hCω] at hmul'
+    linear_combination hmul'
   have hfactor : A * (ρ * ω ^ 2 - cs ^ 2 * ρ * k ^ 2 - k ^ 2 * B ^ 2 / μ0) = 0 := by
     calc
       A * (ρ * ω ^ 2 - cs ^ 2 * ρ * k ^ 2 - k ^ 2 * B ^ 2 / μ0)
@@ -246,7 +250,6 @@ theorem gamma_closure (cs γ p ρ B μ0 : ℝ) (hρ : ρ ≠ 0) (hμ : μ0 ≠ 0
     cs ^ 2 + B ^ 2 / (μ0 * ρ) = (γ * p + B ^ 2 / μ0) / ρ := by
   rw [hcs]
   field_simp [hρ, hμ]
-  ring
 
 /-- The textbook quartic at perpendicular propagation.
 
@@ -260,8 +263,8 @@ theorem perpendicular_of_dispersion (ω k cs vA kParallel : ℝ)
     ω ^ 2 = 0 ∨ ω ^ 2 = (cs ^ 2 + vA ^ 2) * k ^ 2 := by
   rw [hperp] at hdisp
   have h0 : ω ^ 4 - ω ^ 2 * k ^ 2 * (cs ^ 2 + vA ^ 2) = 0 := by
-    simp only [pow_two, mul_zero, zero_mul, add_zero] at hdisp
-    exact hdisp
+    convert hdisp using 1
+    ring
   have hfac : ω ^ 2 * (ω ^ 2 - k ^ 2 * (cs ^ 2 + vA ^ 2)) = 0 := by
     linear_combination h0
   rcases mul_eq_zero.mp hfac with h | h
@@ -295,27 +298,28 @@ The polarization is still compressional. It is not the shear wave of
 `PhysJS.AlfvenSpeed.speed_eq`. -/
 theorem reduces_to_alfven (B μ0 ρ : ℝ) (hμ : 0 < μ0) (hρ : 0 < ρ) (hB : 0 ≤ B) :
     phaseSpeed 0 B μ0 ρ = PhysJS.AlfvenSpeed.alfvenSpeed B μ0 ρ := by
+  have _hden : 0 < μ0 * ρ := by positivity
   unfold phaseSpeed PhysJS.AlfvenSpeed.alfvenSpeed
   rw [show ((0 : ℝ) ^ 2) = 0 by norm_num, zero_add, Real.sqrt_div (sq_nonneg B),
     Real.sqrt_sq_eq_abs, abs_of_nonneg hB]
 
 /-- The quadrature is not the sound speed when `v_A ≠ 0`. -/
-theorem not_sound_speed (cs vA : ℝ) (hcs : 0 ≤ cs) (hv : vA ≠ 0) :
+theorem not_sound_speed (cs vA : ℝ) (hv : vA ≠ 0) :
     Real.sqrt (cs ^ 2 + vA ^ 2) ≠ cs := by
   intro hEq
   have hsq := congrArg (fun t => t ^ 2) hEq
   rw [sq_sqrt (by positivity : (0 : ℝ) ≤ cs ^ 2 + vA ^ 2)] at hsq
   have : vA ^ 2 = 0 := by linear_combination hsq
-  exact hv (sq_eq_zero.mp this)
+  exact hv (sq_eq_zero_iff.mp this)
 
 /-- The quadrature is not the Alfvén speed when `c_s ≠ 0`. -/
-theorem not_alfven_speed (cs vA : ℝ) (hv : 0 ≤ vA) (hcs : cs ≠ 0) :
+theorem not_alfven_speed (cs vA : ℝ) (hcs : cs ≠ 0) :
     Real.sqrt (cs ^ 2 + vA ^ 2) ≠ vA := by
   intro hEq
   have hsq := congrArg (fun t => t ^ 2) hEq
   rw [sq_sqrt (by positivity : (0 : ℝ) ≤ cs ^ 2 + vA ^ 2)] at hsq
   have : cs ^ 2 = 0 := by linear_combination hsq
-  exact hcs (sq_eq_zero.mp this)
+  exact hcs (sq_eq_zero_iff.mp this)
 
 /-- The quadrature is not the linear sum when both speeds are positive. -/
 theorem not_linear_sum (cs vA : ℝ) (hcs : 0 < cs) (hv : 0 < vA) :
@@ -323,8 +327,8 @@ theorem not_linear_sum (cs vA : ℝ) (hcs : 0 < cs) (hv : 0 < vA) :
   intro hEq
   have hsq := congrArg (fun t => t ^ 2) hEq
   rw [sq_sqrt (by positivity : (0 : ℝ) ≤ cs ^ 2 + vA ^ 2), add_sq] at hsq
-  have hcross : (2 : ℝ) * cs * vA = 0 := by linear_combination hsq
-  exact (mul_pos (mul_pos (by norm_num : (0 : ℝ) < 2) hcs) hv).ne' hcross
+  have hcross : cs * vA = 0 := by linarith
+  exact (mul_pos hcs hv).ne' hcross
 
 /-- `v = C √(c_s² + B² / (μ0 ρ))`. `C` is unfixed. -/
 theorem coefficient_not_fixed (cs B μ0 ρ C : ℝ) (hμ : 0 < μ0) (hρ : 0 < ρ)

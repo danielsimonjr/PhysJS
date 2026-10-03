@@ -54,7 +54,7 @@ theorem entropy_slope (g1 g2 P : ℝ → ℝ) (s1 s2 v1 v2 T0 : ℝ)
     rw [← h1.deriv, ← h2.deriv, hcoex]
   have hdiff : (v2 - v1) * deriv P T0 = s2 - s1 := by
     linear_combination -heq
-  rw [eq_div_iff hΔv]
+  rw [eq_div_iff hΔv, mul_comm]
   exact hdiff
 
 /-- Latent heat `L = T Δs` turns the entropy slope into `L / (T Δv)`.
@@ -87,7 +87,7 @@ theorem temperature_factor_needed (L T Δv : ℝ) (hL : L ≠ 0) (hT : T ≠ 0)
     L / (T * Δv) ≠ L / Δv := by
   intro hEq
   field_simp [hL, hT, hΔv] at hEq
-  exact hT1 hEq
+  exact hT1 hEq.symm
 
 /-- Using one phase volume in place of `Δv` fails when the other is nonzero. -/
 theorem liquid_volume_needed (L T vGas vLiq : ℝ) (hL : L ≠ 0) (hT : T ≠ 0)

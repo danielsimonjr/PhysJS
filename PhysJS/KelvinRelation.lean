@@ -3,6 +3,7 @@ Copyright (c) 2026 Daniel Simon Jr.
 Released under MIT license as described in the file LICENSE.
 -/
 
+import Mathlib.Basic.Real.Basic
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
@@ -90,9 +91,14 @@ theorem isothermal_peltier (L11 L12 L21 L22 T E : ℝ) (hT : T ≠ 0) (hL : L11 
     heatCurrent L21 L22 T E 0 / electricCurrent L11 L12 T E 0 = L21 / L11 := by
   have hE := electricCurrent_isothermal L11 L12 T E
   have hQ := heatCurrent_isothermal L21 L22 T E
-  rw [hE, hQ] at hJ ⊢
+  rw [hE] at hJ ⊢
+  rw [hQ]
   have hcur : L11 * (E / T) ≠ 0 := hJ
-  field_simp [hcur, hL, hT]
+  have hEne : E ≠ 0 := by
+    intro hE0
+    apply hcur
+    simp [hE0]
+  field_simp [hcur, hL, hT, hEne]
 
 /-- The second Thomson relation: `Π = S T`.
 
@@ -110,9 +116,9 @@ theorem peltier_eq (R : ThermoelectricOnsager) (Eopen dTopen Eiso : ℝ)
       (Eopen / dTopen) * R.T := by
   have hS := open_circuit_seebeck R.L11 R.L12 R.T Eopen dTopen R.temperature_ne
     R.conductance_ne hdT hopen
-  have hΠ := isothermal_peltier R.L11 R.L12 R.L21 R.L22 R.T Eiso R.temperature_ne
+  have hPel := isothermal_peltier R.L11 R.L12 R.L21 R.L22 R.T Eiso R.temperature_ne
     R.conductance_ne hiso
-  rw [hΠ, hS, R.onsager]
+  rw [hPel, hS, R.onsager]
   field_simp [R.conductance_ne, R.temperature_ne]
 
 /-- Without `L12 = L21`, the measured coefficients disagree.
@@ -126,9 +132,10 @@ theorem onsager_needed (L11 L12 L21 L22 T Eopen dTopen Eiso : ℝ)
     heatCurrent L21 L22 T Eiso 0 / electricCurrent L11 L12 T Eiso 0 ≠
       (Eopen / dTopen) * T := by
   have hS := open_circuit_seebeck L11 L12 T Eopen dTopen hT hL hdT hopen
-  have hΠ := isothermal_peltier L11 L12 L21 L22 T Eiso hT hL hiso
-  rw [hΠ, hS]
-  field_simp [hL, hT]
-  exact hneq
+  have hPel := isothermal_peltier L11 L12 L21 L22 T Eiso hT hL hiso
+  rw [hPel, hS]
+  intro hEq
+  field_simp [hL, hT] at hEq
+  exact hneq hEq.symm
 
 end PhysJS.KelvinRelation

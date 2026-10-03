@@ -8,8 +8,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - `docs/design/library-architecture.md`, a proposal for the TypeScript
-  library, the Modelica package, and the fourJS boundary. It authorizes
-  no code until a tier in that note is approved.
+  library, the Modelica package, and the fourJS boundary. fourJS calls
+  the PhysJS step API directly. There is no adapter package. The note
+  authorizes no code until a tier in it is approved.
 
 ### Changed
 

@@ -23,6 +23,32 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `PhysJS.RadiationPressure.pressure_eq`, a complete proof of
+  `P_n = (I/c)(1+R) cos²θ` from foreshortening, normal momentum per
+  energy, and an opaque split into absorption and specular reversal.
+  `pressure_monomial` leaves `C` in `P = C I/c` unfixed.
+  `coefficient_unfixed`, `reflector_not_absorber`, and
+  `oblique_endpoints` are the negative controls. UPT kind is `bridge`
+  on `pressure_eq`. The covers line still begins with `derivation-step`.
+  Not the Maxwell stress tensor, and not the Eddington luminosity.
+- `PhysJS.AlfvenSpeed.speed_eq`, a complete proof that one transverse
+  monochromatic polarization of the parallel incompressible ideal-MHD
+  linearization has phase speed `B/√(μ0 ρ)` for `B > 0`. `ρ` is the
+  total mass density in that momentum premise. Proton-only density and
+  the Gaussian writing without the unit dictionary are the negative
+  controls. `4π×10^{-7}` is the permeability stand-in, not a measured
+  `μ0`. UPT kind is `bridge` on `speed_eq`. The covers line still
+  begins with `derivation-step`. Not a kinetic dispersion relation.
+  Dimensional homogeneity of `{v, B, μ0, ρ}` is not formalized.
+- `PhysJS.TolmanEhrenfest.hydrostatic_constant`, a complete proof that
+  hydrostatic balance and the equilibrium Gibbs relation give
+  `T √(-g_00)` equal at the endpoints of a static interval, in the
+  signature `(−,+,+,+)`. `units_do_not_entail` and
+  `mostly_plus_needs_the_minus` are the negative controls. UPT kind is
+  `bridge` on `hydrostatic_constant`. The covers line still begins
+  with `derivation-step`. Not a horizon temperature, and not
+  `T ‖ξ‖ = const`. The hydrostatic equation is not derived from
+  `∇_μ T^{μν} = 0`.
 - `PhysJS.Landauer.erasure_eq`, a complete proof that the free-energy deficit
   `⟨E⟩ − F` of Physlib's equal-level two-state ensemble is `k_B T log 2`
   for `T > 0`. `equal_levels` remains the entropy step `k_B log 2`. At

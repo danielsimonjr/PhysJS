@@ -148,7 +148,7 @@ These derivation steps are counted references, three of the sixteen. Each covers
 
 ## Milestone 2b, bucket A
 
-Owner-approved bucket A rows, easiest first. Each covers its statement only. Fourteen of these keys are UPT kind `bridge` because the theorem states the catalogued equation. The covers line still begins with `derivation-step`. They are `be-12`, `be-16`, `be-21`, `be-27`, `be-33`, `be-37`, `be-40`, `be-43`, `be-50`, `be-54`, `be-55`, `be-59`, `be-60`, and `be-63`. Passing one of those references to `deriveEvidence` lights `formally-proved`. `be-14` stays a derivation step on the same lemma as `be-43`. `be-28` is kind `property`. The remaining bucket A keys in this table are counted derivation steps. `be-20` is nested on `be-13` and has no key.
+Owner-approved bucket A rows, easiest first, followed by `be-66`, `be-67`, and `be-68`. Each covers its statement only. Seventeen of these keys are UPT kind `bridge` because the theorem states the catalogued equation. The covers line still begins with `derivation-step`. They are `be-12`, `be-16`, `be-21`, `be-27`, `be-33`, `be-37`, `be-40`, `be-43`, `be-50`, `be-54`, `be-55`, `be-59`, `be-60`, `be-63`, `be-66`, `be-67`, and `be-68`. Passing one of those references to `deriveEvidence` lights `formally-proved`. `be-14` stays a derivation step on the same lemma as `be-43`. `be-28` is kind `property`. The remaining bucket A keys in this table are counted derivation steps. `be-20` is nested on `be-13` and has no key.
 
 | Catalog id | Theorem | What the statement says |
 |---|---|---|
@@ -174,6 +174,9 @@ Owner-approved bucket A rows, easiest first. Each covers its statement only. Fou
 | `be-63` | `PhysJS.Chandrasekhar.prefactor` | For `n = 3`, ultra-relativistic degeneracy pressure and the Lane–Emden scale give `M = (ω₃⁰ √(3π)/2) (ℏ c/G)^{3/2} (μ_e m_u)^{−2}`. `ω₃⁰` stays symbolic; `2.01824` is not in the theorem. `ρ_c` cancels. `√π/2` and dropping `ω₃⁰` fail. Not rotation or magnetic support. |
 | `be-30` | `PhysJS.Entanglement.first_variation` | For a full-rank diagonal curve of trace `1`, `d/dt S(ρ) = −Tr(ρ̇ log ρ)`. With `K = −log ρ` frozen, that derivative is `d/dt ⟨K⟩`. The jump from `diag(1/2, 1/2)` to `diag(3/4, 1/4)` leaves `⟨K⟩` fixed and changes `S`. Not an area variation. |
 | `be-16` | `PhysJS.Landauer.erasure_eq` | Kind `bridge`. For `T > 0`, the equal-level two-state ensemble has `⟨E⟩ − F = k_B T log 2`. The covers line still begins with `derivation-step`. `equal_levels` remains the entropy `k_B log 2`. Levels `E` and `E + δ` fail that deficit. Not `E ≥ T ΔS` for an arbitrary protocol, and not the Bérut confrontation. |
+| `be-66` | `PhysJS.RadiationPressure.pressure_eq` | Kind `bridge`. Foreshortening, normal momentum per energy, and the opaque split give `P_n = (I/c)(1+R) cos²θ`. The absorber and the reflector are the endpoints. The covers line still begins with `derivation-step`. Homogeneity leaves `C` in `P = C I/c` unfixed. Not the Maxwell stress tensor. |
+| `be-67` | `PhysJS.AlfvenSpeed.speed_eq` | Kind `bridge`. The parallel incompressible ideal-MHD linearization gives `|ω/k| = B/√(μ0 ρ)` for `B > 0`. The covers line still begins with `derivation-step`. `ρ` is the total mass density. Proton-only is a different speed. The Gaussian writing needs the unit dictionary. Not a kinetic dispersion relation. |
+| `be-68` | `PhysJS.TolmanEhrenfest.hydrostatic_constant` | Kind `bridge`. Hydrostatic balance and the equilibrium Gibbs relation give `T √(-g_00)` equal at the endpoints of a static interval. The covers line still begins with `derivation-step`. The repository signature is `(−,+,+,+)`. Units do not identify `d ln T` with `g dr/c²`. Not a horizon temperature. |
 
 The `c²` dictionary is the nested `friedmann` object, `PhysJS.RandallSundrum.flat_friedmann`: `H²_FRW` with the module `Λ` equal to Physlib's `Λ c²` is `FirstOrderFriedmann` at `k = 0`. Dropping `c²` fails when `c² ≠ 1` and `Λ ≠ 0`. The reference names the tension theorem only.
 
@@ -192,7 +195,7 @@ CI runs `lake build` with the Mathlib cache, then an axiom audit of the `PhysJS`
 
 UPT consumes `manifest/bridges.json`. A `formalRef` names a manifest key. Every key in that file is a checked `formalRef`. The entry carries the theorem name, the UPT bridge id, and the covers line. UPT vendors that manifest at a commit and links to the Lean file. It does not vendor the Lean sources.
 
-The kind split is forty-six keys: ten atlas bridges, sixteen counted catalog references, fourteen catalog bridges whose covers line still begins with `derivation-step`, three cross-checks, and three properties (`be-11`, `be-29`, and `be-28`). Nested objects are not second references.
+The kind split is forty-nine keys: ten atlas bridges, sixteen counted catalog references, seventeen catalog bridges whose covers line still begins with `derivation-step`, three cross-checks, and three properties (`be-11`, `be-29`, and `be-28`). The seventeen include `be-66`, `be-67`, and `be-68`. Nested objects are not second references.
 
 ## What this is not
 

@@ -33,7 +33,7 @@ CI runs the audit. The same check is `leanprover-community/axiom-audit` over the
 
 ## The TypeScript package
 
-`packages/engineering-physics/` is reserved. Do not publish `@danielsimonjr/physjs` from this repository until that package is designed. The Lean sources are not an npm package.
+`packages/engineering-physics/` is reserved. The design proposal is `docs/design/library-architecture.md`. Do not scaffold packages, and do not publish `@danielsimonjr/physjs`, until Daniel approves the tier that would do it. The Lean sources are not an npm package.
 
 ## Secrets
 

@@ -53,7 +53,7 @@ packages/              reserved for a later TypeScript package
 .github/               issue and pull-request templates, CI
 ```
 
-`packages/engineering-physics/` is the slot for a future engineering-physics npm package, on the same kind of packages layout as [MathTS](https://github.com/danielsimonjr/MathTS). That package is not published from this repository yet.
+`packages/engineering-physics/` is the reserved slot for the TypeScript library. The proposal for how that library sits beside the Lean package is [docs/design/library-architecture.md](docs/design/library-architecture.md). It is awaiting approval. Nothing under `packages/` is published, and this repository does not scaffold that library until a tier in that note is approved.
 
 ## Milestone 1
 

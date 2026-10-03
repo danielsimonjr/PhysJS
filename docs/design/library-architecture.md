@@ -18,7 +18,7 @@ The grounding for the UPT boundary is UPT as cloned for this note, in particular
 
 **Modelica is part of PhysJS.** Models are equation-based and acausal. The section is [Modelica](#modelica).
 
-**fourJS consumes PhysJS and is not a dependency of it.** The section is [fourJS](#fourjs). A later takeover of fourJS's physics layer is a direction, and this note assigns it no tier.
+**fourJS calls PhysJS directly.** There is no adapter package. PhysJS's public step API is compatible with fourJS's physics layer so that layer can be replaced later. The section is [fourJS](#fourjs). This note assigns that replacement no tier.
 
 ## Repository layout
 
@@ -343,7 +343,7 @@ Two surfaces, in later tiers:
 - **Modelica text.** Import and export a supported subset of `.mo` corresponding to the components PhysJS actually has. A construct outside the subset fails the import with the construct named.
 - **FMI.** The Functional Mock-up Interface, as a later tier. The first slice exports a co-simulation description and the plain-number step function. Loading a third-party binary FMU is a native-code runner and is a separate decision.
 
-fourJS does not need FMI to call the step function. FMI is for external tools.
+fourJS calls the step function directly. FMI is for external tools.
 
 ### Licensing
 
@@ -371,37 +371,27 @@ These sit after core and after the domain laws the components call. They are spe
 
 [fourJS](https://github.com/danielsimonjr/fourJS) is a TypeScript-on-Bun scene framework. Its root `packageManager` is `bun@1.4.2`. Simulation advances in fixed steps. `@fourjs/motion` sets `DEFAULT_FIXED_DELTA_TIME` to `1/60`. Rendering interpolates. `@fourjs/physics` is the solver-independent API: rigid bodies, colliders, force fields, joints, and `PhysicsSolverAdapter`, whose per-step contract ends in `step` on a fixed delta. `@fourjs/physics-rapier` and `@fourjs/physics-box2d` are adapters behind that seam. `@fourjs/physics-soft` is the soft-body package. `@fourjs/math` is fourJS's own vector, quaternion, and matrix math: mutable, in-place, radians, seconds, and hot paths that do not allocate.
 
-PhysJS is headless. It has no dependency on fourJS, including devDependencies, and it does not import a fourJS module. fourJS keeps `@fourjs/math`. PhysJS does not accept a `Vector3`.
+PhysJS is headless. It has no dependency on fourJS, including devDependencies, and it does not import a fourJS module. fourJS keeps `@fourjs/math` for its scene and renderer. PhysJS does not accept a `Vector3`. There is no `@danielsimonjr/fourjs-physjs` package, in either repository. fourJS will call the PhysJS API directly when it replaces its physics layer.
 
-### What PhysJS exposes for a 60 Hz loop
+### API compatibility
 
-Every public formula, and every system `physjs-modelica` compiles, has a setup builder:
+The public simulation API matches the call fourJS already makes each fixed step.
 
-1. The builder accepts quantities with units and checks them through MathTS once.
-2. It returns a step function over plain SI numbers. Time is in seconds. The function writes into a caller-owned buffer and returns nothing, which is the shape `@fourjs/motion` `integrators.ts` already uses for its five integrators (`explicit-euler`, `semi-implicit-euler`, `velocity-verlet`, `rk2`, `rk4`): one second-order step, `state` mutated in place, no per-step allocation.
-3. The step function does not consult a unit registry, a scene graph, or a solver product.
+`@fourjs/physics` steps a solver through `PhysicsSolverAdapter.step` on one fixed delta. `@fourjs/motion` `integrators.ts` advances a second-order state in place for `explicit-euler`, `semi-implicit-euler`, `velocity-verlet`, `rk2`, and `rk4`, with `dt` in seconds and no per-step allocation. `DEFAULT_FIXED_DELTA_TIME` is `1/60`.
 
-A formula that is a closed form, such as radiation pressure, uses the same shape. Setup checks the units. The returned function evaluates the expression into the buffer. There is no integrator in that case. The builder is still the unit gate, so a 60 Hz caller pays the check once.
+Every public formula, and every system `physjs-modelica` compiles, uses that shape:
 
-### Adapter
+1. Setup accepts quantities with units and checks them through MathTS once.
+2. The returned function takes `dt` in seconds and writes plain SI numbers into a caller-owned buffer. It returns nothing. It allocates nothing on the step, and it does not consult a unit registry, a scene graph, or a named solver product.
+3. A closed form, such as radiation pressure, uses the same builder. Setup is the unit gate. The function evaluates into the buffer. A 60 Hz caller pays the check once.
 
-fourJS gets its own adapter package later. The recommendation is `@danielsimonjr/fourjs-physjs` in the fourJS repository, depending on PhysJS. The adapter copies the plain SI buffer into the fourJS objects that render or that own a transform. PhysJS does not learn those objects.
-
-That adapter is a later tier. It starts when Daniel approves it. No code for it is in scope for any earlier tier. The tier does not add a fourJS dependency to this repository.
+The numeric method is an argument of `compile`, supplied by MathTS. The component model does not name Rapier, Box2D, or MathTS in its public types. fourJS can pass `1/60` to that function where it currently calls `PhysicsSolverAdapter.step`.
 
 ### Future direction
 
-PhysJS eventually takes over fourJS's physics layer: `@fourjs/physics`, `@fourjs/physics-soft`, the Rapier and Box2D adapters, the force fields in `@fourjs/physics` (`force-field.ts`), and the motion integrators in `@fourjs/motion` `integrators.ts`.
+PhysJS eventually replaces fourJS's physics layer: `@fourjs/physics`, `@fourjs/physics-soft`, the Rapier and Box2D adapters, the force fields in `@fourjs/physics` (`force-field.ts`), and the motion integrators in `@fourjs/motion` `integrators.ts`. The replacement is a direct call to the API above.
 
-This note assigns that takeover no tier and specifies no migration. Scene, render, animation, input, and `@fourjs/math` stay in fourJS either way. The integrators are the five functions in `integrators.ts`. The rest of `@fourjs/motion` (scheduler, steering, IK, trajectories, character controller) is not part of the sentence above.
-
-The APIs specified in this note are shaped so a migration can be written later:
-
-- **Headless.** No scene node, no renderer, no canvas, no import of fourJS.
-- **Plain-number step functions.** Unit checks run at setup. The hot path is a `dt` in seconds and a numeric buffer, in place.
-- **Solver-adapter friendly.** A compiled system is stepped by `dt` through one function. The component model does not name Rapier, Box2D, or MathTS in its public types. The numeric method is an argument of `compile`, supplied by MathTS for now. A later adapter can pass a different stepper, or can implement fourJS's `PhysicsSolverAdapter.step`, without rewriting connectors.
-
-Those three constraints are requirements on the packages this note already defines. They are not a design of the takeover.
+This note assigns that replacement no tier and specifies no migration. Scene, render, animation, input, and `@fourjs/math` stay in fourJS. The integrators in view are the five functions in `integrators.ts`. The rest of `@fourjs/motion` (scheduler, steering, IK, trajectories, character controller) stays in fourJS.
 
 ## Tiers
 
@@ -409,7 +399,7 @@ Each tier is one body of work, mergeable on its own, and it starts when Daniel a
 
 ### Tier 0 — scaffolding
 
-Empty workspace. Packages: core, the seven domain packages, bridges, proofs. Each exports nothing but a package marker the test can import. `physjs-modelica` is not created in this tier. The fourJS adapter is not created in this tier.
+Empty workspace. Packages: core, the seven domain packages, bridges, proofs. Each exports nothing but a package marker the test can import. `physjs-modelica` is not created in this tier. No fourJS package is created in this repository.
 
 - Root `package.json`, `bunfig.toml`, `tsconfig.base.json`, `bun.lock`, `.changeset/config.json`.
 - `.github/workflows/typescript.yml`: frozen install, typecheck, `bun test`, oxlint, Prettier, `bun pm pack --dry-run`.
@@ -441,7 +431,7 @@ Slice B can follow inside this tier or as a follow-up with the same exit rule, o
 
 ### Later tiers
 
-Modelica tiers are in [Modelica tiers](#modelica-tiers). The fourJS adapter is in [Adapter](#adapter). The physics-layer takeover has no tier.
+Modelica tiers are in [Modelica tiers](#modelica-tiers). Replacing fourJS's physics layer has no tier. The API compatibility that makes the replacement a direct call is in [fourJS](#fourjs).
 
 ## Open decisions
 
@@ -489,18 +479,14 @@ Each one has a recommendation. None of them blocks writing this note. The ones t
 
 ### 11. FMI timing
 
-**Recommendation.** After the Modelica text tier. Export one standard: FMI 2.0 co-simulation, as `modelDescription.xml` plus the step function `compile` already returns. That is the exchange external tools still accept. Do not implement FMI 3.0 in the same tier. Do not load third-party binary FMUs in that tier. fourJS calls the step function through its adapter and does not go through FMI.
+**Recommendation.** After the Modelica text tier. Export one standard: FMI 2.0 co-simulation, as `modelDescription.xml` plus the step function `compile` already returns. That is the exchange external tools still accept. Do not implement FMI 3.0 in the same tier. Do not load third-party binary FMUs in that tier. fourJS calls that step function directly and does not go through FMI.
 
 ### 12. Who owns the DAE solver
 
 **Recommendation.** PhysJS owns the structure: flatten, bipartite matching, Pantelides, BLT. MathTS owns the numbers: `solveODE`, `solveDAE`, and the one-step export PhysJS will request. PhysJS does not add a tableau. If a reduced system is not a semi-explicit index-1 DAE and not an explicit ODE, the build throws, and any missing solver capability is filed in MathTS.
 
-### 13. fourJS adapter name
-
-**Recommendation.** `@danielsimonjr/fourjs-physjs`, in the fourJS repository. The location is settled by the decision that PhysJS does not import fourJS. The name is the open part.
-
 ## What this note does not authorize
 
 Approving the note as a document approves the text. It does not approve a tier. Tier 0 starts when Daniel says so.
 
-This note does not vendor the Modelica Standard Library, does not add a fourJS dependency, does not schedule the takeover of `@fourjs/physics`, and does not change `manifest/bridges.json`, a theorem, or the axiom audit.
+This note does not vendor the Modelica Standard Library, does not add a fourJS dependency, does not add an adapter package, does not schedule the replacement of `@fourjs/physics`, and does not change `manifest/bridges.json`, a theorem, or the axiom audit.

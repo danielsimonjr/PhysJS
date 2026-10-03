@@ -5,6 +5,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `docs/design/library-architecture.md`, a proposal for the TypeScript
+  library, the Modelica package, and the fourJS boundary. It authorizes
+  no code until a tier in that note is approved.
+
 ### Changed
 
 - Module comments, theorem docstrings, the README, and `manifest/README.md`

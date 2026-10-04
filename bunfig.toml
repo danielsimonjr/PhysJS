@@ -1,0 +1,9 @@
+# Bun is the package manager, the test runner, the bundler, and the runtime of
+# every `bun run` script. Node is not the development runtime.
+
+[install]
+linker = "hoisted"
+auto = "disable"
+
+[run]
+bun = true

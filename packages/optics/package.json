@@ -1,0 +1,35 @@
+{
+  "name": "@danielsimonjr/physjs-optics",
+  "version": "0.0.0",
+  "description": "Optics marker. No formulas in this tier.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "author": "Daniel Simon Jr.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node --format esm --packages external && tsc -p tsconfig.dts.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "bun test",
+    "lint": "oxlint --deny-warnings src tests",
+    "clean": "rm -rf dist"
+  },
+  "engines": {
+    "bun": ">=1.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielsimonjr/PhysJS.git",
+    "directory": "packages/optics"
+  }
+}

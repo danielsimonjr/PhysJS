@@ -1,0 +1,38 @@
+{
+  "name": "physjs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Private workspace for PhysJS. Lean proofs stay at the repository root. TypeScript packages are not published.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "bun@1.4.2",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "bun": ">=1.4.2"
+  },
+  "scripts": {
+    "build": "bun run --filter './packages/*' build",
+    "typecheck": "tsc --noEmit -p tsconfig.json && bun run --filter './packages/*' typecheck",
+    "test": "bun test",
+    "lint": "oxlint --deny-warnings packages tests scripts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "pack:dry-run": "bash scripts/pack-dry-run.sh",
+    "check:markers": "bun scripts/check-tier0-markers.ts",
+    "check:proofs-changeset": "bun scripts/check-proofs-changeset.ts",
+    "version-packages": "changeset version && bun install --lockfile-only"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3",
+    "@types/bun": "^1.4.2",
+    "oxlint": "^1.86.0",
+    "prettier": "^3.9.9",
+    "typescript": "^7.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielsimonjr/PhysJS.git"
+  }
+}

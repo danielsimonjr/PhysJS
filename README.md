@@ -25,20 +25,20 @@ Proofs of the bridge dictionaries, in the order of
 The schedule is the [Lean-proved bridges roadmap](https://github.com/danielsimonjr/Universal-Physics-Tensor/blob/master/docs/design/roadmap-lean-proven-bridges.md).
 Milestone 1 is route A: the rank-1 row.
 
-| Rank | Bridge | What the lemma covers |
-|---|---|---|
-| 1 | `ab-kg-schrodinger` | `bound.delta` at the dispersion relation |
-| 1 | `ab-klein-gordon-wave` | `bound.delta` at the dispersion relation |
-| 1 | `ab-stiff-string` | `bound.delta` at the dispersion relation |
-| 1 | `ab-telegraph-diffusion` | `bound.delta` at the dispersion relation |
-| 1 | `ab-telegraph-wave` | `bound.delta` at the dispersion relation |
-| — | `ab-pendulum-linear` | the transformation, not `bound.delta`. A PhysJS theorem that imports Physlib |
+| Rank | Bridge                   | What the lemma covers                                                        |
+| ---- | ------------------------ | ---------------------------------------------------------------------------- |
+| 1    | `ab-kg-schrodinger`      | `bound.delta` at the dispersion relation                                     |
+| 1    | `ab-klein-gordon-wave`   | `bound.delta` at the dispersion relation                                     |
+| 1    | `ab-stiff-string`        | `bound.delta` at the dispersion relation                                     |
+| 1    | `ab-telegraph-diffusion` | `bound.delta` at the dispersion relation                                     |
+| 1    | `ab-telegraph-wave`      | `bound.delta` at the dispersion relation                                     |
+| —    | `ab-pendulum-linear`     | the transformation, not `bound.delta`. A PhysJS theorem that imports Physlib |
 
 Later, still in §4.3 order:
 
-| Rank | Bridge | What a later lemma would cover |
-|---|---|---|
-| — | `ab-stokes-einstein`, `ab-heat-diffusion` | not counted. The physics is in the premises |
+| Rank | Bridge                                    | What a later lemma would cover              |
+| ---- | ----------------------------------------- | ------------------------------------------- |
+| —    | `ab-stokes-einstein`, `ab-heat-diffusion` | not counted. The physics is in the premises |
 
 A reference covers its statement only. A partial proof is marked that way in `manifest/bridges.json` and is not a proof of the rest of the bridge. `formally-proved` in UPT is derived, never hand-set.
 
@@ -49,24 +49,24 @@ lakefile.toml          Lean 4 package. Requires Mathlib and Physlib directly.
 lean-toolchain         pinned toolchain
 PhysJS/                Lean sources
 manifest/              theorem name → UPT bridge id → covers line
-packages/              reserved for a later TypeScript package
+packages/              private Bun workspace. Tier 0 markers only.
 .github/               issue and pull-request templates, CI
 ```
 
-`packages/engineering-physics/` is the reserved slot for the TypeScript library. The proposal for how that library sits beside the Lean package is [docs/design/library-architecture.md](docs/design/library-architecture.md). It is awaiting approval. Nothing under `packages/` is published, and this repository does not scaffold that library until a tier in that note is approved.
+The TypeScript workspace is specified in [docs/design/library-architecture.md](docs/design/library-architecture.md). Tier 0 is the ten private packages under `packages/` (`core`, `mechanics`, `em`, `thermo`, `fluids`, `plasma`, `optics`, `gr`, `bridges`, `proofs`). Each one exports its package name. Nothing under `packages/` is published. Later tiers still wait for approval.
 
 ## Milestone 1
 
 The rank-1 lemmas and the pendulum reference are proved. Each Lean proof is complete: no `sorry`. Each one covers its statement only, which is the covers line in `manifest/bridges.json`.
 
-| Bridge | Theorem | Lean proof |
-|---|---|---|
-| `ab-kg-schrodinger` | `PhysJS.KgSchrodinger.covers_bound_delta` | complete |
-| `ab-klein-gordon-wave` | `PhysJS.KleinGordonWave.covers_bound_delta` | complete |
-| `ab-stiff-string` | `PhysJS.StiffString.covers_bound_delta` | complete |
-| `ab-telegraph-diffusion` | `PhysJS.TelegraphDiffusion.covers_bound_delta` | complete |
-| `ab-telegraph-wave` | `PhysJS.TelegraphWave.covers_bound_delta` | complete |
-| `ab-pendulum-linear` | `PhysJS.Pendulum.linearizedEquationOfMotion_iff` | complete, imports Physlib |
+| Bridge                   | Theorem                                          | Lean proof                |
+| ------------------------ | ------------------------------------------------ | ------------------------- |
+| `ab-kg-schrodinger`      | `PhysJS.KgSchrodinger.covers_bound_delta`        | complete                  |
+| `ab-klein-gordon-wave`   | `PhysJS.KleinGordonWave.covers_bound_delta`      | complete                  |
+| `ab-stiff-string`        | `PhysJS.StiffString.covers_bound_delta`          | complete                  |
+| `ab-telegraph-diffusion` | `PhysJS.TelegraphDiffusion.covers_bound_delta`   | complete                  |
+| `ab-telegraph-wave`      | `PhysJS.TelegraphWave.covers_bound_delta`        | complete                  |
+| `ab-pendulum-linear`     | `PhysJS.Pendulum.linearizedEquationOfMotion_iff` | complete, imports Physlib |
 
 A wrong-dictionary lemma sits next to each one. It is false for the neighbouring bridge's closed form, so a swapped dictionary does not satisfy the statement.
 
@@ -74,13 +74,13 @@ A wrong-dictionary lemma sits next to each one. It is false for the neighbouring
 
 A non-trivial plane wave solves the PDE if and only if `ω(k)` obeys that PDE's dispersion relation. The zero wave is excluded. Each proof is complete. Each one covers that statement only, and none of them proves `covers_bound_delta`.
 
-| Bridge | Theorem | What the equivalence says |
-|---|---|---|
-| `ab-kg-schrodinger` | `PhysJS.KgSchrodinger.planeWave_iff_dispersion` | Klein–Gordon `ω² = c²k² + ω₀²`, and Schrödinger `ω = c²k² / (2ω₀)` |
-| `ab-klein-gordon-wave` | `PhysJS.KleinGordonWave.planeWave_iff_dispersion` | Klein–Gordon as above, and the wave equation `ω² = c²k²` |
-| `ab-stiff-string` | `PhysJS.StiffString.planeWave_iff_dispersion` | stiff `ω² = (F/μ)k² + (EI/μ)k⁴`, and flexible `ω² = (F/μ)k²` |
-| `ab-telegraph-diffusion` | `PhysJS.TelegraphDiffusion.planeWave_iff_dispersion` | telegraph `τσ² + σ + Dq² = 0`, and Fick `σ = −Dq²` |
-| `ab-telegraph-wave` | `PhysJS.TelegraphWave.planeWave_iff_dispersion` | underdamped telegraph `ω² = (D/τ)q² − 1/(4τ²)`, and the wave equation at `c² = D/τ` |
+| Bridge                   | Theorem                                              | What the equivalence says                                                           |
+| ------------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `ab-kg-schrodinger`      | `PhysJS.KgSchrodinger.planeWave_iff_dispersion`      | Klein–Gordon `ω² = c²k² + ω₀²`, and Schrödinger `ω = c²k² / (2ω₀)`                  |
+| `ab-klein-gordon-wave`   | `PhysJS.KleinGordonWave.planeWave_iff_dispersion`    | Klein–Gordon as above, and the wave equation `ω² = c²k²`                            |
+| `ab-stiff-string`        | `PhysJS.StiffString.planeWave_iff_dispersion`        | stiff `ω² = (F/μ)k² + (EI/μ)k⁴`, and flexible `ω² = (F/μ)k²`                        |
+| `ab-telegraph-diffusion` | `PhysJS.TelegraphDiffusion.planeWave_iff_dispersion` | telegraph `τσ² + σ + Dq² = 0`, and Fick `σ = −Dq²`                                  |
+| `ab-telegraph-wave`      | `PhysJS.TelegraphWave.planeWave_iff_dispersion`      | underdamped telegraph `ω² = (D/τ)q² − 1/(4τ²)`, and the wave equation at `c² = D/τ` |
 
 The manifest keeps the rank-1 theorem as the entry's `theorem`. The rank-1a theorem is the entry's `planeWave` object. One `formalRef` per bridge id already names `covers_bound_delta`.
 
@@ -102,14 +102,14 @@ Time rescaling by the ratio of the two angular frequencies, together with a nonz
 
 Catalog rows, keyed by `be-` id. A counted proof is a reduction, a limit, or a derivation step. It covers its statement only. UPT stores a `formalRef` for each of these rows and does not light `formally-proved` from a counted reference. Sixteen catalog references are counted. The six in this table are the first. The other ten are `be-65`, `be-51`, `be-61`, `be-14`, `be-17`, `be-22`, `be-15`, `be-32`, `be-35`, and `be-30`.
 
-| Catalog id | Theorem | What the statement says |
-|---|---|---|
-| `be-64` | `PhysJS.Eddington.balance_iff` | Thomson force equals gravitational force iff `L = 4 π G M m_p c / σ_T`. The `r²` cancels. Not a hard cap. |
-| `be-53` | `PhysJS.YangMills.b0_pos_iff_nf_le` | For SU(3), `b₀ > 0` iff `N_f ≤ 16`. At 16 the value is `1/3`. `N_f = 17` fails. Not a running procedure past one loop. |
-| `be-58` | `PhysJS.JohnsonNyquist.tendsto_classical` | `S_V^q(ω) → 4 k_B T R` as `ω → 0⁺`, for `k_B T > 0` and `ℏ ≠ 0`. A `+ 1` in the denominator does not. Not the fluctuation–dissipation theorem. |
-| `be-38` | `PhysJS.Mond.tendsto_nu_limits` | `ν → 1` as `z → ∞`, and `ν √z → 1` as `z → 0⁺`. Then `F_N ν(z) / √(m F_N a₀) → 1`. The claim `ν √z → √2` fails. Not the SPARC confrontation. |
-| `be-13` | `PhysJS.Einstein.trace_eq` | Contracting `G_μν + Λ g_μν = κ T_μν` in four dimensions gives `R = 4Λ − κ T`. Not Jacobson's thermodynamic derivation. |
-| `be-34` | `PhysJS.KibbleZurek.exponent` | Freeze-out gives `ε̂ = (τ₀/τ_Q)^(1/(1+zν))` and the defect power without the Boltzmann factor. Omitting the `1` in the exponent fails. Not a repair of the missing `1/a^d` prefactor. |
+| Catalog id | Theorem                                   | What the statement says                                                                                                                                                              |
+| ---------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `be-64`    | `PhysJS.Eddington.balance_iff`            | Thomson force equals gravitational force iff `L = 4 π G M m_p c / σ_T`. The `r²` cancels. Not a hard cap.                                                                            |
+| `be-53`    | `PhysJS.YangMills.b0_pos_iff_nf_le`       | For SU(3), `b₀ > 0` iff `N_f ≤ 16`. At 16 the value is `1/3`. `N_f = 17` fails. Not a running procedure past one loop.                                                               |
+| `be-58`    | `PhysJS.JohnsonNyquist.tendsto_classical` | `S_V^q(ω) → 4 k_B T R` as `ω → 0⁺`, for `k_B T > 0` and `ℏ ≠ 0`. A `+ 1` in the denominator does not. Not the fluctuation–dissipation theorem.                                       |
+| `be-38`    | `PhysJS.Mond.tendsto_nu_limits`           | `ν → 1` as `z → ∞`, and `ν √z → 1` as `z → 0⁺`. Then `F_N ν(z) / √(m F_N a₀) → 1`. The claim `ν √z → √2` fails. Not the SPARC confrontation.                                         |
+| `be-13`    | `PhysJS.Einstein.trace_eq`                | Contracting `G_μν + Λ g_μν = κ T_μν` in four dimensions gives `R = 4Λ − κ T`. Not Jacobson's thermodynamic derivation.                                                               |
+| `be-34`    | `PhysJS.KibbleZurek.exponent`             | Freeze-out gives `ε̂ = (τ₀/τ_Q)^(1/(1+zν))` and the defect power without the Boltzmann factor. Omitting the `1` in the exponent fails. Not a repair of the missing `1/a^d` prefactor. |
 
 The running solution is the nested `oneLoop` object, `PhysJS.YangMills.alphaRun_hasDerivAt`: `α(t) = α₀ / (1 + b₀ α₀ t / (2π))` solves `dα/dt = −(b₀/(2π)) α²` wherever the denominator is positive. `PhysJS.YangMills.beta_alpha_iff` is the same truncation read as `β(g) = −b₀ g³/(16π²)` if and only if `dα/d ln μ = −b₀ α²/(2π)`, with `α = g²/(4π)` and `g ≠ 0`. The reference names the sign theorem only.
 
@@ -121,67 +121,67 @@ The vacuum density is the nested `vacuum` object, `PhysJS.Einstein.vacuum_densit
 
 These rows are UPT `formalRef`s of kind `cross-check`, on `PhysJS.HawkingUnruh.dictionary`, `PhysJS.Fret.dictionary`, and `PhysJS.QuantumBounce.dictionary`. Each carries a negative control. Passing one to `deriveEvidence` lights `formally-proved-cross-check`. That label is not the proved-bridge count.
 
-| Catalog id | Theorem | What the statement says |
-|---|---|---|
-| `be-42` | `PhysJS.HawkingUnruh.dictionary` | `T_H(2GM/c²) = T_H(M)` and `T_U(c⁴/(4GM)) = T_H(M)`, naming BE-57 and `be-42-via-rs`. `T_U(c⁴/(2GM))` is not `T_H(M)`. Not the Hawking effect. |
-| `be-24` | `PhysJS.Fret.dictionary` | `η = R₀⁶/(R₀⁶+R⁶)` equals both `1/(1+(R/R₀)⁶)` and `k_FRET/(k_FRET+1/τ_D)`, and `η` decreases. At `R = 2 R₀` the exponent 4 is not 6. Not the dipole–dipole law. |
-| `be-19` | `PhysJS.QuantumBounce.dictionary` | `H²_LQC` equals `H²_RS` at `σ = −ρ_c/2`, both tend to `(8πG/3)ρ + Λ/3`, and `H²_LQC = 0` at `ρ = ρ_c`, `Λ = 0`, naming BE-54. `σ = +ρ_c/2` is not that polynomial. `σ < 0` is not a physical Randall–Sundrum brane. |
+| Catalog id | Theorem                           | What the statement says                                                                                                                                                                                             |
+| ---------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `be-42`    | `PhysJS.HawkingUnruh.dictionary`  | `T_H(2GM/c²) = T_H(M)` and `T_U(c⁴/(4GM)) = T_H(M)`, naming BE-57 and `be-42-via-rs`. `T_U(c⁴/(2GM))` is not `T_H(M)`. Not the Hawking effect.                                                                      |
+| `be-24`    | `PhysJS.Fret.dictionary`          | `η = R₀⁶/(R₀⁶+R⁶)` equals both `1/(1+(R/R₀)⁶)` and `k_FRET/(k_FRET+1/τ_D)`, and `η` decreases. At `R = 2 R₀` the exponent 4 is not 6. Not the dipole–dipole law.                                                    |
+| `be-19`    | `PhysJS.QuantumBounce.dictionary` | `H²_LQC` equals `H²_RS` at `σ = −ρ_c/2`, both tend to `(8πG/3)ρ + Λ/3`, and `H²_LQC = 0` at `ρ = ρ_c`, `Λ = 0`, naming BE-54. `σ = +ρ_c/2` is not that polynomial. `σ < 0` is not a physical Randall–Sundrum brane. |
 
 ## Milestone 2b, properties
 
 These rows are UPT `formalRef`s of kind `property`, on `PhysJS.Jarzynski.jensen_work` and `PhysJS.Lindblad.preserve`. The owner admitted property-level references on 2026-10-01. Each carries a negative control. Passing one to `deriveEvidence` lights `formally-proved-property`. That label is not the proved-bridge count. `be-28` is the same kind, on `PhysJS.EntropyProduction.nonneg`, and its covers line still begins with `derivation-step`.
 
-| Catalog id | Theorem | What the statement says |
-|---|---|---|
-| `be-29` | `PhysJS.Jarzynski.jensen_work` | For a finite probability and `β > 0`, `⟨W⟩ ≥ ΔF` with `ΔF = −(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two unequal work values. Not Jarzynski's theorem. |
-| `be-11` | `PhysJS.Lindblad.preserve` | One channel of the displayed GKSL generator has trace zero, and it is Hermitian when `H` and `ρ` are. Dropping the anticommutator makes the trace nonzero. Not Born–Markov coarse-graining. |
+| Catalog id | Theorem                        | What the statement says                                                                                                                                                                     |
+| ---------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `be-29`    | `PhysJS.Jarzynski.jensen_work` | For a finite probability and `β > 0`, `⟨W⟩ ≥ ΔF` with `ΔF = −(1/β) log(∑ p_i exp(−β W_i))`. The reversed inequality fails on two unequal work values. Not Jarzynski's theorem.              |
+| `be-11`    | `PhysJS.Lindblad.preserve`     | One channel of the displayed GKSL generator has trace zero, and it is Hermitian when `H` and `ρ` are. Dropping the anticommutator makes the trace nonzero. Not Born–Markov coarse-graining. |
 
 ## Milestone 2b, stretch
 
 These derivation steps are counted references, three of the sixteen. Each covers its statement only.
 
-| Catalog id | Theorem | What the statement says |
-|---|---|---|
-| `be-65` | `PhysJS.Jeans.mass_eq` | The encoded Jeans mass follows from the virial convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3` fails. Not the virial theorem. |
-| `be-51` | `PhysJS.Deflection.line_integral` | `(1+γ)/c²` times the weak-field line integral equals `2(1+γ) G M / (b c²)`. At `γ = 1` that is the encoded angle `4 G M / (b c²)`. `γ = 0` is half. Not a geodesic. |
-| `be-61` | `PhysJS.Sommerfeld.integral_eq` | `∫_ℝ x² e^x / (1+e^x)² dx = π²/3`, the factor in the encoded Lorenz number. The integrand is even, so the half-line is half of `π²/3`. Claiming the half-line equals `π²/3` fails. Not the transport law. |
+| Catalog id | Theorem                           | What the statement says                                                                                                                                                                                   |
+| ---------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `be-65`    | `PhysJS.Jeans.mass_eq`            | The encoded Jeans mass follows from the virial convention with factor `5` and `M = 4 π R³ ρ / 3`. Replacing `5` by `3` fails. Not the virial theorem.                                                     |
+| `be-51`    | `PhysJS.Deflection.line_integral` | `(1+γ)/c²` times the weak-field line integral equals `2(1+γ) G M / (b c²)`. At `γ = 1` that is the encoded angle `4 G M / (b c²)`. `γ = 0` is half. Not a geodesic.                                       |
+| `be-61`    | `PhysJS.Sommerfeld.integral_eq`   | `∫_ℝ x² e^x / (1+e^x)² dx = π²/3`, the factor in the encoded Lorenz number. The integrand is even, so the half-line is half of `π²/3`. Claiming the half-line equals `π²/3` fails. Not the transport law. |
 
 ## Milestone 2b, bucket A
 
 Owner-approved bucket A rows, easiest first, followed by `be-66`, `be-67`, and `be-68`. Each covers its statement only. Seventeen of these keys are UPT kind `bridge` because the theorem states the catalogued equation. The covers line still begins with `derivation-step`. They are `be-12`, `be-16`, `be-21`, `be-27`, `be-33`, `be-37`, `be-40`, `be-43`, `be-50`, `be-54`, `be-55`, `be-59`, `be-60`, `be-63`, `be-66`, `be-67`, and `be-68`. Passing one of those references to `deriveEvidence` lights `formally-proved`. `be-14` stays a derivation step on the same lemma as `be-43`. `be-28` is kind `property`. The remaining bucket A keys in this table are counted derivation steps. `be-20` is nested on `be-13` and has no key.
 
-| Catalog id | Theorem | What the statement says |
-|---|---|---|
-| `be-12` | `PhysJS.ThermalDeBroglie.wavelength_eq` | `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and `ℏ > 0`. The Wave Q form `ℏ / √(m k_B T)` fails, as does `ℏ / √(2 m k_B T)`. Not Caldeira–Leggett dephasing. |
-| `be-59` | `PhysJS.Josephson.frequency_eq` | `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. The factor `2` is the Cooper-pair charge. Replacing it by `e` fails. Not the tunneling Hamiltonian. |
-| `be-55` | `PhysJS.QuantumHall.reciprocal` | `σ_xy = C e²/h`, `R_H = h/(C e²)`, `R_K = h/e²`, so `σ_xy R_H = 1` and `R_H = R_K/C`. The index `C+1` is a different plateau. Replacing `e²` by `e` fails the product when `e ≠ 1`. Not TKNN. |
-| `be-60` | `PhysJS.Laughlin.filling_fraction` | For integers `p ≠ 0` and `q ≠ 0`, with `ν = p/q`, `σ_xy = ν e²/h` and `R_xy = R_K/ν = (q/p) h/e²`. `fraction` remains the case `ν = 1/3`. Odd `q` is the selection rule, not this identity. Not the Laughlin wavefunction. |
-| `be-21` | `PhysJS.Kss.saturating` | `η/s = ℏ/(4π k_B)` is the equality `4π k_B (η/s) = ℏ`. The Hawking factor `8π` fails when `ℏ ≠ 0`. Not the inequality `η/s ≥ ℏ/(4π k_B)`. |
-| `be-14`, `be-43` | `PhysJS.PlanckArea.area_law` | `k_B c³ A/(4 G ℏ) = k_B A/(4 ℓ_P²)` for `ℓ_P² = ℏ G/c³`. BE-43 is the same equality on a wormhole area. `ℏ G/c²` fails when `c ≠ 1`, and the factor `2` fails. Not a minimal surface, and not ER=EPR. |
-| `be-37` | `PhysJS.Shapiro.radial_integral` | `∫_{R_near}^{R_far} (2GM/c³) dr/r = (2GM/c³) ln(R_far/R_near)` for `0 < R_near < R_far` and `c ≠ 0`. The factor `1` is half, once `G ≠ 0` and `M ≠ 0`. `log₁₀` is not `ln`. Not the impact-parameter formula, and not Cassini. |
-| `be-54` | `PhysJS.RandallSundrum.brane_friedmann` | `H² = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3` for `σ ≠ 0`, equal to the Friedmann term plus `(8πG/3) ρ²/(2σ)`. `positive_tension` remains the sign of that excess. Not the five-dimensional Einstein equation. |
-| `be-17` | `PhysJS.EinsteinCartan.inversion` | If `κ = 8πG/c⁴ ≠ 0` and every component satisfies `T = κ S`, then `S·S = T·T / κ² = (c⁴/(8πG))² T·T`. `κ²` in the numerator fails when `T·T ≠ 0` and `κ⁴ ≠ 1`. Not the Einstein–Cartan field equation. The nested `torsionMonomial` object is `torsion_monomial`: `[κ]` and `[S]` are independent base dimensions, `[T] = [κ][S]`, and homogeneity gives `T = C κ S` with `C` unfixed. |
-| `be-27` | `PhysJS.EffectiveTemperature.sum_eq` | For `T ≠ 0` and `k_B ≠ 0`, `T (1 + Σ_active/(k_B T)) = T + Σ_active/k_B`, and this equals `T` iff `Σ_active = 0`. Omitting the `1` fails. Not the frequency-dependent Cugliandolo–Kurchan `T_eff(ω)`. |
-| `be-22` | `PhysJS.ToricCode.toric` | Four anyons of quantum dimension `1` have `D = √4 = 2` and `γ = ln 2`. The encoded decomposition is `S = α L − γ`, with the `O(L⁻¹)` term dropped. `log₂ 2 = 1` is not `ln 2`. `D = √2` is one anyon pair. Not the Kitaev–Preskill theorem. |
-| `be-20`, nested on `be-13` | `PhysJS.Einstein.friedmann_corollary` | `(8πG/3) ρ = Λ c² / 3` from the vacuum density, and a fluid of that density added to matter, with the explicit `Λ` set to zero, is `FirstOrderFriedmann` at `k = 0`. The Einstein-static density is twice that term. Dropping `c²` fails when `c² ≠ 1`. No separate key. |
-| `be-15` | `PhysJS.Coarsening.exponent_iff` | For `Γ = L₀²/t₀ > 0`, `t > 0`, `t ≠ t₀`, and `z > 0`, `L(t) = L₀ (t/t₀)^{1/z}` obeys `L² = Γ t` iff `z = 2`. At `t = t₀` every `z` agrees. `z = 3` gives `L³ ∝ t` and fails. Not the Model A Langevin equation. The nested `lengthMonomial` object is `length_monomial_at`: homogeneity in `Γ` and `t` with `[Γ] = L^z T⁻¹` gives `L = C (Γ t)^{1/z}`, and `C` is unfixed. |
-| `be-33` | `PhysJS.QuantumCritical.thermal_scaling` | `ξ(T) = ξ₀ (T/T₀)^{−1/z}`, and at `z = 1` this is `ξ₀ (T/T₀)^{−1} = ξ₀ T₀/T`. Not Hertz–Millis theory. The nested `scalingShape` object is `scaling_shape`: homogeneity in `ξ₀`, `T`, and `T₀` gives `ξ = ξ₀ φ(T/T₀)`, and `φ` is unfixed. |
-| `be-50` | `PhysJS.TimeSymmetric.wheeler_feynman` | `A_μ(x) = (A_μ^ret(x) + A_μ^adv(x))/2`, and twice that component is the sum. `residual_iff` remains the vanishing of the residual. The id is contested. Not the absorber theory of radiation reaction. |
-| `be-32` | `PhysJS.BornOverlap.modulus_sq` | `|c + s i|² = c² + s²`, the modulus of one matrix element. A sum of squares above `1` is not a probability in `[0, 1]`. `c² − s²` fails when `s ≠ 0`. Not a quantum-reference-frame transformation. The catalog records this id as not-a-bridge. |
-| `be-28` | `PhysJS.EntropyProduction.nonneg` | `σ = Σ_i J_i X_i` is the definition of `σ`. If every product is `≥ 0` then `σ ≥ 0`. One flipped sign is not `σ`, and that sum is negative. Not the variational maximum-entropy-production principle. The catalog records this id as not-a-bridge. |
-| `be-40` | `PhysJS.CompositeHiggs.scale_free` | For `f ≠ 0` and `θ = h/f`, `V/f⁴ = −α sin²θ + β [sin⁴θ − sin²θ cos²θ]`. Both terms carry `f⁴`, so the ratio depends on `h` only through `θ`. The old first term `−α f² sin²θ` still depends on `f`. Not SILH matching. The catalog records this id as not-a-bridge. |
-| `be-35` | `PhysJS.Crossing.antisymmetry` | `g(u,v) − g(v,u) = −(g(v,u) − g(u,v))`. The residual is `0` for every `g` when `u = v`, including `1/4`, so that point is not a control. A non-symmetric block does not vanish at `u = 1/2`, `v = 1/4`. Not the bootstrap sum. The catalog records this id as not-a-bridge. |
-| `be-63` | `PhysJS.Chandrasekhar.prefactor` | For `n = 3`, ultra-relativistic degeneracy pressure and the Lane–Emden scale give `M = (ω₃⁰ √(3π)/2) (ℏ c/G)^{3/2} (μ_e m_u)^{−2}`. `ω₃⁰` stays symbolic; `2.01824` is not in the theorem. `ρ_c` cancels. `√π/2` and dropping `ω₃⁰` fail. Not rotation or magnetic support. |
-| `be-30` | `PhysJS.Entanglement.first_variation` | For a full-rank diagonal curve of trace `1`, `d/dt S(ρ) = −Tr(ρ̇ log ρ)`. With `K = −log ρ` frozen, that derivative is `d/dt ⟨K⟩`. The jump from `diag(1/2, 1/2)` to `diag(3/4, 1/4)` leaves `⟨K⟩` fixed and changes `S`. Not an area variation. |
-| `be-16` | `PhysJS.Landauer.erasure_eq` | Kind `bridge`. For `T > 0`, the equal-level two-state ensemble has `⟨E⟩ − F = k_B T log 2`. The covers line still begins with `derivation-step`. `equal_levels` remains the entropy `k_B log 2`. Levels `E` and `E + δ` fail that deficit. Not `E ≥ T ΔS` for an arbitrary protocol, and not the Bérut confrontation. |
-| `be-66` | `PhysJS.RadiationPressure.pressure_eq` | Kind `bridge`. Foreshortening, normal momentum per energy, and the opaque split give `P_n = (I/c)(1+R) cos²θ`. The absorber and the reflector are the endpoints. The covers line still begins with `derivation-step`. Homogeneity leaves `C` in `P = C I/c` unfixed. Not the Maxwell stress tensor. |
-| `be-67` | `PhysJS.AlfvenSpeed.speed_eq` | Kind `bridge`. The parallel incompressible ideal-MHD linearization gives `|ω/k| = B/√(μ0 ρ)` for `B > 0`. The covers line still begins with `derivation-step`. `ρ` is the total mass density. Proton-only is a different speed. The Gaussian writing needs the unit dictionary. Not a kinetic dispersion relation. |
-| `be-68` | `PhysJS.TolmanEhrenfest.hydrostatic_constant` | Kind `bridge`. Hydrostatic balance and the equilibrium Gibbs relation give `T √(-g_00)` equal at the endpoints of a static interval. The covers line still begins with `derivation-step`. The repository signature is `(−,+,+,+)`. Units do not identify `d ln T` with `g dr/c²`. Not a horizon temperature. |
-| `be-69` | `PhysJS.FastMagnetosonic.speed_eq` | Not a catalog entry yet. Intended kind `bridge`. The perpendicular compressional linearization gives `|ω/k| = √(c_s² + B²/(μ0 ρ))`. The covers line still begins with `derivation-step`. The quartic at `k_∥ = 0` is the nested `perpendicularQuartic` object. `ω = 0` is not that polarization. Not a kinetic dispersion. |
-| `be-70` | `PhysJS.EinsteinRelation.diffusion_eq` | Not a catalog entry yet. Intended kind `bridge`. Drift cancels diffusion on a Boltzmann profile, so `D = μ k_B T / q`. The covers line still begins with `derivation-step`. Dropping `q`, the Fermi-liquid form, and Stokes–Einstein fail. Not a master equation. |
-| `be-71` | `PhysJS.Clapeyron.slope_eq` | Not a catalog entry yet. Intended kind `bridge`. Equal Gibbs energies and `dg = −s dT + v dP` give `dP/dT = L/(T Δv)`. The covers line still begins with `derivation-step`. Dropping `T` or the second volume fails. Not the integrated vapor-pressure law. |
-| `be-72` | `PhysJS.GravitationalRedshift.frequency_ratio` | Not a catalog entry yet. Intended kind `bridge`. One coordinate period gives `ν1/ν2 = √(g2/g1)` for `g_00 < 0`. The covers line still begins with `derivation-step`. Tolman equilibrium puts `T` in the same ratio and is not this statement. The weak-field `ΔΦ/c²` is not the exact ratio. |
-| `be-73` | `PhysJS.KelvinRelation.peltier_eq` | Not a catalog entry yet. Intended kind `bridge`. Onsager reciprocity, as a structure field, gives `Π = S T`. The covers line still begins with `derivation-step`. Without `L12 = L21` the coefficients disagree. Not the first Thomson relation. |
+| Catalog id                 | Theorem                                        | What the statement says                                                                                                                                                                                                                                                                                                                                                                |
+| -------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `be-12`                    | `PhysJS.ThermalDeBroglie.wavelength_eq`        | `√(2π ℏ² / (m k_B T)) = h / √(2π m k_B T)` for `h = 2π ℏ` and `ℏ > 0`. The Wave Q form `ℏ / √(m k_B T)` fails, as does `ℏ / √(2 m k_B T)`. Not Caldeira–Leggett dephasing.                                                                                                                                                                                                             |
+| `be-59`                    | `PhysJS.Josephson.frequency_eq`                | `f = (2e/h) V`, `K_J = 2e/h`, and `f = K_J V`. The factor `2` is the Cooper-pair charge. Replacing it by `e` fails. Not the tunneling Hamiltonian.                                                                                                                                                                                                                                     |
+| `be-55`                    | `PhysJS.QuantumHall.reciprocal`                | `σ_xy = C e²/h`, `R_H = h/(C e²)`, `R_K = h/e²`, so `σ_xy R_H = 1` and `R_H = R_K/C`. The index `C+1` is a different plateau. Replacing `e²` by `e` fails the product when `e ≠ 1`. Not TKNN.                                                                                                                                                                                          |
+| `be-60`                    | `PhysJS.Laughlin.filling_fraction`             | For integers `p ≠ 0` and `q ≠ 0`, with `ν = p/q`, `σ_xy = ν e²/h` and `R_xy = R_K/ν = (q/p) h/e²`. `fraction` remains the case `ν = 1/3`. Odd `q` is the selection rule, not this identity. Not the Laughlin wavefunction.                                                                                                                                                             |
+| `be-21`                    | `PhysJS.Kss.saturating`                        | `η/s = ℏ/(4π k_B)` is the equality `4π k_B (η/s) = ℏ`. The Hawking factor `8π` fails when `ℏ ≠ 0`. Not the inequality `η/s ≥ ℏ/(4π k_B)`.                                                                                                                                                                                                                                              |
+| `be-14`, `be-43`           | `PhysJS.PlanckArea.area_law`                   | `k_B c³ A/(4 G ℏ) = k_B A/(4 ℓ_P²)` for `ℓ_P² = ℏ G/c³`. BE-43 is the same equality on a wormhole area. `ℏ G/c²` fails when `c ≠ 1`, and the factor `2` fails. Not a minimal surface, and not ER=EPR.                                                                                                                                                                                  |
+| `be-37`                    | `PhysJS.Shapiro.radial_integral`               | `∫_{R_near}^{R_far} (2GM/c³) dr/r = (2GM/c³) ln(R_far/R_near)` for `0 < R_near < R_far` and `c ≠ 0`. The factor `1` is half, once `G ≠ 0` and `M ≠ 0`. `log₁₀` is not `ln`. Not the impact-parameter formula, and not Cassini.                                                                                                                                                         |
+| `be-54`                    | `PhysJS.RandallSundrum.brane_friedmann`        | `H² = (8πG/3) ρ (1 + ρ/(2σ)) + Λ/3` for `σ ≠ 0`, equal to the Friedmann term plus `(8πG/3) ρ²/(2σ)`. `positive_tension` remains the sign of that excess. Not the five-dimensional Einstein equation.                                                                                                                                                                                   |
+| `be-17`                    | `PhysJS.EinsteinCartan.inversion`              | If `κ = 8πG/c⁴ ≠ 0` and every component satisfies `T = κ S`, then `S·S = T·T / κ² = (c⁴/(8πG))² T·T`. `κ²` in the numerator fails when `T·T ≠ 0` and `κ⁴ ≠ 1`. Not the Einstein–Cartan field equation. The nested `torsionMonomial` object is `torsion_monomial`: `[κ]` and `[S]` are independent base dimensions, `[T] = [κ][S]`, and homogeneity gives `T = C κ S` with `C` unfixed. |
+| `be-27`                    | `PhysJS.EffectiveTemperature.sum_eq`           | For `T ≠ 0` and `k_B ≠ 0`, `T (1 + Σ_active/(k_B T)) = T + Σ_active/k_B`, and this equals `T` iff `Σ_active = 0`. Omitting the `1` fails. Not the frequency-dependent Cugliandolo–Kurchan `T_eff(ω)`.                                                                                                                                                                                  |
+| `be-22`                    | `PhysJS.ToricCode.toric`                       | Four anyons of quantum dimension `1` have `D = √4 = 2` and `γ = ln 2`. The encoded decomposition is `S = α L − γ`, with the `O(L⁻¹)` term dropped. `log₂ 2 = 1` is not `ln 2`. `D = √2` is one anyon pair. Not the Kitaev–Preskill theorem.                                                                                                                                            |
+| `be-20`, nested on `be-13` | `PhysJS.Einstein.friedmann_corollary`          | `(8πG/3) ρ = Λ c² / 3` from the vacuum density, and a fluid of that density added to matter, with the explicit `Λ` set to zero, is `FirstOrderFriedmann` at `k = 0`. The Einstein-static density is twice that term. Dropping `c²` fails when `c² ≠ 1`. No separate key.                                                                                                               |
+| `be-15`                    | `PhysJS.Coarsening.exponent_iff`               | For `Γ = L₀²/t₀ > 0`, `t > 0`, `t ≠ t₀`, and `z > 0`, `L(t) = L₀ (t/t₀)^{1/z}` obeys `L² = Γ t` iff `z = 2`. At `t = t₀` every `z` agrees. `z = 3` gives `L³ ∝ t` and fails. Not the Model A Langevin equation. The nested `lengthMonomial` object is `length_monomial_at`: homogeneity in `Γ` and `t` with `[Γ] = L^z T⁻¹` gives `L = C (Γ t)^{1/z}`, and `C` is unfixed.             |
+| `be-33`                    | `PhysJS.QuantumCritical.thermal_scaling`       | `ξ(T) = ξ₀ (T/T₀)^{−1/z}`, and at `z = 1` this is `ξ₀ (T/T₀)^{−1} = ξ₀ T₀/T`. Not Hertz–Millis theory. The nested `scalingShape` object is `scaling_shape`: homogeneity in `ξ₀`, `T`, and `T₀` gives `ξ = ξ₀ φ(T/T₀)`, and `φ` is unfixed.                                                                                                                                             |
+| `be-50`                    | `PhysJS.TimeSymmetric.wheeler_feynman`         | `A_μ(x) = (A_μ^ret(x) + A_μ^adv(x))/2`, and twice that component is the sum. `residual_iff` remains the vanishing of the residual. The id is contested. Not the absorber theory of radiation reaction.                                                                                                                                                                                 |
+| `be-32`                    | `PhysJS.BornOverlap.modulus_sq`                | `                                                                                                                                                                                                                                                                                                                                                                                      | c + s i | ² = c² + s²`, the modulus of one matrix element. A sum of squares above `1`is not a probability in`[0, 1]`. `c² − s²`fails when`s ≠ 0`. Not a quantum-reference-frame transformation. The catalog records this id as not-a-bridge. |
+| `be-28`                    | `PhysJS.EntropyProduction.nonneg`              | `σ = Σ_i J_i X_i` is the definition of `σ`. If every product is `≥ 0` then `σ ≥ 0`. One flipped sign is not `σ`, and that sum is negative. Not the variational maximum-entropy-production principle. The catalog records this id as not-a-bridge.                                                                                                                                      |
+| `be-40`                    | `PhysJS.CompositeHiggs.scale_free`             | For `f ≠ 0` and `θ = h/f`, `V/f⁴ = −α sin²θ + β [sin⁴θ − sin²θ cos²θ]`. Both terms carry `f⁴`, so the ratio depends on `h` only through `θ`. The old first term `−α f² sin²θ` still depends on `f`. Not SILH matching. The catalog records this id as not-a-bridge.                                                                                                                    |
+| `be-35`                    | `PhysJS.Crossing.antisymmetry`                 | `g(u,v) − g(v,u) = −(g(v,u) − g(u,v))`. The residual is `0` for every `g` when `u = v`, including `1/4`, so that point is not a control. A non-symmetric block does not vanish at `u = 1/2`, `v = 1/4`. Not the bootstrap sum. The catalog records this id as not-a-bridge.                                                                                                            |
+| `be-63`                    | `PhysJS.Chandrasekhar.prefactor`               | For `n = 3`, ultra-relativistic degeneracy pressure and the Lane–Emden scale give `M = (ω₃⁰ √(3π)/2) (ℏ c/G)^{3/2} (μ_e m_u)^{−2}`. `ω₃⁰` stays symbolic; `2.01824` is not in the theorem. `ρ_c` cancels. `√π/2` and dropping `ω₃⁰` fail. Not rotation or magnetic support.                                                                                                            |
+| `be-30`                    | `PhysJS.Entanglement.first_variation`          | For a full-rank diagonal curve of trace `1`, `d/dt S(ρ) = −Tr(ρ̇ log ρ)`. With `K = −log ρ` frozen, that derivative is `d/dt ⟨K⟩`. The jump from `diag(1/2, 1/2)` to `diag(3/4, 1/4)` leaves `⟨K⟩` fixed and changes `S`. Not an area variation.                                                                                                                                        |
+| `be-16`                    | `PhysJS.Landauer.erasure_eq`                   | Kind `bridge`. For `T > 0`, the equal-level two-state ensemble has `⟨E⟩ − F = k_B T log 2`. The covers line still begins with `derivation-step`. `equal_levels` remains the entropy `k_B log 2`. Levels `E` and `E + δ` fail that deficit. Not `E ≥ T ΔS` for an arbitrary protocol, and not the Bérut confrontation.                                                                  |
+| `be-66`                    | `PhysJS.RadiationPressure.pressure_eq`         | Kind `bridge`. Foreshortening, normal momentum per energy, and the opaque split give `P_n = (I/c)(1+R) cos²θ`. The absorber and the reflector are the endpoints. The covers line still begins with `derivation-step`. Homogeneity leaves `C` in `P = C I/c` unfixed. Not the Maxwell stress tensor.                                                                                    |
+| `be-67`                    | `PhysJS.AlfvenSpeed.speed_eq`                  | Kind `bridge`. The parallel incompressible ideal-MHD linearization gives `                                                                                                                                                                                                                                                                                                             | ω/k     | = B/√(μ0 ρ)`for`B > 0`. The covers line still begins with `derivation-step`. `ρ` is the total mass density. Proton-only is a different speed. The Gaussian writing needs the unit dictionary. Not a kinetic dispersion relation.   |
+| `be-68`                    | `PhysJS.TolmanEhrenfest.hydrostatic_constant`  | Kind `bridge`. Hydrostatic balance and the equilibrium Gibbs relation give `T √(-g_00)` equal at the endpoints of a static interval. The covers line still begins with `derivation-step`. The repository signature is `(−,+,+,+)`. Units do not identify `d ln T` with `g dr/c²`. Not a horizon temperature.                                                                           |
+| `be-69`                    | `PhysJS.FastMagnetosonic.speed_eq`             | Not a catalog entry yet. Intended kind `bridge`. The perpendicular compressional linearization gives `                                                                                                                                                                                                                                                                                 | ω/k     | = √(c_s² + B²/(μ0 ρ))`. The covers line still begins with `derivation-step`. The quartic at `k_∥ = 0`is the nested`perpendicularQuartic`object.`ω = 0` is not that polarization. Not a kinetic dispersion.                         |
+| `be-70`                    | `PhysJS.EinsteinRelation.diffusion_eq`         | Not a catalog entry yet. Intended kind `bridge`. Drift cancels diffusion on a Boltzmann profile, so `D = μ k_B T / q`. The covers line still begins with `derivation-step`. Dropping `q`, the Fermi-liquid form, and Stokes–Einstein fail. Not a master equation.                                                                                                                      |
+| `be-71`                    | `PhysJS.Clapeyron.slope_eq`                    | Not a catalog entry yet. Intended kind `bridge`. Equal Gibbs energies and `dg = −s dT + v dP` give `dP/dT = L/(T Δv)`. The covers line still begins with `derivation-step`. Dropping `T` or the second volume fails. Not the integrated vapor-pressure law.                                                                                                                            |
+| `be-72`                    | `PhysJS.GravitationalRedshift.frequency_ratio` | Not a catalog entry yet. Intended kind `bridge`. One coordinate period gives `ν1/ν2 = √(g2/g1)` for `g_00 < 0`. The covers line still begins with `derivation-step`. Tolman equilibrium puts `T` in the same ratio and is not this statement. The weak-field `ΔΦ/c²` is not the exact ratio.                                                                                           |
+| `be-73`                    | `PhysJS.KelvinRelation.peltier_eq`             | Not a catalog entry yet. Intended kind `bridge`. Onsager reciprocity, as a structure field, gives `Π = S T`. The covers line still begins with `derivation-step`. Without `L12 = L21` the coefficients disagree. Not the first Thomson relation.                                                                                                                                       |
 
 `be-69` through `be-73` are in the table above and are not catalog entries yet. They are the five candidates from the 2026-10-03 dogfood report. The intended kind is `bridge`. Each covers line still begins with `derivation-step`.
 

@@ -12,7 +12,7 @@ The grounding for the UPT boundary is UPT as cloned for this note, in particular
 
 **Physics conventions.** Bare `e` is the elementary charge. `E` is energy. Euler's number is written `exp(x)`. A bridge counts as proved only when a Lean theorem says so.
 
-**Proofs stay in Lean, at the repository root.** `lakefile.toml`, `lean-toolchain`, `PhysJS.lean`, `PhysJS/`, and `manifest/bridges.json` stay where they are. The axiom audit stays what `.github/workflows/ci.yml` runs today: `propext`, `Classical.choice`, and `Quot.sound` are allowed; `sorry`, `admit`, `native_decide`, and any other axiom fail the job.
+**Proofs stay in Lean.** The Lake package stays at the repository root: `lakefile.toml`, `lean-toolchain`, and `lake-manifest.json`. Sources are `lean/PhysJS.lean` and `lean/PhysJS/*.lean`, with `srcDir = "lean"` on the `PhysJS` library, so every module and theorem name stays `PhysJS.*`. `manifest/bridges.json` stays at `manifest/bridges.json` and stores theorem names, not source paths. `lake build` still runs from the repository root. The axiom audit root stays the module `PhysJS`. The allowed axioms stay `propext`, `Classical.choice`, and `Quot.sound`. `sorry`, `admit`, `native_decide`, and any other axiom fail the job. This reverses the earlier recommendation that `PhysJS/` stay at the repository root.
 
 **Publish later, from CI, with a token.** The repository secret is `NPM`, passed to npm as `NODE_AUTH_TOKEN`. The workflow requests no `id-token: write` and passes no `--provenance`. Nobody publishes by hand.
 
@@ -22,14 +22,15 @@ The grounding for the UPT boundary is UPT as cloned for this note, in particular
 
 ## Repository layout
 
-The Lean package remains the root, because Lake, the axiom audit, `CONTRIBUTING.md`, and UPT's links all name these paths:
+The Lean package remains the root, so `lake build` and the axiom audit run there. Module names stay `PhysJS.*` because `srcDir = "lean"` maps `PhysJS.Clapeyron` to `lean/PhysJS/Clapeyron.lean`. UPT links that used `PhysJS/<File>.lean` follow that file to `lean/PhysJS/<File>.lean`.
 
 ```
-lakefile.toml              Lean package. Mathlib and Physlib, direct requires.
+lakefile.toml              Lean package. Mathlib and Physlib, direct requires. `srcDir = "lean"`.
 lean-toolchain             pin
-PhysJS.lean                root import
-PhysJS/                    Lean sources
-manifest/bridges.json      source of truth for formalRef
+lake-manifest.json         Lake dependency lock. Stays at the root.
+lean/PhysJS.lean           root import. Module `PhysJS`.
+lean/PhysJS/               Lean sources. Module `PhysJS.*`.
+manifest/bridges.json      source of truth for formalRef. Theorem names, not paths.
 package.json               private Bun workspace. Tier 0.
 bunfig.toml                Tier 0. [install] linker = "hoisted", auto = "disable".
                            [run] bun = true, as in MathTS.
@@ -47,7 +48,7 @@ A root `package.json` is `"private": true` and lists `workspaces: ["packages/*"]
 
 `packages/engineering-physics/` was the reserved single-package slot from 2026-09-22. Tier 0 removed it. The workspace packages below replace it.
 
-Moving `PhysJS/` under `lean/` is an open decision. The recommendation is to leave it at the root. See [Open decisions](#open-decisions).
+`PhysJS/` now lives under `lean/`. See [Decisions already made](#decisions-already-made).
 
 ### What a TypeScript file may import
 
@@ -197,7 +198,7 @@ The TypeScript CI check, added in the tier that adds the first bridge export:
 
 1. Every export listed in the bridges registry has a `manifestKey` that exists in `manifest/bridges.json`.
 2. A nested field name is one of the nested names the manifest schema already allows, and that object is present on the entry.
-3. The theorem string on the resolved object occurs as a declaration name in `PhysJS/*.lean`.
+3. The theorem string on the resolved object occurs as a declaration name in `lean/PhysJS/*.lean`.
 4. The proof status the package reports is the entry's `leanProof` (`complete` or `partial`). The test fails if the package reports a status the JSON does not have.
 5. A domain formula with no key is absent from the bridges registry.
 6. The packaged manifest equals the root manifest.
@@ -407,7 +408,7 @@ Empty workspace. Packages: core, the seven domain packages, bridges, proofs. Eac
 - `ci.yml` Lean job unchanged.
 - `packages/engineering-physics/` removed in the same change that adds the real packages, with the README pointer updated.
 
-**Exit.** `lake build` and the axiom audit pass. `bun install --frozen-lockfile`, `bun test`, the build, and the pack dry-run pass. No package is on npm. `PhysJS/` and `manifest/bridges.json` are at their current paths. A grep of the TypeScript sources finds no physics formula.
+**Exit.** `lake build` and the axiom audit pass. `bun install --frozen-lockfile`, `bun test`, the build, and the pack dry-run pass. No package is on npm. `manifest/bridges.json` stays the manifest. Lean sources are `lean/PhysJS/`. A grep of the TypeScript sources finds no physics formula.
 
 ### Tier 1 — core
 
@@ -437,51 +438,47 @@ Modelica tiers are in [Modelica tiers](#modelica-tiers). Replacing fourJS's phys
 
 Each one has a recommendation. None of them blocks writing this note. The ones that block a tier are named in that tier.
 
-### 1. Lean sources stay at the repository root
-
-**Recommendation.** Leave `PhysJS/`, `PhysJS.lean`, `lakefile.toml`, and `lean-toolchain` at the root. A `lean/` directory would change every path the axiom audit, the contributors' guide, and UPT's links already use, and Lake would need a new working directory. The Bun workspace at `packages/*` coexists with the Lean root because the two tools read different files.
-
-### 2. Umbrella package
+### 1. Umbrella package
 
 **Recommendation.** Publish `@danielsimonjr/physjs` as a thin re-export of core, bridges, and proofs, and publish the scoped packages beside it. The reserved name then has one meaning. A consumer who wants optics depends on `@danielsimonjr/physjs-optics`.
 
-### 3. Version coupling
+### 2. Version coupling
 
 **Recommendation.** Independent changesets, `updateInternalDependencies: patch`, matching MathTS. A Lean-only change that edits `manifest/bridges.json` bumps `physjs-proofs` and does not bump `physjs-plasma`. Linked versions would force every domain to release because a covers line changed.
 
-### 4. Manifest `kind`
+### 3. Manifest `kind`
 
 **Recommendation.** Keep schema `physjs-bridge-manifest/v1` free of a `kind` field. UPT already derives kind, and a second writer of kind is how a cross-check gets counted as a proved bridge. A v2 schema is its own note if Daniel wants kind stored once.
 
-### 5. Domain homes for the ambiguous slice A rows
+### 4. Domain homes for the ambiguous slice A rows
 
 **Recommendation.** Use the candidate table as written: Jeans to fluids, Chandrasekhar to gr, Casimir and BCS to em, radiation pressure to optics, Johnson–Nyquist and the Wiedemann–Franz evaluator to thermo, Unruh to thermo with proof status absent. The open part is only a row Daniel wants moved. The table is the default the tier will implement.
 
-### 6. `ExprNode` stays in UPT
+### 5. `ExprNode` stays in UPT
 
 **Recommendation.** Yes. The numeric function moves. The AST, the dimensional validator, and the catalog row stay. PhysJS does not grow an expression tree for bridge equations. UPT already has one, and the refactor note keeps it.
 
-### 7. Node in CI
+### 6. Node in CI
 
 **Recommendation.** Tier 0 does not install Node and does not run a Node test matrix. The publish job installs Node 22 only because the changesets CLI requires it. Add one Node 22 import smoke in the tier that first sets a package public.
 
-### 8. When `private` flips
+### 7. When `private` flips
 
 **Recommendation.** After Tier 1's exit, and after the repository secret `NPM` exists. The publish workflow can land in Tier 0 and will skip private packages. Removing `private` is a separate commit Daniel approves, with `publishConfig.access` set to `public` and a changeset that sets the first version.
 
-### 9. Modelica subset
+### 8. Modelica subset
 
 **Recommendation.** Electrical analog basics and translational mechanics basics, limited to the LC/RLC dictionary and its mechanical reading. Declare the thermal pair (temperature, heat flow) and the fluid pair (pressure, mass flow) as connector types in the component tier, with no thermal or fluid component until those domain packages have laws. Leave `Blocks`, `Clocked`, `StateGraph`, `Magnetic`, `Media`, and multibody 3D out.
 
-### 10. Parsing `.mo` in Tier 1
+### 9. Parsing `.mo` in Tier 1
 
 **Recommendation.** No. Tier 1 is core. The in-memory component model comes in the Modelica component tier, after the laws exist. `.mo` import and export come after a hand-built RLC flattens and steps. A parser in Tier 1 would invent a syntax before the equations it parses have a home.
 
-### 11. FMI timing
+### 10. FMI timing
 
 **Recommendation.** After the Modelica text tier. Export one standard: FMI 2.0 co-simulation, as `modelDescription.xml` plus the step function `compile` already returns. That is the exchange external tools still accept. Do not implement FMI 3.0 in the same tier. Do not load third-party binary FMUs in that tier. fourJS calls that step function directly and does not go through FMI.
 
-### 12. Who owns the DAE solver
+### 11. Who owns the DAE solver
 
 **Recommendation.** PhysJS owns the structure: flatten, bipartite matching, Pantelides, BLT. MathTS owns the numbers: `solveODE`, `solveDAE`, and the one-step export PhysJS will request. PhysJS does not add a tableau. If a reduced system is not a semi-explicit index-1 DAE and not an explicit ODE, the build throws, and any missing solver capability is filed in MathTS.
 

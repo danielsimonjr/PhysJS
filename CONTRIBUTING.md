@@ -26,7 +26,8 @@ lake build
 - A theorem whose statement matches a covers line. Rank 1 of the UPT scoping report §4.3 comes before the later ranks.
 - An update to `manifest/bridges.json`: theorem name, UPT bridge id, covers line. UPT resolves a `formalRef` by that key.
 - If the proof is partial, the manifest entry says it covers its statement only. Do not describe it as a proof of the whole bridge.
-- No `sorry`, no `admit`, and no `native_decide`. CI audits the `PhysJS` namespace and allows only `propext`, `Classical.choice`, and `Quot.sound`.
+- No `sorry`, no `admit`, and no `native_decide`. CI audits the `PhysJS` module and allows only `propext`, `Classical.choice`, and `Quot.sound`.
+- Lean sources live in `lean/PhysJS/`. The module name is still `PhysJS.*` (`lakefile.toml` sets `srcDir = "lean"`). A new file is `lean/PhysJS/<Name>.lean` and is imported from `lean/PhysJS.lean` as `import PhysJS.<Name>`.
 
 ## Local axiom check
 

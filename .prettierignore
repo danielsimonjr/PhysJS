@@ -4,7 +4,7 @@ dist
 lake-packages
 bun.lock
 lake-manifest.json
-PhysJS
+lean
 manifest
 docs
 CHANGELOG.md

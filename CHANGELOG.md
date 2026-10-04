@@ -5,6 +5,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Lean sources moved from `PhysJS/` to `lean/PhysJS/`. `lakefile.toml`
+  sets `srcDir = "lean"`. Module and theorem names stay `PhysJS.*`.
+  `lakefile.toml`, `lean-toolchain`, and `lake-manifest.json` stay at
+  the repository root. `manifest/bridges.json` is unchanged.
+
 ### Added
 
 - Tier 1 `@danielsimonjr/physjs-core`: the UPT SI constant table, a

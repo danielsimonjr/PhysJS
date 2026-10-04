@@ -26,6 +26,53 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `be-76`. Not a catalog entry yet. The intended kind is `bridge`. The
   covers line still begins with `derivation-step`. Not a plasma-β
   inequality.
+- `PhysJS.HagenPoiseuille.flow_eq`, a complete proof that the circular-pipe
+  balance integrates to `Q = π R⁴ ΔP/(8 μ L)` and `f_D Re = 64`. The Fanning
+  product on the same profile is `16`. Manifest key `be-77`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`. Not a square duct.
+- `PhysJS.EulerBuckling.critical_load`, a complete proof that the lowest
+  pinned Euler eigenvalue is `π² E I/L²`, with the cantilever at `π²/4` of
+  that load. Manifest key `be-78`. Not a catalog entry yet. The intended
+  kind is `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.PullIn.pull_in_eq`, a complete proof that the parallel-plate fold
+  is `g = 2 g0/3` and `V_pi² = 8 k g0³/(27 ε0 A) = 8 k g0²/(27 C0)`.
+  Manifest key `be-79`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.MottGurney.current_eq`, a complete proof that drift and Poisson
+  with an injecting contact integrate to `J = (9/8) ε μ V²/d³`. Manifest
+  key `be-80`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`. Not Child–Langmuir.
+- `PhysJS.ChildLangmuir.current_eq`, a complete proof that the vacuum
+  profile `x^{4/3}` gives `J = (4 ε0/9) sqrt(2 e/m) V^{3/2}/d²`, with `e`
+  the elementary charge. Manifest key `be-81`. Not a catalog entry yet.
+  The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. Not Mott–Gurney.
+- `PhysJS.ShockleyDiode.shockley_eq`, a complete proof that Boltzmann
+  quasi-equilibrium, ideality 1, and detailed balance give
+  `I = I_s (exp(e V/(k_B T)) − 1)`. Manifest key `be-82`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`.
+- `PhysJS.Thomson.thomson_eq`, a complete proof that differentiating the
+  Kelvin relation gives `μ_T = T dS/dT`. Manifest key `be-83`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`. Not `be-73` itself.
+- `PhysJS.FourPoint.sheet_eq`, a complete proof that equal collinear probes
+  on an infinite sheet give `R_s = (π/ln 2)(V/I)`. Manifest key `be-84`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not `be-35`.
+- `PhysJS.ShotNoise.shot_eq`, a complete proof that a Poisson count and the
+  one-sided window `Δf = 1/(2 T)` give `S_I = 2 e I`. Manifest key `be-85`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not Johnson–Nyquist.
+- `PhysJS.ReynoldsAnalogy.reynolds_eq`, a complete proof that equal wall
+  diffusivities at `Pr = 1` give `St = C_f/2`. Manifest key `be-86`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`.
+- `PhysJS.CapacitorNoise.noise_eq`, a complete proof that one quadratic
+  capacitor in equilibrium has `⟨v²⟩ = k_B T/C`. Manifest key `be-87`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not `(3/2) k_B T`.
 
 ### Changed
 

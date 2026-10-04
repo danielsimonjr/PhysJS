@@ -1,6 +1,8 @@
 # Manifest
 
-`bridges.json` is the file UPT consumes. One entry is one manifest key:
+`bridges.json` is the file UPT consumes. One entry is one manifest key. It stores theorem names, not source paths.
+
+`lean-files.json` is the proof-file listing UPT vendors as `formal/physjs/lean-files.json`. Each entry is a repository path `lean/<File>.lean`. The aggregator `lean.lean` is not an entry. A path `lean/PhysJS/<File>.lean` is not an entry.
 
 | Field | Meaning |
 |---|---|

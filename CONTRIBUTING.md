@@ -26,12 +26,12 @@ lake build
 - A theorem whose statement matches a covers line. Rank 1 of the UPT scoping report §4.3 comes before the later ranks.
 - An update to `manifest/bridges.json`: theorem name, UPT bridge id, covers line. UPT resolves a `formalRef` by that key.
 - If the proof is partial, the manifest entry says it covers its statement only. Do not describe it as a proof of the whole bridge.
-- No `sorry`, no `admit`, and no `native_decide`. CI audits the `PhysJS` module and allows only `propext`, `Classical.choice`, and `Quot.sound`.
-- Lean sources live in `lean/PhysJS/`. The module name is still `PhysJS.*` (`lakefile.toml` sets `srcDir = "lean"`). A new file is `lean/PhysJS/<Name>.lean` and is imported from `lean/PhysJS.lean` as `import PhysJS.<Name>`.
+- No `sorry`, no `admit`, and no `native_decide`. CI audits the `lean` module and allows only `propext`, `Classical.choice`, and `Quot.sound`.
+- Lean sources live in `lean/`, flat. `lakefile.toml` sets `roots = ["lean"]` and `globs = ["lean.*"]`, so `lake build` builds `lean.lean` and every `lean/<Name>.lean`. A new file is `lean/<Name>.lean`. Its module is `lean.<Name>`. Import it from `lean.lean` as `import lean.<Name>`, and add `lean/<Name>.lean` to `manifest/lean-files.json`. The namespace stays `namespace PhysJS.<Name>`, so the theorem name does not change.
 
 ## Local axiom check
 
-CI runs the audit. The same check is `leanprover-community/axiom-audit` over the `PhysJS` namespace, which is what the workflow calls after `lake build`.
+CI runs the audit. The same check is `leanprover-community/axiom-audit` over the `lean` module, which is what the workflow calls after `lake build`.
 
 ## The TypeScript workspace
 

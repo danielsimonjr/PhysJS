@@ -47,7 +47,8 @@ A reference covers its statement only. A partial proof is marked that way in `ma
 ```
 lakefile.toml          Lean 4 package. Requires Mathlib and Physlib directly.
 lean-toolchain         pinned toolchain
-lean/PhysJS/            Lean sources. Modules stay `PhysJS.*`.
+lean.lean              aggregator. Module `lean`.
+lean/                  Lean sources, flat. `lean/<File>.lean` is module `lean.<File>`.
 manifest/              theorem name → UPT bridge id → covers line
 packages/              private Bun workspace. Tier 1 core; other packages are markers.
 .github/               issue and pull-request templates, CI
@@ -55,7 +56,7 @@ packages/              private Bun workspace. Tier 1 core; other packages are ma
 
 The TypeScript workspace is specified in [docs/design/library-architecture.md](docs/design/library-architecture.md). Tier 0 is the ten private packages under `packages/` (`core`, `mechanics`, `em`, `thermo`, `fluids`, `plasma`, `optics`, `gr`, `bridges`, `proofs`). Tier 1 fills `core` with the SI constants, a quantity that carries a MathTS unit, and the binding where bare `e` is the elementary charge. The other nine packages still export only their package name. Nothing under `packages/` is published. Later tiers still wait for approval.
 
-Lean sources are `lean/PhysJS.lean` and `lean/PhysJS/*.lean`. `lakefile.toml` sets `srcDir = "lean"`, so the module names stay `PhysJS.*` and `lake build` still runs from the repository root. `manifest/bridges.json` stores those theorem names and does not store source paths.
+Lean sources are flat under `lean/`. `lakefile.toml` sets `srcDir = "."`, `roots = ["lean"]`, and `globs = ["lean.*"]`, so `lean/Clapeyron.lean` is the module `lean.Clapeyron` and `lake build` builds every file from the repository root. `lean.lean` is the module `lean` and imports the others. Namespaces stay `namespace PhysJS...`, so theorem names stay `PhysJS.*`. `manifest/bridges.json` stores those theorem names and does not store source paths. `manifest/lean-files.json` lists each proof file as `lean/<File>.lean`.
 
 ## Milestone 1
 
@@ -198,11 +199,11 @@ lake exe cache get
 lake build
 ```
 
-CI runs `lake build` with the Mathlib cache, then an axiom audit of the `PhysJS` namespace. The audit allows `propext`, `Classical.choice`, and `Quot.sound`. It rejects `sorry`, `admit`, `native_decide`, and any other axiom.
+CI runs `lake build` with the Mathlib cache, then an axiom audit of the `lean` module. The audit allows `propext`, `Classical.choice`, and `Quot.sound`. It rejects `sorry`, `admit`, `native_decide`, and any other axiom.
 
 ## Manifest
 
-UPT consumes `manifest/bridges.json`. A `formalRef` names a manifest key. Every key in that file is a checked `formalRef`. The entry carries the theorem name, the UPT bridge id, and the covers line. UPT vendors that manifest at a commit and links to the Lean file. It does not vendor the Lean sources.
+UPT consumes `manifest/bridges.json`. A `formalRef` names a manifest key. Every key in that file is a checked `formalRef`. The entry carries the theorem name, the UPT bridge id, and the covers line. UPT vendors that manifest at a commit and links to the Lean file. It does not vendor the Lean sources. The link target is the path in `manifest/lean-files.json` (`lean/<File>.lean`).
 
 The kind split is forty-nine checked `formalRef`s: ten atlas bridges, sixteen counted catalog references, seventeen catalog bridges whose covers line still begins with `derivation-step`, three cross-checks, and three properties (`be-11`, `be-29`, and `be-28`). The seventeen include `be-66`, `be-67`, and `be-68`. Five further keys, `be-69` through `be-73`, are the 2026-10-03 dogfood candidates. They are not catalog entries yet. The intended kind is `bridge`, and each covers line still begins with `derivation-step`. Nested objects are not second references.
 

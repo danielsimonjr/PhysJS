@@ -27,9 +27,12 @@ jobs:
           persist-credentials: false
 
       # `lake build` with the Mathlib cache, then an axiom audit.
-      # Sources are `lean/PhysJS.lean` and `lean/PhysJS/*.lean` (`srcDir = "lean"`).
-      # `axiom-audit-root` is the Lean module `PhysJS`, not a filesystem path.
-      # The audit fails if any declaration in that module depends on `sorryAx`
+      # `lean.lean` is the module `lean`. `lean/<Name>.lean` is the module `lean.<Name>`.
+      # There is no `lean/PhysJS/` directory.
+      # `axiom-audit-root` is the Lean module `lean`. The audit imports that
+      # module and checks declarations defined in `lean` and `lean.*`.
+      # Theorem names stay `PhysJS.*`; those are namespaces, not module paths.
+      # The audit fails if any declaration in those modules depends on `sorryAx`
       # (`sorry` / `admit`), `Lean.ofReduceBool` (`native_decide`), or any
       # axiom outside propext, Classical.choice, and Quot.sound.
       - name: Build and axiom audit
@@ -40,5 +43,5 @@ jobs:
           lint: "false"
           use-mathlib-cache: "true"
           axiom-audit: "true"
-          axiom-audit-root: "PhysJS"
+          axiom-audit-root: "lean"
           axiom-audit-allow: "propext,Classical.choice,Quot.sound"

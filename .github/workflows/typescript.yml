@@ -43,7 +43,7 @@ jobs:
       - name: Test
         run: bun test
 
-      - name: Marker packages only
+      - name: Marker packages and core surface
         run: bun run check:markers
 
       - name: Manifest edits name the proofs package

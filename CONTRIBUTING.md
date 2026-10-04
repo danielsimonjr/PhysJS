@@ -34,7 +34,7 @@ CI runs the audit. The same check is `leanprover-community/axiom-audit` over the
 
 ## The TypeScript workspace
 
-Tier 0 is the private Bun workspace under `packages/`. The design is `docs/design/library-architecture.md`. Packages stay `"private": true`. Do not publish `@danielsimonjr/physjs` by hand. The Lean sources are not an npm package.
+Tier 0 is the private Bun workspace under `packages/`. Tier 1 is `@danielsimonjr/physjs-core` (constants, quantities, and the `e` / `E` / `exp` binding). The design is `docs/design/library-architecture.md`. Packages stay `"private": true`. Do not publish `@danielsimonjr/physjs` by hand. The Lean sources are not an npm package.
 
 ```bash
 bun install --frozen-lockfile

@@ -3,7 +3,7 @@ name: Release
 # Versions packages. npm publish is Publish (.github/workflows/publish.yml),
 # called from this run when a push changed a public package version.
 #
-# Every workspace package is private in Tier 0, and changesets is configured
+# Every workspace package is private through Tier 1, and changesets is configured
 # not to version private packages, so this job does not open a release PR
 # and does not call Publish until a later tier removes `"private": true`.
 #

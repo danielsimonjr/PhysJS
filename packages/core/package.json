@@ -1,7 +1,7 @@
 {
   "name": "@danielsimonjr/physjs-core",
   "version": "0.0.0",
-  "description": "Core marker. Quantities, constants, and units are a later tier.",
+  "description": "Quantities, SI constants, and unit bindings for PhysJS.",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -26,6 +26,10 @@
   },
   "engines": {
     "bun": ">=1.4.2"
+  },
+  "dependencies": {
+    "@danielsimonjr/mathts-functions": "^0.67.0",
+    "@danielsimonjr/mathts-units": "^0.2.0"
   },
   "repository": {
     "type": "git",

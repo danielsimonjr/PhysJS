@@ -7,6 +7,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- Tier 1 `@danielsimonjr/physjs-core`: the UPT SI constant table, a
+  quantity that carries a MathTS `Unit`, and the expression binding
+  where bare `e` is the elementary charge, `E` is energy, and Euler's
+  number is only `exp(x)`. The package stays private.
 - Tier 0 TypeScript workspace: a private Bun 1.4.2 workspace and ten
   marker packages (`core`, `mechanics`, `em`, `thermo`, `fluids`,
   `plasma`, `optics`, `gr`, `bridges`, `proofs`). Nothing is published.

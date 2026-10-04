@@ -1,6 +1,6 @@
 # PhysJS library architecture
 
-**Status.** Tier 0 is approved and is the private Bun workspace in this repository. Daniel approves each later tier before any code for that tier is written. This note authorizes no package publish and no edit to a Lean proof.
+**Status.** Tier 0 is the private Bun workspace. Tier 1 is `physjs-core`: the SI constant table, a quantity that carries a MathTS `Unit`, and the `e` / `E` / `exp` binding. Both stay `"private": true`. Daniel approves each later tier before any code for that tier is written. This note authorizes no package publish and no edit to a Lean proof.
 
 PhysJS keeps the Lean 4 proofs of the UPT bridge dictionaries (Mathlib, PhysLean, the existing axiom audit). It adds a TypeScript library that [Universal Physics Tensor](https://github.com/danielsimonjr/Universal-Physics-Tensor) imports, published later to npm as `@danielsimonjr/physjs` or as scoped packages under that scope. [MathTS](https://github.com/danielsimonjr/MathTS) stays the mathematics layer. [fourJS](https://github.com/danielsimonjr/fourJS) is a downstream simulation and visualization consumer.
 

@@ -8,5 +8,6 @@ describe('tier 0 workspace', () => {
     });
     expect(result.status).toBe(0);
     expect(result.stdout).toContain('tier 0 markers ok');
+    expect(result.stdout).toContain('tier 1 core surface ok');
   });
 });

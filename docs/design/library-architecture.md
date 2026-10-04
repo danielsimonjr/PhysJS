@@ -12,7 +12,7 @@ The grounding for the UPT boundary is UPT as cloned for this note, in particular
 
 **Physics conventions.** Bare `e` is the elementary charge. `E` is energy. Euler's number is written `exp(x)`. A bridge counts as proved only when a Lean theorem says so.
 
-**Proofs stay in Lean.** The Lake package stays at the repository root: `lakefile.toml`, `lean-toolchain`, and `lake-manifest.json`. Sources are flat under `lean/`. `lakefile.toml` sets `srcDir = "lean"` and lists every module in `roots`, so `lake build` builds each file. `lean/Clapeyron.lean` is the module `Clapeyron`. `lean/PhysJS.lean` is the module `PhysJS` and imports the others. Namespaces stay `namespace PhysJS...`, so theorem names stay `PhysJS.*`. `manifest/bridges.json` stays at `manifest/bridges.json` and stores theorem names, not source paths. `manifest/lean-files.json` lists each proof file as `lean/<File>.lean`. `lake build` still runs from the repository root. The axiom audit root stays the module `PhysJS`. The allowed axioms stay `propext`, `Classical.choice`, and `Quot.sound`. `sorry`, `admit`, `native_decide`, and any other axiom fail the job. This reverses the earlier recommendation that `PhysJS/` stay at the repository root.
+**Proofs stay in Lean.** The Lake package stays at the repository root: `lakefile.toml`, `lean-toolchain`, and `lake-manifest.json`. Sources are flat under `lean/`. `lakefile.toml` sets `srcDir = "."`, `roots = ["lean"]`, and `globs = ["lean.*"]`, so `lake build` builds `lean.lean` and every `lean/*.lean`. `lean/Clapeyron.lean` is the module `lean.Clapeyron`. `lean.lean` is the module `lean` and imports the others. Namespaces stay `namespace PhysJS...`, so theorem names stay `PhysJS.*`. `manifest/bridges.json` stays at `manifest/bridges.json` and stores theorem names, not source paths. `manifest/lean-files.json` lists each proof file as `lean/<File>.lean`. `lake build` still runs from the repository root. The axiom audit root is the module `lean`, because that is the prefix of every proof module. The allowed axioms stay `propext`, `Classical.choice`, and `Quot.sound`. `sorry`, `admit`, `native_decide`, and any other axiom fail the job. This reverses the earlier recommendation that `PhysJS/` stay at the repository root.
 
 **Publish later, from CI, with a token.** The repository secret is `NPM`, passed to npm as `NODE_AUTH_TOKEN`. The workflow requests no `id-token: write` and passes no `--provenance`. Nobody publishes by hand.
 
@@ -22,14 +22,14 @@ The grounding for the UPT boundary is UPT as cloned for this note, in particular
 
 ## Repository layout
 
-The Lean package remains the root, so `lake build` and the axiom audit run there. `srcDir = "lean"` maps the module `Clapeyron` to `lean/Clapeyron.lean`. The module `PhysJS.Clapeyron` would be `lean/PhysJS/Clapeyron.lean`, and this tree has no `lean/PhysJS/` directory. UPT links that used `PhysJS/<File>.lean`, and then `lean/PhysJS/<File>.lean`, follow that file to `lean/<File>.lean`.
+The Lean package remains the root, so `lake build` and the axiom audit run there. `srcDir = "."` maps the module `lean.Clapeyron` to `lean/Clapeyron.lean`. The module `PhysJS.Clapeyron` would be `PhysJS/Clapeyron.lean`, and this tree has no `PhysJS/` directory and no `lean/PhysJS/` directory. UPT links that used `PhysJS/<File>.lean`, and then `lean/PhysJS/<File>.lean`, follow that file to `lean/<File>.lean`.
 
 ```
-lakefile.toml              Lean package. Mathlib and Physlib, direct requires. `srcDir = "lean"`, `roots` every module.
+lakefile.toml              Lean package. Mathlib and Physlib, direct requires. `roots = ["lean"]`, `globs = ["lean.*"]`.
 lean-toolchain             pin
 lake-manifest.json         Lake dependency lock. Stays at the root.
-lean/PhysJS.lean           root import. Module `PhysJS`.
-lean/<Name>.lean           one proof module `<Name>`. Namespace stays `PhysJS.<Name>`.
+lean.lean                  root import. Module `lean`.
+lean/<Name>.lean           one proof module `lean.<Name>`. Namespace stays `PhysJS.<Name>`.
 manifest/bridges.json      source of truth for formalRef. Theorem names, not paths.
 manifest/lean-files.json   proof-file paths `lean/<File>.lean`. Not the aggregator.
 package.json               private Bun workspace. Tier 0.
@@ -38,14 +38,14 @@ bunfig.toml                Tier 0. [install] linker = "hoisted", auto = "disable
 tsconfig.base.json         Tier 0.
 packages/<name>/           TypeScript workspace members
 .changeset/                Tier 0.
-.github/workflows/ci.yml   Lean build and axiom audit. Unchanged contract.
+.github/workflows/ci.yml   Lean build and axiom audit. Root module `lean`.
 .github/workflows/typescript.yml
                            Tier 0. Typecheck, bun test, lint, pack dry-run.
 .github/workflows/publish.yml
                            Token publish. Same shape as MathTS.
 ```
 
-A root `package.json` is `"private": true` and lists `workspaces: ["packages/*"]`. Lake reads `lakefile.toml`. It does not read `package.json`. The Lean job keeps `axiom-audit-root: PhysJS` and `use-mathlib-cache: true`.
+A root `package.json` is `"private": true` and lists `workspaces: ["packages/*"]`. Lake reads `lakefile.toml`. It does not read `package.json`. The Lean job keeps `axiom-audit-root: lean` and `use-mathlib-cache: true`.
 
 `packages/engineering-physics/` was the reserved single-package slot from 2026-09-22. Tier 0 removed it. The workspace packages below replace it.
 

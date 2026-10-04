@@ -47,7 +47,8 @@ A reference covers its statement only. A partial proof is marked that way in `ma
 ```
 lakefile.toml          Lean 4 package. Requires Mathlib and Physlib directly.
 lean-toolchain         pinned toolchain
-lean/                  Lean sources, flat. `lean/<File>.lean` is module `<File>`.
+lean.lean              aggregator. Module `lean`.
+lean/                  Lean sources, flat. `lean/<File>.lean` is module `lean.<File>`.
 manifest/              theorem name → UPT bridge id → covers line
 packages/              private Bun workspace. Tier 1 core; other packages are markers.
 .github/               issue and pull-request templates, CI
@@ -55,7 +56,7 @@ packages/              private Bun workspace. Tier 1 core; other packages are ma
 
 The TypeScript workspace is specified in [docs/design/library-architecture.md](docs/design/library-architecture.md). Tier 0 is the ten private packages under `packages/` (`core`, `mechanics`, `em`, `thermo`, `fluids`, `plasma`, `optics`, `gr`, `bridges`, `proofs`). Tier 1 fills `core` with the SI constants, a quantity that carries a MathTS unit, and the binding where bare `e` is the elementary charge. The other nine packages still export only their package name. Nothing under `packages/` is published. Later tiers still wait for approval.
 
-Lean sources are flat under `lean/`. `lakefile.toml` sets `srcDir = "lean"` and lists every module in `roots`, so `lean/Clapeyron.lean` is the module `Clapeyron` and `lake build` builds every file from the repository root. `lean/PhysJS.lean` is the module `PhysJS` and imports the others. Namespaces stay `namespace PhysJS...`, so theorem names stay `PhysJS.*`. `manifest/bridges.json` stores those theorem names and does not store source paths. `manifest/lean-files.json` lists each proof file as `lean/<File>.lean`.
+Lean sources are flat under `lean/`. `lakefile.toml` sets `srcDir = "."`, `roots = ["lean"]`, and `globs = ["lean.*"]`, so `lean/Clapeyron.lean` is the module `lean.Clapeyron` and `lake build` builds every file from the repository root. `lean.lean` is the module `lean` and imports the others. Namespaces stay `namespace PhysJS...`, so theorem names stay `PhysJS.*`. `manifest/bridges.json` stores those theorem names and does not store source paths. `manifest/lean-files.json` lists each proof file as `lean/<File>.lean`.
 
 ## Milestone 1
 
@@ -198,7 +199,7 @@ lake exe cache get
 lake build
 ```
 
-CI runs `lake build` with the Mathlib cache, then an axiom audit of the `PhysJS` module. The audit allows `propext`, `Classical.choice`, and `Quot.sound`. It rejects `sorry`, `admit`, `native_decide`, and any other axiom.
+CI runs `lake build` with the Mathlib cache, then an axiom audit of the `lean` module. The audit allows `propext`, `Classical.choice`, and `Quot.sound`. It rejects `sorry`, `admit`, `native_decide`, and any other axiom.
 
 ## Manifest
 

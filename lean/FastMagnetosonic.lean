@@ -3,8 +3,8 @@ Copyright (c) 2026 Daniel Simon Jr.
 Released under MIT license as described in the file LICENSE.
 -/
 
-import AlfvenSpeed
-import PlaneWave
+import lean.AlfvenSpeed
+import lean.PlaneWave
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Linarith

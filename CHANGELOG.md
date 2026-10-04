@@ -8,11 +8,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Lean sources are flat under `lean/`. `PhysJS/<File>.lean` is
-  `lean/<File>.lean`, and the nested `lean/PhysJS/` directory is gone.
-  `lean/PhysJS.lean` is the module `PhysJS` and imports the others.
-  `lakefile.toml` sets `srcDir = "lean"` and lists every module in
-  `roots`, so `lake build` builds each file. Imports are `import <File>`.
-  Namespaces and theorem names stay `PhysJS.*`. `lakefile.toml`,
+  `lean/<File>.lean` (module `lean.<File>`), and the nested
+  `lean/PhysJS/` directory is gone. The aggregator is `lean.lean`
+  (module `lean`). `lakefile.toml` sets `srcDir = "."`, `roots = ["lean"]`,
+  and `globs = ["lean.*"]`, so `lake build` builds every file.
+  Imports are `import lean.<File>`. Namespaces and theorem names stay
+  `PhysJS.*`. The axiom audit root is the module `lean`. `lakefile.toml`,
   `lean-toolchain`, and `lake-manifest.json` stay at the repository root.
   `manifest/bridges.json` is unchanged. `manifest/lean-files.json` lists
   the proof files at `lean/<File>.lean`.

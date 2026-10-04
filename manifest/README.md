@@ -1,6 +1,8 @@
 # Manifest
 
-`bridges.json` is the file UPT consumes. One entry is one manifest key:
+`bridges.json` is the file UPT consumes. One entry is one manifest key. It stores theorem names, not source paths.
+
+`lean-files.json` is the proof-file listing UPT vendors as `formal/physjs/lean-files.json`. Each entry is a repository path `lean/<File>.lean`. The aggregator `lean.lean` is not an entry. A path `lean/PhysJS/<File>.lean` is not an entry.
 
 | Field | Meaning |
 |---|---|
@@ -21,7 +23,7 @@ Forty-nine keys are checked UPT `formalRef`s. Ten atlas keys are kind `bridge`. 
 
 Five further keys, `be-69` through `be-73`, are the candidates in the 2026-10-03 applied-physicist dogfood report. They are not catalog entries yet. UPT vendors this manifest and adds the catalog entries and `formalRef`s. The intended kind is `bridge`, because each theorem states the relation. Each covers line still begins with `derivation-step`.
 
-Three further keys, `be-74` through `be-76`, are the candidates in the 2026-10-04 applied-physicist dogfood report (r3). The UPT catalog on `master` runs through `73`, so these numbers are free. They are not catalog entries yet. UPT vendors this manifest and adds the catalog entries and `formalRef`s. The intended kind is `bridge`. Each covers line still begins with `derivation-step`. The Lean files are `lean/PhysJS/MagneticPressure.lean`, `lean/PhysJS/LondonPenetration.lean`, and `lean/PhysJS/PlasmaBeta.lean`.
+Three further keys, `be-74` through `be-76`, are the candidates in the 2026-10-04 applied-physicist dogfood report (r3). The UPT catalog on `master` runs through `73`, so these numbers are free. They are not catalog entries yet. UPT vendors this manifest and adds the catalog entries and `formalRef`s. The intended kind is `bridge`. Each covers line still begins with `derivation-step`. The Lean files are `lean/MagneticPressure.lean`, `lean/LondonPenetration.lean`, and `lean/PlasmaBeta.lean`.
 
 `ab-kg-oscillator` covers the uniform-mode restriction in Physlib's own terms.
 

@@ -6,6 +6,7 @@ PhysJS holds the Lean 4 proofs behind Universal Physics Tensor `formalRef` recor
 
 - [elan](https://github.com/leanprover/elan), so the pin in `lean-toolchain` is the compiler you use
 - Git
+- [Bun](https://bun.sh) `1.4.2`, for the TypeScript workspace
 
 `lake` comes with the toolchain. Do not install a second Lean beside elan.
 
@@ -31,9 +32,15 @@ lake build
 
 CI runs the audit. The same check is `leanprover-community/axiom-audit` over the `PhysJS` namespace, which is what the workflow calls after `lake build`.
 
-## The TypeScript package
+## The TypeScript workspace
 
-`packages/engineering-physics/` is reserved. The design proposal is `docs/design/library-architecture.md`. Do not scaffold packages, and do not publish `@danielsimonjr/physjs`, until Daniel approves the tier that would do it. The Lean sources are not an npm package.
+Tier 0 is the private Bun workspace under `packages/`. The design is `docs/design/library-architecture.md`. Packages stay `"private": true`. Do not publish `@danielsimonjr/physjs` by hand. The Lean sources are not an npm package.
+
+```bash
+bun install --frozen-lockfile
+bun test
+bun run build
+```
 
 ## Secrets
 

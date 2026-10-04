@@ -14,3 +14,8 @@
 .env
 .env.*
 *.local
+
+# TypeScript workspace
+node_modules/
+dist/
+*.tgz

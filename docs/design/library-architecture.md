@@ -1,6 +1,6 @@
 # PhysJS library architecture
 
-**Status.** Proposal. Daniel approves each tier before any code for that tier is written. This note authorizes no scaffold, no package publish, and no edit to a Lean proof.
+**Status.** Tier 0 is approved and is the private Bun workspace in this repository. Daniel approves each later tier before any code for that tier is written. This note authorizes no package publish and no edit to a Lean proof.
 
 PhysJS keeps the Lean 4 proofs of the UPT bridge dictionaries (Mathlib, PhysLean, the existing axiom audit). It adds a TypeScript library that [Universal Physics Tensor](https://github.com/danielsimonjr/Universal-Physics-Tensor) imports, published later to npm as `@danielsimonjr/physjs` or as scoped packages under that scope. [MathTS](https://github.com/danielsimonjr/MathTS) stays the mathematics layer. [fourJS](https://github.com/danielsimonjr/fourJS) is a downstream simulation and visualization consumer.
 
@@ -45,7 +45,7 @@ packages/<name>/           TypeScript workspace members
 
 A root `package.json` is `"private": true` and lists `workspaces: ["packages/*"]`. Lake reads `lakefile.toml`. It does not read `package.json`. The Lean job keeps `axiom-audit-root: PhysJS` and `use-mathlib-cache: true`.
 
-`packages/engineering-physics/` is the reserved single-package slot from 2026-09-22. Tier 0 removes that directory when the workspace packages below replace it. Until Tier 0 is approved, the directory stays as it is.
+`packages/engineering-physics/` was the reserved single-package slot from 2026-09-22. Tier 0 removed it. The workspace packages below replace it.
 
 Moving `PhysJS/` under `lean/` is an open decision. The recommendation is to leave it at the root. See [Open decisions](#open-decisions).
 

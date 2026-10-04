@@ -1,0 +1,17 @@
+node_modules
+dist
+.lake
+lake-packages
+bun.lock
+lake-manifest.json
+PhysJS
+manifest
+docs
+CHANGELOG.md
+*.tgz
+# The Lean workflow stays byte-for-byte as it was. Prettier does not restyle it.
+.github/workflows/ci.yml
+# Pre-existing prose this tier does not edit.
+SECURITY.md
+CODE_OF_CONDUCT.md
+LICENSE

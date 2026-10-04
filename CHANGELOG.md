@@ -7,10 +7,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- Tier 0 TypeScript workspace: a private Bun 1.4.2 workspace and ten
+  marker packages (`core`, `mechanics`, `em`, `thermo`, `fluids`,
+  `plasma`, `optics`, `gr`, `bridges`, `proofs`). Nothing is published.
 - `docs/design/library-architecture.md`, a proposal for the TypeScript
   library, the Modelica package, and the fourJS boundary. fourJS calls
-  the PhysJS step API directly. There is no adapter package. The note
-  authorizes no code until a tier in it is approved.
+  the PhysJS step API directly. There is no adapter package. Later tiers
+  still wait for approval.
 
 ### Changed
 

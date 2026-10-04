@@ -7,10 +7,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- Lean sources moved from `PhysJS/` to `lean/PhysJS/`. `lakefile.toml`
-  sets `srcDir = "lean"`. Module and theorem names stay `PhysJS.*`.
-  `lakefile.toml`, `lean-toolchain`, and `lake-manifest.json` stay at
-  the repository root. `manifest/bridges.json` is unchanged.
+- Lean sources are flat under `lean/`. `PhysJS/<File>.lean` is
+  `lean/<File>.lean`, and the nested `lean/PhysJS/` directory is gone.
+  `lean/PhysJS.lean` is the module `PhysJS` and imports the others.
+  `lakefile.toml` sets `srcDir = "lean"` and lists every module in
+  `roots`, so `lake build` builds each file. Imports are `import <File>`.
+  Namespaces and theorem names stay `PhysJS.*`. `lakefile.toml`,
+  `lean-toolchain`, and `lake-manifest.json` stay at the repository root.
+  `manifest/bridges.json` is unchanged. `manifest/lean-files.json` lists
+  the proof files at `lean/<File>.lean`.
 
 ### Added
 

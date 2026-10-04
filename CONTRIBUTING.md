@@ -27,7 +27,7 @@ lake build
 - An update to `manifest/bridges.json`: theorem name, UPT bridge id, covers line. UPT resolves a `formalRef` by that key.
 - If the proof is partial, the manifest entry says it covers its statement only. Do not describe it as a proof of the whole bridge.
 - No `sorry`, no `admit`, and no `native_decide`. CI audits the `PhysJS` module and allows only `propext`, `Classical.choice`, and `Quot.sound`.
-- Lean sources live in `lean/PhysJS/`. The module name is still `PhysJS.*` (`lakefile.toml` sets `srcDir = "lean"`). A new file is `lean/PhysJS/<Name>.lean` and is imported from `lean/PhysJS.lean` as `import PhysJS.<Name>`.
+- Lean sources live in `lean/`, flat. `lakefile.toml` sets `srcDir = "lean"` and `roots` names every module, so `lake build` builds each file. A new file is `lean/<Name>.lean`. Its module is `<Name>`. Add `"<Name>"` to `roots`, add `lean/<Name>.lean` to `manifest/lean-files.json`, and import it from `lean/PhysJS.lean` as `import <Name>`. The namespace stays `namespace PhysJS.<Name>`, so the theorem name does not change.
 
 ## Local axiom check
 

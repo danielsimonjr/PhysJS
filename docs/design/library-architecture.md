@@ -12,7 +12,7 @@ The grounding for the UPT boundary is UPT as cloned for this note, in particular
 
 **Physics conventions.** Bare `e` is the elementary charge. `E` is energy. Euler's number is written `exp(x)`. A bridge counts as proved only when a Lean theorem says so.
 
-**Proofs stay in Lean.** The Lake package stays at the repository root: `lakefile.toml`, `lean-toolchain`, and `lake-manifest.json`. Sources are `lean/PhysJS.lean` and `lean/PhysJS/*.lean`, with `srcDir = "lean"` on the `PhysJS` library, so every module and theorem name stays `PhysJS.*`. `manifest/bridges.json` stays at `manifest/bridges.json` and stores theorem names, not source paths. `lake build` still runs from the repository root. The axiom audit root stays the module `PhysJS`. The allowed axioms stay `propext`, `Classical.choice`, and `Quot.sound`. `sorry`, `admit`, `native_decide`, and any other axiom fail the job. This reverses the earlier recommendation that `PhysJS/` stay at the repository root.
+**Proofs stay in Lean.** The Lake package stays at the repository root: `lakefile.toml`, `lean-toolchain`, and `lake-manifest.json`. Sources are flat under `lean/`. `lakefile.toml` sets `srcDir = "lean"` and lists every module in `roots`, so `lake build` builds each file. `lean/Clapeyron.lean` is the module `Clapeyron`. `lean/PhysJS.lean` is the module `PhysJS` and imports the others. Namespaces stay `namespace PhysJS...`, so theorem names stay `PhysJS.*`. `manifest/bridges.json` stays at `manifest/bridges.json` and stores theorem names, not source paths. `manifest/lean-files.json` lists each proof file as `lean/<File>.lean`. `lake build` still runs from the repository root. The axiom audit root stays the module `PhysJS`. The allowed axioms stay `propext`, `Classical.choice`, and `Quot.sound`. `sorry`, `admit`, `native_decide`, and any other axiom fail the job. This reverses the earlier recommendation that `PhysJS/` stay at the repository root.
 
 **Publish later, from CI, with a token.** The repository secret is `NPM`, passed to npm as `NODE_AUTH_TOKEN`. The workflow requests no `id-token: write` and passes no `--provenance`. Nobody publishes by hand.
 
@@ -22,15 +22,16 @@ The grounding for the UPT boundary is UPT as cloned for this note, in particular
 
 ## Repository layout
 
-The Lean package remains the root, so `lake build` and the axiom audit run there. Module names stay `PhysJS.*` because `srcDir = "lean"` maps `PhysJS.Clapeyron` to `lean/PhysJS/Clapeyron.lean`. UPT links that used `PhysJS/<File>.lean` follow that file to `lean/PhysJS/<File>.lean`.
+The Lean package remains the root, so `lake build` and the axiom audit run there. `srcDir = "lean"` maps the module `Clapeyron` to `lean/Clapeyron.lean`. The module `PhysJS.Clapeyron` would be `lean/PhysJS/Clapeyron.lean`, and this tree has no `lean/PhysJS/` directory. UPT links that used `PhysJS/<File>.lean`, and then `lean/PhysJS/<File>.lean`, follow that file to `lean/<File>.lean`.
 
 ```
-lakefile.toml              Lean package. Mathlib and Physlib, direct requires. `srcDir = "lean"`.
+lakefile.toml              Lean package. Mathlib and Physlib, direct requires. `srcDir = "lean"`, `roots` every module.
 lean-toolchain             pin
 lake-manifest.json         Lake dependency lock. Stays at the root.
 lean/PhysJS.lean           root import. Module `PhysJS`.
-lean/PhysJS/               Lean sources. Module `PhysJS.*`.
+lean/<Name>.lean           one proof module `<Name>`. Namespace stays `PhysJS.<Name>`.
 manifest/bridges.json      source of truth for formalRef. Theorem names, not paths.
+manifest/lean-files.json   proof-file paths `lean/<File>.lean`. Not the aggregator.
 package.json               private Bun workspace. Tier 0.
 bunfig.toml                Tier 0. [install] linker = "hoisted", auto = "disable".
                            [run] bun = true, as in MathTS.
@@ -48,7 +49,7 @@ A root `package.json` is `"private": true` and lists `workspaces: ["packages/*"]
 
 `packages/engineering-physics/` was the reserved single-package slot from 2026-09-22. Tier 0 removed it. The workspace packages below replace it.
 
-`PhysJS/` now lives under `lean/`. See [Decisions already made](#decisions-already-made).
+The old `PhysJS/` directory is the flat `lean/` directory. See [Decisions already made](#decisions-already-made).
 
 ### What a TypeScript file may import
 
@@ -198,7 +199,7 @@ The TypeScript CI check, added in the tier that adds the first bridge export:
 
 1. Every export listed in the bridges registry has a `manifestKey` that exists in `manifest/bridges.json`.
 2. A nested field name is one of the nested names the manifest schema already allows, and that object is present on the entry.
-3. The theorem string on the resolved object occurs as a declaration name in `lean/PhysJS/*.lean`.
+3. The theorem string on the resolved object occurs as a declaration name in `lean/*.lean`.
 4. The proof status the package reports is the entry's `leanProof` (`complete` or `partial`). The test fails if the package reports a status the JSON does not have.
 5. A domain formula with no key is absent from the bridges registry.
 6. The packaged manifest equals the root manifest.
@@ -408,7 +409,7 @@ Empty workspace. Packages: core, the seven domain packages, bridges, proofs. Eac
 - `ci.yml` Lean job unchanged.
 - `packages/engineering-physics/` removed in the same change that adds the real packages, with the README pointer updated.
 
-**Exit.** `lake build` and the axiom audit pass. `bun install --frozen-lockfile`, `bun test`, the build, and the pack dry-run pass. No package is on npm. `manifest/bridges.json` stays the manifest. Lean sources are `lean/PhysJS/`. A grep of the TypeScript sources finds no physics formula.
+**Exit.** `lake build` and the axiom audit pass. `bun install --frozen-lockfile`, `bun test`, the build, and the pack dry-run pass. No package is on npm. `manifest/bridges.json` stays the manifest. Lean sources are flat under `lean/`. A grep of the TypeScript sources finds no physics formula.
 
 ### Tier 1 — core
 

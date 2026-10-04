@@ -73,6 +73,74 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   capacitor in equilibrium has `⟨v²⟩ = k_B T/C`. Manifest key `be-87`.
   Not a catalog entry yet. The intended kind is `bridge`. The covers line
   still begins with `derivation-step`. Not `(3/2) k_B T`.
+- `PhysJS.FermiSea.fermi_sea`, a complete proof that two spins in the
+  sphere give `k_F = (3 π² n)^{1/3}`, with `E_F` and `v_F` from the
+  isotropic parabola. Manifest key `be-88`. Not a catalog entry yet.
+  The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. One spin is a different sphere.
+- `PhysJS.DebyeCutoff.debye_cutoff`, a complete proof that three branches
+  filling `3n` states give `ω_D = v_s (6 π² n)^{1/3}`. Manifest key
+  `be-89`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`.
+- `PhysJS.DebyeHeat.debye_heat`, a complete proof that `U ∝ T⁴` and the
+  hypothesis `∫ x³/(e^x−1) dx = π⁴/15` give
+  `C_V = (12 π⁴/5) N k_B (T/θ_D)³`. Manifest key `be-90`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`. The Bose integral is not evaluated.
+- `PhysJS.EinsteinSolid.einstein_heat`, a complete proof that three Planck
+  oscillators differentiate to the Einstein heat capacity and tend to
+  `3 N k_B`. Manifest key `be-91`. Not a catalog entry yet. The intended
+  kind is `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.SommerfeldHeat.electronic_heat`, a complete proof that the
+  Sommerfeld energy correction and a `√E` density give
+  `c_V = (π²/2) n k_B² T/E_F`. Manifest key `be-92`. Not a catalog entry
+  yet. The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. Not `be-61`.
+- `PhysJS.CurieWeiss.curie_weiss`, a complete proof that the moment
+  `S(S+1)/3` and mean field give `χ = C/(T−θ)`. Manifest key `be-93`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. The second moment is a hypothesis.
+- `PhysJS.PauliParamagnetism.pauli`, a complete proof that Zeeman imbalance
+  and the parabolic density give `χ_P = μ₀ μ_B² (3 n)/(2 E_F)`. Manifest
+  key `be-94`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`. Not Landau
+  diamagnetism.
+- `PhysJS.GinzburgLandau.type_boundary`, a complete proof that a trial
+  wall in the stated normalization changes sign at `κ = 1/√2`. Manifest
+  key `be-95`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`. The positive side
+  is this trial, not every minimizer.
+- `PhysJS.UpperCritical.critical_field`, a complete proof that the
+  hypothesized Landau level of charge `2e` is `B_c2 = Φ₀/(2 π ξ²)`.
+  Manifest key `be-96`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.AmbegaokarBaratoff.ambegaokar_baratoff`, a complete proof that
+  the zero-temperature coherence integral is `π/2`, so
+  `I_c R_n = π Δ/(2 e)` once the tunnel Hamiltonian supplies that
+  integral. Manifest key `be-97`. Not a catalog entry yet. The intended
+  kind is `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.BcsJump.heat_jump`, a complete proof that the weak-coupling
+  quartic and the both-spin Sommerfeld heat capacity give
+  `ΔC/C_n = 12/(7 ζ)`. Manifest key `be-98`. Not a catalog entry yet.
+  The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. `ζ` is not evaluated as a series.
+- `PhysJS.MassAction.mass_action`, a complete proof that Boltzmann tails
+  give `n_i = √(N_c N_v) exp(−E_g/(2 k_B T))` and `n p = n_i²`. Manifest
+  key `be-99`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`.
+- `PhysJS.LyddaneSachsTeller.lst`, a complete proof that an undamped
+  oscillator zero gives `ω_LO²/ω_TO² = ε(0)/ε(∞)`. Manifest key `be-100`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`.
+- `PhysJS.BktJump.bkt_jump`, a complete proof that a `θ = φ` vortex and
+  area entropy give `k_B T_BKT = π J/2`. Manifest key `be-101`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`. Not the renormalization-group flow.
+- `PhysJS.LandauerConductance.conductance_eq`, a complete proof that
+  one-dimensional mode flux and spin `2` give `G = (2 e²/h) Σ T_n`.
+  Manifest key `be-102`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`. Not the
+  Hall conductance.
 
 ### Changed
 

@@ -52,3 +52,6 @@ import PhysJS.EinsteinRelation
 import PhysJS.Clapeyron
 import PhysJS.GravitationalRedshift
 import PhysJS.KelvinRelation
+import PhysJS.MagneticPressure
+import PhysJS.LondonPenetration
+import PhysJS.PlasmaBeta

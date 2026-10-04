@@ -5,6 +5,28 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `PhysJS.MagneticPressure.pressure_eq`, a complete proof that a linear
+  inductor, `U = (L/2) I²`, and a long solenoid give the magnetic pressure
+  `p = B²/(2 μ0)`. The monomial `p = C B²/μ0` leaves `C` unfixed. The
+  prefactor `1` is the battery work per volume, not this pressure.
+  Manifest key `be-74`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`. Not a
+  kinetic pressure.
+- `PhysJS.LondonPenetration.depth_eq`, a complete proof that the London
+  equation and Ampere's law on `B = B0 exp(−x/λ)` give
+  `λ = √(m/(μ0 n e²))`, with `e` the elementary charge. The inputs do not
+  form a unique monomial. Manifest key `be-75`. Not a catalog entry yet.
+  The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. Not the classical skin depth.
+- `PhysJS.PlasmaBeta.beta_eq`, a complete proof that
+  `β = p / p_B = 2 μ0 n k_B T / B²` when `p_B` is
+  `PhysJS.MagneticPressure.pressure_eq` and `p = n k_B T`. Manifest key
+  `be-76`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`. Not a plasma-β
+  inequality.
+
 ### Changed
 
 - Lean sources moved from `PhysJS/` to `lean/PhysJS/`. `lakefile.toml`

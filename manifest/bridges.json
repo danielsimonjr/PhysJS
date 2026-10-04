@@ -643,6 +643,105 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-77",
+      "bridgeId": "be-77",
+      "theorem": "PhysJS.HagenPoiseuille.flow_eq",
+      "covers": "derivation-step: steady axisymmetric Newtonian flow with d/dr (r du/dr) = (G/μ) r, centerline slope 0, and no-slip u(R) = 0 integrates to u = (G/(4μ))(r²−R²). With G = −ΔP/L the flux Q = ∫ u 2π r dr is π R⁴ ΔP/(8 μ L). Darcy's definition then gives f_D Re = 64. The same wall shear with the Fanning normalization is 16. A factor other than 8 is not this flux. Not a square duct. The axial balance, no-slip, and the Darcy definitions are hypotheses",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-78",
+      "bridgeId": "be-78",
+      "theorem": "PhysJS.EulerBuckling.critical_load",
+      "covers": "derivation-step: the Euler–Bernoulli balance y'' = −ω² y with ω² = P/(E I) and pinned ends y(0) = y(L) = 0 has the eigenfunction sin(π x/L) at P = π² E I/L², and every nontrivial solution has ω L = n π for a nonzero integer n, so the load is at least that value. The clamped-free column is π² E I/(4 L²). That factor is not the pinned load. Not read off from units. The beam equation is a hypothesis",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-79",
+      "bridgeId": "be-79",
+      "theorem": "PhysJS.PullIn.pull_in_eq",
+      "covers": "derivation-step: C = ε0 A/g has dC/dg = −ε0 A/g². Equilibrium of a linear spring against the coenergy force is k(g0−g) = ε0 A V²/(2 g²), so V² is proportional to (g0−g) g². The derivative 2 g0 g − 3 g² vanishes only at g = 0 and g = 2 g0/3, and the second derivative at the fold is −2 g0. Substituting the gap gives V_pi² = 8 k g0³/(27 ε0 A) = 8 k g0²/(27 C0) with C0 = ε0 A/g0. g = g0/2 is not the fold. Not a fringing field. The parallel-plate law and the quasi-static balance are hypotheses",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-80",
+      "bridgeId": "be-80",
+      "theorem": "PhysJS.MottGurney.current_eq",
+      "covers": "derivation-step: drift J = q n μ E and Poisson dE/dx = q n/ε give E dE/dx = J/(ε μ). With E(0) = 0 the integral is E²/2 = J x/(ε μ). The nonnegative root integrated from 0 to d is V = sqrt(2 J/(ε μ)) (2/3) d^{3/2}, so J = (9/8) ε μ V²/d³. A factor other than 9/8 is not this current. Not Child–Langmuir. Drift, Poisson, and the injecting contact are hypotheses",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-81",
+      "bridgeId": "be-81",
+      "theorem": "PhysJS.ChildLangmuir.current_eq",
+      "covers": "derivation-step: collisionless energy (1/2) m v² = e φ, J = ρ v, and Poisson φ'' = ρ/ε0 give J = ε0 φ'' v. A power φ ∝ x^α makes φ'' v independent of x only for α = 4/3. The profile φ = V (x/d)^{4/3} has φ(0) = 0, φ(d) = V, and cathode field 0, and for x > 0 its current is (4 ε0/9) sqrt(2 e/m) V^{3/2}/d². e is the elementary charge. The Mott–Gurney exponent 3/2 does not cancel. Poisson is not claimed at x = 0. Not a drift-only solid",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-82",
+      "bridgeId": "be-82",
+      "theorem": "PhysJS.ShockleyDiode.shockley_eq",
+      "covers": "derivation-step: quasi-equilibrium multiplies the equilibrium flux by exp(e V/(η k_B T)). Ideality 1 sets η = 1. Detailed balance sets the reverse flux equal to the forward flux at V = 0, and low injection keeps that reverse flux under bias. The net current is I = I_s (exp(e V/(k_B T)) − 1). Zero bias carries zero current. Ideality 2 is not this current when e V ≠ 0. e is the elementary charge. Not a diffusion-length ODE",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-83",
+      "bridgeId": "be-83",
+      "theorem": "PhysJS.Thomson.thomson_eq",
+      "covers": "derivation-step: the Kelvin relation Π(t) = S(t) t, which is PhysJS.KelvinRelation.peltier_eq read along temperature, and the Thomson split μ = dΠ/dT − S, give μ = T dS/dT by the product rule. dΠ/dT is not μ when S T ≠ 0. Not a second copy of Π = S T. The functional Kelvin relation and the Thomson split are hypotheses",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-84",
+      "bridgeId": "be-84",
+      "theorem": "PhysJS.FourPoint.sheet_eq",
+      "covers": "derivation-step: on an infinite sheet the radial field of a point current is (I R_s)/(2 π r), and the potential drop is the integral of 1/r. Probes at 0, s, 2s, and 3s, with current in at 0 and out at 3s, each contribute (I R_s/(2 π)) ln 2 on the inner pair. Superposition gives R_s = (π/ln 2)(V/I). A sink at 4s gives 2π/ln 3 instead. Not PhysJS.Crossing.antisymmetry. The Laplace field and linear superposition are hypotheses",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-85",
+      "bridgeId": "be-85",
+      "theorem": "PhysJS.ShotNoise.shot_eq",
+      "covers": "derivation-step: in a window of length T the count N has mean (I/e) T, and the Poisson premise is Var(N) = mean(N). Charge e scales the variance by e² and the windowed current divides by T, so Var(I) = e I/T. The one-sided bandwidth of that window is Δf = 1/(2 T), and S_I = Var(I)/Δf is 2 e I. The two-sided bandwidth Δf = 1/T gives e I. e is the elementary charge. Not a Fourier theorem and not Johnson–Nyquist. The Poisson variance and the one-sided convention are hypotheses",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-86",
+      "bridgeId": "be-86",
+      "theorem": "PhysJS.ReynoldsAnalogy.reynolds_eq",
+      "covers": "derivation-step: wall fluxes τ = μ du/dy and q = k dT/dy, with C_f = τ/(ρ U²/2), h = q/ΔT, St = h/(ρ U c_p), and Pr = μ c_p/k, satisfy St Pr = C_f/2 when the normalized wall gradients agree. That common slope is the equal-diffusivity hypothesis. At Pr = 1, St = C_f/2. Pr ≠ 1 with nonzero skin friction is not this equality. Not a Nusselt correlation",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-87",
+      "bridgeId": "be-87",
+      "theorem": "PhysJS.CapacitorNoise.noise_eq",
+      "covers": "derivation-step: dU/dV = C V and U(0) = 0 integrate to U = (C/2) V². The normalized Boltzmann weight of that energy is the Gaussian of mean 0 and variance k_B T/C, because the partition function is the Gaussian integral. The mean square on that law is k_B T/C, and (C/2) of it is (1/2) k_B T. (3/2) k_B T/C is not this variance. Dropping the energy half replaces it by k_B T/(2 C). Not three kinetic degrees of freedom",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": ["propext", "Classical.choice", "Quot.sound"]
     }
   ]
 }

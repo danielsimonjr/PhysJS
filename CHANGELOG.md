@@ -141,6 +141,109 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Manifest key `be-102`. Not a catalog entry yet. The intended kind is
   `bridge`. The covers line still begins with `derivation-step`. Not the
   Hall conductance.
+- `PhysJS.BohmSheath.cold_bohm_threshold`, a complete proof that cold ions
+  and Boltzmann electrons require `u0² ≥ k_B T_e/m_i`. `γ_i = 3` gives
+  `c_s² = (k_B T_e + 3 k_B T_i)/m_i`. Manifest key `be-103`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`.
+- `PhysJS.IonAcoustic.dispersion_eq`, a complete proof of the cold-ion
+  dispersion `ω² = k² c_s²/(1 + k² λ_De²)`. Manifest key `be-104`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`.
+- `PhysJS.UpperHybrid.upper_hybrid_eq`, a complete proof that the cold
+  perpendicular ansatz gives `ω² = ω_pe² + ω_ce²`. Manifest key `be-105`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`.
+- `PhysJS.ColdPlasmaCutoff.cutoff_R` and `cutoff_L`, complete proofs of the
+  nonnegative R and L roots, and `whistler_limit` from the simplified R-mode
+  dispersion. Manifest key `be-106`. Not a catalog entry yet. The intended
+  kind is `bridge`. The covers line still begins with `derivation-step`.
+  The Stix index is a hypothesis.
+- `PhysJS.LowerHybrid.lower_hybrid_eq`, a complete proof of
+  `ω_LH² = 1/(1/ω_pi² + 1/(ω_ci ω_ce))` from the ordered cold balance.
+  Manifest key `be-107`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.ObliqueMagnetosonic.phase_speed_eq`, a complete proof of the
+  oblique fast and slow roots of the `be-69` quartic. Manifest key
+  `be-108`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`. Not a second proof of
+  the perpendicular polarization.
+- `PhysJS.BennettPinch.bennett_eq`, a complete proof of the pinch integral
+  `μ0 I(R)²/(8 π) = ∫ 2 π r p dr`. Equal electron and ion temperatures
+  give `I = sqrt(16 π N k_B T/μ0)`, not the single-population factor `8`.
+  Manifest key `be-109`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.LossCone.loss_cone_eq`, a complete proof that
+  `sin² θ_lc = B0/Bm = 1/R_m`. Manifest key `be-110`. Not a catalog entry
+  yet. The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`.
+- `PhysJS.GradBDrift.drift_magnitude`, a complete proof of the signed
+  grad-B and vacuum-curvature speeds and their sum. Manifest key `be-111`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`.
+- `PhysJS.ExBDrift.drift_eq`, a complete proof that `v_x = E_y/B` and
+  `v_y = −E_x/B`. Manifest key `be-112`. Not a catalog entry yet. The
+  intended kind is `bridge`. The covers line still begins with
+  `derivation-step`.
+- `PhysJS.LandauDamping.damping_eq`, a complete proof of the Landau rate
+  from a Maxwellian slope and a residue hypothesis. The contour integral
+  is not evaluated. Manifest key `be-113`. Not a catalog entry yet. The
+  intended kind is `bridge`. The covers line still begins with
+  `derivation-step`.
+- `PhysJS.DebyeSphere.coulomb_argument`, a complete proof that
+  `Λ = λ_D/b_90 = 9 N_D` for `b_90` at `(3/2) k_B T`. Manifest key
+  `be-114`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`. The logarithm is not
+  derived.
+- `PhysJS.MultiDebye.debye_two`, a complete proof that two Boltzmann
+  species add in `1/λ_D²`. Manifest key `be-115`. Not a catalog entry yet.
+  The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`.
+- `PhysJS.LorentzResistivity.resistivity_eq`, a complete proof of the
+  kinetic resistivity `(π √(2π)/8)` from the conductivity moment
+  `8/√π`, which is a hypothesis. The typed reference prefactor
+  `(4 √(2π)/3)` is a different closure and equals `(32/(3π))` times the
+  kinetic one. Manifest key `be-116`. Not a catalog entry yet. The
+  intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. Not the Spitzer–Härm factor.
+- `PhysJS.ResistiveSlab.decay_time`, a complete proof that the fundamental
+  slab mode decays at `τ = μ0 σ L²/π²`, with `S/Rm = v_A/v`. Manifest key
+  `be-117`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`.
+- `PhysJS.ParkerCritical.critical_radius`, a complete proof that both
+  factors of the isothermal wind vanish at `r_c = GM/(2 c_s²)`. Manifest
+  key `be-118`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`.
+- `PhysJS.ParkerSpiral.spiral_ratio`, a complete proof that
+  `B_φ/B_r = −Ω r sinθ/v_r`. Manifest key `be-119`. Not a catalog entry
+  yet. The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`.
+- `PhysJS.ChapmanFerraro.standoff_eq`, a complete proof that a doubled
+  dipole and ram pressure give `(R/R_E)⁶ = 2 B_E²/(μ0 ρ v²)`. Manifest
+  key `be-120`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`.
+- `PhysJS.LawsonBreakeven.breakeven_eq`, a complete proof that 50–50 DT
+  breakeven is `n τ = 12 k_B T/(⟨σv⟩ E)`. Manifest key `be-121`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`.
+- `PhysJS.LangmuirProbe.floating_potential`, a complete proof of the
+  floating potential from Bohm ion flux and Boltzmann electron flux.
+  Manifest key `be-122`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`. Not
+  Child–Langmuir.
+- `PhysJS.CrossFieldDiffusion.diffusion_ratio`, a complete proof that
+  `D_⊥/D_∥ = 1/(1 + ω_c² τ²)`. Manifest key `be-123`. Not a catalog entry
+  yet. The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`.
+- `PhysJS.Firehose.firehose_threshold`, a complete proof that the CGL
+  firehose root is negative iff `β_∥ − β_⊥ > 2`. Manifest key `be-124`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not a proof of `be-76`.
+- `PhysJS.MirrorInstability.mirror_threshold`, a complete proof that the
+  mirror threshold `β_⊥ (T_⊥/T_∥ − 1) > 1` is `T_⊥/T_∥ − 1 > 1/β_⊥`.
+  Manifest key `be-125`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`. Not the
+  loss cone.
 
 ### Changed
 

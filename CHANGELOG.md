@@ -244,6 +244,43 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Manifest key `be-125`. Not a catalog entry yet. The intended kind is
   `bridge`. The covers line still begins with `derivation-step`. Not the
   loss cone.
+- `PhysJS.CombDrive.force_eq`, a complete proof that both sidewalls and
+  coenergy give `F = n ε h V² / g`. Manifest key `be-126`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`. One sidewall leaves the coenergy `1/2`. Not
+  `be-79`.
+- `PhysJS.SubthresholdSwing.swing_eq`, a complete proof that one decade of
+  weak-inversion current is `S = ln(10) (k_B T/e) (1 + C_d/C_ox)`. Manifest
+  key `be-127`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`. Not `be-82`.
+- `PhysJS.BoostConverter.boost_ratio`, a complete proof that volt-second
+  balance gives `V_out/V_in = 1/(1 − D)`. Manifest key `be-128`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`. Not the buck ratio.
+- `PhysJS.FinEfficiency.efficiency_eq`, a complete proof that an adiabatic
+  rectangular fin has `m = √(2 h/(k t))` and `η = tanh(m L)/(m L)`.
+  Manifest key `be-129`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`. Not one
+  face and not an infinite fin.
+- `PhysJS.ThermoelectricGenerator.efficiency_eq`, a complete proof that the
+  optimum current gives
+  `η = (1 − T_c/T_h) (√(1 + Z T_m) − 1)/(√(1 + Z T_m) + T_c/T_h)`. Manifest
+  key `be-130`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`. Not matched load
+  and not Carnot alone.
+- `PhysJS.Joukowsky.joukowsky_eq`, a complete proof that `Δp = ρ c Δv` and
+  the thin-wall speed is `c = √(K/ρ) / √(1 + (K/E)(D/e_wall))`. Manifest
+  key `be-131`. Not a catalog entry yet. The intended kind is `bridge`.
+  The covers line still begins with `derivation-step`. Not `ρ (Δv)²` and
+  not a rigid pipe.
+- `PhysJS.CoaxialCapacitance.capacitance_per_length`, a complete proof that
+  `C' = 2 π ε / ln(b/a)`. Manifest key `be-132`. Not a catalog entry yet.
+  The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. Not `ε A/d`.
+- `PhysJS.DampingRatio.damping_ratio`, a complete proof that
+  `ζ = c / (2 √(k m))` and that, for `c ≥ 0`, critical damping is `ζ = 1`.
+  Manifest key `be-133`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`.
 
 ### Changed
 

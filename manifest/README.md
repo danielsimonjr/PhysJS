@@ -123,6 +123,54 @@ Three further keys, `be-74` through `be-76`, are the candidates in the 2026-10-0
 
 `be-102` is the Landauer conductance, on `PhysJS.LandauerConductance.conductance_eq`. It is not a catalog entry yet. The intended kind is `bridge`. The covers line still begins with `derivation-step`. `channel_rate` cancels `L` and `v` to `1/h`. Spin `2` and `Δμ = e V` give `G = (2 e²/h) Σ T_n`. `spin_resolved_not_two` is one spin. The Hall conductance and Landauer erasure are not this row.
 
+`be-103` through `be-125` are the candidates in the 2026-10-04 plasma and space dogfood report. The UPT catalog on `master` runs through `102`, so these numbers are free. They are not catalog entries yet. The intended kind is `bridge`. Each covers line still begins with `derivation-step`. None restates `be-67`, `be-69`, `be-74`, or `be-76`.
+
+`be-103` is the cold Bohm sheath, on `PhysJS.BohmSheath.cold_bohm_threshold`. Cold ions and Boltzmann electrons require `u0² ≥ k_B T_e/m_i`. The nested `warmSound` object is `warm_sound_eq`: `γ_i = 3` from `p ∝ n³` gives `c_s² = (k_B T_e + 3 k_B T_i)/m_i`. `γ_i = 5/3` is not that closure. A kinetic sheath is not this row. The reference names `cold_bohm_threshold` only.
+
+`be-104` is the cold ion-acoustic dispersion, on `PhysJS.IonAcoustic.dispersion_eq`. Continuity, ion momentum, and Poisson with Boltzmann electrons give `ω² = k² c_s²/(1 + k² λ_De²)`, with `c_s² = k_B T_e/m_i` and `λ_De² = ε0 k_B T_e/(n0 e²)`. A kinetic dispersion is not this row.
+
+`be-105` is the upper hybrid, on `PhysJS.UpperHybrid.upper_hybrid_eq`. Cold electrons, `B` along `z`, and the perpendicular ansatz give `ω² = n e²/(ε0 m) + (e B/m)²`. This is not `ω_pe` alone.
+
+`be-106` is the R cutoff, on `PhysJS.ColdPlasmaCutoff.cutoff_R`. The Stix index is a hypothesis. For `ω_c ≥ 0`, `ω_R = (ω_c + sqrt(ω_c² + 4 ω_p²))/2`. The nested `cutoffL` object is the L root. The nested `whistlerLimit` object drops the leading `1` and replaces `ω_c − ω` by `ω_c`, and with `n = c k/ω` and `d_e = c/ω_p` gives `ω = ω_c (k d_e)²`. The reference names `cutoff_R` only.
+
+`be-107` is the lower hybrid, on `PhysJS.LowerHybrid.lower_hybrid_eq`. The mass identity `ω_pe²/ω_ce² = ω_pi²/(ω_ci ω_ce)` and the ordered balance `1 + ω_pi²/(ω_ci ω_ce) = ω_pi²/ω²` give `ω² = 1/(1/ω_pi² + 1/(ω_ci ω_ce))`. `dense_limit` drops the leading `1` and is a separate hypothesis. Not a cyclotron monomial.
+
+`be-108` is the oblique fast and slow magnetosonic pair, on `PhysJS.ObliqueMagnetosonic.phase_speed_eq`. The `be-69` quartic with `k_∥ = k cos θ` is a hypothesis. At `θ = π/2` the fast root is `c_s² + v_A²` and the slow root is `0`. That is the perpendicular value and not a second proof of `be-69`. At `θ = 0` the roots are the larger and smaller of `c_s²` and `v_A²`.
+
+`be-109` is the Bennett pinch, on `PhysJS.BennettPinch.bennett_eq`. Off-axis force balance and differentiability through the axis give `μ0 I(R)²/(8 π) = ∫₀^R 2 π r p dr`. The nested `equalTemperature` object is the hydrogenic reading `∫ p dA = 2 N k_B T`, so `I = sqrt(16 π N k_B T/μ0)`. The single-population factor `8` is `∫ p dA = N k_B T` and is not that current. The reference names `bennett_eq` only.
+
+`be-110` is the magnetic-mirror loss cone, on `PhysJS.LossCone.loss_cone_eq`. Conserved `μ` and energy, with vanishing parallel speed at the mirror, give `sin² θ_lc = B0/Bm = 1/R_m`. Pitch-angle scattering is not this row.
+
+`be-111` is grad-B plus vacuum curvature drift, on `PhysJS.GradBDrift.drift_magnitude`. The speeds are `m v_⊥² |∇B|/(2 q B²)` and `m v_∥² |∇B|/(q B²)`, and their sum is `m (v_∥² + v_⊥²/2) |∇B|/(q B²)`. High-β curvature, where `κ ≠ |∇B|/B`, is a different vector. This is the scalar speed, not a coefficient with `B³` in the denominator.
+
+`be-112` is the `E×B` drift, on `PhysJS.ExBDrift.drift_eq`. Steady balance with `B` along `z` gives `v_x = E_y/B` and `v_y = −E_x/B`. The charge sign cancels.
+
+`be-113` is Landau damping, on `PhysJS.LandauDamping.damping_eq`. The Maxwellian slope is proved. The residue formula is a hypothesis, not a contour integral, and gives `γ = −sqrt(π/8) ω (ω/(k v_t))³ exp(−ω²/(2 k² v_t²))`. The nested `bohmGross` object fixes the exponent under Bohm–Gross and does not set `ω = ω_p`. The reference names `damping_eq` only.
+
+`be-114` is the Debye sphere and the Coulomb argument, on `PhysJS.DebyeSphere.coulomb_argument`. At `(1/2) μ v_rel² = (3/2) k_B T`, `b_90 = e²/(12 π ε0 k_B T)` and `Λ = λ_D/b_90 = 9 N_D`. The angular integral and `ln Λ` are not evaluated. The one-species Debye length is an input.
+
+`be-115` is the two-species Debye length, on `PhysJS.MultiDebye.debye_two`. Linearized Boltzmann responses add: `1/λ_D² = 1/λ₁² + 1/λ₂²`. The one-species length is not restated.
+
+`be-116` is the Lorentz resistivity, on `PhysJS.LorentzResistivity.resistivity_eq`. The Rutherford transport cross section and the conductivity moment `σ = (8/√π) n_e e²/(m ν(v_T))` are hypotheses. The Gaussian integral is not evaluated. The kinetic prefactor is `π √(2π)/8`. The nested `referenceResistivity` object is the typed closure `4 √(2π)/3` from `1/τ_e = (4/(3 √π)) ν(v_T)`, and `η_ref = (32/(3π)) η`. The Spitzer–Härm factor `0.51` is not this row. The reference names `resistivity_eq` only.
+
+`be-117` is resistive slab decay, on `PhysJS.ResistiveSlab.decay_time`. `∂B/∂t = η_m ∂²B/∂x²` with `η_m = 1/(μ0 σ)` is a hypothesis. The fundamental mode decays at `τ = μ0 σ L²/π²`. A denominator `4π` is not `π²`. The nested `lundquist` object is `S/Rm = v_A/v`. This is not the Reynolds analogy. The reference names `decay_time` only.
+
+`be-118` is the Parker critical radius, on `PhysJS.ParkerCritical.critical_radius`. The isothermal spherical wind factors, and the critical point is both factors vanishing: `v² = c_s²` and `r_c = GM/(2 c_s²)`. The `2` is spherical divergence.
+
+`be-119` is the Parker spiral, on `PhysJS.ParkerSpiral.spiral_ratio`. `B_φ/B_r = −Ω r sinθ/v_r`. `sinθ` is a real parameter. Dropping the sign is a different spiral.
+
+`be-120` is the Chapman–Ferraro standoff, on `PhysJS.ChapmanFerraro.standoff_eq`. A doubled dipole is a hypothesis. Ram balance at `K = 1` gives `(R/R_E)⁶ = 2 B_E²/(μ0 ρ v²)`. Specular `2 ρ v²` replaces the numerator `2` by `1`. Magnetic pressure is an input. This is not a proof of `be-74`.
+
+`be-121` is Lawson breakeven, on `PhysJS.LawsonBreakeven.breakeven_eq`. A 50–50 Maxwellian mix with bremsstrahlung neglected gives `n τ = 12 k_B T/(⟨σv⟩ E)`. The `12` is `4 × 3`. The Maxwellian average is not computed. This is not an evaluated triple product.
+
+`be-122` is the Langmuir floating potential, on `PhysJS.LangmuirProbe.floating_potential`. The nested `bohmFlux` object is the ion flux after `e Δφ = k_B T_e/2`. Equating it to the electron flux gives `e Φ/k_B T = (1/2) ln(2 π m_e/m_i) − 1/2`. This is not Child–Langmuir. The reference names `floating_potential` only.
+
+`be-123` is classical cross-field diffusion, on `PhysJS.CrossFieldDiffusion.diffusion_ratio`. The steady drift balance and Einstein's relation on each mobility, the same relation as `be-70` and not re-proved here, give `D_⊥/D_∥ = 1/(1 + ω_c² τ²)`. The ratio is even in the sign of `ω_c`. Bohm's `1/16` agrees only when `α² = 15`.
+
+`be-124` is the firehose threshold, on `PhysJS.Firehose.firehose_threshold`. The CGL root is a hypothesis. It is negative iff `p_∥ − p_⊥ > B²/μ0`, and with `β = 2 μ0 p/B²` iff `β_∥ − β_⊥ > 2`. That beta is the `be-76` definition. `beta_eq` is not reproved, and `be-76` does not prove this inequality.
+
+`be-125` is the mirror threshold, on `PhysJS.MirrorInstability.mirror_threshold`. The hypothesis `β_⊥ (T_⊥/T_∥ − 1) > 1` is `T_⊥/T_∥ − 1 > 1/β_⊥`. Omitting the `2` in beta replaces `1/β` by `2/β`. The kinetic integral is not evaluated. This is not the loss cone and not a proof of `be-76`.
+
 `be-16` is kind `bridge` on `PhysJS.Landauer.erasure_eq`, the equal-level two-state case. The covers line still begins with `derivation-step`. It covers the encoded scale `⟨E⟩ − F = k_B T log 2` for the equal-level two-state ensemble at `T > 0`. `equal_levels` remains the entropy `k_B log 2`. At `T > 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the Helmholtz closed form does not separate the levels. The inequality `E ≥ T ΔS` for an arbitrary protocol and the Bérut confrontation are not this row.
 
 `be-29` is a property `formalRef` on `PhysJS.Jarzynski.jensen_work`. `rejected.ts` marks the row not-a-bridge. `ΔF = −(1/β) log(∑ p_i exp(−β W_i))` is the definition used here, and a finite probability with `β > 0` gives `⟨W⟩ ≥ ΔF`. The reversed inequality on two unequal work values is the negative control. Jarzynski's theorem and the Gaussian identity are not this row.

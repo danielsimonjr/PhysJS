@@ -171,6 +171,24 @@ Three further keys, `be-74` through `be-76`, are the candidates in the 2026-10-0
 
 `be-125` is the mirror threshold, on `PhysJS.MirrorInstability.mirror_threshold`. The hypothesis `β_⊥ (T_⊥/T_∥ − 1) > 1` is `T_⊥/T_∥ − 1 > 1/β_⊥`. Omitting the `2` in beta replaces `1/β` by `2/β`. The kinetic integral is not evaluated. This is not the loss cone and not a proof of `be-76`.
 
+`be-126` through `be-133` are the candidates in the 2026-10-05 engineering-physicist dogfood report. The UPT catalog on `master` runs through `125`, so these numbers are free. They are not catalog entries yet. The intended kind is `bridge`. Each covers line still begins with `derivation-step`.
+
+`be-126` is the comb-drive force, on `PhysJS.CombDrive.force_eq`. Both sidewalls give `C = 2 n ε h x / g`. The lateral coenergy force is `(1/2) V² dC/dx`, so `F = n ε h V² / g`. One sidewall leaves the coenergy `1/2`. This is not `be-79`.
+
+`be-127` is the subthreshold swing, on `PhysJS.SubthresholdSwing.swing_eq`. Boltzmann weak inversion and the gate–depletion divider, over one decade of current, give `S = ln(10) (k_B T/e) (1 + C_d/C_ox)`. Dropping `C_d` is not the swing. This is not `be-82`.
+
+`be-128` is the ideal boost ratio, on `PhysJS.BoostConverter.boost_ratio`. Volt-second balance `V_in D + (V_in − V_out)(1 − D) = 0` gives `V_out/V_in = 1/(1 − D)`. No real duty is also the buck ratio `D`.
+
+`be-129` is the adiabatic-tip fin, on `PhysJS.FinEfficiency.efficiency_eq`. The fin equation with `θ'(L) = 0` gives `η = tanh(m L)/(m L)`. A rectangle with both faces, `P/A = 2/t`, gives `m = √(2 h/(k t))`. One face is not that `m`, and `tanh` is not `1`.
+
+`be-130` is the thermoelectric generator, on `PhysJS.ThermoelectricGenerator.efficiency_eq`. With `ΔT = T_c − T_h`, hot-junction heat `Q = S T_h I − I² R/2 − K ΔT`, and load power `P = I (S (T_h − T_c) − I R)`, stationarity at `m = √(1 + Z T_m)` gives `η = (1 − T_c/T_h) (m − 1)/(m + T_c/T_h)`. Matched load is not that current. The Carnot factor alone is not this efficiency.
+
+`be-131` is the Joukowsky pressure and thin-wall speed, on `PhysJS.Joukowsky.joukowsky_eq`. Momentum across the front is `Δp = ρ c Δv`. Compressibility plus hoop strain is `c = √(K/ρ) / √(1 + (K/E)(D/e_wall))`. `ρ (Δv)²` is not the pressure jump, and the rigid pipe drops the wall term.
+
+`be-132` is coaxial capacitance per length, on `PhysJS.CoaxialCapacitance.capacitance_per_length`. The cylindrical field integrates to `C' = 2 π ε / ln(b/a)`. Dropping `2 π` is not this capacitance. A parallel plate is not this logarithm.
+
+`be-133` is the damping ratio, on `PhysJS.DampingRatio.damping_ratio`. Matching `c/m` to `2 ζ ω` with `ω = √(k/m)` gives `ζ = c / (2 √(k m))`. For `c ≥ 0` the discriminant vanishes iff `ζ = 1`. Dropping the `2` is not this ratio.
+
 `be-16` is kind `bridge` on `PhysJS.Landauer.erasure_eq`, the equal-level two-state case. The covers line still begins with `derivation-step`. It covers the encoded scale `⟨E⟩ − F = k_B T log 2` for the equal-level two-state ensemble at `T > 0`. `equal_levels` remains the entropy `k_B log 2`. At `T > 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the Helmholtz closed form does not separate the levels. The inequality `E ≥ T ΔS` for an arbitrary protocol and the Bérut confrontation are not this row.
 
 `be-29` is a property `formalRef` on `PhysJS.Jarzynski.jensen_work`. `rejected.ts` marks the row not-a-bridge. `ΔF = −(1/β) log(∑ p_i exp(−β W_i))` is the definition used here, and a finite probability with `β > 0` gives `⟨W⟩ ≥ ΔF`. The reversed inequality on two unequal work values is the negative control. Jarzynski's theorem and the Gaussian identity are not this row.

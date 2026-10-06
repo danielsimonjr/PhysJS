@@ -189,6 +189,34 @@ Three further keys, `be-74` through `be-76`, are the candidates in the 2026-10-0
 
 `be-133` is the damping ratio, on `PhysJS.DampingRatio.damping_ratio`. Matching `c/m` to `2 ζ ω` with `ω = √(k/m)` gives `ζ = c / (2 √(k m))`. For `c ≥ 0` the discriminant vanishes iff `ζ = 1`. Dropping the `2` is not this ratio.
 
+`be-134` through `be-146` are the candidates in the 2026-10-05 condensed-matter dogfood report, round 8. The UPT catalog on `master` runs through `133`, so these numbers are free. They are not catalog entries yet. The intended kind is `bridge`. Each covers line still begins with `derivation-step`.
+
+`be-134` is the Bloch `T^{3/2}` law, on `PhysJS.BlochLaw.bloch_law`. The Bose integral `I = ζ(3/2) √π/4` is a hypothesis, the same kind as `π⁴/15` in `be-90`. One Bohr magneton per magnon gives `ΔM = μ_B ζ(3/2) (k_B T/(4 π D))^{3/2}`. `g μ_B` at `g = 2` is not that moment. `heisenberg_fraction` substitutes `D = 2 J S a²` and puts the extra `1/S`. `ζ(3/2)` is not evaluated.
+
+`be-135` is the three-dimensional density of states, on `PhysJS.DensityOfStates3D.dos_3d`. Two spins and `E = ℏ² k²/(2 m)` give `g(E) = (1/(2 π²)) (2 m/ℏ²)^{3/2} √E`. One spin is half of that density.
+
+`be-136` is the two-dimensional density of states, on `PhysJS.DensityOfStates2D.dos_2d`. Two spins in the disk give `g(E) = m/(π ℏ²)`, independent of `E`. A valley factor other than `1` is not this density.
+
+`be-137` is the Thomas–Fermi wavevector, on `PhysJS.ThomasFermi.thomas_fermi`. Poisson plus `δn = g(E_F) e φ` gives `k_TF² = e² g(E_F)/ε0`. `g(E_F) = (3/2) n/E_F` is `PhysJS.FermiSea.dos_factor`, so `k_TF² = (e²/ε0) (3 n)/(2 E_F)`. This is not the prefactor of `be-135` and not a classical Debye length.
+
+`be-138` is the built-in voltage, on `PhysJS.BuiltinVoltage.builtin_voltage`. Boltzmann tails give `V_bi = (k_B T/e) ln(N_A N_D/n_i²)`. `n_p N_A = n_i²` is the conclusion of `be-99` as an input. This is not `be-82`.
+
+`be-139` is the semiconductor Fermi level, on `PhysJS.SemiconductorFermi.fermi_level`. Intrinsic `n = p` and `N_c/N_v = (m_e*/m_h*)^{3/2}` give the midgap offset `(3/4) k_B T ln(m_h*/m_e*)`. Complete ionization gives `E_c − E_F = k_B T ln(N_c/N_D)`.
+
+`be-140` is the Onsager frequency, on `PhysJS.OnsagerFrequency.onsager_frequency`. The step from `n` to `n + 1` cancels `γ`, so `F = ℏ A/(2 π e)` and `Δ(1/B) = 1/F`.
+
+`be-141` is the Josephson inductance at zero phase, on `PhysJS.JosephsonInductance.inductance_eq`. `I = I_c sin φ` and `V = (ℏ/(2 e)) dφ/dt` give `L_J = ℏ/(2 e I_c) = Φ₀/(2 π I_c)` at `φ = 0`. A finite phase is not this inductance. This is not the frequency of `be-59`.
+
+`be-142` is the lower critical field, on `PhysJS.LowerCritical.lower_critical`. The core cutoff is the hypothesis `j(r) = Φ₀/(2 π μ0 λ² r)` on `ξ ≤ r ≤ λ`. The London integral and `B_c1 = μ0 ε/Φ₀` give `B_c1 = (Φ₀/(4 π λ²)) ln(λ/ξ)`, with `Φ₀ = h/(2 e)`. This is not `be-96`.
+
+`be-143` is the AC Drude conductivity, on `PhysJS.AcDrude.ac_drude`. The cosine transform of `exp(−t/τ)` is `σ₀/(1 + ω² τ²)`, with `σ₀ = n e² τ/m` an input. Dropping the DC `1` is not this conductivity. This is not `be-123`.
+
+`be-144` is Matthiessen's rule, on `PhysJS.Matthiessen.matthiessen`. Independent exponential survivals give `1/τ = 1/τ₁ + 1/τ₂`, and one Drude factor makes `ρ = ρ₁ + ρ₂`. This is not a collision integral.
+
+`be-145` is the Stoner enhancement, on `PhysJS.Stoner.stoner`. The geometric series of the contact bubbles is `χ = χ_P/(1 − I g(E_F))` when `|I g(E_F)| < 1`. The pole is the same formula. `χ_P` is `be-94` and is not re-proved.
+
+`be-146` is the Gorter–Casimir fraction, on `PhysJS.GorterCasimir.gorter_casimir`. The exponent `4` is a hypothesis. The London depths of `be-75` then give `λ(T) = λ(0)/√(1 − (T/T_c)^4)`. This is not a BCS gap and not a second proof of `be-75`.
+
 `be-16` is kind `bridge` on `PhysJS.Landauer.erasure_eq`, the equal-level two-state case. The covers line still begins with `derivation-step`. It covers the encoded scale `⟨E⟩ − F = k_B T log 2` for the equal-level two-state ensemble at `T > 0`. `equal_levels` remains the entropy `k_B log 2`. At `T > 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the Helmholtz closed form does not separate the levels. The inequality `E ≥ T ΔS` for an arbitrary protocol and the Bérut confrontation are not this row.
 
 `be-29` is a property `formalRef` on `PhysJS.Jarzynski.jensen_work`. `rejected.ts` marks the row not-a-bridge. `ΔF = −(1/β) log(∑ p_i exp(−β W_i))` is the definition used here, and a finite probability with `β > 0` gives `⟨W⟩ ≥ ΔF`. The reversed inequality on two unequal work values is the negative control. Jarzynski's theorem and the Gaussian identity are not this row.

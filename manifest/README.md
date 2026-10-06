@@ -217,6 +217,56 @@ Three further keys, `be-74` through `be-76`, are the candidates in the 2026-10-0
 
 `be-146` is the Gorter–Casimir fraction, on `PhysJS.GorterCasimir.gorter_casimir`. The exponent `4` is a hypothesis. The London depths of `be-75` then give `λ(T) = λ(0)/√(1 − (T/T_c)^4)`. This is not a BCS gap and not a second proof of `be-75`.
 
+`be-147` through `be-170` are the candidates in the 2026-10-06 thermal, chemical, and engineering dogfood report, round 9. The UPT catalog on `master` runs through `133`, so these numbers are free. They are not catalog entries yet. The intended kind is `bridge`. Each covers line still begins with `derivation-step`.
+
+`be-147` is Arrhenius, on `PhysJS.Arrhenius.arrhenius_eq`. `R = N_A k_B` identifies the molar exponential with the molecular Boltzmann factor. The prefactor is not derived.
+
+`be-148` is Eyring, on `PhysJS.Eyring.eyring_eq`. The molar form calls `be-147`. `Ea = ΔH‡ + R T` is `R T² d(ln k)/dT`. Substituting that `Ea` back into a temperature-independent Arrhenius prefactor differs by `exp(−1)`.
+
+`be-149` is van 't Hoff, on `PhysJS.VanTHoff.vant_hoff`. It differentiates `be-150` at constant `ΔH°` and `ΔS°`. This is not a second proof of `be-150`.
+
+`be-150` is the Gibbs isotherm, on `PhysJS.GibbsIsotherm.gibbs_eq`. Equilibrium `Σ ν_i μ_i = 0` with `μ_i = μ_i° + R T ln a_i` is `ΔG° = −R T ln K`.
+
+`be-151` is Nernst from Gibbs, on `PhysJS.NernstGibbs.nernst_eq`. It calls `be-150` and uses `ΔG = −n F E` with `F = N_A e`. This is not a second proof of `be-150`.
+
+`be-152` is the integrated Clausius–Clapeyron equation, on `PhysJS.ClausiusClapeyron.integrated_eq`. The slope calls `be-71` and substitutes `Δv = R T/P`. The latent heat is constant and both temperatures are positive. This is not a second proof of `be-71`.
+
+`be-153` is Raoult, on `PhysJS.Raoult.raoult_eq`. It calls `be-150` twice, for the ideal mixture and the pure liquid. This is not a second proof of `be-150`.
+
+`be-154` is the Prandtl number, on `PhysJS.Prandtl.prandtl_eq`. The proved statement is `Pr = ν/α`, which is the product `Pr k = μ c_p`. This is not a correlation and not `be-86`.
+
+`be-155` is the Reynolds number, on `PhysJS.ReynoldsNumber.reynolds_eq`. The proved statement is the flux ratio `Re = (ρ v²)/(μ v/L) = v L/ν`. This is not `be-77`.
+
+`be-156` is the Biot number, on `PhysJS.Biot.biot_eq`. With `L_c = V/A`, `Bi` is the conduction resistance over the convection resistance.
+
+`be-157` is the Nusselt number, on `PhysJS.Nusselt.nusselt_eq`. `h = k (∂T/∂n)/ΔT` makes `Nu` the dimensionless wall gradient. This is not a correlation.
+
+`be-158` is the Schmidt number, on `PhysJS.Schmidt.schmidt_eq`. `Sc = ν/D` and `Le = α/D = Sc/Pr`. This is not a correlation.
+
+`be-159` is the Sherwood number, on `PhysJS.Sherwood.sherwood_eq`. `k_m = D (∂c/∂n)/Δc` makes `Sh` the dimensionless wall gradient. This is not a correlation.
+
+`be-160` is steady Fourier conduction, on `PhysJS.FourierConduction.fourier_eq`. Constant `q = −k dT/dx` integrates across the slab.
+
+`be-161` is Newton's law of cooling, on `PhysJS.NewtonCooling.newton_eq`. The lumped balance integrates to an exponential with `τ = ρ c V/(h A)`. Radiation in `T⁴` is not this row.
+
+`be-162` is the Otto efficiency, on `PhysJS.Otto.otto_eq`. The cold-air cycle at constant `γ > 1` gives `η = 1 − r^(1−γ)`.
+
+`be-163` is the Joule–Thomson coefficient, on `PhysJS.JouleThomson.joule_thomson_eq`. The enthalpy differential is a hypothesis. The ideal-gas bracket vanishes.
+
+`be-164` is the Planck spectrum, on `PhysJS.PlanckSpectrum.planck_eq`. The Bose factor is proved. The mode density `8 π ν²/c³` is a hypothesis.
+
+`be-165` is the Stefan–Boltzmann constant, on `PhysJS.StefanBoltzmann.stefan_boltzmann_eq`. `∫_0^∞ x³/(e^x − 1) dx = π⁴/15` is proved from `ζ(4) = π⁴/90`, and the hemisphere integrals give `c/4`. `h = 2 π ℏ` identifies `π²/(60 ℏ³ c²)` with `2 π⁵/(15 h³ c²)`.
+
+`be-166` is Wien's displacement law, on `PhysJS.WienDisplacement.wien_eq`. The positive root of `5 − x = 5 exp(−x)` is unique and lies in `(4, 5)`. The decimal is not evaluated. `x = 0` is an extraneous root of the same algebraic equation.
+
+`be-167` is Sackur–Tetrode, on `PhysJS.SackurTetrode.sackur_tetrode`. The thermal wavelength is `be-12`. Stirling `ln N! = N ln N − N` is a hypothesis, not the series.
+
+`be-168` is Saha, on `PhysJS.Saha.saha_eq`. The thermal factor is `be-12`. The electron spin weight `2` and the internal partition functions are omitted.
+
+`be-169` is Richardson–Dushman, on `PhysJS.RichardsonDushman.richardson_eq`. The energy tails are proved. The prefactor `4 π m e/h³` is a hypothesis, `e` is the elementary charge, and the tail is Boltzmann rather than Fermi–Dirac.
+
+`be-170` is Onsager reciprocity, on `PhysJS.OnsagerReciprocity.onsager_eq`. Mixed partials of a quadratic dissipation potential give `L12 = L21` at zero field. `thermoelectric_instance` applies `be-73` and does not re-prove `Π = S T`. `L12(B) = L21(−B)` is not this row.
+
 `be-16` is kind `bridge` on `PhysJS.Landauer.erasure_eq`, the equal-level two-state case. The covers line still begins with `derivation-step`. It covers the encoded scale `⟨E⟩ − F = k_B T log 2` for the equal-level two-state ensemble at `T > 0`. `equal_levels` remains the entropy `k_B log 2`. At `T > 0`, levels `E` and `E + δ` are the negative control. At `T = 0`, `β = 0`, so the Helmholtz closed form does not separate the levels. The inequality `E ≥ T ΔS` for an arbitrary protocol and the Bérut confrontation are not this row.
 
 `be-29` is a property `formalRef` on `PhysJS.Jarzynski.jensen_work`. `rejected.ts` marks the row not-a-bridge. `ΔF = −(1/β) log(∑ p_i exp(−β W_i))` is the definition used here, and a finite probability with `β > 0` gives `⟨W⟩ ≥ ΔF`. The reversed inequality on two unequal work values is the negative control. Jarzynski's theorem and the Gaussian identity are not this row.

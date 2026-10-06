@@ -7,6 +7,19 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- `be-147` through `be-170`, complete proofs of the twenty-four candidates
+  from the 2026-10-06 thermal, chemical, and engineering dogfood report.
+  Arrhenius, Eyring, the Gibbs isotherm, van 't Hoff, Nernst, the integrated
+  Clausius–Clapeyron equation, Raoult, the Prandtl, Reynolds, Biot, Nusselt,
+  Schmidt, and Sherwood identities, Fourier conduction, Newton cooling, the
+  Otto efficiency, the Joule–Thomson coefficient, the Planck spectrum, the
+  Stefan–Boltzmann constant, Wien's displacement law, Sackur–Tetrode, Saha,
+  Richardson–Dushman, and Onsager reciprocity. van 't Hoff, Nernst, and
+  Raoult call `PhysJS.GibbsIsotherm.gibbs_eq`. The integrated coexistence
+  curve calls `PhysJS.Clapeyron.slope_eq`. Sackur–Tetrode and Saha call
+  `PhysJS.ThermalDeBroglie.wavelength_eq`. The thermoelectric instance calls
+  `PhysJS.KelvinRelation.peltier_eq`. Not catalog entries yet. The intended
+  kind is `bridge`. Each covers line still begins with `derivation-step`.
 - `PhysJS.MagneticPressure.pressure_eq`, a complete proof that a linear
   inductor, `U = (L/2) I²`, and a long solenoid give the magnetic pressure
   `p = B²/(2 μ0)`. The monomial `p = C B²/μ0` leaves `C` unfixed. The

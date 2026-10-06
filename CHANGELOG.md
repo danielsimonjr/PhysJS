@@ -281,6 +281,67 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `ζ = c / (2 √(k m))` and that, for `c ≥ 0`, critical damping is `ζ = 1`.
   Manifest key `be-133`. Not a catalog entry yet. The intended kind is
   `bridge`. The covers line still begins with `derivation-step`.
+- `PhysJS.BlochLaw.bloch_law`, a complete proof that one Bohr magneton per
+  magnon and the Bose-integral hypothesis `I = ζ(3/2) √π/4` give
+  `ΔM = μ_B ζ(3/2) (k_B T/(4 π D))^{3/2}`. `g = 2` is not that moment.
+  `heisenberg_fraction` puts the extra `1/S`. Manifest key `be-134`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`. `ζ(3/2)` is not evaluated.
+- `PhysJS.DensityOfStates3D.dos_3d`, a complete proof that two spins and
+  `E = ℏ² k²/(2 m)` give
+  `g(E) = (1/(2 π²)) (2 m/ℏ²)^{3/2} √E`. Manifest key `be-135`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`. One spin is half of that density.
+- `PhysJS.DensityOfStates2D.dos_2d`, a complete proof that two spins in the
+  disk give `g(E) = m/(π ℏ²)`. Manifest key `be-136`. Not a catalog entry
+  yet. The intended kind is `bridge`. The covers line still begins with
+  `derivation-step`. A valley factor other than `1` is not this density.
+- `PhysJS.ThomasFermi.thomas_fermi`, a complete proof that Poisson and
+  `δn = g(E_F) e φ` give `k_TF² = e² g(E_F)/ε0 = (e²/ε0) (3 n)/(2 E_F)`,
+  using `PhysJS.FermiSea.dos_factor`. Manifest key `be-137`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`. Not `be-135` and not a classical Debye length.
+- `PhysJS.BuiltinVoltage.builtin_voltage`, a complete proof that Boltzmann
+  tails give `V_bi = (k_B T/e) ln(N_A N_D/n_i²)`. Manifest key `be-138`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. `n p = n_i²` is an input from
+  `be-99`. Not `be-82`.
+- `PhysJS.SemiconductorFermi.fermi_level`, a complete proof of the intrinsic
+  offset `(3/4) k_B T ln(m_h*/m_e*)` and the extrinsic line
+  `E_c − E_F = k_B T ln(N_c/N_D)`. Manifest key `be-139`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`. Not a Fermi–Dirac integral.
+- `PhysJS.OnsagerFrequency.onsager_frequency`, a complete proof that the
+  step `n → n + 1` cancels `γ`, so `F = ℏ A/(2 π e)`. Manifest key
+  `be-140`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`.
+- `PhysJS.JosephsonInductance.inductance_eq`, a complete proof that
+  `L_J = ℏ/(2 e I_c) = Φ₀/(2 π I_c)` at `φ = 0`. Manifest key `be-141`.
+  Not a catalog entry yet. The intended kind is `bridge`. The covers line
+  still begins with `derivation-step`. Not the frequency of `be-59`.
+- `PhysJS.LowerCritical.lower_critical`, a complete proof that the London
+  line energy on `ξ ≤ r ≤ λ` gives
+  `B_c1 = (Φ₀/(4 π λ²)) ln(λ/ξ)`. Manifest key `be-142`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`. The core cutoff is a hypothesis. Not `be-96`.
+- `PhysJS.AcDrude.ac_drude`, a complete proof that the cosine transform of
+  the causal relaxation is `σ₀/(1 + ω² τ²)`. Manifest key `be-143`. Not a
+  catalog entry yet. The intended kind is `bridge`. The covers line still
+  begins with `derivation-step`. Not `be-123`.
+- `PhysJS.Matthiessen.matthiessen`, a complete proof that independent
+  exponential survivals give `1/τ = 1/τ₁ + 1/τ₂` and `ρ = ρ₁ + ρ₂`.
+  Manifest key `be-144`. Not a catalog entry yet. The intended kind is
+  `bridge`. The covers line still begins with `derivation-step`. Not a
+  collision integral.
+- `PhysJS.Stoner.stoner`, a complete proof that the geometric series is
+  `χ = χ_P/(1 − I g(E_F))`, with the pole the same formula. Manifest key
+  `be-145`. Not a catalog entry yet. The intended kind is `bridge`. The
+  covers line still begins with `derivation-step`. `χ_P` is not re-proved.
+- `PhysJS.GorterCasimir.gorter_casimir`, a complete proof that the
+  hypothesis `p = 4` and the London depths give
+  `λ(T) = λ(0)/√(1 − (T/T_c)^4)`. Manifest key `be-146`. Not a catalog
+  entry yet. The intended kind is `bridge`. The covers line still begins
+  with `derivation-step`. Not a BCS gap and not a second proof of `be-75`.
 
 ### Changed
 

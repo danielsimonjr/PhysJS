@@ -1552,6 +1552,1033 @@
       "coverage": "covers its statement only",
       "leanProof": "complete",
       "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    },
+    {
+      "key": "be-171",
+      "bridgeId": "be-171",
+      "theorem": "PhysJS.CantileverStiffness.stiffness_eq",
+      "covers": "derivation-step: integrates the Euler-Bernoulli beam equation E I w'' = F (L - x) twice from the clamp (w(0) = w'(0) = 0) to get w(L) = F L^3 / (3 E I), hence k = F / w(L) = 3 E I / L^3 and, for I = b t^3 / 12, k = E b t^3 / (4 L^3). Premises are the beam equation, the moment F (L - x) and the clamp conditions; not shear deflection and not a derivation of the beam equation itself.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-172",
+      "bridgeId": "be-172",
+      "theorem": "PhysJS.CantileverFrequency.frequency_eq",
+      "covers": "derivation-step: from E I phi'''' = rho A omega^2 phi with the general mode a cos + b sin + c cosh + d sinh, the clamp and free-end conditions give a 2x2 system with determinant 2 (1 + cos(lam) cosh(lam)), so cos(lam) cosh(lam) = -1; omega = beta^2 sqrt(E I / (rho A)) and f1 = (lam^2 / 2 pi) sqrt(E I / (rho A L^4)). first_root proves by the intermediate value theorem that the first positive root exists, lies in (pi/2, pi) and is unique there, so pi^2/4 < lam^2 < pi^2. Not a decimal for lam_1 (1.8751 is not evaluated) and not an added-mass or damped frequency.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-173",
+      "bridgeId": "be-173",
+      "theorem": "PhysJS.SpringSoftening.stiffness_eq",
+      "covers": "derivation-step: with C(x) = eps0 A / (g - x) the coenergy force is F_e = (1/2) V^2 dC/dx = eps0 A V^2 / (2 (g-x)^2); the net-force slope gives k_eff = k - eps0 A V^2 / (g - x)^3 (HasDerivAt). pull_in_gap_eq shows equilibrium plus k_eff = 0 forces x = g/3 and V^2 = 8 k g^3 / (27 eps0 A), the be-79 value. Voltage control, parallel plates, no fringing; not charge control.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-174",
+      "bridgeId": "be-174",
+      "theorem": "PhysJS.QuarterBridge.bridge_eq",
+      "covers": "derivation-step: from Kirchhoff current law on the two dividers (reference reads Vex/2, gauge R(1+x) reads Vex(1+x)/(2+x)) the output is Vout/Vex = x / (4 + 2x). small_signal proves the slope at 0 is 1/4, nonlinearity_eq the exact deficit x^2 / (4 (2 + x)). Three equal fixed resistors, no lead wire or self-heating; not half or full bridge.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-175",
+      "bridgeId": "be-175",
+      "theorem": "PhysJS.CoaxialImpedance.impedance_from_gauss",
+      "covers": "derivation-step: L' = (mu/2pi) ln(b/a) from the integrated Ampere flux, C' from be-132 (CoaxialCapacitance.capacitance_per_length applied to the Gauss integral), and the telegrapher coefficient matching Z0^2 C' = L' give Z0 = (1/2pi) sqrt(mu/eps) ln(b/a). Lossless TEM, uniform line; the 59.96 ohm decimal is not evaluated, and not a lossy or microstrip line.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-176",
+      "bridgeId": "be-176",
+      "theorem": "PhysJS.SauerbreyMass.sauerbrey_eq",
+      "covers": "derivation-step: linearizes f(h) = v/(2h) (f0 = v/(2h), v = sqrt(mu_q/rho_q)) under the added thickness dh = dm/(rho_q A) to get df = -f0 dh / h = -2 f0^2 dm / (A sqrt(rho_q mu_q)); exact_shift gives the unlinearized -f0 dh/(h+dh). Premises: film acts as extra crystal thickness, rigid, dh << h; not a viscoelastic (Kanazawa) or liquid load.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-177",
+      "bridgeId": "be-177",
+      "theorem": "PhysJS.EquipartitionDisplacement.displacement_eq",
+      "covers": "derivation-step: from the spring law dU/dx = k x with U(0) = 0, U = (k/2) x^2; the Boltzmann weight integrates to sqrt(2 pi kB T / k), normalizes to the Gaussian of variance kB T / k, and the mean square is kB T / k with energy (1/2) kB T per mode. Reuses be-87 machinery (CapacitorNoise). Classical, harmonic, equilibrium; not the quantum variance and not (3/2) kB T.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-178",
+      "bridgeId": "be-178",
+      "theorem": "PhysJS.ThermomechanicalNoise.force_noise_eq",
+      "covers": "derivation-step: for m v' + c v = F with white two-sided force density S2, the Wiener-Khinchin velocity variance is S2/(2 c m) (Lorentzian integral pi/(c m)); classical equipartition m <v^2> = kB T gives S2 = 2 c kB T and the one-sided S_F = 2 S2 = 4 kB T c. acceleration_floor_eq gives 4 kB T w0 /(m Q) via c = m w0 / Q. Equipartition and white-spectrum are premises; classical limit only, not the quantum fluctuation-dissipation form.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-179",
+      "bridgeId": "be-179",
+      "theorem": "PhysJS.BolometerNep.nep_eq",
+      "covers": "derivation-step: the thermal Langevin equation C dT' + G dT = P_n with white two-sided density S2 gives <dT^2> = S2/(2 G C) (Lorentzian integral); canonical energy variance <dE^2> = kB T^2 C with dE = C dT gives <dT^2> = kB T^2 / C, so S2 = 2 kB T^2 G and the one-sided NEP^2 = 4 kB T^2 G. The canonical energy variance and white spectrum are premises; single thermal link, thermal-fluctuation limit only (no Johnson or photon noise).",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-180",
+      "bridgeId": "be-180",
+      "theorem": "PhysJS.PeltierMaxDeltaT.max_delta_t_eq",
+      "covers": "derivation-step: the cold-side heat Qc(I) = S Tc I - I^2 R/2 - K dT is a concave quadratic with stationary current I* = S Tc/R and maximum S^2 Tc^2/(2R) - K dT; with Z = S^2/(R K), heat can be pumped iff dT <= (1/2) Z Tc^2, with equality at the zero-load edge. Constant properties, Peltier + half-Joule + conduction only; not multistage and not temperature-dependent S.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-181",
+      "bridgeId": "be-181",
+      "theorem": "PhysJS.HarvesterPower.harvester_eq",
+      "covers": "derivation-step: the steady state z = a cos(wt) + b sin(wt) of m z'' + c z' + k z = m A cos(wt) gives a^2 + b^2 = (mA)^2/((k - m w^2)^2 + (c w)^2); at resonance the cycle-averaged dissipation (1/2) c_e w^2 (a^2+b^2) (proved as an integral over one period) with c_e = 2 m wn ze, c_m = 2 m wn zm yields P = m ze A^2 / (4 wn (ze+zm)^2), and at ze = zm P = m A^2 / (16 zm wn). matched_is_max proves ze = zm maximizes it. Mechanical power into the electrical damper, not rectified circuit-load power.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-182",
+      "bridgeId": "be-182",
+      "theorem": "PhysJS.MeanFreePath.mean_free_path_eq",
+      "covers": "derivation-step: from p_F = hbar k_F = m* v_F, free flight dx/dt = v_F over tau and E_F = hbar^2 k_F^2/(2m*), proves l = v_F tau = hbar k_F tau/m*, k_F l = 2 E_F tau/hbar and (1 <= k_F l iff hbar/tau <= 2 E_F). It is not a derivation of tau or of anisotropic bands.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-183",
+      "bridgeId": "be-183",
+      "theorem": "PhysJS.BlochOscillation.bloch_frequency_eq",
+      "covers": "derivation-step: from hbar dk/dt = eE (HasDerivAt) and one zone traversal k(T)=k(0)+2pi/a with omega T = 2pi, proves T = 2 pi hbar/(eEa) and omega_B = eEa/hbar. It is not a derivation of the band, of omega_B tau >> 1 or of the absence of Zener tunnelling.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-184",
+      "bridgeId": "be-184",
+      "theorem": "PhysJS.PippardCoherence.pippard_eq",
+      "covers": "derivation-step: from xi0 = hbar v_F/(pi Delta), l = v_F tau and the additive energy-scale premise hbar v_F/xi = pi Delta + hbar/(alpha tau), proves 1/xi = 1/xi0 + 1/(alpha l), the closed form xi = xi0 alpha l/(xi0 + alpha l) and xi <= min(xi0, alpha l). alpha is a convention-dependent positive hypothesis and the additivity premise and BCS xi0 are not derived.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-185",
+      "bridgeId": "be-185",
+      "theorem": "PhysJS.ClausiusMossotti.clausius_mossotti_eq",
+      "covers": "derivation-step: from P = eps0 (eps_r - 1) E, P = N alpha E_loc and the Lorentz local field E_loc = E + P/(3 eps0), proves (eps_r - 1)/(eps_r + 2) = N alpha/(3 eps0). It is not a derivation of the Lorentz field, of alpha, or a statement for polar or anisotropic media.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-186",
+      "bridgeId": "be-186",
+      "theorem": "PhysJS.DepairingCurrent.depairing_eq",
+      "covers": "derivation-step: from the GL supercurrent J(q) = (Phi0/(2 pi mu0 lambda^2)) q (1 - xi^2 q^2) (premise), proves dJ/dq = 0 at q* = 1/(sqrt3 xi), J(q) <= J(q*) for all q >= 0, and J(q*) = Phi0/(3 sqrt3 pi mu0 lambda^2 xi); also J_d = (2 sqrt2/(3 sqrt3)) B_c/(mu0 lambda) for B_c = Phi0/(2 sqrt2 pi lambda xi). The GL J(q) and B_c are inputs.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-187",
+      "bridgeId": "be-187",
+      "theorem": "PhysJS.SchottkyMott.schottky_mott_eq",
+      "covers": "derivation-step: from a common-vacuum-level ledger E_FM = E_vac - Phi_M, E_c = E_vac + delta - chi_s, phi_Bn = E_c - E_FM and the ideal premise delta = 0, proves phi_Bn = Phi_M - chi_s; also phi_Bn = Phi_M - chi_s + delta, pinned_not_ideal for delta != 0 and phi_Bp + phi_Bn = E_g. It is not a model of interface states or the pinning slope.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-188",
+      "bridgeId": "be-188",
+      "theorem": "PhysJS.WannierExciton.exciton_eq",
+      "covers": "derivation-step: from the 1s trial energy E(a) = hbar^2/(2 mu a^2) - k/a with k = k0/eps_r (premise), proves the unique minimizer a = hbar^2/(mu k), binding energy mu k^2/(2 hbar^2), and hence -E_X = (mu/m) Ry/eps_r^2, a_X = a_B eps_r m/mu and -E_X = k/(2 a_X). It is not a band-structure calculation and uses no GaAs numbers.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-189",
+      "bridgeId": "be-189",
+      "theorem": "PhysJS.ChargingEnergy.charging_energy_eq",
+      "covers": "derivation-step: from constant C and the work integral E_C = integral_0^e (q/C) dq (proved), gives E_C = e^2/(2C); also addition_energy (2N+1) E_C and thermal_ratio kBT/E_C = 2C kBT/e^2. The regime kBT << E_C is not a theorem.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-190",
+      "bridgeId": "be-190",
+      "theorem": "PhysJS.WeakLocalization.weak_localization_eq",
+      "covers": "derivation-step: from the 2D return probability 1/(4 pi D t) and the Cooperon weight Delta_sigma = -(2e^2 D/(pi hbar)) integral_tau^tau_phi P dt (convention-dependent hypothesis), proves integral dt/t = ln(tau_phi/tau) and Delta_sigma = -(e^2/(pi h)) ln(tau_phi/tau) with h = 2 pi hbar, negative and decreasing in tau_phi. The weight, spin counting and symmetry class are hypotheses; no antilocalization.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-191",
+      "bridgeId": "be-191",
+      "theorem": "PhysJS.ThermalConductanceQuantum.thermal_conductance_eq",
+      "covers": "derivation-step: from the 1D channel heat current J = integral h nu n_B dnu, kappa = integral h nu (dn/dT) dnu (HasDerivAt of the Bose occupation proved) and the proved Bose integral integral_0^inf x^2 e^x/(e^x-1)^2 dx = pi^2/3, proves kappa = pi^2 kB^2 T/(3h). The exchange of d/dT with the integral, adiabatic contacts and mode counting are premises.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-192",
+      "bridgeId": "be-192",
+      "theorem": "PhysJS.KondoTemperature.kondo_eq",
+      "covers": "derivation-step: from the poor-man's-scaling flow dg/dl = g^2 - g^3/2 (hypothesis) on 0<g<2 with a strong-coupling reference g1, proves k_B T_K = D0 K(g1) sqrt(g0/(1-g0/2)) exp(-1/g0), K = exp(-Phi(g1)); the exponent and sqrt(g) are derived, K(g1) depends on the reference coupling (K_injective) so the catalog prefactor 1 is a convention hypothesis. The flow and its coefficients are not derived from the Kondo Hamiltonian.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-193",
+      "bridgeId": "be-193",
+      "theorem": "PhysJS.SweetParker.inflow_eq",
+      "covers": "derivation-step: from mass conservation v_in L = v_A δ and diffusion balance v_in = η/δ with outflow at v_A, v_in = v_A S^(-1/2) with S = L v_A/η (rpow and 1/sqrt forms), plus sub-Alfvenic and wrong-power separations. Not a proof that the outflow is v_A, or that real reconnection is this slow.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-194",
+      "bridgeId": "be-194",
+      "theorem": "PhysJS.SedovTaylor.radius_eq",
+      "covers": "derivation-step: the mass/length/time exponent system for R = ξ E^a t^b ρ^c has the unique solution (1/5, 2/5, -1/5), giving R = ξ (E t²/ρ)^(1/5); also dR/dt = (2/5) R/t. The similarity constant ξ(γ) is a hypothesis (units leave it free). Not the energy integral.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-195",
+      "bridgeId": "be-195",
+      "theorem": "PhysJS.StrongShock.compression_eq",
+      "covers": "derivation-step: from the Rankine-Hugoniot mass, momentum and energy laws for an ideal gas with upstream pressure p1 = 0 (the M -> infinity limit as hypothesis), (rho2 - rho1)((g-1)rho2 - (g+1)rho1) = 0, so a compressive shock has rho2/rho1 = (g+1)/(g-1); equals 4 at g = 5/3. Not the finite-Mach ratio, a magnetized shock, or the entropy condition.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-196",
+      "bridgeId": "be-196",
+      "theorem": "PhysJS.BohmDiffusion.bohm_eq",
+      "covers": "derivation-step: with the empirical Bohm coefficient c_B = 1/16 taken as a hypothesis, D_B = k_B T/(16 e B) = c_B v_th²/ω_c, and D_B/D_classical = (1+α²)/(16 α) against the be-123 classical coefficient. Not a derivation of 1/16.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-197",
+      "bridgeId": "be-197",
+      "theorem": "PhysJS.BondiHoyle.radius_eq",
+      "covers": "derivation-step: with the capture radius defined by escape speed squared 2GM/r equal to v² + c_s², r = 2GM/(v²+c_s²); at rest 2GM/c_s², which is four times the be-118 Parker radius (reuses ParkerCritical.critical_radius). Not an accretion rate; the quadrature sum and factor 2 are definitional.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-198",
+      "bridgeId": "be-198",
+      "theorem": "PhysJS.Stromgren.radius_eq",
+      "covers": "derivation-step: from ionization balance Q = (4π/3) R³ n² α_B, R³ = 3Q/(4π α_B n²) and R = (3Q/(4π α_B n²))^(1/3); R(8Q) = 2R. α_B (case B) is a hypothesis. Not a numerical radius or a recombination coefficient.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-199",
+      "bridgeId": "be-199",
+      "theorem": "PhysJS.DispersionDelay.delay_eq",
+      "covers": "derivation-step: group velocity v_g = c sqrt(1 - ω_p²/ω²) from the cold-plasma dispersion relation; uniform-slab delay bracketed between the leading term and that term over (1-x); and the leading delay integral gives Δt = e²/(8π² ε0 m_e c) DM/ν² with ω_p² = n e²/(ε0 m_e). Not the 4.149 ms GHz² decimal, scattering or a magnetic field.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-200",
+      "bridgeId": "be-200",
+      "theorem": "PhysJS.FaradayRotation.rotation_eq",
+      "covers": "derivation-step: for R/L Stix indices n²=1-X/(1∓Y) (exact n_R²-n_L² = -2XY/(1-Y²)), under the quasi-longitudinal premise k_L - k_R = ω_p² ω_c/(c ω²), and Δχ = ½∫(k_L-k_R)dl gives Δχ = RM λ² with RM = e³/(8π² ε0 m_e² c³) ∫ n B_par dl; odd in B_par. Not the Appleton-Hartree expansion or the decimal 0.812.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-201",
+      "bridgeId": "be-201",
+      "theorem": "PhysJS.LarmorRadiation.larmor_eq",
+      "covers": "derivation-step: from the far-zone field E = q a sinθ/(4π ε0 c² r), Poynting flux ε0 c E² and integration over the sphere with ∫ sin³ = 4/3, P = q² a²/(6π ε0 c³); also cyclotron power with a = ω_c v_perp. Not a derivation of the radiation field or radiation reaction.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-202",
+      "bridgeId": "be-202",
+      "theorem": "PhysJS.Bremsstrahlung.emissivity_eq",
+      "covers": "derivation-step: from the Born-level spectral emissivity with a constant Gaunt factor, the photon cutoff ħω <= ½ m v² (where ħ enters) and the Maxwellian mean speed, P = (16/(3ħ)) (e²/4πε0)³/(m c³) sqrt(2π k_B T/(3m)) Z² n_e n_i g; dimension vector (1,-1,-3), and dropping ħ gives (2,1,-4). Not the spectral emissivity, the value of g, or the Maxwell mean speed.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-203",
+      "bridgeId": "be-203",
+      "theorem": "PhysJS.CriticalIonization.critical_velocity_eq",
+      "covers": "derivation-step: from the energy condition ½ m_n v² = e φ_i, v = sqrt(2 e φ_i/m_n), the threshold iff, and a 51.0-51.1 km/s bracket for hydrogen. Scope-limited: that the condition is an instability threshold is not proved.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-204",
+      "bridgeId": "be-204",
+      "theorem": "PhysJS.LmtdCounterflow.lmtd_eq",
+      "covers": "derivation-step: from the steady counterflow stream equations C_h dT_h/dx = -a(T_h-T_c), C_c dT_c/dx = -a(T_h-T_c) on [0,L] (HasDerivAt premises, constant U A = aL), the local difference decays as exp(-kappa x), the stream energy balance follows from the same ODEs, and the duty Q = C_h(T_h(0)-T_h(L)) equals U A (dT1-dT2)/ln(dT1/dT2); the balanced case C_h = C_c is included with lmtd x x = x. Not a derivation of U; constant heat capacities, no phase change or losses.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-205",
+      "bridgeId": "be-205",
+      "theorem": "PhysJS.EpsilonNtu.eps_ntu_eq",
+      "covers": "derivation-step: from the same steady counterflow stream ODEs (premises HasDerivAt on [0,L], U A = aL), the terminal temperatures expressed through epsilon = Q/(C_min(T_h,in - T_c,in)) and the exponential decay of the local difference give epsilon = (1-E)/(1-C_r E), E = exp(-NTU(1-C_r)), for C_r < 1 with either stream as C_min; eps_ntu_balanced gives NTU/(1+NTU) at C_r = 1. Not a derivation of U; constant heat capacity rates, no phase change.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-206",
+      "bridgeId": "be-206",
+      "theorem": "PhysJS.BlasiusFriction.darcy_blasius_eq",
+      "covers": "derivation-step: the pipe-segment force balance dp (pi D^2/4) = tau_w (pi D L) with tau_w = f rho v^2/8 gives dp = f (L/D) rho v^2/2; the Blasius law f = c Re^(-1/4) is taken as an empirical hypothesis and implies dp = (c/2) rho^(3/4) mu^(1/4) v^(7/4) L D^(-5/4). The constant 0.316 and the exponent -1/4 are not derived; fully developed smooth-pipe flow only.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-207",
+      "bridgeId": "be-207",
+      "theorem": "PhysJS.ErgunEquation.ergun_eq",
+      "covers": "derivation-step: from the bed momentum-loss form dp/L = f_p (rho v^2/d)(1-eps)/eps^3 with the viscous-plus-inertial friction law f_p = k1/Re_p + k2 and Re_p = rho v d/(mu(1-eps)), the two-term Ergun pressure gradient follows; viscous_dominates gives the crossover Re_p = k1/k2 and ergun_numbers evaluates 64062.5 Pa/m for 3 mm beads. The constants k1 = 150 and k2 = 1.75 are empirical hypotheses, not derived.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-208",
+      "bridgeId": "be-208",
+      "theorem": "PhysJS.BraytonCycle.brayton_eq",
+      "covers": "derivation-step: from isentropic legs T2/T1 = T3/T4 = r_p^((gamma-1)/gamma) and isobaric heats Q_in = c_p(T3-T2), Q_out = c_p(T4-T1), eta = 1 - r_p^((1-gamma)/gamma); poisson_ratio proves the isentropic temperature ratio from p V^gamma = const and p V = kT. Constant gamma and c_p, no losses; not the Otto exponent (brayton_ne_otto).",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-209",
+      "bridgeId": "be-209",
+      "theorem": "PhysJS.LangmuirIsotherm.langmuir_eq",
+      "covers": "derivation-step: the steady site balance k_a P (1-theta) = k_d theta with K = k_a/k_d gives theta = K P/(1+K P); relaxation_eq solves dtheta/dt = k_a P(1-theta) - k_d theta on [0,T] so the isotherm is the exponential attractor. One site per molecule, no interaction, single layer; k_a, k_d are inputs.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-210",
+      "bridgeId": "be-210",
+      "theorem": "PhysJS.ButlerVolmer.butler_volmer_eq",
+      "covers": "derivation-step: from Arrhenius anodic and cathodic currents with barriers shifted by alpha e eta and (1-alpha) e eta and equal exchange currents i0 at eta = 0, i = i0[exp(alpha e eta/k_B T) - exp(-(1-alpha) e eta/k_B T)]; linear_response gives slope i0 e/(k_B T) at eta = 0, sinh_form the alpha = 1/2 case, sign_of_current the sign of i. i0 and alpha are inputs; no mass-transfer limit; the Nernst limit (be-151) is not proved here.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-211",
+      "bridgeId": "be-211",
+      "theorem": "PhysJS.DebyeHuckel.lnGamma_eq",
+      "covers": "derivation-step: linearising the Boltzmann charge density with electroneutrality gives kappa^2 = 2 N_A e^2 I/(eps k_B T) (kappa_sq_eq); phi = q exp(-kappa r)/(4 pi eps r) solves the radial linearised Poisson-Boltzmann equation (screened_coulomb_solves); the finite self-potential -q kappa/(4 pi eps) integrated over the charging path from 0 to z e gives k_B T ln gamma = -(z e)^2 kappa/(8 pi eps). Dilute point ions; ln gamma = work/(k_B T) is a definitional hypothesis; not an extended law.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-212",
+      "bridgeId": "be-212",
+      "theorem": "PhysJS.KelvinDroplet.kelvin_laplace_eq",
+      "covers": "derivation-step: virtual work on a sphere (dV/dr = 4 pi r^2, dA/dr = 8 pi r, both proved) gives the Laplace pressure 2 gamma/r; equal chemical potentials of an incompressible liquid and an ideal vapor give k_B T ln(P/P0) = 2 gamma V_m/r + V_m(P-P0) exactly, and the Kelvin form ln(P/P0) = 2 gamma V_m/(r k_B T) once the Poynting term V_m(P-P0) is dropped as an explicit hypothesis. Bulk surface tension, ideal vapor.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-213",
+      "bridgeId": "be-213",
+      "theorem": "PhysJS.GasMeanFreePath.mean_free_path_eq",
+      "covers": "derivation-step: the collision cylinder of cross-section pi d^2 with collision rate z = n pi d^2 v_rel, v_rel = sqrt(2) v_bar (hypothesis), n = p/(k_B T) and lambda = v_bar/z give lambda = k_B T/(sqrt(2) pi d^2 p); mean_square_relative_speed proves the algebra <|v1-v2|^2> = 2<v^2>. Dilute hard spheres, Maxwellian speeds; the mean-speed relation v_rel = sqrt(2) v_bar is a hypothesis, not integrated.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-214",
+      "bridgeId": "be-214",
+      "theorem": "PhysJS.GrayBodyExchange.gray_exchange_eq",
+      "covers": "derivation-step: the radiosity balance J = eps sigma T^4 + (1-eps) G with G1 = J2, G2 = J1 and q = J1 - J2 gives q = sigma(T1^4-T2^4)/(1/eps1+1/eps2-1) for 0 < eps <= 1. Infinite parallel diffuse gray plates in vacuum; sigma is an input (be-165 gives its value), absorptivity = emissivity is a hypothesis.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-215",
+      "bridgeId": "be-215",
+      "theorem": "PhysJS.NernstEinsteinConductivity.molar_conductivity_eq",
+      "covers": "derivation-step: zero net flux n u E - D n' = 0 in a Boltzmann profile n' = (z e E/k_B T) n gives the mobility u = z e D/(k_B T); j = z e n u E gives sigma = n z^2 e^2 D/(k_B T); with n = N_A c, F = N_A e, R = N_A k_B, Lambda_m = z^2 F^2 D/(R T). Infinite dilution, no ion pairing; D is an input.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-216",
+      "bridgeId": "be-216",
+      "theorem": "PhysJS.SchwarzschildCircularOrbits.isco_eq",
+      "covers": "derivation-step: from the Schwarzschild effective potential V(r)=(1-2m/r)(1+L^2/r^2), m=GM/c^2, proves V'=V''=0 forces r=6m (and L^2=12m^2), and the photon-potential extremum forces r=3m; derivatives computed exactly via HasDerivAt. Premises: non-rotating vacuum, test particle. Not a derivation of the metric; no numerical km values.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-217",
+      "bridgeId": "be-217",
+      "theorem": "PhysJS.BinaryGWPower.power_eq",
+      "covers": "derivation-step: from the quadrupole power P=(32/5)(G/c^5) mu^2 a^4 omega^6 (hypothesis), reduced mass, and Kepler omega^2=G(m1+m2)/a^3, derives P=(32/5)G^4 m1^2 m2^2 (m1+m2)/(c^5 a^5). Not a derivation of the 32/5 quadrupole coefficient and not the eccentric factor f(e).",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-218",
+      "bridgeId": "be-218",
+      "theorem": "PhysJS.PetersInspiralTime.inspiral_time_eq",
+      "covers": "derivation-step: from E=-G m1 m2/(2a), the quadrupole power (hypothesis) and dE/dt=-P derives da/dt=-(64/5)G^3 m1 m2 (m1+m2)/(c^5 a^3) via HasDerivAt, integrates a^4+Kt=const exactly (zero derivative, constant_of_has_deriv_right_zero), and if a reaches 0 at T proves T=(5/256)c^5 a0^4/(G^3 m1 m2 (m1+m2)). Premises: circular, adiabatic, point masses. Not a derivation of the quadrupole power; Newtonian energy used to a=0.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-219",
+      "bridgeId": "be-219",
+      "theorem": "PhysJS.GeodeticPrecession.geodetic_eq",
+      "covers": "derivation-step: from the weak-field gyroscope rate Omega=(gamma_P+1/2)(GM/(c^2 r^2))v (hypothesis, gamma_P=1 in GR) and circular Kepler v^2=GM/r, derives Omega=(3/2)(GM)^{3/2}/(c^2 r^{5/2}) in rpow form and 3 pi GM/(c^2 r) per orbit. Not a derivation of the rate from the metric; no Lense-Thirring term.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-220",
+      "bridgeId": "be-220",
+      "theorem": "PhysJS.MatterDominatedAge.age_eq",
+      "covers": "derivation-step: from flat Friedmann (a'/a)^2=(8 pi G/3)rho, dust rho a^3=rho0, expanding a with a(0)=0, proves a'^2 a=C, a^{3/2}=(3/2)sqrt(C) t (mean value theorem), H=2/(3t), hence t0=2/(3H0). Premises: flat, matter only, no radiation, no Lambda. A limit relation known to be wrong for our universe; no Gyr value.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-221",
+      "bridgeId": "be-221",
+      "theorem": "PhysJS.HillRadius.hill_eq",
+      "covers": "derivation-step: from the rotating-frame net acceleration f(r)=-GM/(a-r)^2+omega^2(a-r), f'(0)=-3 omega^2 (omega^2=GM/a^3, HasDerivAt), the linearised balance Gm/r^2=3 omega^2 r gives r^3=a^3 m/(3M), r=a(m/(3M))^{1/3}. Premises: circular, m<<M, linearised tidal field. Leading-order L1, not exact; no numeric.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-222",
+      "bridgeId": "be-222",
+      "theorem": "PhysJS.BekensteinBound.saturation_eq",
+      "covers": "derivation-step: the inequality S<=2 pi k R E/(hbar c) is a HYPOTHESIS; proved from premises: a Schwarzschild black hole (S=k c^3 A/(4G hbar), R=r_s, E=Mc^2) saturates it with equality, radius convention R=lambda r_s scales the bound by lambda, the bound is monotone in R and E, and it lies below the horizon-area entropy iff E<=R c^4/(2G). Not a derivation of the bound.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-223",
+      "bridgeId": "be-223",
+      "theorem": "PhysJS.PhotonGasEnergyDensity.energy_density_eq",
+      "covers": "derivation-step: from mode counting u=I(kT)^4/(pi^2 (hbar c)^3) with the Bose integral I=pi^4/15 (hypothesis) and sigma=pi^2 k^4/(60 hbar^3 c^2), derives u=(pi^2/15)(kT)^4/(hbar c)^3=(4 sigma/c)T^4; photon-number conservation with n=beta T^3 gives T(z)=T0(1+z) and u(z)=u0(1+z)^4. Not a computation of the Bose integral; no 2.725 K value.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-224",
+      "bridgeId": "be-224",
+      "theorem": "PhysJS.EtheringtonReciprocity.etherington_eq",
+      "covers": "derivation-step: from photon-number-conserving flux F=L/(4 pi chi^2 (1+z)^2) and s=chi theta/(1+z), derives d_L=(1+z)chi, d_A=chi/(1+z), d_L=(1+z)^2 d_A and surface brightness I_obs=I_em/(1+z)^4. Premises: metric theory, photon number conserved, no absorption. The (1+z)^-2 flux factor is a hypothesis, not derived from the FRW geometry.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-225",
+      "bridgeId": "be-225",
+      "theorem": "PhysJS.SynchrotronCoolingTime.cooling_time_eq",
+      "covers": "derivation-step: from P=(4/3) sigma_T c gamma^2 U_B (hypothesis), U_B=B^2/(2 mu0) and t=gamma m c^2/P, derives t=3 m c/(4 sigma_T gamma U_B)=3 m c mu0/(2 sigma_T gamma B^2); integrates gamma'=-kappa gamma^2 exactly to 1/gamma=1/gamma0+kappa t and proves the halving time equals the cooling time. Not a derivation of the 4/3 coefficient or inverse-Compton losses.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-226",
+      "bridgeId": "be-226",
+      "theorem": "PhysJS.PulsarSpinDownField.pole_field_eq",
+      "covers": "derivation-step: from Omega=2pi/P, Omega-dot=-2pi Pdot/P^2, energy balance -I Omega Omega-dot=mu0 m^2 Omega^4/(6 pi c^3) (hypothesis) and B_pole=mu0 m/(2 pi R^3), derives B_pole^2=3 mu0 c^3 I P Pdot/(8 pi^3 R^6) (equatorial /32 pi^3). Premises: orthogonal rotator, vacuum dipole, rigid sphere. The report's 8 pi^2 is wrong by sqrt(pi); not a derivation of dipole radiation.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-227",
+      "bridgeId": "be-227",
+      "theorem": "PhysJS.FresnelNormal.reflectance_eq",
+      "covers": "derivation-step: from continuity of tangential E and H at a planar interface (H = n E/(mu0 c), reflected wave reversed) derives r = (n1-n2)/(n1+n2), t = 2 n1/(n1+n2), R = r^2, T = 4 n1 n2/(n1+n2)^2 and R + T = 1. Lossless non-magnetic dielectrics, normal incidence; not oblique incidence, absorption or thin films.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-228",
+      "bridgeId": "be-228",
+      "theorem": "PhysJS.RayleighCriterion.rayleigh_eq",
+      "covers": "derivation-step: with the Airy amplitude 2 J1(x)/x, x = pi D sin(theta)/lambda, and the Rayleigh peak-on-first-zero criterion, theta = (j/pi) lambda/D for j the first zero of J1. J1 is defined by its power series; a zero in (3.8,3.9) is proved (alternating-series bound + IVT), giving 1.2 < j/pi < 1.25; 3.8317/pi is shown within 0.001 of 1.22. Not a derivation of the disc diffraction integral, and j being the first positive zero is a premise.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-229",
+      "bridgeId": "be-229",
+      "theorem": "PhysJS.AbbeResolution.resolution_eq",
+      "covers": "derivation-step: from the first-order grating equation n sin(theta1) = n sin(theta_i) + lambda/d and both orders lying within the numerical aperture, derives d >= lambda/(2 NA) with equality for symmetric oblique illumination; axial illumination gives d >= lambda/NA. Scalar theory, grating object; not a statement about incoherent or partially coherent imaging in general.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-230",
+      "bridgeId": "be-230",
+      "theorem": "PhysJS.GaussianBeam.rayleigh_range_eq",
+      "covers": "derivation-step: from the imaginary part of the paraxial beam-parameter relation 1/q = 1/R - i lambda/(pi n w^2) with q = z + i z_R, derives z_R = pi n w0^2/lambda, w^2 = w0^2 (1+(z/z_R)^2) = w0^2 + theta^2 z^2 with theta = lambda/(pi n w0) = w0/z_R, and the far-field limit of w^2/z^2. The q relation is a premise, not derived from the paraxial equation; TEM00, M^2 = 1.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-231",
+      "bridgeId": "be-231",
+      "theorem": "PhysJS.FabryPerot.finesse_eq",
+      "covers": "derivation-step: derives FSR = c/(2nL) from adjacent resonance phases 4 pi n L nu/c = 2 pi m; sums the multiple-reflection geometric series to the Airy function (1-R)^2/((1-R)^2 + 4R sin^2(delta/2)); and from the half-maximum points gets the exact finesse pi/(2 arcsin s), s = (1-R)/(2 sqrt R), which is <= pi sqrt R/(1-R) with line width = FSR/F. Lossless equal mirrors, normal incidence, constant n; not mirror loss or dispersion.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-232",
+      "bridgeId": "be-232",
+      "theorem": "PhysJS.Etendue.etendue_density_eq",
+      "covers": "derivation-step: differentiating Snell's law n1 sin(th1) = n2 sin(th2(th1)) and multiplying back gives n1^2 cos th1 sin th1 = n2^2 cos th2 sin th2 th2', i.e. the etendue element n^2 dA cos(th) dOmega is conserved at refraction; with power conservation this gives L1/n1^2 = L2/n2^2, and the cone etendue pi A (n sin th)^2. Geometric optics, lossless interface; the exponent 2 is forced (power_two_forced).",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-233",
+      "bridgeId": "be-233",
+      "theorem": "PhysJS.SchawlowTownes.linewidth_eq",
+      "covers": "derivation-step: from a phase-diffusion model (P = N h nu gamma, gamma = 2 pi dnu_c, spontaneous rate n_sp gamma with n_sp = 1, per-event phase variance <sin^2>/N with the phase average computed = 1/2, Lorentzian width V/(2 pi)) derives dnu = pi h nu dnu_c^2/P. The per-event coefficient is a premise of the model; not a quantum-noise derivation.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-234",
+      "bridgeId": "be-234",
+      "theorem": "PhysJS.LaserThreshold.threshold_gain_eq",
+      "covers": "derivation-step: from unit round-trip intensity factor R1 R2 exp(2(g - alpha_i)L) = 1 derives g_th = alpha_i + ln(1/(R1 R2))/(2L), and that the factor exceeds 1 exactly for g > g_th; equal mirrors give ln(1/R)/L. Uniform gain, no saturation or scattering; not a prediction of alpha_i or gain.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-235",
+      "bridgeId": "be-235",
+      "theorem": "PhysJS.PhotodiodeResponsivity.responsivity_eq",
+      "covers": "derivation-step: from photon flux P/(h nu), nu = c/lambda, carrier rate eta times flux and current e times rate, derives R = eta e lambda/(h c). eta is an input (0 <= eta <= 1 bound proved); not a derivation of quantum efficiency, no gain or saturation.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-236",
+      "bridgeId": "be-236",
+      "theorem": "PhysJS.PhotonicBandGap.gap_width_eq",
+      "covers": "derivation-step: computes the half trace of the product of two lossless-layer characteristic matrices (cos cos - (1/2)(n1/n2+n2/n1) sin sin), shows for quarter-wave layers it never exceeds 1 and is below -1 exactly for |u| < arcsin c, c = |n1-n2|/(n1+n2), and that the two band edges give (omega_hi - omega_lo)/omega_0 = (4/pi) arcsin c. First gap, normal incidence, lossless infinite stack; the Bloch criterion |1/2 Tr| > 1 as gap is taken as the definition.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-237",
+      "bridgeId": "be-237",
+      "theorem": "PhysJS.PockelsHalfWave.half_wave_eq",
+      "covers": "derivation-step: from the impermeability change Delta(1/n^2) = r E linearised with d(1/n^2)/dn = -2/n^3 (so Delta n = -(1/2) n^3 r E), E = V/d and phase 2 pi |Delta n| L/lambda, derives V_pi = lambda d/(n^3 r L) and Gamma = pi V/V_pi. One axis, one polarisation, first order; r and n are inputs, not derived from the crystal tensor.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-238",
+      "bridgeId": "be-238",
+      "theorem": "PhysJS.DopplerWidth.doppler_fwhm_eq",
+      "covers": "derivation-step: from the Maxwell line-of-sight profile exp(-m c^2 (nu-nu0)^2/(2 k T nu0^2)) (first-order Doppler shift) shows the half-maximum points are nu0 +- nu0 sqrt(2 k T ln2/(m c^2)) and that the full width is nu0 sqrt(8 k T ln2/(m c^2)). Non-relativistic gas, no collisional or natural broadening.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-239",
+      "bridgeId": "be-239",
+      "theorem": "PhysJS.ElasticWaveSpeeds.pwave_eq",
+      "covers": "derivation-step: a travelling profile f(x-ct) with nonvanishing f'' solves the reduced isotropic Navier-Cauchy equation rho u_tt=(lambda+2G)u_xx with lambda=K-2G/3 only if rho c^2=K+4G/3, so c_p=sqrt((K+4G/3)/rho); swave_eq gives c_s=sqrt(G/rho); also c_s<c_p, fluid limit K/rho, and c_p modulus >= E with equality only at lambda=0 (bar speed is a third speed). Not a derivation of Navier-Cauchy from a stress balance; infinite homogeneous isotropic linear medium.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-240",
+      "bridgeId": "be-240",
+      "theorem": "PhysJS.ModuliRelation.young_eq",
+      "covers": "derivation-step: from isotropic Hooke sigma=lambda tr(eps)+2G eps with K=lambda+2G/3, the uniaxial-stress test (sigma_yy=sigma_zz=0, E=sigma/eps_xx, nu=-eps_yy/eps_xx) gives E=9KG/(3K+G) and nu=(3K-2G)/(2(3K+G)); stability gives E>0, -1<nu<1/2 for K,G>0. Not a derivation of Hooke's law; linear isotropic solid.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-241",
+      "bridgeId": "be-241",
+      "theorem": "PhysJS.ImpedanceReflection.reflection_eq",
+      "covers": "derivation-step: pressure continuity p_i+p_r=p_t and velocity continuity (p_i-p_r)/Z1=p_t/Z2 for plane waves give p_r/p_i=(Z2-Z1)/(Z2+Z1) and R=I_r/I_i=((Z2-Z1)/(Z2+Z1))^2 with I=p^2/(2Z); energy_balance proves R+T=1. Not oblique incidence, loss or finite thickness.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-242",
+      "bridgeId": "be-242",
+      "theorem": "PhysJS.StokesKirchhoff.attenuation_bounds",
+      "covers": "derivation-step: with the dissipation bracket b=4mu/3+mu_B+kappa(1/cv-1/cp) taken as the hypothesis (rho u_tt=(rho c^2+b d_t)u_xx), the exact solution of k^2(rho c^2 - i omega b)=rho omega^2 at k=a+i alpha gives alpha=alpha0*q with alpha0=omega^2 b/(2 rho c^3), q<=1 and q^2>=1-5eps^2/4 (eps=omega b/(rho c^2)), so the catalog prefactor is the leading term. Not a derivation of the bracket from Navier-Stokes plus heat equation and not a molecular-relaxation result.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-243",
+      "bridgeId": "be-243",
+      "theorem": "PhysJS.HelmholtzResonator.frequency_eq",
+      "covers": "derivation-step: Newton's law for a rigid neck slug of mass rho A L against the adiabatic cavity stiffness rho c^2 A^2/V, with harmonic motion x=X cos(omega t), forces omega^2=c^2 A/(V L); catalog_form gives f=omega/(2 pi)=(c/2 pi) sqrt(A/(V L)). Not a derivation of the lumped model; cavity small against wavelength, end correction folded into L.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-244",
+      "bridgeId": "be-244",
+      "theorem": "PhysJS.MachAngle.sin_mu_eq",
+      "covers": "derivation-step: the tangent from the source position A=(vT,0) to the wavefront circle |P|=cT (|P|^2=(cT)^2, AP perpendicular to OP) subtends sin mu=|p_y|/|AP|=c/v; no_cone_subsonic shows the tangent needs v>c; mach_two gives mu=pi/6 at v=2c. Not a finite-size source or non-uniform medium.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-245",
+      "bridgeId": "be-245",
+      "theorem": "PhysJS.MinnaertResonance.frequency_eq",
+      "covers": "derivation-step: with linearised liquid inertia rho R0 x''=k x and the polytropic gas law p_g=p R0^(3 gamma) R^(-3 gamma) (stiffness k=-3 gamma p/R0 by gas_stiffness, a HasDerivAt fact), harmonic motion forces omega^2=3 gamma p/(rho R0^2); catalog_form gives f=(1/(2 pi R0)) sqrt(3 gamma p/rho). Not a derivation of the Rayleigh equation; no surface tension, viscosity or radiation damping.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-246",
+      "bridgeId": "be-246",
+      "theorem": "PhysJS.ZenerDamping.loss_tangent_eq",
+      "covers": "derivation-step: a single relaxation ODE tau xi'+xi=cos(omega t) (debye_coefficients: A=1/(1+x^2), B=x/(1+x^2)) with sigma=E eps+dE(eps-xi), dE=Delta E, Delta=E alpha^2 T/C_v, gives loss tangent Q^-1=Delta x/(1+(1+Delta)x^2), x=omega tau; debye_error shows the catalog Debye form Delta x/(1+x^2) agrees to first order (0<=D-Q<=Delta D) and debye_peak gives D<=Delta/2 with equality at x=1. Not a derivation of Delta (adiabatic-isothermal modulus difference) or tau from heat conduction.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-247",
+      "bridgeId": "be-247",
+      "theorem": "PhysJS.PiezoCoupling.coupling_eq",
+      "covers": "derivation-step: with the strain-charge constitutive law S=s^E T+dE, D=dT+eps^T E and the energy partition U_e+2U_m+U_d, the energy coupling factor U_m^2/(U_e U_d) equals d^2/(eps^T s^E); clamped_permittivity_eq and open_compliance_eq give eps^S=eps^T(1-k^2), s^D=s^E(1-k^2), and positive stored energy gives k^2<1. Not a derivation of the constitutive law; one mode.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-248",
+      "bridgeId": "be-248",
+      "theorem": "PhysJS.BrillouinShift.brillouin_eq",
+      "covers": "derivation-step: phase matching q=k_i-k_s with |k_s|=|k_i|=k=2 pi n/lambda0 gives q=2k sin(theta/2); with Omega=v q and nu=Omega/(2 pi), nu=2 n v sin(theta/2)/lambda0, which is the catalog 2nv/lambda0 at backscatter theta=pi (backscatter_eq); silica_value brackets 11.15 GHz. Not a derivation of Omega=v q or the scattering strength.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "key": "be-249",
+      "bridgeId": "be-249",
+      "theorem": "PhysJS.PhotoacousticPressure.photoacoustic_eq",
+      "covers": "derivation-step: constant-volume heating (Delta T=mu_a F/(rho C_v), p0=beta K_T Delta T) with K_S=K_T C_p/C_v and c^2=K_S/rho gives p0=(beta c^2/C_p) mu_a F, eliminating C_v, K_T, K_S. Not a derivation of the thermodynamic identities, of stress/thermal confinement, or of water's numerical Gruneisen value.",
+      "coverage": "covers its statement only",
+      "leanProof": "complete",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
     }
   ]
 }

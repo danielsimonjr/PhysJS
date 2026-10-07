@@ -3,6 +3,7 @@ Copyright (c) 2026 Daniel Simon Jr.
 Released under MIT license as described in the file LICENSE.
 -/
 
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.Tactic.FieldSimp
@@ -80,10 +81,10 @@ theorem frequency_eq (x v a : ℝ → ℝ) (X ω ρ c A V L : ℝ)
   field_simp at h0
   linarith
 
-/-- The catalog frequency `f = ω/(2π) = (c/2π) √(A/(V L))` for `ω > 0`. -/
+/-- The catalog frequency `f = ω/(2Real.pi) = (c/2Real.pi) √(A/(V L))` for `ω > 0`. -/
 theorem catalog_form (ω c A V L : ℝ) (hω : 0 < ω) (hc : 0 < c) (hA : 0 < A)
     (hV : 0 < V) (hL : 0 < L) (h : ω ^ 2 = c ^ 2 * A / (V * L)) :
-    ω / (2 * π) = c / (2 * π) * Real.sqrt (A / (V * L)) := by
+    ω / (2 * Real.pi) = c / (2 * Real.pi) * Real.sqrt (A / (V * L)) := by
   have hω' : ω = c * Real.sqrt (A / (V * L)) := by
     rw [← Real.sqrt_sq hω.le, h, show c ^ 2 * A / (V * L) = c ^ 2 * (A / (V * L)) by ring,
       Real.sqrt_mul (by positivity), Real.sqrt_sq hc.le]

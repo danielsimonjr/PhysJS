@@ -3,6 +3,7 @@ Copyright (c) 2026 Daniel Simon Jr.
 Released under MIT license as described in the file LICENSE.
 -/
 
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 import Mathlib.Analysis.Calculus.Deriv.Mul
 import Mathlib.Tactic.FieldSimp
@@ -89,15 +90,15 @@ theorem radiance_invariant_eq (n₁ n₂ L₁ L₂ θ₁ θ₂' : ℝ) (θ₂ : 
     linarith
   · exact absurd h hp
 
-/-- Finite cone: `n₁² sin² θ₁ = n₂² sin² θ₂`, so `G = π A (NA)²` agrees on
+/-- Finite cone: `n₁² sin² θ₁ = n₂² sin² θ₂`, so `G = Real.pi A (NA)²` agrees on
 both sides. -/
 theorem cone_etendue_eq (n₁ n₂ A θ₁ θ₂ : ℝ)
     (hsnell : n₁ * sin θ₁ = n₂ * sin θ₂) :
-    n₁ ^ 2 * (π * A * sin θ₁ ^ 2) = n₂ ^ 2 * (π * A * sin θ₂ ^ 2) := by
+    n₁ ^ 2 * (Real.pi * A * sin θ₁ ^ 2) = n₂ ^ 2 * (Real.pi * A * sin θ₂ ^ 2) := by
   have : (n₁ * sin θ₁) ^ 2 = (n₂ * sin θ₂) ^ 2 := by rw [hsnell]
-  calc n₁ ^ 2 * (π * A * sin θ₁ ^ 2) = π * A * (n₁ * sin θ₁) ^ 2 := by ring
-    _ = π * A * (n₂ * sin θ₂) ^ 2 := by rw [this]
-    _ = n₂ ^ 2 * (π * A * sin θ₂ ^ 2) := by ring
+  calc n₁ ^ 2 * (Real.pi * A * sin θ₁ ^ 2) = Real.pi * A * (n₁ * sin θ₁) ^ 2 := by ring
+    _ = Real.pi * A * (n₂ * sin θ₂) ^ 2 := by rw [this]
+    _ = n₂ ^ 2 * (Real.pi * A * sin θ₂ ^ 2) := by ring
 
 /-- The exponent 2 is forced. If the throughput ratio `y₂/y₁` makes
 `n^2` conserved and also `n^p`, then `p = 2` as soon as the indices differ. -/

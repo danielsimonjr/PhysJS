@@ -42,7 +42,7 @@ open Real
 `hni` is the geometric-mean definition of `n_i`.
 
 Kind `bridge` on `PhysJS.MassAction.mass_action`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not a
+exists. Not a
 Fermi–Dirac integral. -/
 theorem mass_action
     (n p ni Nc Nv Ec Ev μ Eg k T : ℝ)

@@ -70,7 +70,7 @@ theorem line_energy (Φ0 μ0 lam xi : ℝ) (hxi : 0 < xi) (hlam : xi < lam) (hμ
 core cutoff. `hB` is `B_c1 = μ0 ε / Φ₀`. `hflux` is `Φ₀ = h / (2 e)`.
 
 Kind `bridge` on `PhysJS.LowerCritical.lower_critical`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not
+entry exists. Not
 `be-96`. -/
 theorem lower_critical
     (Bc1 eps Φ0 h e μ0 lam xi : ℝ)

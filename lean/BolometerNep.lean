@@ -72,7 +72,7 @@ the canonical energy variance `C² ⟨ΔT²⟩ = k_B T² C`. `hS1` is the one-si
 convention.
 
 Kind `bridge` on `PhysJS.BolometerNep.nep_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not Johnson,
+exists. Not Johnson,
 photon or readout noise, and not a multi-link thermal network. -/
 theorem nep_eq (C G kB T S₂ S₁ dT2 : ℝ) (hC : 0 < C) (hG : 0 < G)
     (hT2 : dT2 = (1 / (2 * Real.pi)) * ∫ ω : ℝ, S₂ / (G ^ 2 + C ^ 2 * ω ^ 2))

@@ -67,7 +67,7 @@ gas stiffness forces `ω² = 3 γ p / (ρ R₀²)`.
 `k` the stiffness `d p_g / d R` at `R₀` (`hk`).
 
 Kind `bridge` on `PhysJS.MinnaertResonance.frequency_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not a
+entry exists. Not a
 derivation of the Rayleigh equation and with no damping. -/
 theorem frequency_eq (x v a : ℝ → ℝ) (X ω ρ R₀ γ p k : ℝ)
     (hρ : 0 < ρ) (hR : 0 < R₀) (hX : X ≠ 0)

@@ -42,7 +42,7 @@ namespace PhysJS.PippardCoherence
 the statement does not depend on its value.
 
 Kind `bridge` on `PhysJS.PippardCoherence.pippard_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. `α` is a
+entry exists. `α` is a
 convention-dependent hypothesis; not a derivation of BCS `ξ₀`. -/
 theorem pippard_eq (ξ ξ0 ℓ ħ vF τ Δ p α : ℝ)
     (hħ : 0 < ħ) (hv : 0 < vF) (hτ : 0 < τ) (hΔ : 0 < Δ) (hp : 0 < p) (hα : 0 < α)

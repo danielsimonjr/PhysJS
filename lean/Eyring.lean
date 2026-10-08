@@ -42,8 +42,7 @@ open PhysJS.Arrhenius
 
 /-- Eyring rate. `h` in the module is the Planck constant `hpl`.
 
-Kind `bridge` on `PhysJS.Eyring.eyring_eq`, once the catalog entry exists.
-The covers line still begins with `derivation-step`. -/
+Kind `bridge` on `PhysJS.Eyring.eyring_eq`, once the catalog entry exists. -/
 theorem eyring_eq (k hpl dG kB T : ℝ) (hh : hpl ≠ 0) (hkB : kB ≠ 0) (hT : 0 < T)
     (hk : k = (kB * T / hpl) * Real.exp (-dG / (kB * T))) :
     k * hpl * Real.exp (dG / (kB * T)) = kB * T := by

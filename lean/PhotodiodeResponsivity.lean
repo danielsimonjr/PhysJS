@@ -37,7 +37,7 @@ namespace PhysJS.PhotodiodeResponsivity
 `η Φ`, and `hI` the current `e` times that rate.
 
 Kind `bridge` on `PhysJS.PhotodiodeResponsivity.responsivity_eq`, once the
-catalog entry exists. The covers line still begins with `derivation-step`.
+catalog entry exists.
 Not a derivation of `η`. -/
 theorem responsivity_eq (P lam hpl c e η ν Φ rate I : ℝ)
     (hP : 0 < P) (hlam : 0 < lam) (hh : 0 < hpl) (hc : 0 < c)

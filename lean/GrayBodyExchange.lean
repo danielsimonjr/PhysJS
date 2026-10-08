@@ -55,7 +55,7 @@ theorem denominator_ge_one (ε1 ε2 : ℝ) (hε1 : 0 < ε1) (hε2 : 0 < ε2) (h1
 powers are `σ T₁⁴` and `σ T₂⁴`.
 
 Kind `bridge` on `PhysJS.GrayBodyExchange.gray_exchange_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Absorptivity
+entry exists. Absorptivity
 equals emissivity is a hypothesis; `σ` is an input. -/
 theorem gray_exchange_eq (q J1 J2 σ T1 T2 ε1 ε2 : ℝ)
     (hε1 : 0 < ε1) (hε2 : 0 < ε2) (hε1' : ε1 ≤ 1) (hε2' : ε2 ≤ 1)

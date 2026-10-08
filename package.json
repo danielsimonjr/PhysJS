@@ -22,6 +22,7 @@
     "pack:dry-run": "bash scripts/pack-dry-run.sh",
     "check:markers": "bun scripts/check-tier0-markers.ts",
     "check:proofs-changeset": "bun scripts/check-proofs-changeset.ts",
+    "check:kinds": "bun scripts/manifest-kind.ts",
     "version-packages": "changeset version && bun install --lockfile-only"
   },
   "devDependencies": {

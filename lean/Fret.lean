@@ -10,7 +10,7 @@ import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
 /-!
-`be-24`. Förster resonance, as a cross-check.
+`be-24`. Cross-check. Förster resonance.
 
 ```
 k_FRET = (1/τ_D) (R₀/R)^6

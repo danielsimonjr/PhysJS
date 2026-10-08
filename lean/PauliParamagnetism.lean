@@ -33,7 +33,7 @@ open Real
 spheres. `hdos` is the parabolic density at the Fermi energy.
 
 Kind `bridge` on `PhysJS.PauliParamagnetism.pauli`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not Landau
+exists. Not Landau
 diamagnetism. -/
 theorem pauli (χP μ0 μB gF n EF B M : ℝ) (hB : B ≠ 0) (hEF : EF ≠ 0)
     (hM : M = μB * (gF * μB * B))

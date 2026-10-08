@@ -11,7 +11,6 @@ import Mathlib.Analysis.SpecialFunctions.Log.Base
 `be-37`. Bridge. The radial integral of `1/r`, not a geodesic.
 
 UPT stores a `formalRef` of kind `bridge` on `PhysJS.Shapiro.radial_integral`.
-The covers line still begins with `derivation-step`.
 
 The encoded scalar is
 
@@ -39,8 +38,7 @@ open Real intervalIntegral
 
 /-- The integral of `(2 G M / c³) / r` is the encoded logarithm.
 
-Kind `bridge` on `PhysJS.Shapiro.radial_integral`. The covers line still
-begins with `derivation-step`. Not the impact-parameter Shapiro
+Kind `bridge` on `PhysJS.Shapiro.radial_integral`. Not the impact-parameter Shapiro
 formula, and not the Cassini measurement. -/
 theorem radial_integral (G M c Rnear Rfar : ℝ) (hnear : 0 < Rnear) (hfar : Rnear < Rfar)
     (hc : c ≠ 0) :

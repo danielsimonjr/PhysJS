@@ -25,6 +25,7 @@ lake build
 
 - A theorem whose statement matches a covers line. Rank 1 of the UPT scoping report §4.3 comes before the later ranks.
 - An update to `manifest/bridges.json`: theorem name, UPT bridge id, covers line. UPT resolves a `formalRef` by that key.
+- A kind line in the module docstring of the Lean file, one per key: `` `be-80`. Bridge. `` when the theorem states the catalog equation, otherwise `Reduction`, `Limit`, `Derivation step`, `Property`, or `Cross-check`. Run `bun scripts/manifest-kind.ts --write` to copy it into the entry's `kind`. Do not write the kind at the head of the covers line.
 - If the proof is partial, the manifest entry says it covers its statement only. Do not describe it as a proof of the whole bridge.
 - No `sorry`, no `admit`, and no `native_decide`. CI audits the `lean` module and allows only `propext`, `Classical.choice`, and `Quot.sound`.
 - Lean sources live in `lean/`, flat. `lakefile.toml` sets `roots = ["lean"]` and `globs = ["lean.*"]`, so `lake build` builds `lean.lean` and every `lean/<Name>.lean`. A new file is `lean/<Name>.lean`. Its module is `lean.<Name>`. Import it from `lean.lean` as `import lean.<Name>`, and add `lean/<Name>.lean` to `manifest/lean-files.json`. The namespace stays `namespace PhysJS.<Name>`, so the theorem name does not change.

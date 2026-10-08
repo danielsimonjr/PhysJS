@@ -25,7 +25,7 @@ namespace PhysJS.Sherwood
 /-- `Sh = k_m L / D` agrees with the wall gradient.
 
 Kind `bridge` on `PhysJS.Sherwood.sherwood_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. -/
+exists. -/
 theorem sherwood_eq (Sh km D L dcdn Δc : ℝ)
     (hD : D ≠ 0) (hΔ : Δc ≠ 0)
     (hfilm : km = D * dcdn / Δc)

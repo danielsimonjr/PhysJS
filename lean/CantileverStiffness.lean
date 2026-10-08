@@ -72,7 +72,7 @@ theorem slope_eq (θ : ℝ → ℝ) (F L EI : ℝ)
 `hk` is `k = F / w(L)`. `hI` is the rectangular section `I = b t³ / 12`.
 
 Kind `bridge` on `PhysJS.CantileverStiffness.stiffness_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not
+entry exists. Not
 shear deflection, not a rotating clamp, and not the effective-mass
 frequency. -/
 theorem stiffness_eq (w θ w2 : ℝ → ℝ) (F L E I k b t : ℝ)

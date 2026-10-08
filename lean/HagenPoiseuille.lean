@@ -174,7 +174,7 @@ volume flux of that profile. `hD`, `hv`, `hfD`, and `hRe` are the Darcy
 definitions; they are not a second pipe solution.
 
 Kind `bridge` on `PhysJS.HagenPoiseuille.flow_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not a square
+exists. Not a square
 duct, and not the Fanning number `16`. -/
 theorem flow_eq
     (u slope : ℝ → ℝ)

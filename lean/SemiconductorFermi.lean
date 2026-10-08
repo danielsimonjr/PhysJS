@@ -114,7 +114,7 @@ theorem extrinsic_offset (ND Nc Ec μ kT : ℝ) (hkT : kT ≠ 0) (hNc : 0 < Nc) 
 The two chemical potentials are independent variables.
 
 Kind `bridge` on `PhysJS.SemiconductorFermi.fermi_level`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not a
+entry exists. Not a
 Fermi–Dirac integral. -/
 theorem fermi_level
     (n p Nc Nv ND Ec Ev μi μn kT me mh : ℝ)

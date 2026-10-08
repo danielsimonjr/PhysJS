@@ -68,7 +68,7 @@ theorem inner_voltage (s I Rs : ℝ) (hs : 0 < s) :
 and the sink at `3 s` on the inner pair.
 
 Kind `bridge` on `PhysJS.FourPoint.sheet_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not
+exists. Not
 `PhysJS.Crossing.antisymmetry`. -/
 theorem sheet_eq (s I Rs V : ℝ) (hs : 0 < s) (hI : I ≠ 0)
     (hV : V = (∫ r in s..(2 * s), (I * Rs) / (2 * Real.pi * r)) +

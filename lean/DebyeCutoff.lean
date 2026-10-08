@@ -65,7 +65,7 @@ theorem wavevector_root (kD n : ℝ) (hk : 0 ≤ kD)
 one linear branch, `ω_D = v_s k_D`.
 
 Kind `bridge` on `PhysJS.DebyeCutoff.debye_cutoff`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not `k_D³ = 2 π² n`. -/
+exists. Not `k_D³ = 2 π² n`. -/
 theorem debye_cutoff (ωD vs kD n : ℝ) (hk : 0 ≤ kD)
     (hcount : 3 * ((4 / 3) * Real.pi * kD ^ 3) / (2 * Real.pi) ^ 3 = 3 * n)
     (hspeed : ωD = vs * kD) :

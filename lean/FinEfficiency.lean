@@ -165,7 +165,7 @@ tip. `hbase` imposes `θ(0)`. `hm2` is `m² = h P / (k A)`. `hrect` is
 `hqId` is the ideal flow `h P L θ_b`.
 
 Kind `bridge` on `PhysJS.FinEfficiency.efficiency_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not an
+entry exists. Not an
 infinite fin, and not one face. -/
 theorem efficiency_eq
     (θ θ' : ℝ → ℝ) (m h k t P A L θb q qId η : ℝ)

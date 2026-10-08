@@ -125,7 +125,7 @@ theorem integrand_matches_sech (Δ t : ℝ) (hΔ : 0 < Δ) (ht : 0 < t) :
 the limit of `Δ ∫₀^T sech`.
 
 Kind `bridge` on `PhysJS.AmbegaokarBaratoff.ambegaokar_baratoff`, once the
-catalog entry exists. The covers line still begins with `derivation-step`.
+catalog entry exists.
 Not the finite-temperature factor. -/
 theorem ambegaokar_baratoff (Ic Rn e Δ : ℝ) (he : e ≠ 0)
     (hkernel : Tendsto (fun T : ℝ => Δ * ∫ t in (0 : ℝ)..T, (1 / Real.cosh t)) atTop

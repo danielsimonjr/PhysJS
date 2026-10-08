@@ -35,7 +35,7 @@ namespace PhysJS.NernstGibbs
 are `ΔG = −n F E` and `ΔG° = −n F E°`. `e` is the elementary charge.
 
 Kind `bridge` on `PhysJS.NernstGibbs.nernst_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. -/
+exists. -/
 theorem nernst_eq (E E0 R T n F Q dG dG0 NA kB e : ℝ)
     (hn : n ≠ 0) (hF : F ≠ 0) (hT : T ≠ 0) (hR : R ≠ 0) (he : e ≠ 0) (hNA : NA ≠ 0)
     (hQ : 0 < Q)

@@ -260,7 +260,7 @@ Both angular integrals and `∫ x³/(e^x−1) dx = π⁴/15` are proved.
 `hhbar` is `h = 2 π ℏ`.
 
 Kind `bridge` on `PhysJS.StefanBoltzmann.stefan_boltzmann_eq`, once the
-catalog entry exists. The covers line still begins with `derivation-step`. -/
+catalog entry exists. -/
 theorem stefan_boltzmann_eq (σ h c hbar kB T : ℝ)
     (hh : 0 < h) (hc : 0 < c) (hk : 0 < kB) (hT : 0 < T) (hħ : 0 < hbar)
     (hhbar : h = 2 * π * hbar)

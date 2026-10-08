@@ -9,6 +9,8 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Positivity
 
 /-!
+`be-19`. Cross-check.
+
 `be-19`, naming BE-54. One entry, key `be-19`.
 
 `Λ` is the modules' `[T⁻²]` symbol. With `ρ_c ≠ 0`,

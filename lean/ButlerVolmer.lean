@@ -47,7 +47,7 @@ open Real
 `ha0`, `hc0`: both equal `i₀` at `η = 0`.
 
 Kind `bridge` on `PhysJS.ButlerVolmer.butler_volmer_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. `i₀` and `α` are
+exists. `i₀` and `α` are
 inputs, and no mass-transfer limit. -/
 theorem butler_volmer_eq (i ia ic i₀ Aa Ac Ga Gc α e η kB T : ℝ)
     (hi : i = ia - ic)

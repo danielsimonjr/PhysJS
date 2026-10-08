@@ -70,7 +70,7 @@ heats.
 the expansion `3 → 4`. `hη` is `η = 1 − Q_out / Q_in`.
 
 Kind `bridge` on `PhysJS.BraytonCycle.brayton_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Constant `γ` and
+exists. Constant `γ` and
 `c_p`; no component losses. -/
 theorem brayton_eq (η rp γ T1 T2 T3 T4 cp Qin Qout : ℝ)
     (hrp : 0 < rp) (hcp : cp ≠ 0) (hspan : T3 - T2 ≠ 0)

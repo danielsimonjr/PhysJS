@@ -52,7 +52,7 @@ theorem mass_frequency (k m : ℝ) (hm : 0 < m) (hk : 0 ≤ k) :
 The discriminant of `s² + (c/m) s + k/m` vanishes if and only if `ζ = 1`.
 
 Kind `bridge` on `PhysJS.DampingRatio.damping_ratio`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not
+entry exists. Not
 `√(k/m)` and not the factor `1`. -/
 theorem damping_ratio (c k m ζ ω : ℝ) (hm : 0 < m) (hk : 0 < k) (hc : 0 ≤ c)
     (hω : ω = Real.sqrt (k / m)) (hmatch : 2 * ζ * ω = c / m) :

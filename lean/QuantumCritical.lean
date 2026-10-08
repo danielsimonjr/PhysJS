@@ -13,7 +13,6 @@ import Mathlib.Tactic.Linarith
 `be-33`. Bridge. The catalog scaling, and the finite-temperature product at `z = 1`.
 
 UPT stores a `formalRef` of kind `bridge` on `PhysJS.QuantumCritical.thermal_scaling`.
-The covers line still begins with `derivation-step`.
 
 For `z > 0`, `T > 0`, and `T₀ > 0`, the encoded scaling is
 
@@ -81,7 +80,7 @@ theorem thermal_scaling (xi0 T T0 z : ℝ) (hT : 0 < T) (hT0 : 0 < T0) :
 /-- At `z = 1`, `ξ T = ξ₀ T₀`.
 
 `xi_product` is separate from the formalRef. `be-33` is kind `bridge` on
-`thermal_scaling`. The covers line still begins with `derivation-step`.
+`thermal_scaling`.
 Not Hertz–Millis theory. -/
 theorem xi_product (xi0 T T0 : ℝ) (hT : 0 < T) (hT0 : 0 < T0) :
     xi xi0 T T0 1 * T = xi0 * T0 := by

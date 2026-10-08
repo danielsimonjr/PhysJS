@@ -50,7 +50,7 @@ open Filter
 `q = z + i z_R`. `hw0` identifies the waist.
 
 Kind `bridge` on `PhysJS.GaussianBeam.rayleigh_range_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not a
+entry exists. Not a
 derivation of the `q` relation from the paraxial equation, and not
 `M² > 1` beams. -/
 theorem rayleigh_range_eq (lam n zR w0 : ℝ) (w : ℝ → ℝ)

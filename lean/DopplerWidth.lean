@@ -113,7 +113,7 @@ theorem half_point_sq (m kT c ν₀ ν : ℝ) (hm : 0 < m) (hkT : 0 < kT) (hc : 
 `Δν = νhi − νlo`.
 
 Kind `bridge` on `PhysJS.DopplerWidth.doppler_fwhm_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not
+entry exists. Not
 collisional or natural broadening, not the relativistic correction. -/
 theorem doppler_fwhm_eq (m kT c ν₀ νlo νhi Δν : ℝ) (hm : 0 < m) (hkT : 0 < kT)
     (hc : 0 < c) (hν₀ : 0 < ν₀)

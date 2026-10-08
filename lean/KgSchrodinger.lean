@@ -7,7 +7,7 @@ import lean.Inequalities
 import lean.PlaneWave
 
 /-!
-`ab-kg-schrodinger`. Covers `bound.delta` exactly, at the dispersion relation.
+`ab-kg-schrodinger`. Bridge. Covers `bound.delta` exactly, at the dispersion relation.
 
 The non-relativistic kinetic frequency is `ω₀ x² / 2` with `x = ck/ω₀`.
 The Klein–Gordon branch contributes `ω₀ (√(1 + x²) - 1)`. Their relative

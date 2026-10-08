@@ -41,7 +41,7 @@ open Real
 exponent. `hlam` and `hlam0` are the London depths at `n_s` and at `n`.
 
 Kind `bridge` on `PhysJS.GorterCasimir.gorter_casimir`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. The
+entry exists. The
 exponent is not derived. Not a BCS gap function, and not a second proof of
 `be-75`. -/
 theorem gorter_casimir

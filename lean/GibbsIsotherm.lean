@@ -33,7 +33,7 @@ namespace PhysJS.GibbsIsotherm
 `ΔG° = Σ ν_i μ_i°`.
 
 Kind `bridge` on `PhysJS.GibbsIsotherm.gibbs_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. -/
+exists. -/
 theorem gibbs_eq {ι : Type*} (s : Finset ι) (ν μ μ0 a : ι → ℝ) (R T K dG : ℝ)
     (hT : T ≠ 0) (hR : R ≠ 0) (hK : 0 < K)
     (hact : ∀ i ∈ s, 0 < a i)

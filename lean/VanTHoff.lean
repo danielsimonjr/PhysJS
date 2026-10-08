@@ -60,7 +60,7 @@ theorem enthalpy_log (K : ℝ → ℝ) (dG : ℝ → ℝ) (dH dS R T : ℝ)
 at `ΔG° = ΔH° − T ΔS°`, with both `ΔH°` and `ΔS°` constant.
 
 Kind `bridge` on `PhysJS.VanTHoff.vant_hoff`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not a
+exists. Not a
 second proof of `be-150`. -/
 theorem vant_hoff (K : ℝ → ℝ) (dH dS R T : ℝ)
     (hR : R ≠ 0) (hT : T ≠ 0)

@@ -104,7 +104,7 @@ theorem exp_tail (c a : ℝ) (hc : 0 < c) :
 are `exp_tail`.
 
 Kind `bridge` on `PhysJS.RichardsonDushman.richardson_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. -/
+entry exists. -/
 theorem richardson_eq (J pref hpl φ kB T m e : ℝ)
     (hh : hpl ≠ 0) (hk : 0 < kB) (hT : 0 < T) (he : e ≠ 0)
     (hpref : pref = 4 * π * m * e / hpl ^ 3)

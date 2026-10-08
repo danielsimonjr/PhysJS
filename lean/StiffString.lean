@@ -7,7 +7,7 @@ import lean.Inequalities
 import lean.PlaneWave
 
 /-!
-`ab-stiff-string`. Covers `bound.delta` exactly, at the dispersion relation.
+`ab-stiff-string`. Bridge. Covers `bound.delta` exactly, at the dispersion relation.
 
 The stiff-string frequency satisfies `ω² = (F/μ) k² + (EI/μ) k⁴`. Against the
 flexible-string speed `√(F/μ)`, the relative phase-velocity error is

@@ -52,7 +52,7 @@ open PhysJS.TolmanEhrenfest Real
 common `Δt` is the coordinate period. Both metric components are negative.
 
 Kind `bridge` on `PhysJS.GravitationalRedshift.frequency_ratio`, once the
-catalog entry exists. The covers line still begins with `derivation-step`. -/
+catalog entry exists. -/
 theorem frequency_ratio (ν1 ν2 g1 g2 Δt : ℝ) (hg1 : g1 < 0) (hg2 : g2 < 0)
     (hΔ : Δt ≠ 0) (hν2 : ν2 ≠ 0)
     (h1 : ν1 * Real.sqrt (-g1) = 1 / Δt) (h2 : ν2 * Real.sqrt (-g2) = 1 / Δt) :

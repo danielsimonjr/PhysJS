@@ -49,7 +49,7 @@ namespace PhysJS.PhotoacousticPressure
 `K_S = K_T C_p / C_v`, `hc` is `c² = K_S / ρ`.
 
 Kind `bridge` on `PhysJS.PhotoacousticPressure.photoacoustic_eq`, once the
-catalog entry exists. The covers line still begins with `derivation-step`. Not
+catalog entry exists. Not
 a derivation of the thermodynamic identities or of confinement. -/
 theorem photoacoustic_eq (p₀ ΔT β KT KS c ρ Cv Cp μa F : ℝ)
     (hρ : 0 < ρ) (hCv : 0 < Cv) (hCp : 0 < Cp)

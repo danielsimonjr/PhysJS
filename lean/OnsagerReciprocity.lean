@@ -68,7 +68,7 @@ lemma deriv_force2 (L11 L12 L22 X1 X2 : ℝ) :
 /-- Mixed partials of `Φ` are both `L12`, so `L12 = L21`.
 
 Kind `bridge` on `PhysJS.OnsagerReciprocity.onsager_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. -/
+entry exists. -/
 theorem onsager_eq (L11 L12 L22 X1 X2 : ℝ) :
     deriv (fun y => deriv (fun x => dissipation L11 L12 L22 x y) X1) X2 = L12 ∧
       deriv (fun x => deriv (fun y => dissipation L11 L12 L22 x y) X2) X1 = L12 := by

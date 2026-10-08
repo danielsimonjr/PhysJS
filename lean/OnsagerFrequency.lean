@@ -41,7 +41,7 @@ open Real
 reciprocal of `Δ(1/B)`.
 
 Kind `bridge` on `PhysJS.OnsagerFrequency.onsager_frequency`, once the
-catalog entry exists. The covers line still begins with `derivation-step`.
+catalog entry exists.
 `γ` is not part of `F`. -/
 theorem onsager_frequency
     (A F e hbar γ n Bn Bsucc : ℝ)

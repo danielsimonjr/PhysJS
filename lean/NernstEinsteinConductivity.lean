@@ -57,7 +57,7 @@ theorem einstein_from_boltzmann (u D n n' E z e kB T : ℝ)
 `hj`: `j = z e n v`, `hv`: `v = u E`, `hσ`: `σ = j / E`.
 
 Kind `bridge` on `PhysJS.NernstEinsteinConductivity.conductivity_eq`, once the
-catalog entry exists. The covers line still begins with `derivation-step`.
+catalog entry exists.
 Not a derivation of `D`. -/
 theorem conductivity_eq (σ j v u E n z e D kB T : ℝ) (hE : E ≠ 0)
     (hu : u = z * e * D / (kB * T))
@@ -84,7 +84,7 @@ theorem molar_eq (Λm σ c n z e D kB T NA F R : ℝ) (hc : c ≠ 0) (hNA : NA �
 and molar conversion give `Λ_m = z² F² D / (R T)`.
 
 Kind `bridge` on `PhysJS.NernstEinsteinConductivity.molar_conductivity_eq`, once
-the catalog entry exists. The covers line still begins with `derivation-step`.
+the catalog entry exists.
 Infinite dilution only. -/
 theorem molar_conductivity_eq (Λm σ j v u D n n' E c z e kB T NA F R : ℝ)
     (hn0 : n ≠ 0) (hE : E ≠ 0) (hc : c ≠ 0) (hNA : NA ≠ 0) (hkB : kB ≠ 0) (hT : T ≠ 0)

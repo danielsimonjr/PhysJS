@@ -7,7 +7,7 @@ import lean.Inequalities
 import lean.PlaneWave
 
 /-!
-`ab-telegraph-wave`. Covers `bound.delta` exactly, at the dispersion relation.
+`ab-telegraph-wave`. Bridge. Covers `bound.delta` exactly, at the dispersion relation.
 
 On the underdamped branch the oscillation frequency, divided by the undamped
 wave frequency `c q` with `c² = D/τ`, is `√(1 - 1/(4ε))` for `ε = τ D q²`.

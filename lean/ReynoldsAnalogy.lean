@@ -61,7 +61,7 @@ theorem stanton_friction
 layer whose momentum and heat diffusivities agree.
 
 Kind `bridge` on `PhysJS.ReynoldsAnalogy.reynolds_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. Not a
+entry exists. Not a
 Nusselt correlation. -/
 theorem reynolds_eq
     (μ k ρ U ΔT cp slopeU slopeT τ q Cf heat St Pr : ℝ)

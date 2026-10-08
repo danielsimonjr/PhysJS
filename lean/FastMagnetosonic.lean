@@ -190,7 +190,7 @@ theorem dispersion_eq (A C D P k ω φ B μ0 ρ cs : ℝ) (hk : k ≠ 0) (hμ : 
 /-- Phase speed of that compressional wave.
 
 Kind `bridge` on `PhysJS.FastMagnetosonic.speed_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`.
+entry exists.
 `ρ` is the density in the continuity and momentum premises. Not a
 kinetic dispersion, and not the oblique fast mode. -/
 theorem speed_eq (A C D P k ω φ B μ0 ρ cs : ℝ) (hk : k ≠ 0) (hμ : 0 < μ0) (hρ : 0 < ρ)

@@ -53,7 +53,7 @@ lemma linear_of_hasDerivAt (k : ℝ → ℝ) (v : ℝ) (hk : ∀ t, HasDerivAt k
 after `T`, `k` has advanced by `G = 2π / a`. `hω` is `ω T = 2π`.
 
 Kind `bridge` on `PhysJS.BlochOscillation.bloch_frequency_eq`, once the
-catalog entry exists. The covers line still begins with `derivation-step`.
+catalog entry exists.
 Not a derivation of the band, of `ω_B τ ≫ 1`, or of the absence of Zener
 tunnelling. -/
 theorem bloch_frequency_eq (k : ℝ → ℝ) (e E a ħ T ω : ℝ)

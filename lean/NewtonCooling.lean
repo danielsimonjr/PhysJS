@@ -34,7 +34,7 @@ namespace PhysJS.NewtonCooling
 `τ = ρ c V / (h A)`.
 
 Kind `bridge` on `PhysJS.NewtonCooling.newton_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. -/
+exists. -/
 theorem newton_eq (θ : ℝ → ℝ) (ρ c V hcoeff A t θ0 : ℝ)
     (hcap : ρ * c * V ≠ 0) (hconv : hcoeff * A ≠ 0)
     (hode : ∀ s, HasDerivAt θ (-(hcoeff * A) / (ρ * c * V) * θ s) s)

@@ -227,7 +227,7 @@ theorem root_unique :
 `hb` is `b = h c / (k_B x)`. The root is not replaced by a decimal.
 
 Kind `bridge` on `PhysJS.WienDisplacement.wien_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. -/
+exists. -/
 theorem wien_eq (b hpl c kB x : ℝ)
     (hkB : kB ≠ 0) (hx : 0 < x) (hroot : wienAux x = 0)
     (hb : b = hpl * c / (kB * x)) :

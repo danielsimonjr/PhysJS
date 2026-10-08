@@ -9,6 +9,8 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 
 /-!
+`be-42`. Cross-check.
+
 `be-42`, with BE-57 and the edge `be-42-via-rs`. One entry, key `be-42`.
 
 ```

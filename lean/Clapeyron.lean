@@ -63,7 +63,7 @@ theorem entropy_slope (g1 g2 P : ℝ → ℝ) (s1 s2 v1 v2 T0 : ℝ)
 vapor-pressure law.
 
 Kind `bridge` on `PhysJS.Clapeyron.slope_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. -/
+exists. -/
 theorem slope_eq (g1 g2 P : ℝ → ℝ) (s1 s2 v1 v2 L T0 : ℝ)
     (hcoex : g1 = g2)
     (h1 : HasDerivAt g1 (-s1 + v1 * deriv P T0) T0)

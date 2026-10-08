@@ -119,7 +119,7 @@ theorem boltzmann_is_gaussian (C kB T x : ℝ) (hC : 0 < C) (hkT : 0 < kB * T) :
 Boltzmann weight are the premises; the variance is the Gaussian one.
 
 Kind `bridge` on `PhysJS.CapacitorNoise.noise_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not
+exists. Not
 `(3/2) k_B T`. -/
 theorem noise_eq (U : ℝ → ℝ) (C kB T : ℝ) (hC : 0 < C) (hk : 0 < kB) (hT : 0 < T)
     (hU : ∀ y, HasDerivAt U (C * y) y) (h0 : U 0 = 0) :

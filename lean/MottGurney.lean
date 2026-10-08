@@ -103,7 +103,7 @@ theorem field_squared (E s : ℝ → ℝ) (c : ℝ)
 nonnegative root. `hV` is the second integral.
 
 Kind `bridge` on `PhysJS.MottGurney.current_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not
+exists. Not
 Child–Langmuir. -/
 theorem current_eq (E s : ℝ → ℝ) (J ε μ d V : ℝ)
     (hε : 0 < ε) (hμ : 0 < μ) (hJ : 0 ≤ J) (hd : 0 < d)

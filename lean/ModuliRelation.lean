@@ -37,7 +37,7 @@ namespace PhysJS.ModuliRelation
 `hK` is `K = λ + 2G/3`, `hE` and `hν` are the definitions.
 
 Kind `bridge` on `PhysJS.ModuliRelation.young_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not a derivation
+exists. Not a derivation
 of Hooke's law. -/
 theorem young_eq (σ ε₁ ε₂ lam G K E ν : ℝ)
     (hK0 : 0 < K) (hG0 : 0 < G) (hε : ε₁ ≠ 0)

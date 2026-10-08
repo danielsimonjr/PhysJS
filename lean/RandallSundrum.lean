@@ -14,7 +14,6 @@ import Mathlib.Tactic.Ring
 `be-54`. Bridge. The catalog Hubble rate, and the positive-tension factor `1/2`.
 
 UPT stores a `formalRef` of kind `bridge` on `PhysJS.RandallSundrum.brane_friedmann`.
-The covers line still begins with `derivation-step`.
 
 `PhysJS.QuantumBounce.dictionary` already proves the limit `σ → ∞` and
 the unphysical match at `σ = −ρ_c/2`. This file does not reprove that
@@ -49,7 +48,7 @@ lemma excess (G ρ σ Λ : ℝ) (hσ : σ ≠ 0) :
 strictly above the Friedmann value.
 
 `positive_tension` is separate from the formalRef. `be-54` is kind `bridge`
-on `brane_friedmann`. The covers line still begins with `derivation-step`.
+on `brane_friedmann`.
 Not the five-dimensional Einstein equation. The limit `σ → ∞` is
 `PhysJS.QuantumBounce.dictionary`. -/
 theorem positive_tension (G ρ σ Λ : ℝ) (hG : 0 < G) (hρ : 0 < ρ) (hσ : 0 < σ) :

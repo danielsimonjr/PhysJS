@@ -37,7 +37,7 @@ enthalpy differential. `hideal` and `hdv` are the ideal-gas volume and its
 isobaric derivative.
 
 Kind `bridge` on `PhysJS.JouleThomson.joule_thomson_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. -/
+entry exists. -/
 theorem joule_thomson_eq (μJT cp T v dvdT P Rgas dhdT dhdP : ℝ)
     (hcp : cp ≠ 0) (hT : T ≠ 0) (hP : P ≠ 0)
     (hdhT : dhdT = cp)

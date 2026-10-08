@@ -87,7 +87,7 @@ are the thin-wall closure. Mass is `acoustic_speed` and is not required
 for `Δp = ρ c Δv`.
 
 Kind `bridge` on `PhysJS.Joukowsky.joukowsky_eq`, once the catalog entry
-exists. The covers line still begins with `derivation-step`. Not
+exists. Not
 `ρ (Δv)²`, and not the rigid-wall speed. -/
 theorem joukowsky_eq
     (c K ρ E D wall dp dρ dA A Δv Δp : ℝ)

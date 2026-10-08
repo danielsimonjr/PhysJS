@@ -25,7 +25,7 @@ namespace PhysJS.ReynoldsNumber
 /-- Inertial flux over viscous flux is `ρ v L / μ` and `v L / ν`.
 
 Kind `bridge` on `PhysJS.ReynoldsNumber.reynolds_eq`, once the catalog
-entry exists. The covers line still begins with `derivation-step`. -/
+entry exists. -/
 theorem reynolds_eq (Re ρ v L μ ν inertial viscous : ℝ)
     (hμ : μ ≠ 0) (hv : v ≠ 0) (hL : L ≠ 0) (hρ : ρ ≠ 0) (hν : ν ≠ 0)
     (hkin : ν = μ / ρ)

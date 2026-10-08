@@ -221,9 +221,9 @@ Three further keys, `be-74` through `be-76`, are the candidates in the 2026-10-0
 
 `be-147` through `be-170` are the candidates in the 2026-10-06 thermal, chemical, and engineering dogfood report, round 9. The UPT catalog on `master` runs through `133`, so these numbers are free. They are not catalog entries yet. The kind is `bridge`.
 
-`be-147` is Arrhenius, on `PhysJS.Arrhenius.arrhenius_eq`. `R = N_A k_B` identifies the molar exponential with the molecular Boltzmann factor. The prefactor is not derived.
+`be-147` is Arrhenius, on `PhysJS.Arrhenius.arrhenius_eq`. A constant activation energy `Ea = R T² d(ln k)/dT` on `T > 0` gives `k = A exp(−Ea/(R T))` with one constant `A > 0`. At `R = N_A k_B` and `ε = Ea/N_A` the exponential is the share `exp(−ε/(k_B T))` of a Boltzmann population above `ε`. The converse, the `ln k` against `1/T` line of slope `−Ea/R`, the two-temperature ratio, positivity, and the increase in `T` are in the same file. The prefactor is not derived.
 
-`be-148` is Eyring, on `PhysJS.Eyring.eyring_eq`. The molar form calls `be-147`. `Ea = ΔH‡ + R T` is `R T² d(ln k)/dT`. Substituting that `Ea` back into a temperature-independent Arrhenius prefactor differs by `exp(−1)`.
+`be-148` is Eyring, on `PhysJS.Eyring.eyring_eq`. The molar form calls `PhysJS.Arrhenius.molar_exponent`, the `R = N_A k_B` step of `be-147`. `Ea = ΔH‡ + R T` is `R T² d(ln k)/dT`. Substituting that `Ea` back into a temperature-independent Arrhenius prefactor differs by `exp(−1)`.
 
 `be-149` is van 't Hoff, on `PhysJS.VanTHoff.vant_hoff`. It differentiates `be-150` at constant `ΔH°` and `ΔS°`. This is not a second proof of `be-150`.
 

@@ -13,6 +13,8 @@ import Mathlib.Tactic.Ring
 /-!
 `be-13`. Reduction. With the BE-20 identification. One reference, on `be-13`.
 
+`be-13.vacuum`. Reduction. `vacuum_density`.
+
 The field equation is `G_μν + Λ g_μν = κ T_μν`, with
 `G_μν = R_μν − ½ R g_μν` and `κ = 8π G / c⁴`. The metric signature on
 that canonical equation is `−,+,+,+`. Contracting with `g^{μν}` in four

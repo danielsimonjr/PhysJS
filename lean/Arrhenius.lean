@@ -29,8 +29,7 @@ namespace PhysJS.Arrhenius
 
 `hR` is `R = N_A k_B`. `hε` is the energy per molecule `Ea / N_A`.
 
-Kind `bridge` on `PhysJS.Arrhenius.arrhenius_eq`, once the catalog entry
-exists. Not a
+Not a
 derivation of the prefactor `A`. -/
 theorem arrhenius_eq (k A Ea R T NA kB ε : ℝ)
     (hT : 0 < T) (hNA : NA ≠ 0) (hkB : kB ≠ 0)

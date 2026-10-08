@@ -9,6 +9,8 @@ import lean.PlaneWave
 /-!
 `ab-telegraph-diffusion`. Bridge. Covers `bound.delta` exactly, at the dispersion relation.
 
+`ab-telegraph-diffusion.planeWave`. Derivation step. `planeWave_iff_dispersion`.
+
 A Fourier mode of `τ u_tt + u_t = D u_xx` decays, on the slow branch, at
 `(1 - √(1 - 4ε)) / (2ε)` times the diffusion rate `D q²`, with `ε = τ D q²`.
 That ratio is `2 / (1 + √(1 - 4ε))`, including the limit `1` at `ε = 0`.

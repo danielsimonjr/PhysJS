@@ -61,7 +61,7 @@ theorem no_cone_subsonic (c v T px py : ℝ)
 
 `hcirc` is `|P|² = (cT)²`, `hperp` is `(P − A)·P = 0`.
 
-Kind `bridge` on `PhysJS.MachAngle.sin_mu_eq`, once the catalog entry exists. Not a model of a
+Not a model of a
 finite-size source or a non-uniform medium. -/
 theorem sin_mu_eq (c v T px py : ℝ)
     (hc : 0 < c) (hv : 0 < v) (hT : 0 < T) (hpy : py ≠ 0)

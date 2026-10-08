@@ -83,9 +83,9 @@ A formula with no manifest key lives in its domain package. It is not an export 
 
 ### Proofs package
 
-`manifest/bridges.json` stays at the repository root. Contributors keep editing it next to the Lean source, as `CONTRIBUTING.md` already requires. The proofs package build copies that file into the tarball at `manifest/bridges.json` and exports a parser for schema `physjs-bridge-manifest/v1`.
+`manifest/bridges.json` stays at the repository root. Contributors keep editing it next to the Lean source, as `CONTRIBUTING.md` already requires. The proofs package build copies that file into the tarball at `manifest/bridges.json` and exports a parser for schema `physjs-bridge-manifest/v2`.
 
-The packaged JSON is byte-for-byte the root file. CI fails if the two differ. Nested objects (`planeWave`, `oneLoop`, `inversion`, `vacuum`, `corollary`, `friedmann`, `lengthMonomial`, `torsionMonomial`, `coefficientNotFixed`, `unitCoefficient`, `scalingShape`, `everyPower`) stay nested. They are not second keys. The schema gains no `kind` field in this note. UPT still derives kind from the covers line and its own allowlists.
+The packaged JSON is byte-for-byte the root file. CI fails if the two differ. Nested objects (`planeWave`, `oneLoop`, `inversion`, `vacuum`, `corollary`, `friedmann`, `lengthMonomial`, `torsionMonomial`, `coefficientNotFixed`, `unitCoefficient`, `scalingShape`, `everyPower`) stay nested. They are not second keys. Each carries its own `kind`, read from the Lean kind line labelled by the key and the field (§3).
 
 UPT's migration replaces `formal/physjs/manifest.json` and the compiled tables in `src/atlas/physjs-ref.ts` with a read of this package. `deriveEvidence` stays in UPT.
 
@@ -450,7 +450,7 @@ Each one has a recommendation. None of them blocks writing this note. The ones t
 
 ### 3. Manifest `kind`
 
-**Decision.** Schema `physjs-bridge-manifest/v2` stores `kind` once, on each keyed entry, and the covers line no longer opens with it. The writer is the Lean file: the module docstring has one line per key (`` `be-80`. Bridge. ``), `scripts/manifest-kind.ts --write` copies it, and `tests/manifest-kind.test.ts` fails on any disagreement. UPT reads the field and keeps no override, so there is one writer of kind. The earlier recommendation kept v1 free of `kind` because UPT derived it; that derivation took the covers prefix and then overrode it by hand on 96 catalog entries, which was the second writer this section warned about.
+**Decision.** Schema `physjs-bridge-manifest/v2` stores `kind` once, on each statement (a keyed entry or a nested object on one), and no covers line opens with it. The writer is the Lean file: the module docstring has one line per statement (`` `be-80`. Bridge. ``, `` `be-13.vacuum`. Reduction. ``), `scripts/manifest-kind.ts --write` copies it, and `tests/manifest-kind.test.ts` fails on any disagreement. UPT reads the field and keeps no override, so there is one writer of kind. The earlier recommendation kept v1 free of `kind` because UPT derived it; that derivation took the covers prefix and then overrode it by hand on 96 catalog entries, which was the second writer this section warned about.
 
 ### 4. Domain homes for the ambiguous slice A rows
 

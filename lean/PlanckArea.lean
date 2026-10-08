@@ -12,8 +12,7 @@ import Mathlib.Tactic.Linarith
 `be-43`. Bridge.
 
 One lemma, `PhysJS.PlanckArea.area_law`: the Planck-area form of the area
-law. For `be-43` that equality is the catalogued wormhole-area equation, so
-the kind is `bridge`. For `be-14` it is a counted derivation step.
+law. For `be-43` that equality is the catalogued wormhole-area equation.
 
 The encoded SI scalar, with the area an input, is
 
@@ -55,8 +54,7 @@ noncomputable def entropyPlanck (kB ℓ2 A : ℝ) : ℝ :=
 /-- The SI form equals the Planck-area form. BE-43 is this equality on a
 wormhole area.
 
-`be-14` is kind `derivation-step`. `be-43` is kind `bridge` on this same
-theorem. Not a
+Not a
 minimal surface, and not ER=EPR. -/
 theorem area_law (kB c G ℏ A : ℝ) (hc : c ≠ 0) (hG : G ≠ 0) (hℏ : ℏ ≠ 0) :
     planckArea ℏ G c = ℏ * G / c ^ 3 ∧

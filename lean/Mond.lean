@@ -15,6 +15,8 @@ import Mathlib.Tactic.Ring
 `be-38`. Limit. Milgrom's interpolation `ν(z)`, its Newtonian and deep-MOND limits,
 and the inversion of `μ(x) = x / √(1 + x²)`.
 
+`be-38.inversion`. Derivation step. `mu_inversion`.
+
 ```
 ν(z) = √( (1 + √(1 + 4/z²)) / 2 )
 ```

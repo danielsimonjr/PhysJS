@@ -9,6 +9,8 @@ import lean.PlaneWave
 /-!
 `ab-stiff-string`. Bridge. Covers `bound.delta` exactly, at the dispersion relation.
 
+`ab-stiff-string.planeWave`. Derivation step. `planeWave_iff_dispersion`.
+
 The stiff-string frequency satisfies `ω² = (F/μ) k² + (EI/μ) k⁴`. Against the
 flexible-string speed `√(F/μ)`, the relative phase-velocity error is
 `√(1 + β) - 1` with `β = EI k² / F`. UPT's `stiffStringPhaseError` is this

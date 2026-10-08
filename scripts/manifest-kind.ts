@@ -1,17 +1,21 @@
 /**
  * The `kind` of every manifest entry comes from the Lean source.
  *
- * A keyed entry's kind is how its theorem relates to the catalog equation the
- * key names. The module docstring of the file that declares the theorem says
- * so in one line per key:
+ * A statement's kind is how its theorem relates to the catalog equation the
+ * key names. A statement is a keyed entry, or a nested object on one (a field
+ * whose value carries its own `theorem`). The module docstring of the file
+ * that declares the theorem says so in one line per statement, labelled by the
+ * key, or by the key and the field for a nested one:
  *
  *     `be-80`. Bridge. Mott–Gurney law.
+ *     `be-13.vacuum`. Reduction. `vacuum_density`.
  *
- * The word after the key is one of `Bridge` (the theorem states the catalog
+ * The word after the label is one of `Bridge` (the theorem states the catalog
  * equation), `Reduction`, `Limit`, `Derivation step`, `Property`, or
- * `Cross-check`. This script reads that line for each entry and writes or
+ * `Cross-check`. This script reads that line for each statement and writes or
  * checks `kind` in `manifest/bridges.json`. The kind word is not repeated at
- * the head of the covers line. No list of keys is kept here.
+ * the head of a covers line. A kind line that names no statement its file
+ * declares is a problem too. No list of keys or nested names is kept here.
  *
  *   bun scripts/manifest-kind.ts           # exit 1 when a kind disagrees with its Lean file
  *   bun scripts/manifest-kind.ts --write   # write every kind from the Lean files
@@ -34,7 +38,7 @@ export const KINDS: Readonly<Record<string, string>> = {
 export const KIND_VALUES: readonly string[] = Object.values(KINDS);
 
 const KIND_LINE = new RegExp(
-  `^\`([a-z]+-[a-z0-9-]+)\`\\. (${Object.keys(KINDS).join('|')})\\.(?:\\s|$)`
+  `^\`([a-z]+-[a-z0-9-]+(?:\\.[A-Za-z_][A-Za-z0-9_]*)?)\`\\. (${Object.keys(KINDS).join('|')})\\.(?:\\s|$)`
 );
 
 /** A covers line that still opens with a kind word. */
@@ -52,6 +56,39 @@ export interface Manifest {
   readonly schema: string;
   readonly entries: readonly ManifestEntry[];
   readonly [field: string]: unknown;
+}
+
+/** A keyed entry or a nested object on one: anything with its own theorem, kind, and covers line. */
+export interface Statement {
+  /** `key` for the entry, `key.field` for a nested object. */
+  readonly label: string;
+  readonly theorem: string;
+  readonly kind: string | undefined;
+  readonly covers: string;
+}
+
+function isNested(value: unknown): value is Record<string, unknown> & { readonly theorem: string } {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    !Array.isArray(value) &&
+    typeof (value as { theorem?: unknown }).theorem === 'string'
+  );
+}
+
+/** The entry itself, then each nested object on it, in field order. */
+export function statements(entry: ManifestEntry): Statement[] {
+  const one = (label: string, value: Record<string, unknown>): Statement => ({
+    label,
+    theorem: String(value['theorem']),
+    kind: typeof value['kind'] === 'string' ? value['kind'] : undefined,
+    covers: typeof value['covers'] === 'string' ? value['covers'] : '',
+  });
+  const out = [one(entry.key, entry)];
+  for (const [field, value] of Object.entries(entry)) {
+    if (isNested(value)) out.push(one(`${entry.key}.${field}`, value));
+  }
+  return out;
 }
 
 /** One Lean source file: its name under `lean/` and its text. */
@@ -125,7 +162,7 @@ export function declaredKinds(source: string): Map<string, string[]> {
   return kinds;
 }
 
-/** The kind each entry takes from its Lean file, and every entry for which there is none. */
+/** The kind each statement takes from its Lean file, and every statement or kind line for which that fails. */
 export function leanKinds(
   manifest: Manifest,
   files: readonly LeanFile[]
@@ -140,22 +177,34 @@ export function leanKinds(
   }
   const kinds = new Map<string, string>();
   const problems: string[] = [];
-  for (const entry of manifest.entries) {
-    const where = fileOf.get(entry.theorem) ?? [];
+  const used = new Set<string>();
+  for (const statement of manifest.entries.flatMap(statements)) {
+    const { label, theorem } = statement;
+    const where = fileOf.get(theorem) ?? [];
     const file = where[0];
     if (where.length !== 1 || file === undefined) {
-      problems.push(`${entry.key}: ${entry.theorem} is declared in ${where.length} Lean files`);
+      problems.push(`${label}: ${theorem} is declared in ${where.length} Lean files`);
       continue;
     }
-    const declared = kindsOf.get(file)?.get(entry.key) ?? [];
+    used.add(`${file}\u0000${label}`);
+    const declared = kindsOf.get(file)?.get(label) ?? [];
     const kind = declared[0];
     if (declared.length !== 1 || kind === undefined) {
       problems.push(
-        `${entry.key}: lean/${file} has ${declared.length} kind lines for it; the module docstring needs one line \`${entry.key}\`. <Kind>.`
+        `${label}: lean/${file} has ${declared.length} kind lines for it; the module docstring needs one line \`${label}\`. <Kind>.`
       );
       continue;
     }
-    kinds.set(entry.key, kind);
+    kinds.set(label, kind);
+  }
+  for (const [file, declared] of kindsOf) {
+    for (const label of declared.keys()) {
+      if (!used.has(`${file}\u0000${label}`)) {
+        problems.push(
+          `lean/${file}: the kind line \`${label}\` names no manifest statement this file declares`
+        );
+      }
+    }
   }
   return { kinds, problems };
 }
@@ -164,34 +213,48 @@ export function leanKinds(
 export function manifestKindProblems(manifest: Manifest, files: readonly LeanFile[]): string[] {
   const { kinds, problems } = leanKinds(manifest, files);
   const out = [...problems];
-  for (const entry of manifest.entries) {
-    const expected = kinds.get(entry.key);
-    if (entry.kind === undefined || !KIND_VALUES.includes(entry.kind)) {
-      out.push(`${entry.key}: kind '${entry.kind ?? ''}' is not one of ${KIND_VALUES.join(', ')}`);
-    } else if (expected !== undefined && entry.kind !== expected) {
-      out.push(`${entry.key}: kind is '${entry.kind}', its Lean file says '${expected}'`);
+  for (const { label, kind, covers } of manifest.entries.flatMap(statements)) {
+    const expected = kinds.get(label);
+    if (kind === undefined || !KIND_VALUES.includes(kind)) {
+      out.push(`${label}: kind '${kind ?? ''}' is not one of ${KIND_VALUES.join(', ')}`);
+    } else if (expected !== undefined && kind !== expected) {
+      out.push(`${label}: kind is '${kind}', its Lean file says '${expected}'`);
     }
-    if (KIND_PREFIX.test(entry.covers)) {
-      out.push(`${entry.key}: the covers line opens with a kind word; the kind is the kind field`);
+    if (KIND_PREFIX.test(covers)) {
+      out.push(`${label}: the covers line opens with a kind word; the kind is the kind field`);
     }
   }
   return out;
 }
 
-/** `manifest` with every entry's kind taken from the Lean files, placed after `theorem`. */
+/** `value` with `kind` placed after `theorem`. */
+function withKind(
+  value: Readonly<Record<string, unknown>>,
+  kind: string | undefined
+): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [field, inner] of Object.entries(value)) {
+    if (field === 'kind') continue;
+    out[field] = inner;
+    if (field === 'theorem') out['kind'] = kind;
+  }
+  return out;
+}
+
+/** `manifest` with every statement's kind taken from the Lean files, placed after its `theorem`. */
 export function withLeanKinds(manifest: Manifest, files: readonly LeanFile[]): Manifest {
   const { kinds, problems } = leanKinds(manifest, files);
   if (problems.length > 0) throw new Error(problems.join('\n'));
   return {
     ...manifest,
     entries: manifest.entries.map((entry) => {
-      const out: Record<string, unknown> = {};
+      const nested: Record<string, unknown> = {};
       for (const [field, value] of Object.entries(entry)) {
-        if (field === 'kind') continue;
-        out[field] = value;
-        if (field === 'theorem') out['kind'] = kinds.get(entry.key);
+        nested[field] = isNested(value)
+          ? withKind(value, kinds.get(`${entry.key}.${field}`))
+          : value;
       }
-      return out as ManifestEntry;
+      return withKind(nested, kinds.get(entry.key)) as ManifestEntry;
     }),
   };
 }
@@ -225,7 +288,10 @@ async function main(argv: readonly string[]): Promise<number> {
     console.error(problems.join('\n'));
     return 1;
   }
-  console.log(`manifest kinds match the Lean files (${manifest.entries.length} entries)`);
+  const count = manifest.entries.flatMap(statements).length;
+  console.log(
+    `manifest kinds match the Lean files (${manifest.entries.length} entries, ${count} statements)`
+  );
   return 0;
 }
 

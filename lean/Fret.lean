@@ -20,8 +20,7 @@ k_FRET = (1/τ_D) (R₀/R)^6
 
 `η(R₀, R₀) = 1/2` holds for any positive power, so it is not the control.
 At `R = 2 R₀` the exponent 4 is not the exponent 6. `η` decreases on
-`(0, ∞)`. The dipole–dipole law is a premise. UPT stores a `formalRef`
-of kind `cross-check` on `PhysJS.Fret.dictionary`.
+`(0, ∞)`. The dipole–dipole law is a premise.
 -/
 
 namespace PhysJS.Fret

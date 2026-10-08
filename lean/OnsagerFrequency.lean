@@ -40,8 +40,6 @@ open Real
 `Bsucc` are the fields of those two orbits. `hF` defines `F` as the
 reciprocal of `Δ(1/B)`.
 
-Kind `bridge` on `PhysJS.OnsagerFrequency.onsager_frequency`, once the
-catalog entry exists.
 `γ` is not part of `F`. -/
 theorem onsager_frequency
     (A F e hbar γ n Bn Bsucc : ℝ)

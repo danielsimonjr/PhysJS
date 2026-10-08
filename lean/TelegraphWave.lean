@@ -9,6 +9,8 @@ import lean.PlaneWave
 /-!
 `ab-telegraph-wave`. Bridge. Covers `bound.delta` exactly, at the dispersion relation.
 
+`ab-telegraph-wave.planeWave`. Derivation step. `planeWave_iff_dispersion`.
+
 On the underdamped branch the oscillation frequency, divided by the undamped
 wave frequency `c q` with `c² = D/τ`, is `√(1 - 1/(4ε))` for `ε = τ D q²`.
 UPT's error is `1` minus that ratio. The regime is `ε ≥ 25`. The error falls

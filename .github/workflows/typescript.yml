@@ -46,6 +46,9 @@ jobs:
       - name: Marker packages and core surface
         run: bun run check:markers
 
+      - name: Manifest kinds match the Lean files
+        run: bun run check:kinds
+
       - name: Manifest edits name the proofs package
         run: |
           git fetch origin "${{ github.base_ref || 'main' }}"

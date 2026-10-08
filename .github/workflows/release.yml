@@ -1,14 +1,16 @@
 name: Release
 
-# Versions packages. npm publish is Publish (.github/workflows/publish.yml),
-# called from this run when a push changed a public package version.
+# Versions public workspace packages with changesets. PhysJS publishes nothing.
 #
-# Every workspace package is private through Tier 1, and changesets is configured
-# not to version private packages, so this job does not open a release PR
-# and does not call Publish until a later tier removes `"private": true`.
+# Every workspace package is `"private": true`, and `.changeset/config.json`
+# does not version private packages, so `changeset version` has nothing to do.
+# Run anyway, the changesets action still tries to open a release pull request
+# for the pending changesets, which GitHub Actions may not do in this
+# repository, and the run fails. So the Version job runs only when some
+# workspace package is public. While every package is private it is skipped.
 #
-# Do not grant `id-token: write`. Publish authenticates with the repository
-# secret NPM. Pull requests do not run this workflow.
+# There is no publish step and no npm token. A tier that makes a package
+# public adds publishing with it. Pull requests do not run this workflow.
 
 on:
   push:
@@ -20,16 +22,41 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
-  release:
-    name: Version
+  public:
+    name: Find public packages
     runs-on: ubuntu-latest
     outputs:
-      versions_bumped: ${{ steps.versions.outputs.versions_bumped }}
+      any: ${{ steps.scan.outputs.any }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
+      - name: List workspace packages that are not private
+        id: scan
+        run: |
+          public=$(jq -r 'select(.private != true) | .name' packages/*/package.json)
+          if [ -n "${public}" ]; then
+            echo "public packages:"
+            echo "${public}"
+            echo "any=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "every workspace package is private; nothing to version"
+            echo "any=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  version:
+    name: Version
+    needs: public
+    if: needs.public.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -44,13 +71,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
+          # @changesets/cli v3 needs Node 22.11 or later.
           node-version: 22.x
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
       - name: Create Release Pull Request
-        id: changesets
         uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           pr-title: 'chore: release packages'
@@ -58,36 +85,3 @@ jobs:
           version-script: bun run version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Detect a public version bump
-        id: versions
-        env:
-          BEFORE_SHA: ${{ github.event.before }}
-        run: |
-          bumped=false
-          if [ -n "${BEFORE_SHA}" ] && [ "${BEFORE_SHA}" != "0000000000000000000000000000000000000000" ]; then
-            if git diff --name-only "${BEFORE_SHA}" HEAD -- 'packages/*/package.json' | grep -q .; then
-              before_private=$(git grep -l '"private": true' "${BEFORE_SHA}" -- 'packages/*/package.json' | wc -l)
-              after_private=$(git grep -l '"private": true' HEAD -- 'packages/*/package.json' | wc -l)
-              if [ "${before_private}" != "${after_private}" ]; then
-                bumped=true
-              fi
-              if git diff "${BEFORE_SHA}" HEAD -- 'packages/*/package.json' | grep -E '^[+-]\s+"version":' | grep -q .; then
-                if [ "${after_private}" -lt 10 ]; then
-                  bumped=true
-                fi
-              fi
-            fi
-          fi
-          echo "versions_bumped=${bumped}" >> "$GITHUB_OUTPUT"
-          echo "versions_bumped=${bumped}"
-
-  publish:
-    name: Publish
-    needs: release
-    if: needs.release.outputs.versions_bumped == 'true'
-    permissions:
-      contents: read
-    uses: ./.github/workflows/publish.yml
-    secrets:
-      NPM: ${{ secrets.NPM }}

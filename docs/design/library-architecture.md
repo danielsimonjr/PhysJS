@@ -41,8 +41,9 @@ packages/<name>/           TypeScript workspace members
 .github/workflows/ci.yml   Lean build and axiom audit. Root module `lean`.
 .github/workflows/typescript.yml
                            Tier 0. Typecheck, bun test, lint, pack dry-run.
-.github/workflows/publish.yml
-                           Token publish. Same shape as MathTS.
+.github/workflows/release.yml
+                           Version job, skipped while every package is private.
+                           No publish workflow until a package is public.
 ```
 
 A root `package.json` is `"private": true` and lists `workspaces: ["packages/*"]`. Lake reads `lakefile.toml`. It does not read `package.json`. The Lean job keeps `axiom-audit-root: lean` and `use-mathlib-cache: true`.
@@ -82,9 +83,9 @@ A formula with no manifest key lives in its domain package. It is not an export 
 
 ### Proofs package
 
-`manifest/bridges.json` stays at the repository root. Contributors keep editing it next to the Lean source, as `CONTRIBUTING.md` already requires. The proofs package build copies that file into the tarball at `manifest/bridges.json` and exports a parser for schema `physjs-bridge-manifest/v1`.
+`manifest/bridges.json` stays at the repository root. Contributors keep editing it next to the Lean source, as `CONTRIBUTING.md` already requires. The proofs package build copies that file into the tarball at `manifest/bridges.json` and exports a parser for schema `physjs-bridge-manifest/v2`.
 
-The packaged JSON is byte-for-byte the root file. CI fails if the two differ. Nested objects (`planeWave`, `oneLoop`, `inversion`, `vacuum`, `corollary`, `friedmann`, `lengthMonomial`, `torsionMonomial`, `coefficientNotFixed`, `unitCoefficient`, `scalingShape`, `everyPower`) stay nested. They are not second keys. The schema gains no `kind` field in this note. UPT still derives kind from the covers line and its own allowlists.
+The packaged JSON is byte-for-byte the root file. CI fails if the two differ. Nested objects (`planeWave`, `oneLoop`, `inversion`, `vacuum`, `corollary`, `friedmann`, `lengthMonomial`, `torsionMonomial`, `coefficientNotFixed`, `unitCoefficient`, `scalingShape`, `everyPower`) stay nested. They are not second keys. Each carries its own `kind`, read from the Lean kind line labelled by the key and the field (§3).
 
 UPT's migration replaces `formal/physjs/manifest.json` and the compiled tables in `src/atlas/physjs-ref.ts` with a read of this package. `deriveEvidence` stays in UPT.
 
@@ -226,8 +227,8 @@ Mirror MathTS where the convention is a workspace convention. Diverge where Dani
 | Types | `strict`. ESM. `exports` point at `dist` for publish. |
 | Docs | A Bun script writes a markdown index of bridge exports, units, keys, and covers lines. CI runs it with `--check`. The script arrives with the first bridge export. |
 | Versions | Changesets. `access: public`, `baseBranch: main`, `commit: false`, `updateInternalDependencies: patch`. Independent package versions. |
-| Release PR | `changesets/action` on push to `main`, version-only. The version script is `changeset version && bun install --lockfile-only`, because a version bump otherwise leaves `bun.lock` behind. |
-| Publish | `.github/workflows/publish.yml`, called from the release workflow when a package version changed, and also on `release: published` and `workflow_dispatch`. `bunx changeset publish`. |
+| Release PR | `changesets/action` on push to `main`, version-only, and only when some workspace package is public. While every package is private the Version job is skipped: there is nothing to version, and the action would fail opening an empty release pull request. The version script is `changeset version && bun install --lockfile-only`, because a version bump otherwise leaves `bun.lock` behind. |
+| Publish | None while PhysJS is unpublished. The tier that makes a package public adds a publish workflow with the constraints below. The earlier `publish.yml` was removed because it could only fail. |
 
 `changeset` CLI v3 declares `engines.node` of `^22.11 || ^24 || >=26`. The publish job installs Node 22 so that CLI can run. Node 22 is the publisher. It is not the library runtime. The job comments in MathTS's `publish.yml` record why Node 20 dies inside that CLI (`enableCompileCache`). Copy that constraint.
 
@@ -405,7 +406,7 @@ Empty workspace. Packages: core, the seven domain packages, bridges, proofs. Eac
 
 - Root `package.json`, `bunfig.toml`, `tsconfig.base.json`, `bun.lock`, `.changeset/config.json`.
 - `.github/workflows/typescript.yml`: frozen install, typecheck, `bun test`, oxlint, Prettier, `bun pm pack --dry-run`.
-- `publish.yml` present and untriggered by pull requests. Packages remain `"private": true`.
+- No publish workflow. Packages remain `"private": true`, and the release workflow's Version job is skipped while they do.
 - `ci.yml` Lean job unchanged.
 - `packages/engineering-physics/` removed in the same change that adds the real packages, with the README pointer updated.
 
@@ -425,7 +426,7 @@ Slice A from the candidate table. Domain packages export the functions. `physjs-
 
 ### Tier 3 — UPT migration
 
-UPT adds dependencies on `@danielsimonjr/physjs-bridges` and `@danielsimonjr/physjs-proofs`. `formal/physjs/manifest.json` is deleted. `src/atlas/physjs-ref.ts` loads the package and keeps `bridgeSeedKeys`, kind derivation, and `physjsTheorem`. `BRIDGE_EVALUATORS` `run` calls PhysJS. Local arithmetic for a moved function is deleted. `ExprNode`, `BRIDGE_EQUATIONS`, composition edges, confrontations, and `deriveEvidence` stay.
+UPT adds dependencies on `@danielsimonjr/physjs-bridges` and `@danielsimonjr/physjs-proofs`. `formal/physjs/manifest.json` is deleted. `src/atlas/physjs-ref.ts` loads the package and keeps `bridgeSeedKeys` and `physjsTheorem`, and reads each entry's `kind`. `BRIDGE_EVALUATORS` `run` calls PhysJS. Local arithmetic for a moved function is deleted. `ExprNode`, `BRIDGE_EQUATIONS`, composition edges, confrontations, and `deriveEvidence` stay.
 
 **Exit.** UPT's existing tests pass. A search of `src/bridges/` finds one implementation of each moved formula, and it is the import. The manifest in the PhysJS package is the file the UPT tests compare. `formally-proved` is still produced only by `deriveEvidence`.
 
@@ -449,7 +450,7 @@ Each one has a recommendation. None of them blocks writing this note. The ones t
 
 ### 3. Manifest `kind`
 
-**Recommendation.** Keep schema `physjs-bridge-manifest/v1` free of a `kind` field. UPT already derives kind, and a second writer of kind is how a cross-check gets counted as a proved bridge. A v2 schema is its own note if Daniel wants kind stored once.
+**Decision.** Schema `physjs-bridge-manifest/v2` stores `kind` once, on each statement (a keyed entry or a nested object on one), and no covers line opens with it. The writer is the Lean file: the module docstring has one line per statement (`` `be-80`. Bridge. ``, `` `be-13.vacuum`. Reduction. ``), `scripts/manifest-kind.ts --write` copies it, and `tests/manifest-kind.test.ts` fails on any disagreement. UPT reads the field and keeps no override, so there is one writer of kind. The earlier recommendation kept v1 free of `kind` because UPT derived it; that derivation took the covers prefix and then overrode it by hand on 96 catalog entries, which was the second writer this section warned about.
 
 ### 4. Domain homes for the ambiguous slice A rows
 

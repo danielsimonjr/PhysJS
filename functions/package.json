@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@danielsimonjr/mathts-functions": "^0.69.0",
-    "@danielsimonjr/physjs-core": "workspace:*"
+    "@danielsimonjr/physjs-core": "^0.0.0"
   },
   "publishConfig": {
     "access": "public"

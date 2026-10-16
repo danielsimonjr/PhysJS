@@ -1,14 +1,23 @@
-/** `step`: advances every moving body with the world's integrator. */
+/**
+ * `step`: one time step. The integrator's velocity phase applies gravity,
+ * loads and damping; the contact solver then corrects those velocities; the
+ * integrator's position phase moves the bodies; resting bodies fall asleep.
+ */
 
 import {
   BODY_FIELDS,
   BODY_TYPES,
+  SOLVER_DEFAULTS,
   VALUE_RULES,
   type BodyTypeRecord,
   type World,
 } from '@danielsimonjr/physjs-core';
+import { findContacts } from '../collision/contacts';
 import { INTEGRATORS } from '../dynamics/integrators';
 import { SAMPLE_LAYOUT, loadSample } from '../dynamics/sample';
+import { updateSleep, wakeTouched } from '../dynamics/sleep';
+import { solveContacts } from '../dynamics/solver';
+import { updateTouching } from './events';
 import { FIELD_NAMES } from './storage';
 
 const ACCUMULATORS = FIELD_NAMES.filter((name) => BODY_FIELDS[name].role === 'accumulator');
@@ -16,24 +25,44 @@ const ACCUMULATORS = FIELD_NAMES.filter((name) => BODY_FIELDS[name].role === 'ac
 /** Scratch sample, fully rewritten for each body before it is read. */
 const sample = new Float64Array(SAMPLE_LAYOUT.length);
 
+/** Each live, awake slot whose type integrates, with its type row. */
+function* integrating(world: World): Generator<[number, BodyTypeRecord]> {
+  const store = world.bodies;
+  for (let slot = 0; slot < store.size; slot++) {
+    if (store.alive[slot] !== 1 || store.fields.asleep[slot] === 1) continue;
+    const row: BodyTypeRecord = BODY_TYPES[store.typeIndex[slot]!]!;
+    if (row.integrates) yield [slot, row];
+  }
+}
+
 /**
- * Advances the world by `dt` seconds: every live body whose type integrates is
- * moved by the world's integrator, then every applied force and torque is reset.
+ * Advances the world by `dt` seconds:
+ *
+ * 1. the velocity phase of the world's integrator, for every awake body that integrates;
+ * 2. `findContacts` (margin `SOLVER_DEFAULTS.contactMargin`), waking sleepers
+ *    touched by moving bodies and queueing `contactBegin` / `contactEnd`;
+ * 3. the contact solver (PGS with friction, restitution and warm start);
+ * 4. the position phase;
+ * 5. sleep timers, then every applied force and torque is reset.
+ *
  * The result depends only on the world state and `dt`.
  */
 export function step(world: World, dt: number): void {
   if (!VALUE_RULES.positive.test(dt)) {
     throw new RangeError(`dt must be ${VALUE_RULES.positive.description}; got ${dt}`);
   }
-  const integrate = INTEGRATORS[world.integrator];
+  const integrator = INTEGRATORS[world.integrator];
   const store = world.bodies;
-  for (let slot = 0; slot < store.size; slot++) {
-    if (store.alive[slot] !== 1) continue;
-    const row: BodyTypeRecord = BODY_TYPES[store.typeIndex[slot]!]!;
-    if (!row.integrates) continue;
+  for (const [slot, row] of integrating(world)) {
     loadSample(world, slot, row, dt, sample);
-    integrate(store, slot, sample, dt);
+    integrator.velocity(store, slot, sample, dt);
   }
+  const manifolds = findContacts(world, { margin: SOLVER_DEFAULTS.contactMargin });
+  wakeTouched(world, manifolds);
+  updateTouching(world, manifolds);
+  solveContacts(world, manifolds, dt);
+  for (const [slot] of integrating(world)) integrator.position(store, slot, dt);
+  updateSleep(world, dt);
   for (const name of ACCUMULATORS) {
     store.fields[name].fill(0, 0, store.size * BODY_FIELDS[name].components);
   }

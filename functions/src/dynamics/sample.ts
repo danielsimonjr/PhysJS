@@ -36,15 +36,16 @@ function anyNonZero(column: Float64Array, start: number, count: number): boolean
 }
 
 /**
- * World angular acceleration `R I^-1 R^T tau` of a body with orientation `q`
- * and principal inverse inertia `inverseInertia` (body frame).
+ * `R I^-1 R^T x` for a body with orientation `q` and principal inverse inertia
+ * `inverseInertia` (body frame): the angular acceleration of a torque, or the
+ * angular velocity change of an angular impulse.
  */
-function angularAcceleration(
+export function worldInverseInertia(
   q: readonly number[],
   inverseInertia: readonly number[],
-  torque: readonly number[]
+  x: readonly number[]
 ): number[] {
-  const local = quaternionRotate(quaternionConjugate(q), torque);
+  const local = quaternionRotate(quaternionConjugate(q), x);
   return quaternionRotate(q, dotMultiply(local, inverseInertia) as number[]);
 }
 
@@ -75,7 +76,7 @@ export function loadSample(
     const q = Array.from(fields.rotation.subarray(slot * ORIENTATION, (slot + 1) * ORIENTATION));
     const inverseInertia = Array.from(fields.inverseInertia.subarray(at, at + ANGULAR));
     const torque = Array.from(fields.torque.subarray(at, at + ANGULAR));
-    out.set(angularAcceleration(q, inverseInertia, torque), SAMPLE_LAYOUT.angular);
+    out.set(worldInverseInertia(q, inverseInertia, torque), SAMPLE_LAYOUT.angular);
   }
   out[SAMPLE_LAYOUT.linearFactor] = 1 / (1 + dt * fields.linearDamping[slot]!);
   out[SAMPLE_LAYOUT.angularFactor] = 1 / (1 + dt * fields.angularDamping[slot]!);

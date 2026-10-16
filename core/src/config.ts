@@ -51,3 +51,38 @@ export const COLLISION_DEFAULTS: CollisionDefaults = deepFreeze({
   featureAlignment: 0.02,
   maxManifoldPoints: 4,
 });
+
+/** Contact solver and sleep settings used by `step`. */
+export interface SolverDefaults {
+  /** Projected Gauss-Seidel sweeps per step. */
+  readonly iterations: number;
+  /** Fraction of the penetration beyond `slop` pushed out per step. */
+  readonly baumgarte: number;
+  /** Penetration left alone, metres, so resting contacts stay touching. */
+  readonly slop: number;
+  /** Contact margin `step` passes to `findContacts`, metres. */
+  readonly contactMargin: number;
+  /** Approach speed below which restitution is ignored, m/s. */
+  readonly restitutionThreshold: number;
+  /** Distance within which a contact point inherits last step's impulses, metres. */
+  readonly warmStartRadius: number;
+  /** Linear speed under which a body counts as resting, m/s. */
+  readonly sleepLinearSpeed: number;
+  /** Angular speed under which a body counts as resting, rad/s. */
+  readonly sleepAngularSpeed: number;
+  /** Seconds at rest before a body falls asleep. */
+  readonly sleepTime: number;
+}
+
+/** The solver settings. */
+export const SOLVER_DEFAULTS: SolverDefaults = deepFreeze({
+  iterations: 10,
+  baumgarte: 0.2,
+  slop: 0.005,
+  contactMargin: 0.02,
+  restitutionThreshold: 1,
+  warmStartRadius: 0.05,
+  sleepLinearSpeed: 0.05,
+  sleepAngularSpeed: 0.05,
+  sleepTime: 0.5,
+});

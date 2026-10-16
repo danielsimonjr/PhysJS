@@ -1,6 +1,6 @@
 /**
  * Integrator functions, keyed by the `INTEGRATOR_CATALOG` names. The type of
- * `INTEGRATORS` makes the compiler require one function per catalog entry.
+ * `INTEGRATORS` makes the compiler require one entry per catalog row.
  */
 
 import {
@@ -15,13 +15,17 @@ const LINEAR = BODY_FIELDS.linearVelocity.components;
 const ANGULAR = BODY_FIELDS.angularVelocity.components;
 const ORIENTATION = BODY_FIELDS.rotation.components;
 
-/** Advances body `slot` of `store` by `dt` seconds with a sample from `loadSample`. */
-export type IntegratorFn = (
-  store: BodyStore,
-  slot: number,
-  sample: Float64Array,
-  dt: number
-) => void;
+/**
+ * One integrator in two phases. `velocity` advances the velocities of body
+ * `slot` by `dt` with a sample from `loadSample`; `position` then moves the
+ * pose with the velocities the contact solver left.
+ */
+export interface IntegratorFns {
+  /** Velocity phase. */
+  readonly velocity: (store: BodyStore, slot: number, sample: Float64Array, dt: number) => void;
+  /** Position phase. */
+  readonly position: (store: BodyStore, slot: number, dt: number) => void;
+}
 
 /**
  * Turns the orientation of `slot` by the world angular velocity `w` over `dt`:
@@ -39,33 +43,42 @@ function turn(store: BodyStore, slot: number, w: readonly number[], dt: number):
 }
 
 /**
- * Semi-implicit (symplectic) Euler: the velocities take the sample first, with
- * implicit damping `v <- (v + a dt) / (1 + c dt)`, then the pose moves with the
- * new velocities. Under constant acceleration the position leads the exact
- * solution by `a t dt / 2`. The angular update has no gyroscopic term
- * (`w x I w`), as in most real-time engines; a body spinning freely about a
- * non-principal axis keeps its world angular velocity.
+ * Semi-implicit (symplectic) Euler, in the two phases `step` runs with the
+ * contact solver between them: the velocities take the sample first, with
+ * implicit damping `v <- (v + a dt) / (1 + c dt)`, and the pose then moves with
+ * the (solved) new velocities. Under constant acceleration the position leads
+ * the exact solution by `a t dt / 2`. The angular update has no gyroscopic
+ * term (`w x I w`), as in most real-time engines; a body spinning freely about
+ * a non-principal axis keeps its world angular velocity.
  */
-const semiImplicitEuler: IntegratorFn = (store, slot, sample, dt) => {
-  const { position, linearVelocity, angularVelocity } = store.fields;
-  const linearFactor = sample[SAMPLE_LAYOUT.linearFactor]!;
-  const angularFactor = sample[SAMPLE_LAYOUT.angularFactor]!;
-  for (let k = 0; k < LINEAR; k++) {
-    const i = slot * LINEAR + k;
-    const v = (linearVelocity[i]! + sample[SAMPLE_LAYOUT.linear + k]! * dt) * linearFactor;
-    linearVelocity[i] = v;
-    position[i] = position[i]! + v * dt;
-  }
-  const w = new Array<number>(ANGULAR);
-  for (let k = 0; k < ANGULAR; k++) {
-    const i = slot * ANGULAR + k;
-    w[k] = (angularVelocity[i]! + sample[SAMPLE_LAYOUT.angular + k]! * dt) * angularFactor;
-    angularVelocity[i] = w[k]!;
-  }
-  if (w.some((x) => x !== 0)) turn(store, slot, w, dt);
+const semiImplicitEuler: IntegratorFns = {
+  velocity: (store, slot, sample, dt) => {
+    const { linearVelocity, angularVelocity } = store.fields;
+    const linearFactor = sample[SAMPLE_LAYOUT.linearFactor]!;
+    const angularFactor = sample[SAMPLE_LAYOUT.angularFactor]!;
+    for (let k = 0; k < LINEAR; k++) {
+      const i = slot * LINEAR + k;
+      linearVelocity[i] =
+        (linearVelocity[i]! + sample[SAMPLE_LAYOUT.linear + k]! * dt) * linearFactor;
+    }
+    for (let k = 0; k < ANGULAR; k++) {
+      const i = slot * ANGULAR + k;
+      angularVelocity[i] =
+        (angularVelocity[i]! + sample[SAMPLE_LAYOUT.angular + k]! * dt) * angularFactor;
+    }
+  },
+  position: (store, slot, dt) => {
+    const { position, linearVelocity, angularVelocity } = store.fields;
+    for (let k = 0; k < LINEAR; k++) {
+      const i = slot * LINEAR + k;
+      position[i] = position[i]! + linearVelocity[i]! * dt;
+    }
+    const w = Array.from(angularVelocity.subarray(slot * ANGULAR, (slot + 1) * ANGULAR));
+    if (w.some((x) => x !== 0)) turn(store, slot, w, dt);
+  },
 };
 
 /** Every integrator, keyed by its catalog name. */
-export const INTEGRATORS: Readonly<Record<IntegratorName, IntegratorFn>> = Object.freeze({
+export const INTEGRATORS: Readonly<Record<IntegratorName, IntegratorFns>> = Object.freeze({
   'semi-implicit-euler': semiImplicitEuler,
 });

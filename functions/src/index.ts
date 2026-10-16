@@ -18,6 +18,7 @@ export {
   COLLISION_DEFAULTS,
   EVENT_TYPES,
   INTEGRATOR_CATALOG,
+  JOINT_TYPES,
   MATERIAL_FIELDS,
   PACKAGE_NAME as CORE_PACKAGE_NAME,
   SHAPES,
@@ -43,6 +44,10 @@ export type {
   ContactManifold,
   ContactPoint,
   IntegratorName,
+  JointDescriptor,
+  JointHandle,
+  JointRecord,
+  JointTypeName,
   NumericInput,
   NumericOutput,
   PairEvent,
@@ -84,7 +89,9 @@ export {
 } from './world/bodies';
 export type { FieldGetter, FieldSetter } from './world/bodies';
 export { addCollider, getCollider, removeCollider } from './world/colliders';
+export { addJoint, getJoint, removeJoint } from './joints/joints';
 export { createWorld } from './world/create-world';
 export { drainEvents } from './world/events';
 export { MAX_BODIES } from './world/handles';
+export { SNAPSHOT_FORMAT, checksum, restore, snapshot } from './world/snapshot';
 export { step } from './world/step';

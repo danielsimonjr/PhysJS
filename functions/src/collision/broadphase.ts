@@ -3,7 +3,8 @@
  * sorted by their lower bound on the axis where their centres spread most;
  * the order is kept in `world.broadphase`, so the insertion sort of the next
  * call starts nearly sorted. Pairs whose boxes overlap on all three axes are
- * reported, except pairs on one body and pairs with no dynamic body.
+ * reported, except pairs on one body, pairs with no dynamic body and pairs
+ * linked by a joint without `collideConnected`.
  */
 
 import {
@@ -13,6 +14,7 @@ import {
   type ColliderRecord,
   type World,
 } from '@danielsimonjr/physjs-core';
+import { jointExcludes } from '../joints/joints';
 import { requireSlot } from '../world/handles';
 import { kernelOf } from './kernels';
 import { bodyPose, type Pose } from './pose';
@@ -85,6 +87,7 @@ export function sweepAndPrune(world: World, margin: number): [ColliderHandle, Co
     for (const a of active) {
       if (byHandle.get(a)!.body === byHandle.get(h)!.body) continue;
       if (!dynamic(a) && !dynamic(h)) continue;
+      if (jointExcludes(world, byHandle.get(a)!.body, byHandle.get(h)!.body)) continue;
       if (aabbOverlap(boxes.get(a)!, box)) pairs.push(a < h ? [a, h] : [h, a]);
     }
     active.push(h);

@@ -38,8 +38,14 @@ const moving = (world: World, slot: number): boolean =>
   world.bodies.fields.asleep[slot] === 0 &&
   world.bodies.fields.sleepTimer[slot] === 0;
 
-/** Wakes sleeping bodies touched by an awake moving body or by a moving kinematic body. */
-export function wakeTouched(world: World, manifolds: readonly ContactManifold[]): void {
+/**
+ * Wakes sleeping bodies touched by (or jointed to) an awake moving body or a
+ * moving kinematic body.
+ */
+export function wakeTouched(
+  world: World,
+  manifolds: readonly Pick<ContactManifold, 'bodyA' | 'bodyB'>[]
+): void {
   const { fields, typeIndex } = world.bodies;
   const kinematicMoving = (slot: number) =>
     BODY_TYPES[typeIndex[slot]!]!.integrates &&

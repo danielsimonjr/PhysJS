@@ -33,6 +33,14 @@ export type {
 } from './catalog/events';
 export { INTEGRATOR_CATALOG } from './catalog/integrators';
 export type { IntegratorName, IntegratorRecord } from './catalog/integrators';
+export { JOINT_TYPES } from './catalog/joints';
+export type {
+  AngularMode,
+  JointParamRecord,
+  JointTypeName,
+  JointTypeRecord,
+  LinearMode,
+} from './catalog/joints';
 export { MATERIAL_FIELDS } from './catalog/materials';
 export type { CombineRule, MaterialFieldName, MaterialFieldRecord } from './catalog/materials';
 export { SHAPES } from './catalog/shapes';
@@ -57,6 +65,7 @@ export type {
 } from './types/collision';
 export type { BodyEvent, PairEvent, PhysicsEvent } from './types/events';
 export type { CachedImpulse, SolverState, TouchingPair } from './types/solver';
+export type { JointDescriptor, JointHandle, JointRecord, JointStore } from './types/joint';
 export type { NumericInput, NumericOutput } from './types/numeric';
 export type { BoxShape, CapsuleShape, ShapeDescriptor, SphereShape } from './types/shape';
 export type { BodyStore, World, WorldOptions } from './types/world';

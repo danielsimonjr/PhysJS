@@ -9,6 +9,7 @@ import type { SupportedDims } from '../config';
 import type { ColliderStore } from './collider';
 import type { BroadphaseState } from './collision';
 import type { PhysicsEvent } from './events';
+import type { JointStore } from './joint';
 import type { SolverState } from './solver';
 import type { NumericInput } from './numeric';
 
@@ -62,6 +63,8 @@ export interface World {
   readonly colliders: ColliderStore;
   /** Sweep-and-prune order kept between `findContacts` calls. */
   readonly broadphase: BroadphaseState;
+  /** Joints, keyed by handle. */
+  readonly joints: JointStore;
   /** Contact solver state carried between steps. */
   readonly solver: SolverState;
   /** Events queued by `step`, oldest first; read them with `drainEvents`. */

@@ -24,7 +24,9 @@ export type BodyFieldRole =
   /** A load summed by `applyForce` / `applyTorque` and reset after each step. */
   | 'accumulator'
   /** Computed from another field; never given directly. */
-  | 'derived';
+  | 'derived'
+  /** Sleep bookkeeping kept by `step`; never given directly. */
+  | 'sleep';
 
 /** One column of the body store. */
 export interface BodyFieldRecord {
@@ -139,6 +141,22 @@ export const BODY_FIELDS = deepFreeze({
     rule: 'finite',
     role: 'accumulator',
     descriptor: false,
+  },
+  sleepTimer: {
+    components: 1,
+    initial: [0],
+    rule: 'nonNegative',
+    role: 'sleep',
+    descriptor: false,
+    scalar: true,
+  },
+  asleep: {
+    components: 1,
+    initial: [0],
+    rule: 'unitInterval',
+    role: 'sleep',
+    descriptor: false,
+    scalar: true,
   },
 } as const satisfies Readonly<Record<string, BodyFieldRecord>>);
 

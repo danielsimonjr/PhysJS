@@ -1,6 +1,7 @@
 /**
  * Applied loads. Each accumulator column of `BODY_FIELDS` gets one adder; the
  * sums act on dynamic bodies at the next `step` and are then reset to zero.
+ * Adding a load wakes a sleeping body.
  */
 
 import {
@@ -11,6 +12,7 @@ import {
   type World,
 } from '@danielsimonjr/physjs-core';
 import { requireSlot } from '../world/handles';
+import { wakeSlot } from './sleep';
 import { readValue } from '../world/validate';
 
 /** Adds a load to a body's accumulator for the next step. */
@@ -25,6 +27,7 @@ function loadAdder(name: BodyFieldName): LoadAdder {
     const offset = slot * field.components;
     for (let k = 0; k < field.components; k++)
       column[offset + k] = column[offset + k]! + values[k]!;
+    wakeSlot(world, slot);
   };
 }
 

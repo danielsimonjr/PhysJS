@@ -11,7 +11,9 @@
 import { massProperties, type MassPropertyShape } from '@danielsimonjr/mathts-functions';
 import {
   BODY_FIELDS,
+  MATERIAL_FIELDS,
   SHAPES,
+  type MaterialFieldName,
   type BodyHandle,
   type ColliderDescriptor,
   type ColliderHandle,
@@ -24,7 +26,8 @@ import { refreshDerived, writeMassProperties } from './bodies';
 import { requireSlot } from './handles';
 import { readValue, rejectUnknownKeys, requireRecord } from './validate';
 
-const DESCRIPTOR_KEYS: ReadonlySet<string> = new Set(['shape', 'density']);
+const MATERIAL_NAMES = Object.keys(MATERIAL_FIELDS) as MaterialFieldName[];
+const DESCRIPTOR_KEYS: ReadonlySet<string> = new Set(['shape', 'density', ...MATERIAL_NAMES]);
 const PARAMS = new Map(SHAPES.map((row) => [row.type as string, row.params]));
 
 /** A plain-array copy of a validated shape, in the MathTS shape form. */
@@ -57,7 +60,8 @@ function recomputeBody(world: World, body: BodyHandle): void {
 }
 
 /**
- * Attaches a collider to a body and returns its handle.
+ * Attaches a collider to a body and returns its handle. `friction` and
+ * `restitution` default to their `MATERIAL_FIELDS` rows.
  *
  * ```ts
  * const ball = addBody(world, { type: 'dynamic', position: [0, 5, 0] });
@@ -85,12 +89,21 @@ export function addCollider(
   });
   const props = massProperties(shape as MassPropertyShape, density);
   if (props.dims !== 3) throw new RangeError(`${shape.type} is not a 3-D shape`);
+  // Each material field from its MATERIAL_FIELDS row: default, then rule.
+  const materials = Object.fromEntries(
+    MATERIAL_NAMES.map((name) => {
+      const { initial, rule } = MATERIAL_FIELDS[name];
+      const value = descriptor[name] ?? initial;
+      return [name, readValue(name, value, { components: 1, scalar: true, rule })[0]!];
+    })
+  ) as Record<MaterialFieldName, number>;
   const record: ColliderRecord = {
     body,
     shape,
     density: density!,
     mass: props.mass,
     inertia: [props.inertia[0][0], props.inertia[1][1], props.inertia[2][2]],
+    ...materials,
   };
   const handle = world.colliders.next++ as ColliderHandle;
   world.colliders.byHandle.set(handle, record);

@@ -4,7 +4,10 @@ import {
   BODY_TYPES,
   COLLISION_CORES,
   COLLISION_DEFAULTS,
+  EVENT_TYPES,
   INTEGRATOR_CATALOG,
+  MATERIAL_FIELDS,
+  SOLVER_DEFAULTS,
   SHAPES,
   SUPPORTED_DIMS,
   VALUE_RULES,
@@ -185,5 +188,27 @@ describe('COLLISION_CORES', () => {
     expect(Number.isInteger(COLLISION_DEFAULTS.maxIterations)).toBe(true);
     expect(COLLISION_DEFAULTS.maxManifoldPoints).toBeGreaterThanOrEqual(1);
     expect(Object.isFrozen(COLLISION_DEFAULTS)).toBe(true);
+  });
+});
+
+describe('MATERIAL_FIELDS, EVENT_TYPES and SOLVER_DEFAULTS', () => {
+  it('every material default satisfies its own rule', () => {
+    for (const row of Object.values(MATERIAL_FIELDS)) {
+      expect(VALUE_RULES[row.rule].test(row.initial)).toBe(true);
+    }
+  });
+
+  it('event names are unique and every subject is pair or body', () => {
+    const names = EVENT_TYPES.map((row) => row.name);
+    expect(new Set(names).size).toBe(names.length);
+    for (const row of EVENT_TYPES) expect(['pair', 'body']).toContain(row.subject);
+  });
+
+  it('solver settings are frozen and in range', () => {
+    expect(Object.isFrozen(SOLVER_DEFAULTS)).toBe(true);
+    expect(Number.isInteger(SOLVER_DEFAULTS.iterations)).toBe(true);
+    expect(SOLVER_DEFAULTS.baumgarte).toBeGreaterThan(0);
+    expect(SOLVER_DEFAULTS.baumgarte).toBeLessThanOrEqual(1);
+    expect(SOLVER_DEFAULTS.contactMargin).toBeGreaterThan(SOLVER_DEFAULTS.slop);
   });
 });

@@ -18,6 +18,7 @@ import {
   type NumericOutput,
   type World,
 } from '@danielsimonjr/physjs-core';
+import { wakeSlot } from '../dynamics/sleep';
 import { removeBodyColliders } from './colliders';
 import { packHandle, requireSlot, slotOf } from './handles';
 import { FIELD_NAMES, allocateSlot, readColumn, releaseSlot, writeColumn } from './storage';
@@ -162,7 +163,7 @@ export interface FieldGetter {
   <T extends NumericOutput>(world: World, handle: BodyHandle, out: T): T;
 }
 
-/** Sets one body field after checking it against its `BODY_FIELDS` row. */
+/** Sets one body field after checking it against its `BODY_FIELDS` row, and wakes the body. */
 export type FieldSetter = (world: World, handle: BodyHandle, value: NumericInput) => void;
 
 function fieldGetter(name: DescriptorFieldName): FieldGetter {
@@ -180,6 +181,7 @@ function fieldSetter(name: DescriptorFieldName): FieldSetter {
   return (world, handle, value) => {
     const slot = requireSlot(world.bodies, handle);
     writeColumn(world.bodies, name, slot, readField(name, value, typeRow(world, slot)));
+    wakeSlot(world, slot);
   };
 }
 

@@ -16,9 +16,12 @@ export {
   BODY_TYPES,
   COLLISION_CORES,
   COLLISION_DEFAULTS,
+  EVENT_TYPES,
   INTEGRATOR_CATALOG,
+  MATERIAL_FIELDS,
   PACKAGE_NAME as CORE_PACKAGE_NAME,
   SHAPES,
+  SOLVER_DEFAULTS,
   SUPPORTED_DIMS,
   VALUE_RULES,
   VERSION as CORE_VERSION,
@@ -27,6 +30,7 @@ export {
 export type {
   Aabb,
   BodyDescriptor,
+  BodyEvent,
   BodyHandle,
   BodyTypeName,
   BoxShape,
@@ -41,8 +45,11 @@ export type {
   IntegratorName,
   NumericInput,
   NumericOutput,
+  PairEvent,
+  PhysicsEvent,
   RayHit,
   ShapeDescriptor,
+  SolverDefaults,
   SphereShape,
   World,
   WorldOptions,
@@ -58,6 +65,7 @@ export { overlap, pointQuery, raycast } from './collision/queries';
 export { validateShape } from './collision/shapes';
 export { applyForce, applyTorque } from './dynamics/loads';
 export type { LoadAdder } from './dynamics/loads';
+export { isSleeping, wakeBody } from './dynamics/sleep';
 export {
   addBody,
   bodyCount,
@@ -77,5 +85,6 @@ export {
 export type { FieldGetter, FieldSetter } from './world/bodies';
 export { addCollider, getCollider, removeCollider } from './world/colliders';
 export { createWorld } from './world/create-world';
+export { drainEvents } from './world/events';
 export { MAX_BODIES } from './world/handles';
 export { step } from './world/step';

@@ -24,14 +24,23 @@ export { BODY_TYPES } from './catalog/body-types';
 export type { BodyTypeName, BodyTypeRecord } from './catalog/body-types';
 export { COLLISION_CORES } from './catalog/collision-cores';
 export type { CollisionCoreName, CollisionCoreRecord } from './catalog/collision-cores';
+export { EVENT_TYPES } from './catalog/events';
+export type {
+  BodyEventName,
+  EventTypeName,
+  EventTypeRecord,
+  PairEventName,
+} from './catalog/events';
 export { INTEGRATOR_CATALOG } from './catalog/integrators';
 export type { IntegratorName, IntegratorRecord } from './catalog/integrators';
+export { MATERIAL_FIELDS } from './catalog/materials';
+export type { CombineRule, MaterialFieldName, MaterialFieldRecord } from './catalog/materials';
 export { SHAPES } from './catalog/shapes';
 export type { ShapeParamRecord, ShapeRecord, ShapeType } from './catalog/shapes';
 export { VALUE_RULES } from './catalog/value-rules';
 export type { ValueRule, ValueRuleRecord } from './catalog/value-rules';
-export { COLLISION_DEFAULTS, SUPPORTED_DIMS, WORLD_DEFAULTS } from './config';
-export type { CollisionDefaults, SupportedDims, WorldDefaults } from './config';
+export { COLLISION_DEFAULTS, SOLVER_DEFAULTS, SUPPORTED_DIMS, WORLD_DEFAULTS } from './config';
+export type { CollisionDefaults, SolverDefaults, SupportedDims, WorldDefaults } from './config';
 export type { BodyDescriptor, BodyHandle } from './types/body';
 export type {
   ColliderDescriptor,
@@ -46,6 +55,8 @@ export type {
   ContactPoint,
   RayHit,
 } from './types/collision';
+export type { BodyEvent, PairEvent, PhysicsEvent } from './types/events';
+export type { CachedImpulse, SolverState, TouchingPair } from './types/solver';
 export type { NumericInput, NumericOutput } from './types/numeric';
 export type { BoxShape, CapsuleShape, ShapeDescriptor, SphereShape } from './types/shape';
 export type { BodyStore, World, WorldOptions } from './types/world';

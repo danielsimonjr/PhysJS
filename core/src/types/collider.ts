@@ -15,6 +15,10 @@ export interface ColliderDescriptor {
   readonly shape: ShapeDescriptor;
   /** Mass per unit volume, kg/m^3, > 0. */
   readonly density: number;
+  /** Coulomb friction coefficient, >= 0. Defaults to `MATERIAL_FIELDS.friction`. */
+  readonly friction?: number;
+  /** Restitution from 0 to 1. Defaults to `MATERIAL_FIELDS.restitution`. */
+  readonly restitution?: number;
 }
 
 /** A stored collider and its mass properties from MathTS `massProperties`. */
@@ -29,6 +33,10 @@ export interface ColliderRecord {
   readonly mass: number;
   /** Principal moments about the body origin, kg m^2. */
   readonly inertia: readonly [number, number, number];
+  /** Friction coefficient. */
+  readonly friction: number;
+  /** Restitution. */
+  readonly restitution: number;
 }
 
 /** Colliders of a world, keyed by handle. */

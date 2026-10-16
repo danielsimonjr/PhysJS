@@ -6,7 +6,8 @@
 import { deepFreeze } from './freeze';
 
 /** Name of a rule in {@link VALUE_RULES}. */
-export type ValueRule = 'finite' | 'nonNegative' | 'positive' | 'positiveOrInfinite';
+export type ValueRule =
+  'finite' | 'nonNegative' | 'positive' | 'positiveOrInfinite' | 'unitInterval';
 
 /** A predicate on one number and the phrase an error uses for it. */
 export interface ValueRuleRecord {
@@ -30,5 +31,9 @@ export const VALUE_RULES: Readonly<Record<ValueRule, ValueRuleRecord>> = deepFre
   positiveOrInfinite: {
     test: (x: number) => x > 0,
     description: 'a number > 0 (Infinity allowed)',
+  },
+  unitInterval: {
+    test: (x: number) => x >= 0 && x <= 1,
+    description: 'a number from 0 to 1',
   },
 });

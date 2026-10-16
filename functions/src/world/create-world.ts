@@ -68,5 +68,7 @@ export function createWorld(options: WorldOptions): World {
     bodies: createBodyStore(capacity),
     colliders: { next: 1, byHandle: new Map() },
     broadphase: { order: [] },
+    solver: { cache: new Map(), touching: new Map() },
+    events: [],
   };
 }

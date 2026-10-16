@@ -18,11 +18,11 @@
     },
     "core": {
       "name": "@danielsimonjr/physjs-core",
-      "version": "0.0.0",
+      "version": "0.1.0",
     },
     "functions": {
       "name": "@danielsimonjr/physjs",
-      "version": "0.0.0",
+      "version": "0.1.0",
       "dependencies": {
         "@danielsimonjr/mathts-functions": "^0.69.0",
         "@danielsimonjr/physjs-core": "workspace:*",

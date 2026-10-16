@@ -1,0 +1,39 @@
+{
+  "caveats": [
+    "A literal relative `import(...)` is a graph edge. A runtime call is a namespace use (`*`), so the exports of that file count as used. A type-position `import(...).Name` counts only `Name`, and `typeof import(...)` counts none. A dynamic import built from a variable or a template, and other runtime loads (e.g. `new Worker(path)`), are still invisible -- a file or export reached ONLY through one of those is reported as no-importer/unreferenced even though it may be live.",
+    "`noImporterFiles` is NOT a deletion-candidate list. A file with zero in-repo importers is expected, not suspicious, for: a standalone script invoked directly (e.g. a smoketest run via `node script.mjs`, never `import`ed by anything), or a build/lint config file loaded by its own tool rather than by source code (e.g. `eslint.config.mjs`, read by eslint itself). Cross-check against package.json scripts / tool configs before treating any entry here as dead.",
+    "Only NAMED exports are analysed (`FileNode.exports` carries named exports only) -- `export default` usage is not checked here.",
+    "The `referencedInModule` vs `unreferencedAnywhere` split for exports is a TEXT-LEVEL heuristic (whole-identifier occurrence count within the defining file's own source, minus the declaration site itself), not an AST reference count -- it can over-count a name that also appears in a string literal or comment. When the source text can't be read at all (no `RepoGraph.root_path`, or the file is missing) the export lands in `unclassifiedExports` instead of being guessed into either bucket.",
+    "`unreferencedAnywhereNotes`'s dynamic-import check (`_dynamic_import_referrers`) only sees `import(...)` calls with a LITERAL string specifier. A dynamic import built from a variable or template literal (e.g. `import(`./cmds/${name}.js`)`, a command-dispatcher pattern) is invisible to it -- 'found none' in a note means no LITERAL match was found, NOT that nothing imports the file."
+  ],
+  "summary": {
+    "unusedExportCount": 3,
+    "unreferencedAnywhereCount": 1,
+    "referencedInModuleCount": 2,
+    "unclassifiedExportCount": 0,
+    "noImporterFileCount": 2
+  },
+  "unreferencedAnywhere": {
+    "functions/src/index.ts": [
+      "CORE_VERSION"
+    ]
+  },
+  "unreferencedAnywhereNotes": {
+    "functions/src/index.ts": {
+      "CORE_VERSION": "Checked for a dynamic import() call with a LITERAL string specifier resolving to 'functions/src/index.ts' across the whole repo and found none. This scan can only see import() calls with a literal string specifier -- a dynamic import built from a variable or template literal (e.g. import(`./cmds/${name}.js`)) is invisible to it, so 'found none' means no LITERAL match was found, NOT that nothing imports this. 'CORE_VERSION' may still be consumed via such a call. Also verify against consumption this scan cannot see at all (docs examples, published API surface, a runtime-built path/`new Worker(...)`) before deleting."
+    }
+  },
+  "referencedInModule": {
+    "functions/src/dynamics/integrators.ts": [
+      "IntegratorFn"
+    ],
+    "functions/src/world/validate.ts": [
+      "ValueSchema"
+    ]
+  },
+  "unclassifiedExports": {},
+  "noImporterFiles": [
+    "core/bun-test-preload.ts",
+    "functions/bun-test-preload.ts"
+  ]
+}

@@ -1,0 +1,1297 @@
+{
+  "metadata": {
+    "name": "physjs",
+    "version": "0.0.0",
+    "schemaVersion": "2.0.0",
+    "language": "typescript"
+  },
+  "entryPoints": [
+    {
+      "file": "core/src/index.ts",
+      "type": "main",
+      "description": "Core types, data catalogs and configuration for PhysJS. Units, constants and"
+    },
+    {
+      "file": "functions/src/index.ts",
+      "type": "main",
+      "description": "The public PhysJS package: worlds, bodies, applied loads and integration."
+    }
+  ],
+  "modules": {
+    "core": {
+      "core/bun-test-preload.ts": {
+        "description": "Mirrors the build-time `define` from tsdown.config.ts for tests that import source.",
+        "externalDependencies": [],
+        "nodeDependencies": [
+          {
+            "module": "fs",
+            "imports": [
+              "readFileSync"
+            ]
+          }
+        ],
+        "internalDependencies": [],
+        "workspaceDependencies": [],
+        "exports": []
+      },
+      "core/src/config.ts": {
+        "description": "World defaults. Physical constants are not defined here: default gravity is",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./catalog/freeze",
+            "imports": [
+              "deepFreeze"
+            ]
+          },
+          {
+            "file": "./catalog/integrators",
+            "imports": [
+              "IntegratorName"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [
+          "SUPPORTED_DIMS",
+          "WORLD_DEFAULTS"
+        ],
+        "interfaces": [
+          "WorldDefaults"
+        ],
+        "constants": [
+          "SUPPORTED_DIMS",
+          "WORLD_DEFAULTS"
+        ]
+      },
+      "core/src/index.ts": {
+        "description": "Core types, data catalogs and configuration for PhysJS. Units, constants and",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./catalog/body-fields",
+            "imports": [
+              "BODY_FIELDS"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./catalog/body-fields",
+            "imports": [
+              "BodyFieldName",
+              "BodyFieldRecord",
+              "BodyFieldRole",
+              "DescriptorFieldName"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./catalog/body-types",
+            "imports": [
+              "BODY_TYPES"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./catalog/body-types",
+            "imports": [
+              "BodyTypeName",
+              "BodyTypeRecord"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./catalog/integrators",
+            "imports": [
+              "INTEGRATOR_CATALOG"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./catalog/integrators",
+            "imports": [
+              "IntegratorName",
+              "IntegratorRecord"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./catalog/shapes",
+            "imports": [
+              "SHAPES"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./catalog/shapes",
+            "imports": [
+              "ShapeParamRecord",
+              "ShapeRecord",
+              "ShapeType"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./catalog/value-rules",
+            "imports": [
+              "VALUE_RULES"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./catalog/value-rules",
+            "imports": [
+              "ValueRule",
+              "ValueRuleRecord"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./config",
+            "imports": [
+              "SUPPORTED_DIMS",
+              "WORLD_DEFAULTS"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./config",
+            "imports": [
+              "SupportedDims",
+              "WorldDefaults"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./types/body",
+            "imports": [
+              "BodyDescriptor",
+              "BodyHandle"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./types/numeric",
+            "imports": [
+              "NumericInput",
+              "NumericOutput"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./types/shape",
+            "imports": [
+              "BoxShape",
+              "CapsuleShape",
+              "ShapeDescriptor",
+              "SphereShape"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./types/world",
+            "imports": [
+              "BodyStore",
+              "World",
+              "WorldOptions"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [
+          "PACKAGE_NAME",
+          "VERSION",
+          "BODY_FIELDS",
+          "BodyFieldName",
+          "BodyFieldRecord",
+          "BodyFieldRole",
+          "DescriptorFieldName",
+          "BODY_TYPES",
+          "BodyTypeName",
+          "BodyTypeRecord",
+          "INTEGRATOR_CATALOG",
+          "IntegratorName",
+          "IntegratorRecord",
+          "SHAPES",
+          "ShapeParamRecord",
+          "ShapeRecord",
+          "ShapeType",
+          "VALUE_RULES",
+          "ValueRule",
+          "ValueRuleRecord",
+          "SUPPORTED_DIMS",
+          "WORLD_DEFAULTS",
+          "SupportedDims",
+          "WorldDefaults",
+          "BodyDescriptor",
+          "BodyHandle",
+          "NumericInput",
+          "NumericOutput",
+          "BoxShape",
+          "CapsuleShape",
+          "ShapeDescriptor",
+          "SphereShape",
+          "BodyStore",
+          "World",
+          "WorldOptions"
+        ],
+        "reExported": [
+          "BODY_FIELDS",
+          "BodyFieldName",
+          "BodyFieldRecord",
+          "BodyFieldRole",
+          "DescriptorFieldName",
+          "BODY_TYPES",
+          "BodyTypeName",
+          "BodyTypeRecord",
+          "INTEGRATOR_CATALOG",
+          "IntegratorName",
+          "IntegratorRecord",
+          "SHAPES",
+          "ShapeParamRecord",
+          "ShapeRecord",
+          "ShapeType",
+          "VALUE_RULES",
+          "ValueRule",
+          "ValueRuleRecord",
+          "SUPPORTED_DIMS",
+          "WORLD_DEFAULTS",
+          "SupportedDims",
+          "WorldDefaults",
+          "BodyDescriptor",
+          "BodyHandle",
+          "NumericInput",
+          "NumericOutput",
+          "BoxShape",
+          "CapsuleShape",
+          "ShapeDescriptor",
+          "SphereShape",
+          "BodyStore",
+          "World",
+          "WorldOptions"
+        ],
+        "constants": [
+          "PACKAGE_NAME",
+          "VERSION"
+        ]
+      }
+    },
+    "core/catalog": {
+      "core/src/catalog/body-fields.ts": {
+        "description": "Per-body state, as data. Each record is one struct-of-arrays column in the",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./freeze",
+            "imports": [
+              "deepFreeze"
+            ]
+          },
+          {
+            "file": "./value-rules",
+            "imports": [
+              "ValueRule"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [
+          "BODY_FIELDS"
+        ],
+        "interfaces": [
+          "BodyFieldRecord"
+        ],
+        "constants": [
+          "BODY_FIELDS"
+        ]
+      },
+      "core/src/catalog/body-types.ts": {
+        "description": "The body types, as data. `step` and `addBody` read these flags; there is no",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./body-fields",
+            "imports": [
+              "DescriptorFieldName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "./freeze",
+            "imports": [
+              "deepFreeze"
+            ]
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [
+          "BODY_TYPES"
+        ],
+        "interfaces": [
+          "BodyTypeRecord"
+        ],
+        "constants": [
+          "BODY_TYPES"
+        ]
+      },
+      "core/src/catalog/freeze.ts": {
+        "description": "freeze module",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "workspaceDependencies": [],
+        "exports": [
+          "deepFreeze"
+        ],
+        "functions": [
+          "deepFreeze"
+        ]
+      },
+      "core/src/catalog/integrators.ts": {
+        "description": "The integrators PhysJS implements, as data. `@danielsimonjr/physjs` keys its",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./freeze",
+            "imports": [
+              "deepFreeze"
+            ]
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [
+          "INTEGRATOR_CATALOG"
+        ],
+        "interfaces": [
+          "IntegratorRecord"
+        ],
+        "constants": [
+          "INTEGRATOR_CATALOG"
+        ]
+      },
+      "core/src/catalog/shapes.ts": {
+        "description": "Collision shapes, as data: one record per shape type with its parameter",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./freeze",
+            "imports": [
+              "deepFreeze"
+            ]
+          },
+          {
+            "file": "./value-rules",
+            "imports": [
+              "ValueRule"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [
+          "SHAPES"
+        ],
+        "interfaces": [
+          "ShapeParamRecord",
+          "ShapeRecord"
+        ],
+        "constants": [
+          "SHAPES"
+        ]
+      },
+      "core/src/catalog/value-rules.ts": {
+        "description": "The number rules that catalog fields and shape parameters name. One table, so",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./freeze",
+            "imports": [
+              "deepFreeze"
+            ]
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [
+          "VALUE_RULES"
+        ],
+        "interfaces": [
+          "ValueRuleRecord"
+        ],
+        "constants": [
+          "VALUE_RULES"
+        ]
+      }
+    },
+    "core/types": {
+      "core/src/types/body.ts": {
+        "description": "Body records. Field names follow fourJS's `RigidBodyDescriptor` so the fourJS",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "../catalog/body-types",
+            "imports": [
+              "BodyTypeName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "./numeric",
+            "imports": [
+              "NumericInput"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [],
+        "interfaces": [
+          "BodyDescriptor"
+        ]
+      },
+      "core/src/types/numeric.ts": {
+        "description": "Type definitions (1 interfaces, 1 type aliases)",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "workspaceDependencies": [],
+        "exports": [],
+        "interfaces": [
+          "NumericOutput"
+        ]
+      },
+      "core/src/types/shape.ts": {
+        "description": "Type definitions (3 interfaces, 1 type aliases)",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./numeric",
+            "imports": [
+              "NumericInput"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [],
+        "interfaces": [
+          "SphereShape",
+          "BoxShape",
+          "CapsuleShape"
+        ]
+      },
+      "core/src/types/world.ts": {
+        "description": "World records. A world is plain data: typed-array columns generated from",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "../catalog/body-fields",
+            "imports": [
+              "BodyFieldName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "../catalog/integrators",
+            "imports": [
+              "IntegratorName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "../config",
+            "imports": [
+              "SupportedDims"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "./numeric",
+            "imports": [
+              "NumericInput"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "workspaceDependencies": [],
+        "exports": [],
+        "interfaces": [
+          "WorldOptions",
+          "BodyStore",
+          "World"
+        ]
+      }
+    },
+    "functions": {
+      "functions/bun-test-preload.ts": {
+        "description": "Mirrors the build-time `define` from tsdown.config.ts for tests that import source.",
+        "externalDependencies": [],
+        "nodeDependencies": [
+          {
+            "module": "fs",
+            "imports": [
+              "readFileSync"
+            ]
+          }
+        ],
+        "internalDependencies": [],
+        "workspaceDependencies": [],
+        "exports": []
+      },
+      "functions/src/index.ts": {
+        "description": "The public PhysJS package: worlds, bodies, applied loads and integration.",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./collision/shapes",
+            "imports": [
+              "validateShape"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./dynamics/loads",
+            "imports": [
+              "applyForce",
+              "applyTorque"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./dynamics/loads",
+            "imports": [
+              "LoadAdder"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./world/bodies",
+            "imports": [
+              "addBody",
+              "bodyCount",
+              "getAngularVelocity",
+              "getBodyType",
+              "getLinearVelocity",
+              "getMass",
+              "getPosition",
+              "getRotation",
+              "hasBody",
+              "removeBody",
+              "setAngularVelocity",
+              "setLinearVelocity",
+              "setPosition",
+              "setRotation"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./world/bodies",
+            "imports": [
+              "FieldGetter",
+              "FieldSetter"
+            ],
+            "reExport": true,
+            "typeOnly": true
+          },
+          {
+            "file": "./world/create-world",
+            "imports": [
+              "createWorld"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./world/handles",
+            "imports": [
+              "MAX_BODIES"
+            ],
+            "reExport": true
+          },
+          {
+            "file": "./world/step",
+            "imports": [
+              "step"
+            ],
+            "reExport": true
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BODY_FIELDS",
+              "BODY_TYPES",
+              "INTEGRATOR_CATALOG",
+              "PACKAGE_NAME",
+              "SHAPES",
+              "SUPPORTED_DIMS",
+              "VALUE_RULES",
+              "VERSION",
+              "WORLD_DEFAULTS"
+            ]
+          },
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BodyDescriptor",
+              "BodyHandle",
+              "BodyTypeName",
+              "BoxShape",
+              "CapsuleShape",
+              "IntegratorName",
+              "NumericInput",
+              "NumericOutput",
+              "ShapeDescriptor",
+              "SphereShape",
+              "World",
+              "WorldOptions"
+            ]
+          }
+        ],
+        "exports": [
+          "BODY_FIELDS",
+          "BODY_TYPES",
+          "INTEGRATOR_CATALOG",
+          "CORE_PACKAGE_NAME",
+          "SHAPES",
+          "SUPPORTED_DIMS",
+          "VALUE_RULES",
+          "CORE_VERSION",
+          "WORLD_DEFAULTS",
+          "BodyDescriptor",
+          "BodyHandle",
+          "BodyTypeName",
+          "BoxShape",
+          "CapsuleShape",
+          "IntegratorName",
+          "NumericInput",
+          "NumericOutput",
+          "ShapeDescriptor",
+          "SphereShape",
+          "World",
+          "WorldOptions",
+          "PACKAGE_NAME",
+          "VERSION",
+          "validateShape",
+          "applyForce",
+          "applyTorque",
+          "LoadAdder",
+          "addBody",
+          "bodyCount",
+          "getAngularVelocity",
+          "getBodyType",
+          "getLinearVelocity",
+          "getMass",
+          "getPosition",
+          "getRotation",
+          "hasBody",
+          "removeBody",
+          "setAngularVelocity",
+          "setLinearVelocity",
+          "setPosition",
+          "setRotation",
+          "FieldGetter",
+          "FieldSetter",
+          "createWorld",
+          "MAX_BODIES",
+          "step"
+        ],
+        "reExported": [
+          "BODY_FIELDS",
+          "BODY_TYPES",
+          "INTEGRATOR_CATALOG",
+          "CORE_PACKAGE_NAME",
+          "SHAPES",
+          "SUPPORTED_DIMS",
+          "VALUE_RULES",
+          "CORE_VERSION",
+          "WORLD_DEFAULTS",
+          "BodyDescriptor",
+          "BodyHandle",
+          "BodyTypeName",
+          "BoxShape",
+          "CapsuleShape",
+          "IntegratorName",
+          "NumericInput",
+          "NumericOutput",
+          "ShapeDescriptor",
+          "SphereShape",
+          "World",
+          "WorldOptions",
+          "validateShape",
+          "applyForce",
+          "applyTorque",
+          "LoadAdder",
+          "addBody",
+          "bodyCount",
+          "getAngularVelocity",
+          "getBodyType",
+          "getLinearVelocity",
+          "getMass",
+          "getPosition",
+          "getRotation",
+          "hasBody",
+          "removeBody",
+          "setAngularVelocity",
+          "setLinearVelocity",
+          "setPosition",
+          "setRotation",
+          "FieldGetter",
+          "FieldSetter",
+          "createWorld",
+          "MAX_BODIES",
+          "step"
+        ],
+        "constants": [
+          "PACKAGE_NAME",
+          "VERSION"
+        ]
+      }
+    },
+    "functions/collision": {
+      "functions/src/collision/shapes.ts": {
+        "description": "Checks a shape against its `SHAPES` row: a known type, exactly that row's",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "../world/validate",
+            "imports": [
+              "readValue",
+              "rejectUnknownKeys",
+              "requireRecord"
+            ]
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "SHAPES",
+              "ShapeDescriptor",
+              "ShapeRecord"
+            ]
+          }
+        ],
+        "exports": [
+          "validateShape"
+        ],
+        "functions": [
+          "validateShape"
+        ]
+      }
+    },
+    "functions/dynamics": {
+      "functions/src/dynamics/integrators.ts": {
+        "description": "Integrator functions, keyed by the `INTEGRATOR_CATALOG` names. The type of",
+        "externalDependencies": [
+          {
+            "package": "@danielsimonjr/mathts-functions",
+            "imports": [
+              "quaternionExp",
+              "quaternionMultiply",
+              "quaternionNormalize"
+            ]
+          }
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./sample",
+            "imports": [
+              "SAMPLE_LAYOUT"
+            ]
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyStore",
+              "IntegratorName"
+            ]
+          }
+        ],
+        "exports": [
+          "INTEGRATORS"
+        ],
+        "constants": [
+          "INTEGRATORS"
+        ]
+      },
+      "functions/src/dynamics/loads.ts": {
+        "description": "Applied loads. Each accumulator column of `BODY_FIELDS` gets one adder; the",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "../world/handles",
+            "imports": [
+              "requireSlot"
+            ]
+          },
+          {
+            "file": "../world/validate",
+            "imports": [
+              "readValue"
+            ]
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyFieldName",
+              "BodyHandle",
+              "NumericInput",
+              "World"
+            ]
+          }
+        ],
+        "exports": [
+          "applyForce",
+          "applyTorque"
+        ],
+        "constants": [
+          "applyForce",
+          "applyTorque"
+        ]
+      },
+      "functions/src/dynamics/sample.ts": {
+        "description": "The acceleration sample an integrator advances one body with: linear and",
+        "externalDependencies": [
+          {
+            "package": "@danielsimonjr/mathts-functions",
+            "imports": [
+              "dotMultiply",
+              "quaternionConjugate",
+              "quaternionRotate"
+            ]
+          }
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyTypeRecord",
+              "World"
+            ]
+          }
+        ],
+        "exports": [
+          "SAMPLE_LAYOUT",
+          "loadSample"
+        ],
+        "functions": [
+          "loadSample"
+        ],
+        "constants": [
+          "SAMPLE_LAYOUT"
+        ]
+      }
+    },
+    "functions/world": {
+      "functions/src/world/bodies.ts": {
+        "description": "Adding, removing and reading bodies. Descriptor checks, defaults and the",
+        "externalDependencies": [
+          {
+            "package": "@danielsimonjr/mathts-functions",
+            "imports": [
+              "quaternionNormalize"
+            ]
+          }
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./handles",
+            "imports": [
+              "packHandle",
+              "requireSlot",
+              "slotOf"
+            ]
+          },
+          {
+            "file": "./storage",
+            "imports": [
+              "FIELD_NAMES",
+              "allocateSlot",
+              "readColumn",
+              "releaseSlot",
+              "writeColumn"
+            ]
+          },
+          {
+            "file": "./validate",
+            "imports": [
+              "readValue",
+              "rejectUnknownKeys",
+              "requireRecord"
+            ]
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BODY_FIELDS",
+              "BODY_TYPES",
+              "BodyDescriptor",
+              "BodyFieldName",
+              "BodyFieldRecord",
+              "BodyHandle",
+              "BodyTypeName",
+              "BodyTypeRecord",
+              "DescriptorFieldName",
+              "NumericInput",
+              "NumericOutput",
+              "World"
+            ]
+          }
+        ],
+        "exports": [
+          "addBody",
+          "removeBody",
+          "hasBody",
+          "bodyCount",
+          "getBodyType",
+          "getMass",
+          "getPosition",
+          "getRotation",
+          "getLinearVelocity",
+          "getAngularVelocity",
+          "setPosition",
+          "setRotation",
+          "setLinearVelocity",
+          "setAngularVelocity"
+        ],
+        "interfaces": [
+          "FieldGetter"
+        ],
+        "functions": [
+          "addBody",
+          "removeBody",
+          "hasBody",
+          "bodyCount",
+          "getBodyType",
+          "getMass"
+        ],
+        "constants": [
+          "getPosition",
+          "getRotation",
+          "getLinearVelocity",
+          "getAngularVelocity",
+          "setPosition",
+          "setRotation",
+          "setLinearVelocity",
+          "setAngularVelocity"
+        ]
+      },
+      "functions/src/world/create-world.ts": {
+        "description": "Creates an empty world.",
+        "externalDependencies": [
+          {
+            "package": "@danielsimonjr/mathts-functions",
+            "imports": [
+              "gravity"
+            ]
+          }
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./handles",
+            "imports": [
+              "MAX_BODIES"
+            ]
+          },
+          {
+            "file": "./storage",
+            "imports": [
+              "createBodyStore"
+            ]
+          },
+          {
+            "file": "./validate",
+            "imports": [
+              "readValue",
+              "rejectUnknownKeys",
+              "requireRecord"
+            ]
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "INTEGRATOR_CATALOG",
+              "SUPPORTED_DIMS",
+              "WORLD_DEFAULTS",
+              "World",
+              "WorldOptions"
+            ]
+          }
+        ],
+        "exports": [
+          "createWorld"
+        ],
+        "functions": [
+          "createWorld"
+        ]
+      },
+      "functions/src/world/handles.ts": {
+        "description": "Generation-tagged body handles. A handle packs a slot index and the slot's",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BodyHandle",
+              "BodyStore"
+            ]
+          }
+        ],
+        "exports": [
+          "MAX_BODIES",
+          "GENERATION_LIMIT",
+          "packHandle",
+          "slotOf",
+          "requireSlot"
+        ],
+        "functions": [
+          "packHandle",
+          "slotOf",
+          "requireSlot"
+        ],
+        "constants": [
+          "MAX_BODIES",
+          "GENERATION_LIMIT"
+        ]
+      },
+      "functions/src/world/step.ts": {
+        "description": "Advances the world by `dt` seconds: every live body whose type integrates is",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "../dynamics/integrators",
+            "imports": [
+              "INTEGRATORS"
+            ]
+          },
+          {
+            "file": "../dynamics/sample",
+            "imports": [
+              "SAMPLE_LAYOUT",
+              "loadSample"
+            ]
+          },
+          {
+            "file": "./storage",
+            "imports": [
+              "FIELD_NAMES"
+            ]
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BODY_FIELDS",
+              "BODY_TYPES",
+              "VALUE_RULES",
+              "BodyTypeRecord",
+              "World"
+            ]
+          }
+        ],
+        "exports": [
+          "step"
+        ],
+        "functions": [
+          "step"
+        ]
+      },
+      "functions/src/world/storage.ts": {
+        "description": "The struct-of-arrays body store. Every column, its size and its defaults come",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "./handles",
+            "imports": [
+              "GENERATION_LIMIT",
+              "MAX_BODIES"
+            ]
+          }
+        ],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyFieldName",
+              "BodyStore",
+              "NumericOutput"
+            ]
+          }
+        ],
+        "exports": [
+          "FIELD_NAMES",
+          "createBodyStore",
+          "allocateSlot",
+          "releaseSlot",
+          "writeColumn",
+          "readColumn"
+        ],
+        "functions": [
+          "createBodyStore",
+          "allocateSlot",
+          "releaseSlot",
+          "writeColumn",
+          "readColumn"
+        ],
+        "constants": [
+          "FIELD_NAMES"
+        ]
+      },
+      "functions/src/world/validate.ts": {
+        "description": "Input checks shared by every PhysJS entry point. Schemas come from the core",
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "workspaceDependencies": [
+          {
+            "package": "@danielsimonjr/physjs-core",
+            "directory": "core",
+            "imports": [
+              "VALUE_RULES",
+              "ValueRule"
+            ]
+          }
+        ],
+        "exports": [
+          "readValue",
+          "requireRecord",
+          "rejectUnknownKeys"
+        ],
+        "interfaces": [
+          "ValueSchema"
+        ],
+        "functions": [
+          "readValue",
+          "requireRecord",
+          "rejectUnknownKeys"
+        ]
+      }
+    }
+  },
+  "cyclicComponents": {
+    "runtime": [],
+    "typeOnly": []
+  },
+  "layers": [
+    {
+      "name": "Core",
+      "files": [
+        "core/bun-test-preload.ts",
+        "core/src/config.ts",
+        "core/src/index.ts"
+      ]
+    },
+    {
+      "name": "Core/catalog",
+      "files": [
+        "core/src/catalog/body-fields.ts",
+        "core/src/catalog/body-types.ts",
+        "core/src/catalog/freeze.ts",
+        "core/src/catalog/integrators.ts",
+        "core/src/catalog/shapes.ts",
+        "core/src/catalog/value-rules.ts"
+      ]
+    },
+    {
+      "name": "Core/types",
+      "files": [
+        "core/src/types/body.ts",
+        "core/src/types/numeric.ts",
+        "core/src/types/shape.ts",
+        "core/src/types/world.ts"
+      ]
+    },
+    {
+      "name": "Functions",
+      "files": [
+        "functions/bun-test-preload.ts",
+        "functions/src/index.ts"
+      ]
+    },
+    {
+      "name": "Functions/collision",
+      "files": [
+        "functions/src/collision/shapes.ts"
+      ]
+    },
+    {
+      "name": "Functions/dynamics",
+      "files": [
+        "functions/src/dynamics/integrators.ts",
+        "functions/src/dynamics/loads.ts",
+        "functions/src/dynamics/sample.ts"
+      ]
+    },
+    {
+      "name": "Functions/world",
+      "files": [
+        "functions/src/world/bodies.ts",
+        "functions/src/world/create-world.ts",
+        "functions/src/world/handles.ts",
+        "functions/src/world/step.ts",
+        "functions/src/world/storage.ts",
+        "functions/src/world/validate.ts"
+      ]
+    }
+  ]
+}

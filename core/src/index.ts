@@ -3,7 +3,7 @@
  *
  * Core types, data catalogs and configuration for PhysJS. Units, constants and
  * all mathematics come from MathTS; nothing here redefines them.
- * See docs/design/PHYSICS_ENGINE_PLAN.md. 0.0.0 is the skeleton only.
+ * See docs/design/PHYSICS_ENGINE_PLAN.md.
  *
  * @packageDocumentation
  */
@@ -12,3 +12,25 @@ declare const __PKG_VERSION__: string;
 
 export const PACKAGE_NAME = '@danielsimonjr/physjs-core';
 export const VERSION: string = __PKG_VERSION__;
+
+export { BODY_FIELDS } from './catalog/body-fields';
+export type {
+  BodyFieldName,
+  BodyFieldRecord,
+  BodyFieldRole,
+  DescriptorFieldName,
+} from './catalog/body-fields';
+export { BODY_TYPES } from './catalog/body-types';
+export type { BodyTypeName, BodyTypeRecord } from './catalog/body-types';
+export { INTEGRATOR_CATALOG } from './catalog/integrators';
+export type { IntegratorName, IntegratorRecord } from './catalog/integrators';
+export { SHAPES } from './catalog/shapes';
+export type { ShapeParamRecord, ShapeRecord, ShapeType } from './catalog/shapes';
+export { VALUE_RULES } from './catalog/value-rules';
+export type { ValueRule, ValueRuleRecord } from './catalog/value-rules';
+export { SUPPORTED_DIMS, WORLD_DEFAULTS } from './config';
+export type { SupportedDims, WorldDefaults } from './config';
+export type { BodyDescriptor, BodyHandle } from './types/body';
+export type { NumericInput, NumericOutput } from './types/numeric';
+export type { BoxShape, CapsuleShape, ShapeDescriptor, SphereShape } from './types/shape';
+export type { BodyStore, World, WorldOptions } from './types/world';

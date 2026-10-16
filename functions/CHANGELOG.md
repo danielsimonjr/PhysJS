@@ -1,5 +1,16 @@
 # @danielsimonjr/physjs
 
+## 0.2.0
+
+### Minor Changes
+
+- aa2d6f1: Collision (0.2): `COLLISION_CORES` and a `core` per `SHAPES` row, `COLLISION_DEFAULTS`, and the contact, ray-hit and bounding-box types (core). Sweep-and-prune broadphase, an analytic narrowphase for sphere/capsule pairs and GJK/EPA for boxes, clipped contact manifolds of up to four points, and `findContacts`, `raycast`, `overlap`, `pointQuery` and `colliderAabb` (physjs).
+
+### Patch Changes
+
+- Updated dependencies [aa2d6f1]
+  - @danielsimonjr/physjs-core@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes

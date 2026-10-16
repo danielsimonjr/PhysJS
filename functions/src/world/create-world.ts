@@ -67,5 +67,6 @@ export function createWorld(options: WorldOptions): World {
     steps: 0,
     bodies: createBodyStore(capacity),
     colliders: { next: 1, byHandle: new Map() },
+    broadphase: { order: [] },
   };
 }

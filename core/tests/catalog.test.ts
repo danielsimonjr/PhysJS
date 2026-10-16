@@ -2,6 +2,8 @@ import { describe, expect, it } from 'bun:test';
 import {
   BODY_FIELDS,
   BODY_TYPES,
+  COLLISION_CORES,
+  COLLISION_DEFAULTS,
   INTEGRATOR_CATALOG,
   SHAPES,
   SUPPORTED_DIMS,
@@ -167,5 +169,21 @@ describe('WORLD_DEFAULTS', () => {
     expect(WORLD_DEFAULTS.up).toEqual([0, 1, 0]);
     expect(Number.isInteger(WORLD_DEFAULTS.initialBodyCapacity)).toBe(true);
     expect(WORLD_DEFAULTS.initialBodyCapacity).toBeGreaterThan(0);
+  });
+});
+
+describe('COLLISION_CORES', () => {
+  it('every shape names a known core, and core names are unique', () => {
+    const names = COLLISION_CORES.map((row) => row.name);
+    expect(new Set(names).size).toBe(names.length);
+    for (const shape of SHAPES) expect(names).toContain(shape.core);
+  });
+
+  it('collision defaults are positive where they must be', () => {
+    expect(COLLISION_DEFAULTS.margin).toBeGreaterThanOrEqual(0);
+    expect(COLLISION_DEFAULTS.tolerance).toBeGreaterThan(0);
+    expect(Number.isInteger(COLLISION_DEFAULTS.maxIterations)).toBe(true);
+    expect(COLLISION_DEFAULTS.maxManifoldPoints).toBeGreaterThanOrEqual(1);
+    expect(Object.isFrozen(COLLISION_DEFAULTS)).toBe(true);
   });
 });

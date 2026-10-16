@@ -158,6 +158,8 @@ Each release goes through changesets and CI publish; each MathTS gap must be rel
 
 **0.1.0 and gap 4.** Bodies, the catalogs, `createWorld`, semi-implicit Euler and density-based `addCollider` are built. Collider mass properties come from MathTS `massProperties` (#378, mathts-functions 0.69.0); a dynamic body takes its mass and inertia from its colliders or from explicit values. 0.1 colliders are centred on the body origin.
 
+**0.2.0.** Every shape is a convex core swept by a radius: the `SHAPES` rows name their core in `COLLISION_CORES` (sphere: point, capsule: segment, box: polytope), and `functions/src/collision/kernels.ts` holds one kernel row per shape (support, feature, ends, bounds, ray test). The narrowphase picks the algorithm from the pair of cores: two analytic cores use MathTS `segmentSegmentClosest`; anything else uses GJK, plus EPA when the cores overlap. Manifolds clip the incident feature against the reference feature's side planes, keeping at most `COLLISION_DEFAULTS.maxManifoldPoints` points. The broadphase is sweep-and-prune, with the order kept in `world.broadphase`. `findContacts`, `raycast`, `overlap` and `pointQuery` share the kernels and the narrowphase. Vector arithmetic is MathTS (`add`, `multiply`, `dot`, `cross`, `norm`, quaternion rotation, `lusolve`, `det`). MathTS `subtract` rejects plain arrays ([MathTS #384](https://github.com/danielsimonjr/MathTS/issues/384)), so `sub` is composed from `add` and `multiply`. Allocation-free kernels remain [MathTS #375](https://github.com/danielsimonjr/MathTS/issues/375).
+
 ## 10. Decisions (Daniel, 2026-10-15)
 
 1. GJK/EPA, support mapping and ray-vs-shape tests live in PhysJS `collision`.

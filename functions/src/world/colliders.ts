@@ -28,7 +28,7 @@ const DESCRIPTOR_KEYS: ReadonlySet<string> = new Set(['shape', 'density']);
 const PARAMS = new Map(SHAPES.map((row) => [row.type as string, row.params]));
 
 /** A plain-array copy of a validated shape, in the MathTS shape form. */
-function copyShape(shape: ShapeDescriptor): ShapeDescriptor {
+export function copyShape(shape: ShapeDescriptor): ShapeDescriptor {
   const out: Record<string, unknown> = { type: shape.type };
   for (const [name, schema] of Object.entries(PARAMS.get(shape.type)!)) {
     const values = readValue(name, (shape as unknown as Record<string, unknown>)[name], schema);

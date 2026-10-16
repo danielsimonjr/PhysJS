@@ -156,6 +156,8 @@ Acceptance gate for migration: fourJS's existing physics tests run against the P
 
 Each release goes through changesets and CI publish; each MathTS gap must be released in MathTS before the PhysJS milestone that needs it.
 
+**0.1.0 and gap 4.** Bodies, the catalogs, `createWorld` and semi-implicit Euler are built. Sphere/box/capsule mass properties are MathTS gap 4 (#378), so until MathTS ships them a dynamic body takes an explicit `mass` and principal `inertia`, and colliders with density arrive with that release. The 0.1.0 release waits for it.
+
 ## 10. Decisions (Daniel, 2026-10-15)
 
 1. GJK/EPA, support mapping and ray-vs-shape tests live in PhysJS `collision`.

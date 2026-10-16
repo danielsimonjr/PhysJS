@@ -1,0 +1,1246 @@
+{
+  "metadata": {
+    "name": "PhysJS",
+    "schemaVersion": "2.0.0",
+    "language": "typescript",
+    "totalFiles": 38,
+    "totalModules": 3,
+    "totalExports": 156
+  },
+  "modules": {
+    "src": {
+      "core/bun-test-preload.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [
+          "node:fs"
+        ],
+        "internalDependencies": [],
+        "exports": []
+      },
+      "core/src/catalog/body-fields.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/freeze.ts",
+            "imports": [
+              "deepFreeze"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/value-rules.ts",
+            "imports": [
+              "ValueRule"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "BodyFieldRole",
+          "BodyFieldRecord",
+          "BODY_FIELDS",
+          "BodyFieldName",
+          "DescriptorFieldName"
+        ]
+      },
+      "core/src/catalog/body-types.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/body-fields.ts",
+            "imports": [
+              "DescriptorFieldName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/catalog/freeze.ts",
+            "imports": [
+              "deepFreeze"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "BodyTypeRecord",
+          "BODY_TYPES",
+          "BodyTypeName"
+        ]
+      },
+      "core/src/catalog/freeze.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "exports": [
+          "deepFreeze"
+        ]
+      },
+      "core/src/catalog/integrators.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/freeze.ts",
+            "imports": [
+              "deepFreeze"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "IntegratorRecord",
+          "INTEGRATOR_CATALOG",
+          "IntegratorName"
+        ]
+      },
+      "core/src/catalog/shapes.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/freeze.ts",
+            "imports": [
+              "deepFreeze"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/value-rules.ts",
+            "imports": [
+              "ValueRule"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "ShapeParamRecord",
+          "ShapeRecord",
+          "SHAPES",
+          "ShapeType"
+        ]
+      },
+      "core/src/catalog/value-rules.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/freeze.ts",
+            "imports": [
+              "deepFreeze"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "ValueRule",
+          "ValueRuleRecord",
+          "VALUE_RULES"
+        ]
+      },
+      "core/src/config.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/freeze.ts",
+            "imports": [
+              "deepFreeze"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/integrators.ts",
+            "imports": [
+              "IntegratorName"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "SUPPORTED_DIMS",
+          "SupportedDims",
+          "WorldDefaults",
+          "WORLD_DEFAULTS"
+        ]
+      },
+      "core/src/index.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/body-fields.ts",
+            "imports": [
+              "BODY_FIELDS"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/body-fields.ts",
+            "imports": [
+              "BodyFieldName",
+              "BodyFieldRecord",
+              "BodyFieldRole",
+              "DescriptorFieldName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/catalog/body-types.ts",
+            "imports": [
+              "BODY_TYPES"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/body-types.ts",
+            "imports": [
+              "BodyTypeName",
+              "BodyTypeRecord"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/catalog/integrators.ts",
+            "imports": [
+              "INTEGRATOR_CATALOG"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/integrators.ts",
+            "imports": [
+              "IntegratorName",
+              "IntegratorRecord"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/catalog/shapes.ts",
+            "imports": [
+              "SHAPES"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/shapes.ts",
+            "imports": [
+              "ShapeParamRecord",
+              "ShapeRecord",
+              "ShapeType"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/catalog/value-rules.ts",
+            "imports": [
+              "VALUE_RULES"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/catalog/value-rules.ts",
+            "imports": [
+              "ValueRule",
+              "ValueRuleRecord"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/config.ts",
+            "imports": [
+              "SUPPORTED_DIMS",
+              "WORLD_DEFAULTS"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/config.ts",
+            "imports": [
+              "SupportedDims",
+              "WorldDefaults"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/types/body.ts",
+            "imports": [
+              "BodyDescriptor",
+              "BodyHandle"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/types/numeric.ts",
+            "imports": [
+              "NumericInput",
+              "NumericOutput"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/types/shape.ts",
+            "imports": [
+              "BoxShape",
+              "CapsuleShape",
+              "ShapeDescriptor",
+              "SphereShape"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/types/world.ts",
+            "imports": [
+              "BodyStore",
+              "World",
+              "WorldOptions"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "PACKAGE_NAME",
+          "VERSION",
+          "BODY_FIELDS",
+          "BodyFieldName",
+          "BodyFieldRecord",
+          "BodyFieldRole",
+          "DescriptorFieldName",
+          "BODY_TYPES",
+          "BodyTypeName",
+          "BodyTypeRecord",
+          "INTEGRATOR_CATALOG",
+          "IntegratorName",
+          "IntegratorRecord",
+          "SHAPES",
+          "ShapeParamRecord",
+          "ShapeRecord",
+          "ShapeType",
+          "VALUE_RULES",
+          "ValueRule",
+          "ValueRuleRecord",
+          "SUPPORTED_DIMS",
+          "WORLD_DEFAULTS",
+          "SupportedDims",
+          "WorldDefaults",
+          "BodyDescriptor",
+          "BodyHandle",
+          "NumericInput",
+          "NumericOutput",
+          "BoxShape",
+          "CapsuleShape",
+          "ShapeDescriptor",
+          "SphereShape",
+          "BodyStore",
+          "World",
+          "WorldOptions"
+        ]
+      },
+      "core/src/types/body.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/body-types.ts",
+            "imports": [
+              "BodyTypeName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/types/numeric.ts",
+            "imports": [
+              "NumericInput"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "BodyHandle",
+          "BodyDescriptor"
+        ]
+      },
+      "core/src/types/numeric.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "exports": [
+          "NumericInput",
+          "NumericOutput"
+        ]
+      },
+      "core/src/types/shape.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/types/numeric.ts",
+            "imports": [
+              "NumericInput"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "SphereShape",
+          "BoxShape",
+          "CapsuleShape",
+          "ShapeDescriptor"
+        ]
+      },
+      "core/src/types/world.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/catalog/body-fields.ts",
+            "imports": [
+              "BodyFieldName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/catalog/integrators.ts",
+            "imports": [
+              "IntegratorName"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/config.ts",
+            "imports": [
+              "SupportedDims"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "core/src/types/numeric.ts",
+            "imports": [
+              "NumericInput"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "WorldOptions",
+          "BodyStore",
+          "World"
+        ]
+      },
+      "functions/bun-test-preload.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [
+          "node:fs"
+        ],
+        "internalDependencies": [],
+        "exports": []
+      },
+      "functions/src/collision/shapes.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "SHAPES",
+              "ShapeDescriptor",
+              "ShapeRecord"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/validate.ts",
+            "imports": [
+              "readValue",
+              "rejectUnknownKeys",
+              "requireRecord"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "validateShape"
+        ]
+      },
+      "functions/src/dynamics/integrators.ts": {
+        "externalDependencies": [
+          "@danielsimonjr/mathts-functions"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyStore",
+              "IntegratorName"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/dynamics/sample.ts",
+            "imports": [
+              "SAMPLE_LAYOUT"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "IntegratorFn",
+          "INTEGRATORS"
+        ]
+      },
+      "functions/src/dynamics/loads.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyFieldName",
+              "BodyHandle",
+              "NumericInput",
+              "World"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/handles.ts",
+            "imports": [
+              "requireSlot"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/validate.ts",
+            "imports": [
+              "readValue"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "LoadAdder",
+          "applyForce",
+          "applyTorque"
+        ]
+      },
+      "functions/src/dynamics/sample.ts": {
+        "externalDependencies": [
+          "@danielsimonjr/mathts-functions"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyTypeRecord",
+              "World"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "SAMPLE_LAYOUT",
+          "loadSample"
+        ]
+      },
+      "functions/src/index.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BODY_TYPES",
+              "INTEGRATOR_CATALOG",
+              "PACKAGE_NAME",
+              "SHAPES",
+              "SUPPORTED_DIMS",
+              "VALUE_RULES",
+              "VERSION",
+              "WORLD_DEFAULTS"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BodyDescriptor",
+              "BodyHandle",
+              "BodyTypeName",
+              "BoxShape",
+              "CapsuleShape",
+              "IntegratorName",
+              "NumericInput",
+              "NumericOutput",
+              "ShapeDescriptor",
+              "SphereShape",
+              "World",
+              "WorldOptions"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "functions/src/collision/shapes.ts",
+            "imports": [
+              "validateShape"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/dynamics/loads.ts",
+            "imports": [
+              "applyForce",
+              "applyTorque"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/dynamics/loads.ts",
+            "imports": [
+              "LoadAdder"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "functions/src/world/bodies.ts",
+            "imports": [
+              "addBody",
+              "bodyCount",
+              "getAngularVelocity",
+              "getBodyType",
+              "getLinearVelocity",
+              "getMass",
+              "getPosition",
+              "getRotation",
+              "hasBody",
+              "removeBody",
+              "setAngularVelocity",
+              "setLinearVelocity",
+              "setPosition",
+              "setRotation"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/bodies.ts",
+            "imports": [
+              "FieldGetter",
+              "FieldSetter"
+            ],
+            "typeOnly": true
+          },
+          {
+            "file": "functions/src/world/create-world.ts",
+            "imports": [
+              "createWorld"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/handles.ts",
+            "imports": [
+              "MAX_BODIES"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/step.ts",
+            "imports": [
+              "step"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "BODY_FIELDS",
+          "BODY_TYPES",
+          "INTEGRATOR_CATALOG",
+          "CORE_PACKAGE_NAME",
+          "SHAPES",
+          "SUPPORTED_DIMS",
+          "VALUE_RULES",
+          "CORE_VERSION",
+          "WORLD_DEFAULTS",
+          "BodyDescriptor",
+          "BodyHandle",
+          "BodyTypeName",
+          "BoxShape",
+          "CapsuleShape",
+          "IntegratorName",
+          "NumericInput",
+          "NumericOutput",
+          "ShapeDescriptor",
+          "SphereShape",
+          "World",
+          "WorldOptions",
+          "PACKAGE_NAME",
+          "VERSION",
+          "validateShape",
+          "applyForce",
+          "applyTorque",
+          "LoadAdder",
+          "addBody",
+          "bodyCount",
+          "getAngularVelocity",
+          "getBodyType",
+          "getLinearVelocity",
+          "getMass",
+          "getPosition",
+          "getRotation",
+          "hasBody",
+          "removeBody",
+          "setAngularVelocity",
+          "setLinearVelocity",
+          "setPosition",
+          "setRotation",
+          "FieldGetter",
+          "FieldSetter",
+          "createWorld",
+          "MAX_BODIES",
+          "step"
+        ]
+      },
+      "functions/src/world/bodies.ts": {
+        "externalDependencies": [
+          "@danielsimonjr/mathts-functions"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BODY_TYPES",
+              "BodyDescriptor",
+              "BodyFieldName",
+              "BodyFieldRecord",
+              "BodyHandle",
+              "BodyTypeName",
+              "BodyTypeRecord",
+              "DescriptorFieldName",
+              "NumericInput",
+              "NumericOutput",
+              "World"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/handles.ts",
+            "imports": [
+              "packHandle",
+              "requireSlot",
+              "slotOf"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/storage.ts",
+            "imports": [
+              "FIELD_NAMES",
+              "allocateSlot",
+              "readColumn",
+              "releaseSlot",
+              "writeColumn"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/validate.ts",
+            "imports": [
+              "readValue",
+              "rejectUnknownKeys",
+              "requireRecord"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "addBody",
+          "removeBody",
+          "hasBody",
+          "bodyCount",
+          "getBodyType",
+          "getMass",
+          "FieldGetter",
+          "FieldSetter",
+          "getPosition",
+          "getRotation",
+          "getLinearVelocity",
+          "getAngularVelocity",
+          "setPosition",
+          "setRotation",
+          "setLinearVelocity",
+          "setAngularVelocity"
+        ]
+      },
+      "functions/src/world/create-world.ts": {
+        "externalDependencies": [
+          "@danielsimonjr/mathts-functions"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "INTEGRATOR_CATALOG",
+              "SUPPORTED_DIMS",
+              "WORLD_DEFAULTS",
+              "World",
+              "WorldOptions"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/handles.ts",
+            "imports": [
+              "MAX_BODIES"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/storage.ts",
+            "imports": [
+              "createBodyStore"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/validate.ts",
+            "imports": [
+              "readValue",
+              "rejectUnknownKeys",
+              "requireRecord"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "createWorld"
+        ]
+      },
+      "functions/src/world/handles.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BodyHandle",
+              "BodyStore"
+            ],
+            "typeOnly": true
+          }
+        ],
+        "exports": [
+          "MAX_BODIES",
+          "GENERATION_LIMIT",
+          "packHandle",
+          "slotOf",
+          "requireSlot"
+        ]
+      },
+      "functions/src/world/step.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BODY_TYPES",
+              "VALUE_RULES",
+              "BodyTypeRecord",
+              "World"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/dynamics/integrators.ts",
+            "imports": [
+              "INTEGRATORS"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/dynamics/sample.ts",
+            "imports": [
+              "SAMPLE_LAYOUT",
+              "loadSample"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/storage.ts",
+            "imports": [
+              "FIELD_NAMES"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "step"
+        ]
+      },
+      "functions/src/world/storage.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BodyFieldName",
+              "BodyStore",
+              "NumericOutput"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/world/handles.ts",
+            "imports": [
+              "GENERATION_LIMIT",
+              "MAX_BODIES"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "FIELD_NAMES",
+          "createBodyStore",
+          "allocateSlot",
+          "releaseSlot",
+          "writeColumn",
+          "readColumn"
+        ]
+      },
+      "functions/src/world/validate.ts": {
+        "externalDependencies": [],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "VALUE_RULES",
+              "ValueRule"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": [
+          "ValueSchema",
+          "readValue",
+          "requireRecord",
+          "rejectUnknownKeys"
+        ]
+      }
+    },
+    "tests": {
+      "core/tests/catalog.test.ts": {
+        "externalDependencies": [
+          "bun:test"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "BODY_FIELDS",
+              "BODY_TYPES",
+              "INTEGRATOR_CATALOG",
+              "SHAPES",
+              "SUPPORTED_DIMS",
+              "VALUE_RULES",
+              "WORLD_DEFAULTS",
+              "BodyDescriptor",
+              "BodyFieldName",
+              "DescriptorFieldName",
+              "ShapeDescriptor",
+              "ShapeType"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": []
+      },
+      "core/tests/index.test.ts": {
+        "externalDependencies": [
+          "bun:test"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "PACKAGE_NAME",
+              "VERSION"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": []
+      },
+      "functions/tests/index.test.ts": {
+        "externalDependencies": [
+          "bun:test"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "functions/src/index.ts",
+            "imports": [
+              "CORE_PACKAGE_NAME",
+              "PACKAGE_NAME",
+              "VERSION"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": []
+      },
+      "functions/tests/shapes.test.ts": {
+        "externalDependencies": [
+          "bun:test"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "functions/src/index.ts",
+            "imports": [
+              "validateShape",
+              "ShapeDescriptor"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": []
+      },
+      "functions/tests/step.test.ts": {
+        "externalDependencies": [
+          "@danielsimonjr/mathts-functions",
+          "bun:test"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "core/src/index.ts",
+            "imports": [
+              "INTEGRATOR_CATALOG"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/dynamics/integrators.ts",
+            "imports": [
+              "INTEGRATORS"
+            ],
+            "typeOnly": false
+          },
+          {
+            "file": "functions/src/index.ts",
+            "imports": [
+              "addBody",
+              "applyForce",
+              "applyTorque",
+              "bodyCount",
+              "createWorld",
+              "getAngularVelocity",
+              "getLinearVelocity",
+              "getPosition",
+              "getRotation",
+              "removeBody",
+              "setPosition",
+              "step"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": []
+      },
+      "functions/tests/world.test.ts": {
+        "externalDependencies": [
+          "@danielsimonjr/mathts-functions",
+          "bun:test"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "functions/src/index.ts",
+            "imports": [
+              "addBody",
+              "bodyCount",
+              "createWorld",
+              "getAngularVelocity",
+              "getBodyType",
+              "getLinearVelocity",
+              "getMass",
+              "getPosition",
+              "getRotation",
+              "hasBody",
+              "removeBody",
+              "setAngularVelocity",
+              "setLinearVelocity",
+              "setPosition",
+              "setRotation",
+              "BodyHandle"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": []
+      },
+      "tests/free-fall.test.ts": {
+        "externalDependencies": [
+          "vitest"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [
+          {
+            "file": "functions/src/index.ts",
+            "imports": [
+              "addBody",
+              "createWorld",
+              "getPosition",
+              "step"
+            ],
+            "typeOnly": false
+          }
+        ],
+        "exports": []
+      },
+      "tests/workspace.test.ts": {
+        "externalDependencies": [
+          "vitest"
+        ],
+        "nodeDependencies": [
+          "node:fs"
+        ],
+        "internalDependencies": [],
+        "exports": []
+      }
+    },
+    "config": {
+      "core/tsdown.config.ts": {
+        "externalDependencies": [
+          "tsdown"
+        ],
+        "nodeDependencies": [
+          "node:fs",
+          "node:url"
+        ],
+        "internalDependencies": [],
+        "exports": []
+      },
+      "core/vitest.config.ts": {
+        "externalDependencies": [
+          "vitest/config"
+        ],
+        "nodeDependencies": [
+          "node:fs",
+          "node:url"
+        ],
+        "internalDependencies": [],
+        "exports": []
+      },
+      "functions/tsdown.config.ts": {
+        "externalDependencies": [
+          "tsdown"
+        ],
+        "nodeDependencies": [
+          "node:fs",
+          "node:url"
+        ],
+        "internalDependencies": [],
+        "exports": []
+      },
+      "functions/vitest.config.ts": {
+        "externalDependencies": [
+          "vitest/config"
+        ],
+        "nodeDependencies": [
+          "node:fs",
+          "node:url"
+        ],
+        "internalDependencies": [],
+        "exports": []
+      },
+      "vitest.config.ts": {
+        "externalDependencies": [
+          "vitest/config"
+        ],
+        "nodeDependencies": [],
+        "internalDependencies": [],
+        "exports": []
+      }
+    }
+  },
+  "statistics": {
+    "totalTypeScriptFiles": 38,
+    "totalSourceFiles": 38,
+    "totalModules": 3,
+    "totalLinesOfCode": 2111,
+    "totalExports": 156,
+    "entryRoots": 23,
+    "reachableFiles": 23,
+    "dormantFiles": 2,
+    "orphanedFiles": 2,
+    "testOnlyFiles": 0,
+    "runtimeCircularDeps": 0,
+    "typeOnlyCircularDeps": 0,
+    "totalTypeOnlyImports": 25,
+    "noImporterFileCount": 2,
+    "unusedExportsCount": 3,
+    "circularDepsTruncated": false,
+    "runtimeCyclicComponents": 0,
+    "typeOnlyCyclicComponents": 0,
+    "runtimeFilesInCycles": 0,
+    "typeOnlyFilesInCycles": 0,
+    "totalClasses": 0,
+    "totalInterfaces": 17,
+    "totalFunctions": 22,
+    "totalTypeGuards": 0,
+    "totalEnums": 0,
+    "totalConstants": 26,
+    "totalReExports": 77
+  },
+  "reachability": {
+    "roots": [
+      "core/src/index.ts",
+      "core/src/catalog/body-fields.ts",
+      "core/src/catalog/body-types.ts",
+      "core/src/catalog/freeze.ts",
+      "core/src/catalog/integrators.ts",
+      "core/src/catalog/shapes.ts",
+      "core/src/catalog/value-rules.ts",
+      "core/src/config.ts",
+      "core/src/types/body.ts",
+      "core/src/types/numeric.ts",
+      "core/src/types/shape.ts",
+      "core/src/types/world.ts",
+      "functions/src/index.ts",
+      "functions/src/collision/shapes.ts",
+      "functions/src/dynamics/integrators.ts",
+      "functions/src/dynamics/loads.ts",
+      "functions/src/dynamics/sample.ts",
+      "functions/src/world/bodies.ts",
+      "functions/src/world/create-world.ts",
+      "functions/src/world/handles.ts",
+      "functions/src/world/step.ts",
+      "functions/src/world/storage.ts",
+      "functions/src/world/validate.ts"
+    ],
+    "reachableCount": 23,
+    "dormantCount": 2,
+    "orphaned": [
+      "core/bun-test-preload.ts",
+      "functions/bun-test-preload.ts"
+    ],
+    "testOnly": []
+  },
+  "warnings": []
+}

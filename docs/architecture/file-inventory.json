@@ -1,0 +1,294 @@
+{
+  "totalFiles": 38,
+  "byDisposition": {
+    "reachable": 0,
+    "build-entry": 23,
+    "test-only": 0,
+    "orphan": 2,
+    "test": 8,
+    "tool": 0,
+    "config": 5,
+    "bench": 0,
+    "example": 0
+  },
+  "byArea": {
+    "src": 25,
+    "tests": 8,
+    "config": 5
+  },
+  "byPackage": {
+    "@danielsimonjr/physjs-core": 17,
+    "@danielsimonjr/physjs": 18,
+    "(root)": 3
+  },
+  "files": [
+    {
+      "file": "core/bun-test-preload.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "orphan",
+      "loc": 9
+    },
+    {
+      "file": "core/src/catalog/body-fields.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 151
+    },
+    {
+      "file": "core/src/catalog/body-types.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 38
+    },
+    {
+      "file": "core/src/catalog/freeze.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 10
+    },
+    {
+      "file": "core/src/catalog/integrators.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 30
+    },
+    {
+      "file": "core/src/catalog/shapes.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 51
+    },
+    {
+      "file": "core/src/catalog/value-rules.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 34
+    },
+    {
+      "file": "core/src/config.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 30
+    },
+    {
+      "file": "core/src/index.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 36
+    },
+    {
+      "file": "core/src/types/body.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 39
+    },
+    {
+      "file": "core/src/types/numeric.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 10
+    },
+    {
+      "file": "core/src/types/shape.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 32
+    },
+    {
+      "file": "core/src/types/world.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 57
+    },
+    {
+      "file": "core/tests/catalog.test.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 177
+    },
+    {
+      "file": "core/tests/index.test.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 10
+    },
+    {
+      "file": "core/tsdown.config.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "config",
+      "disposition": "config",
+      "loc": 18
+    },
+    {
+      "file": "core/vitest.config.ts",
+      "package": "@danielsimonjr/physjs-core",
+      "area": "config",
+      "disposition": "config",
+      "loc": 12
+    },
+    {
+      "file": "functions/bun-test-preload.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "orphan",
+      "loc": 9
+    },
+    {
+      "file": "functions/src/collision/shapes.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 35
+    },
+    {
+      "file": "functions/src/dynamics/integrators.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 71
+    },
+    {
+      "file": "functions/src/dynamics/loads.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 34
+    },
+    {
+      "file": "functions/src/dynamics/sample.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 82
+    },
+    {
+      "file": "functions/src/index.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 65
+    },
+    {
+      "file": "functions/src/world/bodies.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 182
+    },
+    {
+      "file": "functions/src/world/create-world.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 70
+    },
+    {
+      "file": "functions/src/world/handles.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 36
+    },
+    {
+      "file": "functions/src/world/step.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 42
+    },
+    {
+      "file": "functions/src/world/storage.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 100
+    },
+    {
+      "file": "functions/src/world/validate.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "src",
+      "disposition": "build-entry",
+      "loc": 82
+    },
+    {
+      "file": "functions/tests/index.test.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 14
+    },
+    {
+      "file": "functions/tests/shapes.test.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 31
+    },
+    {
+      "file": "functions/tests/step.test.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 208
+    },
+    {
+      "file": "functions/tests/world.test.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 212
+    },
+    {
+      "file": "functions/tsdown.config.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "config",
+      "disposition": "config",
+      "loc": 18
+    },
+    {
+      "file": "functions/vitest.config.ts",
+      "package": "@danielsimonjr/physjs",
+      "area": "config",
+      "disposition": "config",
+      "loc": 12
+    },
+    {
+      "file": "tests/free-fall.test.ts",
+      "package": "(root)",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 17
+    },
+    {
+      "file": "tests/workspace.test.ts",
+      "package": "(root)",
+      "area": "tests",
+      "disposition": "test",
+      "loc": 33
+    },
+    {
+      "file": "vitest.config.ts",
+      "package": "(root)",
+      "area": "config",
+      "disposition": "config",
+      "loc": 14
+    }
+  ],
+  "skippedLinks": [],
+  "warnings": []
+}

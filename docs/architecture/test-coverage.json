@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "totalSourceFiles": 25,
+    "totalTestFiles": 8,
+    "testedCount": 19,
+    "untestedCount": 6,
+    "coveragePercent": "76.0",
+    "effectiveCoverage": {
+      "policyLoaded": false,
+      "activeFiles": 25,
+      "testedActive": 19,
+      "activeUntested": 6,
+      "excludedTotal": 0,
+      "percent": "76.0",
+      "breakdown": {
+        "active_untested": 6
+      }
+    }
+  },
+  "untestedFiles": [
+    "core/bun-test-preload.ts",
+    "core/src/catalog/freeze.ts",
+    "functions/bun-test-preload.ts",
+    "functions/src/dynamics/sample.ts",
+    "functions/src/world/storage.ts",
+    "functions/src/world/validate.ts"
+  ],
+  "testedFiles": [
+    "core/src/catalog/body-fields.ts",
+    "core/src/catalog/body-types.ts",
+    "core/src/catalog/integrators.ts",
+    "core/src/catalog/shapes.ts",
+    "core/src/catalog/value-rules.ts",
+    "core/src/config.ts",
+    "core/src/index.ts",
+    "core/src/types/body.ts",
+    "core/src/types/numeric.ts",
+    "core/src/types/shape.ts",
+    "core/src/types/world.ts",
+    "functions/src/collision/shapes.ts",
+    "functions/src/dynamics/integrators.ts",
+    "functions/src/dynamics/loads.ts",
+    "functions/src/index.ts",
+    "functions/src/world/bodies.ts",
+    "functions/src/world/create-world.ts",
+    "functions/src/world/handles.ts",
+    "functions/src/world/step.ts"
+  ],
+  "coverageMap": {
+    "core/bun-test-preload.ts": [],
+    "core/src/catalog/body-fields.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/catalog/body-types.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/catalog/freeze.ts": [],
+    "core/src/catalog/integrators.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/catalog/shapes.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/catalog/value-rules.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/config.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/index.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/types/body.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/types/numeric.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/types/shape.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "core/src/types/world.ts": [
+      "core/tests/catalog.test.ts",
+      "core/tests/index.test.ts",
+      "functions/tests/step.test.ts"
+    ],
+    "functions/bun-test-preload.ts": [],
+    "functions/src/collision/shapes.ts": [
+      "functions/tests/index.test.ts",
+      "functions/tests/shapes.test.ts",
+      "functions/tests/step.test.ts",
+      "functions/tests/world.test.ts",
+      "tests/free-fall.test.ts"
+    ],
+    "functions/src/dynamics/integrators.ts": [
+      "functions/tests/step.test.ts"
+    ],
+    "functions/src/dynamics/loads.ts": [
+      "functions/tests/index.test.ts",
+      "functions/tests/shapes.test.ts",
+      "functions/tests/step.test.ts",
+      "functions/tests/world.test.ts",
+      "tests/free-fall.test.ts"
+    ],
+    "functions/src/dynamics/sample.ts": [],
+    "functions/src/index.ts": [
+      "functions/tests/index.test.ts",
+      "functions/tests/shapes.test.ts",
+      "functions/tests/step.test.ts",
+      "functions/tests/world.test.ts",
+      "tests/free-fall.test.ts"
+    ],
+    "functions/src/world/bodies.ts": [
+      "functions/tests/index.test.ts",
+      "functions/tests/shapes.test.ts",
+      "functions/tests/step.test.ts",
+      "functions/tests/world.test.ts",
+      "tests/free-fall.test.ts"
+    ],
+    "functions/src/world/create-world.ts": [
+      "functions/tests/index.test.ts",
+      "functions/tests/shapes.test.ts",
+      "functions/tests/step.test.ts",
+      "functions/tests/world.test.ts",
+      "tests/free-fall.test.ts"
+    ],
+    "functions/src/world/handles.ts": [
+      "functions/tests/index.test.ts",
+      "functions/tests/shapes.test.ts",
+      "functions/tests/step.test.ts",
+      "functions/tests/world.test.ts",
+      "tests/free-fall.test.ts"
+    ],
+    "functions/src/world/step.ts": [
+      "functions/tests/index.test.ts",
+      "functions/tests/shapes.test.ts",
+      "functions/tests/step.test.ts",
+      "functions/tests/world.test.ts",
+      "tests/free-fall.test.ts"
+    ],
+    "functions/src/world/storage.ts": [],
+    "functions/src/world/validate.ts": []
+  },
+  "testToSourceMap": {
+    "core/tests/catalog.test.ts": [
+      "core/src/index.ts",
+      "core/src/catalog/body-fields.ts",
+      "core/src/catalog/body-types.ts",
+      "core/src/catalog/integrators.ts",
+      "core/src/catalog/shapes.ts",
+      "core/src/catalog/value-rules.ts",
+      "core/src/config.ts",
+      "core/src/types/body.ts",
+      "core/src/types/numeric.ts",
+      "core/src/types/shape.ts",
+      "core/src/types/world.ts"
+    ],
+    "core/tests/index.test.ts": [
+      "core/src/index.ts",
+      "core/src/catalog/body-fields.ts",
+      "core/src/catalog/body-types.ts",
+      "core/src/catalog/integrators.ts",
+      "core/src/catalog/shapes.ts",
+      "core/src/catalog/value-rules.ts",
+      "core/src/config.ts",
+      "core/src/types/body.ts",
+      "core/src/types/numeric.ts",
+      "core/src/types/shape.ts",
+      "core/src/types/world.ts"
+    ],
+    "functions/tests/index.test.ts": [
+      "functions/src/index.ts",
+      "functions/src/collision/shapes.ts",
+      "functions/src/dynamics/loads.ts",
+      "functions/src/world/bodies.ts",
+      "functions/src/world/create-world.ts",
+      "functions/src/world/handles.ts",
+      "functions/src/world/step.ts"
+    ],
+    "functions/tests/shapes.test.ts": [
+      "functions/src/index.ts",
+      "functions/src/collision/shapes.ts",
+      "functions/src/dynamics/loads.ts",
+      "functions/src/world/bodies.ts",
+      "functions/src/world/create-world.ts",
+      "functions/src/world/handles.ts",
+      "functions/src/world/step.ts"
+    ],
+    "functions/tests/step.test.ts": [
+      "functions/src/dynamics/integrators.ts",
+      "functions/src/index.ts",
+      "functions/src/collision/shapes.ts",
+      "functions/src/dynamics/loads.ts",
+      "functions/src/world/bodies.ts",
+      "functions/src/world/create-world.ts",
+      "functions/src/world/handles.ts",
+      "functions/src/world/step.ts",
+      "core/src/index.ts",
+      "core/src/catalog/body-fields.ts",
+      "core/src/catalog/body-types.ts",
+      "core/src/catalog/integrators.ts",
+      "core/src/catalog/shapes.ts",
+      "core/src/catalog/value-rules.ts",
+      "core/src/config.ts",
+      "core/src/types/body.ts",
+      "core/src/types/numeric.ts",
+      "core/src/types/shape.ts",
+      "core/src/types/world.ts"
+    ],
+    "functions/tests/world.test.ts": [
+      "functions/src/index.ts",
+      "functions/src/collision/shapes.ts",
+      "functions/src/dynamics/loads.ts",
+      "functions/src/world/bodies.ts",
+      "functions/src/world/create-world.ts",
+      "functions/src/world/handles.ts",
+      "functions/src/world/step.ts"
+    ],
+    "tests/free-fall.test.ts": [
+      "functions/src/index.ts",
+      "functions/src/collision/shapes.ts",
+      "functions/src/dynamics/loads.ts",
+      "functions/src/world/bodies.ts",
+      "functions/src/world/create-world.ts",
+      "functions/src/world/handles.ts",
+      "functions/src/world/step.ts"
+    ],
+    "tests/workspace.test.ts": []
+  },
+  "classifiedUntested": [
+    {
+      "file": "core/bun-test-preload.ts",
+      "category": null
+    },
+    {
+      "file": "core/src/catalog/freeze.ts",
+      "category": null
+    },
+    {
+      "file": "functions/bun-test-preload.ts",
+      "category": null
+    },
+    {
+      "file": "functions/src/dynamics/sample.ts",
+      "category": null
+    },
+    {
+      "file": "functions/src/world/storage.ts",
+      "category": null
+    },
+    {
+      "file": "functions/src/world/validate.ts",
+      "category": null
+    }
+  ]
+}

@@ -52,6 +52,8 @@ describe('addCollider', () => {
     // inverse mass refreshed
     close(world.bodies.fields.inverseMass[body % 2 ** 24]!, 1 / 96);
     expect(getCollider(world, box)?.density).toBe(2);
+    removeCollider(world, box);
+    expect(getMass(world, body)).toBe(Infinity);
   });
 
   it('static bodies keep infinite mass', () => {

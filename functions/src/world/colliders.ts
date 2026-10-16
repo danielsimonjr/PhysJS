@@ -10,6 +10,7 @@
 
 import { massProperties, type MassPropertyShape } from '@danielsimonjr/mathts-functions';
 import {
+  BODY_FIELDS,
   SHAPES,
   type BodyHandle,
   type ColliderDescriptor,
@@ -36,7 +37,7 @@ function copyShape(shape: ShapeDescriptor): ShapeDescriptor {
   return out as unknown as ShapeDescriptor;
 }
 
-/** Sums the colliders of the body in `slot` into its mass and inertia columns. */
+/** Sums the colliders of `body` into its mass and inertia columns. */
 function recomputeBody(world: World, body: BodyHandle): void {
   const slot = requireSlot(world.bodies, body);
   let mass = 0;
@@ -48,8 +49,11 @@ function recomputeBody(world: World, body: BodyHandle): void {
     mass += collider.mass;
     for (let k = 0; k < 3; k++) inertia[k]! += collider.inertia[k]!;
   }
-  if (!any) return;
-  if (writeMassProperties(world, slot, mass, inertia)) refreshDerived(world, slot);
+  // With no colliders left the body returns to the BODY_FIELDS defaults (infinite).
+  const written = any
+    ? writeMassProperties(world, slot, mass, inertia)
+    : writeMassProperties(world, slot, BODY_FIELDS.mass.initial[0]!, BODY_FIELDS.inertia.initial);
+  if (written) refreshDerived(world, slot);
 }
 
 /**

@@ -1,16 +1,18 @@
 name: Release
 
-# Versions public workspace packages with changesets. PhysJS publishes nothing.
+# Versions the public workspace packages with changesets. There is no publish
+# step and no npm token here; nobody publishes by hand.
 #
-# Every workspace package is `"private": true`, and `.changeset/config.json`
-# does not version private packages, so `changeset version` has nothing to do.
-# Run anyway, the changesets action still tries to open a release pull request
-# for the pending changesets, which GitHub Actions may not do in this
-# repository, and the run fails. So the Version job runs only when some
-# workspace package is public. While every package is private it is skipped.
+# On a push to main with pending `.changeset/*.md` files, changesets/action
+# opens or updates the "chore: release packages" pull request. GitHub lets the
+# workflow open that pull request only while the repository setting "Allow
+# GitHub Actions to create and approve pull requests" is on; with it off, the
+# Version job fails at that step. With no changesets pending, the step does
+# nothing.
 #
-# There is no publish step and no npm token. A tier that makes a package
-# public adds publishing with it. Pull requests do not run this workflow.
+# The Version job runs only when some workspace package is public (not
+# `"private": true`); `.changeset/config.json` does not version private
+# packages. Pull requests do not run this workflow.
 
 on:
   push:

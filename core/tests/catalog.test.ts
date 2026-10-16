@@ -6,6 +6,7 @@ import {
   COLLISION_DEFAULTS,
   EVENT_TYPES,
   INTEGRATOR_CATALOG,
+  JOINT_TYPES,
   MATERIAL_FIELDS,
   SOLVER_DEFAULTS,
   SHAPES,
@@ -210,5 +211,23 @@ describe('MATERIAL_FIELDS, EVENT_TYPES and SOLVER_DEFAULTS', () => {
     expect(SOLVER_DEFAULTS.baumgarte).toBeGreaterThan(0);
     expect(SOLVER_DEFAULTS.baumgarte).toBeLessThanOrEqual(1);
     expect(SOLVER_DEFAULTS.contactMargin).toBeGreaterThan(SOLVER_DEFAULTS.slop);
+  });
+});
+
+describe('JOINT_TYPES', () => {
+  it('names are unique and every parameter names a known rule', () => {
+    const names = JOINT_TYPES.map((row) => row.name);
+    expect(new Set(names).size).toBe(names.length);
+    for (const row of JOINT_TYPES) {
+      for (const schema of Object.values(row.params) as { rule: keyof typeof VALUE_RULES }[]) {
+        expect(VALUE_RULES[schema.rule]).toBeDefined();
+      }
+    }
+  });
+
+  it('a spring row is the only one with a spring linear mode', () => {
+    expect(JOINT_TYPES.filter((row) => row.linear === 'spring').map((row) => row.name)).toEqual([
+      'spring',
+    ]);
   });
 });

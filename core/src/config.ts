@@ -58,6 +58,8 @@ export interface SolverDefaults {
   readonly iterations: number;
   /** Fraction of the penetration beyond `slop` pushed out per step. */
   readonly baumgarte: number;
+  /** Fraction of a joint's drift removed per step. */
+  readonly jointBaumgarte: number;
   /** Penetration left alone, metres, so resting contacts stay touching. */
   readonly slop: number;
   /** Contact margin `step` passes to `findContacts`, metres. */
@@ -78,6 +80,7 @@ export interface SolverDefaults {
 export const SOLVER_DEFAULTS: SolverDefaults = deepFreeze({
   iterations: 10,
   baumgarte: 0.2,
+  jointBaumgarte: 0.5,
   slop: 0.005,
   contactMargin: 0.02,
   restitutionThreshold: 1,

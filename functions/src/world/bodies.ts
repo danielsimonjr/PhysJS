@@ -19,6 +19,7 @@ import {
   type World,
 } from '@danielsimonjr/physjs-core';
 import { wakeSlot } from '../dynamics/sleep';
+import { removeBodyJoints } from '../joints/joints';
 import { removeBodyColliders } from './colliders';
 import { packHandle, requireSlot, slotOf } from './handles';
 import { FIELD_NAMES, allocateSlot, readColumn, releaseSlot, writeColumn } from './storage';
@@ -132,6 +133,7 @@ export function addBody(world: World, descriptor: BodyDescriptor): BodyHandle {
 export function removeBody(world: World, handle: BodyHandle): void {
   const slot = requireSlot(world.bodies, handle);
   removeBodyColliders(world, handle);
+  removeBodyJoints(world, handle);
   releaseSlot(world.bodies, slot);
 }
 

@@ -16,7 +16,8 @@ import { findContacts } from '../collision/contacts';
 import { INTEGRATORS } from '../dynamics/integrators';
 import { SAMPLE_LAYOUT, loadSample } from '../dynamics/sample';
 import { updateSleep, wakeTouched } from '../dynamics/sleep';
-import { solveContacts } from '../dynamics/solver';
+import { solveConstraints } from '../dynamics/solver';
+import { applySpringLoads, jointLinks, jointRows } from '../joints/rows';
 import { updateTouching } from './events';
 import { FIELD_NAMES } from './storage';
 
@@ -41,7 +42,8 @@ function* integrating(world: World): Generator<[number, BodyTypeRecord]> {
  * 1. the velocity phase of the world's integrator, for every awake body that integrates;
  * 2. `findContacts` (margin `SOLVER_DEFAULTS.contactMargin`), waking sleepers
  *    touched by moving bodies and queueing `contactBegin` / `contactEnd`;
- * 3. the contact solver (PGS with friction, restitution and warm start);
+ * 3. the constraint solver: contacts (PGS with friction, restitution and warm
+ *    start) and joint rows; spring joints act as loads before step 1;
  * 4. the position phase;
  * 5. sleep timers, then every applied force and torque is reset.
  *
@@ -53,14 +55,15 @@ export function step(world: World, dt: number): void {
   }
   const integrator = INTEGRATORS[world.integrator];
   const store = world.bodies;
+  applySpringLoads(world);
   for (const [slot, row] of integrating(world)) {
     loadSample(world, slot, row, dt, sample);
     integrator.velocity(store, slot, sample, dt);
   }
   const manifolds = findContacts(world, { margin: SOLVER_DEFAULTS.contactMargin });
-  wakeTouched(world, manifolds);
+  wakeTouched(world, [...manifolds, ...jointLinks(world)]);
   updateTouching(world, manifolds);
-  solveContacts(world, manifolds, dt);
+  solveConstraints(world, manifolds, jointRows, dt);
   for (const [slot] of integrating(world)) integrator.position(store, slot, dt);
   updateSleep(world, dt);
   for (const name of ACCUMULATORS) {

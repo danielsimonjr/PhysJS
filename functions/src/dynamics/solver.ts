@@ -1,12 +1,15 @@
 /**
- * The contact solver: projected Gauss-Seidel over velocity constraint rows.
- * Each contact point gives one normal row (impulse >= 0) and two friction rows
- * (|impulse| <= friction x normal impulse). Rows start from the impulses of the
- * matching point of the last step (warm start), then `SOLVER_DEFAULTS.iterations`
- * sweeps project each row in turn. The normal row's target speed pushes out
- * penetration beyond the slop (Baumgarte), adds restitution above the
- * threshold speed, and lets a gap inside the contact margin close in one step
- * (speculative contact). Materials combine by their `MATERIAL_FIELDS` rule.
+ * The constraint solver: projected Gauss-Seidel over velocity rows. A row is a
+ * Jacobian (a linear part shared by both bodies and an angular part per body),
+ * a target speed and impulse bounds. Contacts give each point a normal row
+ * (impulse >= 0) and two friction rows (|impulse| <= friction x normal);
+ * joints add unbounded rows from their `JOINT_TYPES` modes (`joints/rows.ts`).
+ * Contact rows start from the impulses of the matching point of the last step
+ * (warm start); then `SOLVER_DEFAULTS.iterations` sweeps project every row.
+ * The normal row's target pushes out penetration beyond the slop (Baumgarte),
+ * adds restitution above the threshold speed, and lets a gap inside the
+ * contact margin close in one step (speculative contact). Materials combine by
+ * their `MATERIAL_FIELDS` rule.
  *
  * Vector operations are MathTS (see `collision/vector.ts`); the allocation-free
  * kernels a solver wants are MathTS #375.
@@ -17,6 +20,7 @@ import {
   BODY_TYPES,
   MATERIAL_FIELDS,
   SOLVER_DEFAULTS,
+  type BodyHandle,
   type CachedImpulse,
   type CombineRule,
   type ContactManifold,
@@ -35,8 +39,8 @@ export const COMBINERS: Readonly<Record<CombineRule, (a: number, b: number) => n
     max: (a: number, b: number) => Math.max(a, b),
   });
 
-/** A body's velocities and inverse mass properties during the solve. */
-interface SolverBody {
+/** A body's velocities, pose and inverse mass properties during the solve. */
+export interface SolverBody {
   readonly slot: number;
   readonly v: number[];
   readonly w: number[];
@@ -46,13 +50,13 @@ interface SolverBody {
   readonly inverseInertia: number[];
 }
 
-/** One velocity constraint row. */
-interface Row {
+/** One velocity row: `J v = linear . (vB - vA) + angularB . wB - angularA . wA`. */
+export interface Row {
   readonly a: SolverBody;
   readonly b: SolverBody;
-  readonly direction: number[];
-  readonly rA: number[];
-  readonly rB: number[];
+  readonly linear: number[];
+  readonly angularA: number[];
+  readonly angularB: number[];
   readonly mass: number;
   readonly target: number;
   impulse: number;
@@ -95,29 +99,55 @@ function solverBody(world: World, slot: number): SolverBody {
   };
 }
 
-/** Velocity of the material point at offset `r` of a body. */
-const pointVelocity = (body: SolverBody, r: Vec): number[] => add(body.v, cross(body.w, r));
-
-/** Relative velocity of B against A along `direction` at the row's points. */
-const rowSpeed = (row: Row): number =>
-  dot(row.direction, sub(pointVelocity(row.b, row.rB), pointVelocity(row.a, row.rA)));
+/** Current speed of a row. */
+export const rowSpeed = (row: Row): number =>
+  dot(row.linear, sub(row.b.v, row.a.v)) + dot(row.angularB, row.b.w) - dot(row.angularA, row.a.w);
 
 function applyImpulse(row: Row, amount: number): void {
   if (amount === 0) return;
-  const p = scale(row.direction, amount);
-  const { a, b } = row;
-  const update = (body: SolverBody, r: Vec, sign: number) => {
+  const update = (body: SolverBody, angular: Vec, sign: number) => {
     if (body.inverseMass === 0) return;
-    const dv = scale(p, sign * body.inverseMass);
-    const dw = scale(applyInverseInertia(body, cross(r, p)), sign);
+    const dv = scale(row.linear, sign * amount * body.inverseMass);
+    const dw = scale(applyInverseInertia(body, angular), sign * amount);
     body.v.splice(0, 3, ...add(body.v, dv));
     body.w.splice(0, 3, ...add(body.w, dw));
   };
-  update(a, row.rA, -1);
-  update(b, row.rB, 1);
+  update(row.a, row.angularA, -1);
+  update(row.b, row.angularB, 1);
 }
 
-function makeRow(
+/**
+ * A row with Jacobian parts `linear`, `angularA`, `angularB`, whose target is
+ * `targetOf(speed before solving)`.
+ */
+export function makeRow(
+  a: SolverBody,
+  b: SolverBody,
+  linear: number[],
+  angularA: number[],
+  angularB: number[],
+  targetOf: (speed: number) => number
+): Row {
+  const lin = dot(linear, linear);
+  const k =
+    (a.inverseMass + b.inverseMass) * lin +
+    dot(angularA, applyInverseInertia(a, angularA)) +
+    dot(angularB, applyInverseInertia(b, angularB));
+  const row: Row = {
+    a,
+    b,
+    linear,
+    angularA,
+    angularB,
+    mass: k > 0 ? 1 / k : 0,
+    target: 0,
+    impulse: 0,
+  };
+  return { ...row, target: targetOf(rowSpeed(row)) };
+}
+
+/** A row along `direction` through the world point `point` (contacts, linear joint rows). */
+export function pointRow(
   a: SolverBody,
   b: SolverBody,
   direction: number[],
@@ -126,17 +156,11 @@ function makeRow(
 ): Row {
   const rA = sub(point, a.position);
   const rB = sub(point, b.position);
-  const angular = (body: SolverBody, r: Vec) => {
-    const rd = cross(r, direction);
-    return dot(rd, applyInverseInertia(body, rd));
-  };
-  const k = a.inverseMass + b.inverseMass + angular(a, rA) + angular(b, rB);
-  const row: Row = { a, b, direction, rA, rB, mass: k > 0 ? 1 / k : 0, target: 0, impulse: 0 };
-  return { ...row, target: targetOf(rowSpeed(row)) };
+  return makeRow(a, b, direction, cross(rA, direction), cross(rB, direction), targetOf);
 }
 
 /** Two unit tangents perpendicular to `n`, chosen the same way every step. */
-function tangents(n: Vec): [number[], number[]] {
+export function tangents(n: Vec): [number[], number[]] {
   const least = AXES.reduce((p, q) => (Math.abs(dot(q, n)) < Math.abs(dot(p, n)) ? q : p));
   const t1 = unit(cross(n, least))!;
   return [t1, cross(n, t1)];
@@ -164,18 +188,27 @@ function cachedFor(previous: readonly CachedImpulse[] | undefined, position: Vec
   return best;
 }
 
+/** Builds joint rows for one step; supplied by `joints/rows.ts`. */
+export type JointRowBuilder = (
+  world: World,
+  bodyOf: (handle: BodyHandle) => SolverBody,
+  dt: number
+) => Row[];
+
 /**
- * Solves the contacts of `manifolds` for one step of `dt` seconds and writes
- * the new velocities of the responding bodies back to the world.
+ * Solves the contacts of `manifolds` and the joint rows of `jointRows` for one
+ * step of `dt` seconds, and writes the new velocities of the responding bodies
+ * back to the world.
  */
-export function solveContacts(
+export function solveConstraints(
   world: World,
   manifolds: readonly ContactManifold[],
+  jointRows: JointRowBuilder,
   dt: number
 ): void {
   const { iterations, baumgarte, slop, restitutionThreshold } = SOLVER_DEFAULTS;
   const bodies = new Map<number, SolverBody>();
-  const bodyOf = (handle: Parameters<typeof requireSlot>[1]) => {
+  const bodyOf = (handle: BodyHandle) => {
     const slot = requireSlot(world.bodies, handle);
     let body = bodies.get(slot);
     if (body === undefined) bodies.set(slot, (body = solverBody(world, slot)));
@@ -192,60 +225,61 @@ export function solveContacts(
     const normal = [...m.normal];
     const [t1, t2] = tangents(normal);
     const previous = world.solver.cache.get(pairKey(m));
-    for (const point of m.points) {
+    const rows = m.points.map((point): PointRows => {
       const normalTarget = (speed: number) => {
         if (point.depth < 0) return point.depth / dt;
         const bounce = speed < -restitutionThreshold ? -restitution * speed : 0;
         return Math.max(bounce, (baumgarte / dt) * Math.max(point.depth - slop, 0));
       };
-      const rows: PointRows = {
+      const p: PointRows = {
         position: point.position,
-        normal: makeRow(a, b, normal, point.position, normalTarget),
+        normal: pointRow(a, b, normal, point.position, normalTarget),
         tangents: [
-          makeRow(a, b, t1, point.position, () => 0),
-          makeRow(a, b, t2, point.position, () => 0),
+          pointRow(a, b, t1, point.position, () => 0),
+          pointRow(a, b, t2, point.position, () => 0),
         ],
         friction,
       };
       const warm = cachedFor(previous, point.position);
       if (warm !== undefined) {
-        rows.normal.impulse = warm.normal;
-        rows.tangents[0].impulse = warm.tangent[0];
-        rows.tangents[1].impulse = warm.tangent[1];
-        for (const row of [rows.normal, ...rows.tangents]) applyImpulse(row, row.impulse);
+        p.normal.impulse = warm.normal;
+        p.tangents[0].impulse = warm.tangent[0];
+        p.tangents[1].impulse = warm.tangent[1];
+        for (const row of [p.normal, ...p.tangents]) applyImpulse(row, row.impulse);
       }
-      points.push(rows);
-    }
+      return p;
+    });
+    points.push(...rows);
+    cache.set(
+      pairKey(m),
+      rows.map((p) => ({ position: p.position, normal: 0, tangent: [0, 0] }))
+    );
   }
+  const joints = jointRows(world, bodyOf, dt);
   const project = (row: Row, lo: number, hi: number) => {
     const next = Math.min(hi, Math.max(lo, row.impulse + row.mass * (row.target - rowSpeed(row))));
     applyImpulse(row, next - row.impulse);
     row.impulse = next;
   };
   for (let sweep = 0; sweep < iterations; sweep++) {
+    for (const row of joints) project(row, -Infinity, Infinity);
     for (const p of points) {
       const limit = p.friction * p.normal.impulse;
       for (const t of p.tangents) project(t, -limit, limit);
       project(p.normal, 0, Infinity);
     }
   }
-  // Cache this step's impulses for the next step's warm start.
+  // Cache this step's impulses for the next step's warm start, pair by pair.
   let i = 0;
-  for (const m of manifolds) {
-    const a = bodies.get(requireSlot(world.bodies, m.bodyA))!;
-    const b = bodies.get(requireSlot(world.bodies, m.bodyB))!;
-    if (a.inverseMass === 0 && b.inverseMass === 0) continue;
-    cache.set(
-      pairKey(m),
-      m.points.map(() => {
-        const p = points[i++]!;
-        return {
-          position: p.position,
-          normal: p.normal.impulse,
-          tangent: [p.tangents[0].impulse, p.tangents[1].impulse],
-        };
-      })
-    );
+  for (const entries of cache.values()) {
+    entries.forEach((_, k) => {
+      const p = points[i++]!;
+      entries[k] = {
+        position: p.position,
+        normal: p.normal.impulse,
+        tangent: [p.tangents[0].impulse, p.tangents[1].impulse],
+      };
+    });
   }
   world.solver.cache = cache;
   const { linearVelocity, angularVelocity } = world.bodies.fields;

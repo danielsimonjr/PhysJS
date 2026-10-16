@@ -66,5 +66,6 @@ export function createWorld(options: WorldOptions): World {
     time: 0,
     steps: 0,
     bodies: createBodyStore(capacity),
+    colliders: { next: 1, byHandle: new Map() },
   };
 }

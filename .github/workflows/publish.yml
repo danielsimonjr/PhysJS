@@ -1,0 +1,73 @@
+name: Publish
+
+# Publishes every non-private workspace package whose package.json version is
+# not on npm yet (MathTS's Publish workflow, trimmed to this repository).
+# `changeset publish` skips versions the registry already has, publishes
+# dependencies before dependents and passes `--access public`. No provenance,
+# and no `id-token: write`: auth is the repository secret NPM, passed to npm as
+# NODE_AUTH_TOKEN. Nobody publishes by hand.
+#
+# Triggers: workflow_call from Release after a push that changed a package
+# version; a GitHub Release published by a person; workflow_dispatch to retry.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      NPM:
+        required: true
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TURBO_TELEMETRY_DISABLED: '1'
+      NODE_AUTH_TOKEN: ${{ secrets.NPM }}
+    steps:
+      - name: Require the NPM secret
+        run: |
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
+            echo "::error title=NPM secret missing::The repository secret NPM is empty or not set."
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-tags: true
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: 1.4.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          # @changesets/cli v3 needs Node 22.11 or later.
+          node-version: 22.x
+          registry-url: https://registry.npmjs.org
+
+      - name: Confirm the npm token
+        run: npm whoami
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      - name: Publish unpublished versions
+        run: bunx changeset publish

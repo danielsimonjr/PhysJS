@@ -28,6 +28,9 @@ export type {
   BodyTypeName,
   BoxShape,
   CapsuleShape,
+  ColliderDescriptor,
+  ColliderHandle,
+  ColliderRecord,
   IntegratorName,
   NumericInput,
   NumericOutput,
@@ -60,6 +63,7 @@ export {
   setRotation,
 } from './world/bodies';
 export type { FieldGetter, FieldSetter } from './world/bodies';
+export { addCollider, getCollider, removeCollider } from './world/colliders';
 export { createWorld } from './world/create-world';
 export { MAX_BODIES } from './world/handles';
 export { step } from './world/step';

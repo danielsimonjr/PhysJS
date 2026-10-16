@@ -5,7 +5,6 @@
  * The names are fourJS's `BodyType` values, so the fourJS adapter passes them through.
  */
 
-import type { DescriptorFieldName } from './body-fields';
 import { deepFreeze } from './freeze';
 
 /** What one body type does during a step. */
@@ -19,19 +18,17 @@ export interface BodyTypeRecord {
    * bodies use mass and inertia; on the others the mass properties are infinite.
    */
   readonly dynamic: boolean;
-  /** Descriptor fields that `addBody` requires for this type. */
-  readonly requires: readonly DescriptorFieldName[];
 }
 
 /**
- * Every body type. A dynamic body needs an explicit `mass`: mass from collider
- * shape and density comes with the shape mass properties (MathTS #378).
+ * Every body type. A dynamic body takes its mass and inertia from its colliders
+ * (shape and density, through MathTS `massProperties`) or from explicit values.
  */
 export const BODY_TYPES = deepFreeze([
-  { name: 'static', integrates: false, dynamic: false, requires: [] },
-  { name: 'dynamic', integrates: true, dynamic: true, requires: ['mass'] },
-  { name: 'kinematic-position', integrates: false, dynamic: false, requires: [] },
-  { name: 'kinematic-velocity', integrates: true, dynamic: false, requires: [] },
+  { name: 'static', integrates: false, dynamic: false },
+  { name: 'dynamic', integrates: true, dynamic: true },
+  { name: 'kinematic-position', integrates: false, dynamic: false },
+  { name: 'kinematic-velocity', integrates: true, dynamic: false },
 ] as const satisfies readonly BodyTypeRecord[]);
 
 /** A body type name: one of {@link BODY_TYPES}. */

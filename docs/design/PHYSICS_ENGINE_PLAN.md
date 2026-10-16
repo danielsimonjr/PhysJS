@@ -156,7 +156,7 @@ Acceptance gate for migration: fourJS's existing physics tests run against the P
 
 Each release goes through changesets and CI publish; each MathTS gap must be released in MathTS before the PhysJS milestone that needs it.
 
-**0.1.0 and gap 4.** Bodies, the catalogs, `createWorld` and semi-implicit Euler are built. Sphere/box/capsule mass properties are MathTS gap 4 (#378), so until MathTS ships them a dynamic body takes an explicit `mass` and principal `inertia`, and colliders with density arrive with that release. The 0.1.0 release waits for it.
+**0.1.0 and gap 4.** Bodies, the catalogs, `createWorld`, semi-implicit Euler and density-based `addCollider` are built. Collider mass properties come from MathTS `massProperties` (#378, mathts-functions 0.69.0); a dynamic body takes its mass and inertia from its colliders or from explicit values. 0.1 colliders are centred on the body origin.
 
 ## 10. Decisions (Daniel, 2026-10-15)
 

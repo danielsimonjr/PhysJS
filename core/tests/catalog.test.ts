@@ -89,12 +89,6 @@ describe('BODY_TYPES', () => {
     expect(byName['kinematic-position']).toMatchObject({ integrates: false, dynamic: false });
     expect(byName['static']).toMatchObject({ integrates: false, dynamic: false });
   });
-
-  it('requires only descriptor fields', () => {
-    for (const row of BODY_TYPES) {
-      for (const key of row.requires) expect(BODY_FIELDS[key].descriptor).toBe(true);
-    }
-  });
 });
 
 describe('VALUE_RULES', () => {

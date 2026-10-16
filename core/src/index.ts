@@ -31,6 +31,12 @@ export type { ValueRule, ValueRuleRecord } from './catalog/value-rules';
 export { SUPPORTED_DIMS, WORLD_DEFAULTS } from './config';
 export type { SupportedDims, WorldDefaults } from './config';
 export type { BodyDescriptor, BodyHandle } from './types/body';
+export type {
+  ColliderDescriptor,
+  ColliderHandle,
+  ColliderRecord,
+  ColliderStore,
+} from './types/collider';
 export type { NumericInput, NumericOutput } from './types/numeric';
 export type { BoxShape, CapsuleShape, ShapeDescriptor, SphereShape } from './types/shape';
 export type { BodyStore, World, WorldOptions } from './types/world';

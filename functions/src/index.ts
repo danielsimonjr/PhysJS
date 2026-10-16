@@ -14,6 +14,8 @@ declare const __PKG_VERSION__: string;
 export {
   BODY_FIELDS,
   BODY_TYPES,
+  COLLISION_CORES,
+  COLLISION_DEFAULTS,
   INTEGRATOR_CATALOG,
   PACKAGE_NAME as CORE_PACKAGE_NAME,
   SHAPES,
@@ -23,6 +25,7 @@ export {
   WORLD_DEFAULTS,
 } from '@danielsimonjr/physjs-core';
 export type {
+  Aabb,
   BodyDescriptor,
   BodyHandle,
   BodyTypeName,
@@ -31,9 +34,14 @@ export type {
   ColliderDescriptor,
   ColliderHandle,
   ColliderRecord,
+  CollisionCoreName,
+  CollisionDefaults,
+  ContactManifold,
+  ContactPoint,
   IntegratorName,
   NumericInput,
   NumericOutput,
+  RayHit,
   ShapeDescriptor,
   SphereShape,
   World,
@@ -43,6 +51,10 @@ export type {
 export const PACKAGE_NAME = '@danielsimonjr/physjs';
 export const VERSION: string = __PKG_VERSION__;
 
+export { colliderAabb } from './collision/broadphase';
+export { findContacts } from './collision/contacts';
+export type { ContactOptions } from './collision/contacts';
+export { overlap, pointQuery, raycast } from './collision/queries';
 export { validateShape } from './collision/shapes';
 export { applyForce, applyTorque } from './dynamics/loads';
 export type { LoadAdder } from './dynamics/loads';

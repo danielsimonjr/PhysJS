@@ -7,6 +7,7 @@ import type { BodyFieldName } from '../catalog/body-fields';
 import type { IntegratorName } from '../catalog/integrators';
 import type { SupportedDims } from '../config';
 import type { ColliderStore } from './collider';
+import type { BroadphaseState } from './collision';
 import type { NumericInput } from './numeric';
 
 /** What `createWorld` takes. */
@@ -57,4 +58,6 @@ export interface World {
   readonly bodies: BodyStore;
   /** Colliders, keyed by handle. */
   readonly colliders: ColliderStore;
+  /** Sweep-and-prune order kept between `findContacts` calls. */
+  readonly broadphase: BroadphaseState;
 }

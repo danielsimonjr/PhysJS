@@ -2,10 +2,11 @@
  * Collision shapes, as data: one record per shape type with its parameter
  * schema. Names and parameters follow fourJS's `CollisionShape` union.
  *
- * Mass properties, bounds and ray tests join these records as MathTS and
- * later milestones provide them (MathTS #378 for mass properties).
+ * Mass properties come from MathTS `massProperties` (MathTS #378); support,
+ * bounds, features and ray tests are the shape kernels in PhysJS collision.
  */
 
+import type { CollisionCoreName } from './collision-cores';
 import { deepFreeze } from './freeze';
 import type { ValueRule } from './value-rules';
 
@@ -25,6 +26,8 @@ export interface ShapeRecord {
   readonly type: string;
   /** World dimension the shape belongs to. */
   readonly dims: number;
+  /** Collision core swept by the shape's radius: one of `COLLISION_CORES`. */
+  readonly core: CollisionCoreName;
   /** Parameters, keyed by their descriptor field name. */
   readonly params: Readonly<Record<string, ShapeParamRecord>>;
 }
@@ -34,12 +37,19 @@ export const SHAPES = deepFreeze([
   {
     type: 'sphere',
     dims: 3,
+    core: 'point',
     params: { radius: { components: 1, scalar: true, rule: 'positive' } },
   },
-  { type: 'box', dims: 3, params: { halfExtents: { components: 3, rule: 'positive' } } },
+  {
+    type: 'box',
+    dims: 3,
+    core: 'polytope',
+    params: { halfExtents: { components: 3, rule: 'positive' } },
+  },
   {
     type: 'capsule',
     dims: 3,
+    core: 'segment',
     params: {
       radius: { components: 1, scalar: true, rule: 'positive' },
       halfHeight: { components: 1, scalar: true, rule: 'positive' },

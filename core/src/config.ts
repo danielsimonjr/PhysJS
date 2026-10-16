@@ -28,3 +28,26 @@ export const WORLD_DEFAULTS: WorldDefaults = deepFreeze({
   up: [0, 1, 0],
   initialBodyCapacity: 16,
 });
+
+/** Collision settings used by the broadphase, narrowphase and queries. */
+export interface CollisionDefaults {
+  /** `findContacts` reports pairs whose surfaces are at most this far apart, metres. */
+  readonly margin: number;
+  /** GJK and EPA convergence and degeneracy tolerance, metres. */
+  readonly tolerance: number;
+  /** Iteration cap of GJK and of EPA. */
+  readonly maxIterations: number;
+  /** A segment counts as facing a direction when its cosine to it is at most this. */
+  readonly featureAlignment: number;
+  /** Most points kept in one contact manifold. */
+  readonly maxManifoldPoints: number;
+}
+
+/** The collision settings. */
+export const COLLISION_DEFAULTS: CollisionDefaults = deepFreeze({
+  margin: 0,
+  tolerance: 1e-9,
+  maxIterations: 64,
+  featureAlignment: 0.02,
+  maxManifoldPoints: 4,
+});

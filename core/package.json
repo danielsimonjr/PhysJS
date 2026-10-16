@@ -1,6 +1,6 @@
 {
   "name": "@danielsimonjr/physjs-core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Core types, data catalogs and configuration for PhysJS",
   "author": "Daniel Simon Jr.",
   "license": "MIT",

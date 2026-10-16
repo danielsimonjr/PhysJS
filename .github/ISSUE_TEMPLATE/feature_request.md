@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: A bridge lemma or repository change
+about: An engine feature or repository change
 title: ''
 labels: enhancement
 assignees: ''
@@ -8,10 +8,10 @@ assignees: ''
 
 ## What you want
 
-## Which document it comes from
+## Where it fits
 
-UPT bridge id, or the scoping rank, if this continues the scheduled list.
+The milestone in `docs/design/PHYSICS_ENGINE_PLAN.md`, or the fourJS call site it serves.
 
-## What the lemma would cover
+## MathTS needs
 
-The covers line, in the same sense as `manifest/bridges.json`. A lemma covers its statement only.
+Any units, constants or math it needs that MathTS lacks (those become MathTS issues).

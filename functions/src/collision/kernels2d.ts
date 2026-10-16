@@ -110,17 +110,25 @@ const polygon: ShapeKernel<PolygonShape> = {
   },
   check: (s) => {
     const vs = verticesOf(s);
-    // Convex and counter-clockwise: every turn is to the left.
+    // Convex and counter-clockwise: every turn is to the left, and the turns
+    // add up to one revolution (a star winds twice).
+    let turning = 0;
     vs.forEach((v, i) => {
       const w = vs[(i + 1) % vs.length]!;
       const u = vs[(i + 2) % vs.length]!;
-      const turn = cross(lift(sub(w, v), 0), lift(sub(u, w), 0))[2]!;
+      const a = lift(sub(w, v), 0);
+      const b = lift(sub(u, w), 0);
+      const turn = cross(a, b)[2]!;
+      turning += Math.atan2(turn, dot(a, b));
       if (!(turn > 0)) {
         throw new RangeError(
           'polygon.vertices must be a convex polygon in counter-clockwise order'
         );
       }
     });
+    if (Math.abs(turning - 2 * Math.PI) > 1e-9) {
+      throw new RangeError('polygon.vertices must be a convex polygon in counter-clockwise order');
+    }
   },
 };
 

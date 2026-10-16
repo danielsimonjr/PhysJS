@@ -119,6 +119,18 @@ describe('2-D worlds (dims: 2)', () => {
     ).toThrow();
   });
 
+  it('rejects a star polygon, whose turns all go left but wind twice', () => {
+    const world = createWorld({ dims: 2 });
+    const body = addBody(world, { type: 'dynamic' });
+    const vertices = [0, 2, 4, 1, 3].map((k) => [
+      Math.cos((2 * Math.PI * k) / 5),
+      Math.sin((2 * Math.PI * k) / 5),
+    ]);
+    expect(() =>
+      addCollider(world, body, { shape: { type: 'polygon', vertices }, density: 1 })
+    ).toThrow(RangeError);
+  });
+
   it('locks rotation to the z axis through infinite x and y inertia', () => {
     const world = createWorld({ dims: 2, gravity: [0, 0] });
     const body = drop(world, { type: 'rectangle', halfExtents: [1, 1] }, [0, 0]);

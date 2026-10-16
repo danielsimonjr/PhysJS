@@ -13,7 +13,7 @@ import {
 } from '@danielsimonjr/physjs-core';
 import { requireSlot } from '../world/handles';
 import { wakeSlot } from './sleep';
-import { readValue } from '../world/validate';
+import { readWorldValue } from '../world/planar';
 
 /** Adds a load to a body's accumulator for the next step. */
 export type LoadAdder = (world: World, handle: BodyHandle, load: NumericInput) => void;
@@ -22,7 +22,7 @@ function loadAdder(name: BodyFieldName): LoadAdder {
   const field = BODY_FIELDS[name];
   return (world, handle, load) => {
     const slot = requireSlot(world.bodies, handle);
-    const values = readValue(name, load, field);
+    const values = readWorldValue(world, name, load, field, field.planar);
     const column = world.bodies.fields[name];
     const offset = slot * field.components;
     for (let k = 0; k < field.components; k++)
@@ -31,7 +31,7 @@ function loadAdder(name: BodyFieldName): LoadAdder {
   };
 }
 
-/** Adds a world-frame force, N, through the centre of mass. Only dynamic bodies respond. */
+/** Adds a world-frame force, N (`[fx, fy]` in 2-D), through the centre of mass. Only dynamic bodies respond. */
 export const applyForce: LoadAdder = loadAdder('force');
-/** Adds a world-frame torque, N m. Only dynamic bodies respond. */
+/** Adds a world-frame torque, N m (`[tz]` about +z in 2-D). Only dynamic bodies respond. */
 export const applyTorque: LoadAdder = loadAdder('torque');

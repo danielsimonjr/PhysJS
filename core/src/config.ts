@@ -7,7 +7,7 @@ import { deepFreeze } from './catalog/freeze';
 import type { IntegratorName } from './catalog/integrators';
 
 /** World dimensions this release simulates. */
-export const SUPPORTED_DIMS = deepFreeze([3] as const);
+export const SUPPORTED_DIMS = deepFreeze([2, 3] as const);
 
 /** A world dimension: one of {@link SUPPORTED_DIMS}. */
 export type SupportedDims = (typeof SUPPORTED_DIMS)[number];
@@ -41,6 +41,8 @@ export interface CollisionDefaults {
   readonly featureAlignment: number;
   /** Most points kept in one contact manifold. */
   readonly maxManifoldPoints: number;
+  /** Half the z thickness 2-D shapes are extruded by in a `dims: 2` world, metres. */
+  readonly planarHalfDepth: number;
 }
 
 /** The collision settings. */
@@ -50,6 +52,7 @@ export const COLLISION_DEFAULTS: CollisionDefaults = deepFreeze({
   maxIterations: 64,
   featureAlignment: 0.02,
   maxManifoldPoints: 4,
+  planarHalfDepth: 1,
 });
 
 /** Contact solver and sleep settings used by `step`. */

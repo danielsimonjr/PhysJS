@@ -10,6 +10,7 @@ import {
 } from '@danielsimonjr/physjs-core';
 import { MAX_BODIES } from './handles';
 import { createBodyStore } from './storage';
+import { PLANAR_VIEWS } from './planar';
 import { readValue, rejectUnknownKeys, requireRecord } from './validate';
 
 const OPTION_KEYS: ReadonlySet<string> = new Set([
@@ -52,7 +53,9 @@ export function createWorld(options: WorldOptions): World {
   const gravity =
     options.gravity === undefined
       ? defaultGravity()
-      : readValue('gravity', options.gravity, { components: dims, rule: 'finite' });
+      : PLANAR_VIEWS[dims === 2 ? 'vector' : 'same'].lift(
+          readValue('gravity', options.gravity, { components: dims, rule: 'finite' })
+        );
   const capacity = options.initialBodyCapacity ?? WORLD_DEFAULTS.initialBodyCapacity;
   if (!Number.isInteger(capacity) || capacity < 1 || capacity > MAX_BODIES) {
     throw new RangeError(

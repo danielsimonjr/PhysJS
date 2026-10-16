@@ -28,6 +28,13 @@ export type BodyFieldRole =
   /** Sleep bookkeeping kept by `step`; never given directly. */
   | 'sleep';
 
+/**
+ * How a field looks in a `dims: 2` world: `same` as in 3-D, a `vector` `[x, y]`,
+ * the `axial` z component as a number, an `angle` about +z, or a `moment` about z
+ * (the other axes locked by infinite inertia).
+ */
+export type PlanarView = 'same' | 'vector' | 'axial' | 'angle' | 'moment';
+
 /** One column of the body store. */
 export interface BodyFieldRecord {
   /** Numbers per body. */
@@ -46,15 +53,25 @@ export interface BodyFieldRecord {
   readonly normalize?: 'quaternion';
   /** Source field of a `derived` field; the value is its reciprocal. */
   readonly derivedFrom?: string;
+  /** The field's form in a 2-D world. */
+  readonly planar: PlanarView;
 }
 
 /** Every body field, keyed by name. */
 export const BODY_FIELDS = deepFreeze({
-  position: { components: 3, initial: [0, 0, 0], rule: 'finite', role: 'pose', descriptor: true },
+  position: {
+    components: 3,
+    initial: [0, 0, 0],
+    rule: 'finite',
+    planar: 'vector',
+    role: 'pose',
+    descriptor: true,
+  },
   rotation: {
     components: 4,
     initial: [1, 0, 0, 0],
     rule: 'finite',
+    planar: 'angle',
     role: 'pose',
     descriptor: true,
     normalize: 'quaternion',
@@ -63,6 +80,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 3,
     initial: [0, 0, 0],
     rule: 'finite',
+    planar: 'vector',
     role: 'velocity',
     descriptor: true,
   },
@@ -70,6 +88,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 3,
     initial: [0, 0, 0],
     rule: 'finite',
+    planar: 'axial',
     role: 'velocity',
     descriptor: true,
   },
@@ -77,6 +96,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 1,
     initial: [Infinity],
     rule: 'positive',
+    planar: 'same',
     role: 'massProperty',
     descriptor: true,
     scalar: true,
@@ -85,6 +105,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 3,
     initial: [Infinity, Infinity, Infinity],
     rule: 'positiveOrInfinite',
+    planar: 'moment',
     role: 'massProperty',
     descriptor: true,
   },
@@ -92,6 +113,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 1,
     initial: [0],
     rule: 'nonNegative',
+    planar: 'same',
     role: 'coefficient',
     descriptor: true,
     scalar: true,
@@ -100,6 +122,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 1,
     initial: [0],
     rule: 'nonNegative',
+    planar: 'same',
     role: 'coefficient',
     descriptor: true,
     scalar: true,
@@ -108,6 +131,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 1,
     initial: [1],
     rule: 'finite',
+    planar: 'same',
     role: 'coefficient',
     descriptor: true,
     scalar: true,
@@ -116,6 +140,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 1,
     initial: [0],
     rule: 'nonNegative',
+    planar: 'same',
     role: 'derived',
     descriptor: false,
     derivedFrom: 'mass',
@@ -124,6 +149,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 3,
     initial: [0, 0, 0],
     rule: 'nonNegative',
+    planar: 'same',
     role: 'derived',
     descriptor: false,
     derivedFrom: 'inertia',
@@ -132,6 +158,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 3,
     initial: [0, 0, 0],
     rule: 'finite',
+    planar: 'vector',
     role: 'accumulator',
     descriptor: false,
   },
@@ -139,6 +166,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 3,
     initial: [0, 0, 0],
     rule: 'finite',
+    planar: 'axial',
     role: 'accumulator',
     descriptor: false,
   },
@@ -146,6 +174,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 1,
     initial: [0],
     rule: 'nonNegative',
+    planar: 'same',
     role: 'sleep',
     descriptor: false,
     scalar: true,
@@ -154,6 +183,7 @@ export const BODY_FIELDS = deepFreeze({
     components: 1,
     initial: [0],
     rule: 'unitInterval',
+    planar: 'same',
     role: 'sleep',
     descriptor: false,
     scalar: true,

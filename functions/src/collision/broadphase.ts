@@ -16,7 +16,7 @@ import {
 } from '@danielsimonjr/physjs-core';
 import { jointExcludes } from '../joints/joints';
 import { requireSlot } from '../world/handles';
-import { kernelOf } from './kernels';
+import { kernelOf } from './shape-kernels';
 import { bodyPose, type Pose } from './pose';
 
 /** The world bounding box of `shape`'s local box with half sizes `half` at `pose`, grown by `margin`. */

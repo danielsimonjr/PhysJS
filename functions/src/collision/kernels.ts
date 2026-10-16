@@ -1,7 +1,7 @@
 /**
  * Shape kernels: the collision behaviour of each `SHAPES` row, in the shape's
  * local frame. The type requires one kernel per catalog type, so adding a shape
- * means adding a catalog row and a kernel row. Each kernel describes the
+ * means adding a catalog row and a kernel row (`shape-kernels.ts`). Each kernel describes the
  * shape's collision core (its `SHAPES` `core`) and the radius swept around it.
  */
 
@@ -11,7 +11,6 @@ import {
   type BoxShape,
   type CapsuleShape,
   type ShapeDescriptor,
-  type ShapeType,
   type SphereShape,
 } from '@danielsimonjr/physjs-core';
 import { AXES, add, dot, length, scale, sub, unit, type Vec } from './vector';
@@ -41,6 +40,8 @@ export interface ShapeKernel<S extends ShapeDescriptor> {
   halfExtents(shape: S): number[];
   /** The first hit of the ray `origin + t direction`, `t >= 0`, with `direction` unit. */
   raycast(shape: S, origin: Vec, direction: Vec): LocalHit | undefined;
+  /** Extra checks beyond the parameter rules (a polygon must be convex); throws. */
+  check?(shape: S): void;
 }
 
 const ORIGIN: Vec = [0, 0, 0];
@@ -174,11 +175,7 @@ const box: ShapeKernel<BoxShape> = {
   },
 };
 
-/** One kernel per `SHAPES` type. */
-export const SHAPE_KERNELS: {
-  readonly [T in ShapeType]: ShapeKernel<ShapeDescriptor & { type: T }>;
-} = { sphere, capsule, box };
-
-/** The kernel of a shape, typed for that shape. */
-export const kernelOf = (shape: ShapeDescriptor): ShapeKernel<ShapeDescriptor> =>
-  SHAPE_KERNELS[shape.type] as ShapeKernel<ShapeDescriptor>;
+/** The 3-D kernels, also the building blocks of the 2-D ones (`kernels2d.ts`). */
+export const SPHERE_KERNEL = sphere;
+export const CAPSULE_KERNEL = capsule;
+export const BOX_KERNEL = box;

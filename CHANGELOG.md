@@ -5,6 +5,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Removed
+
+- The Lean proofs, the Lake package, `manifest/`, the proof scripts, tests and CI, the private bridge packages (`bridges`, `core`, `em`, `fluids`, `gr`, `mechanics`, `optics`, `plasma`, `proofs`, `thermo`) and the Modelica plan. The proofs are maintained in Universal-Physics-Tensor `lean/`; the tag `lean-archive` marks the last PhysJS commit that changed them. Entries below describe the removed proof repository.
+
+### Added
+
+- 0.0.0 skeleton of the physics engine: `@danielsimonjr/physjs-core` (`core/`) and `@danielsimonjr/physjs` (`functions/`), Bun + turbo, changesets, CI, oxlint, prettier, `bun test` plus vitest. See `docs/design/PHYSICS_ENGINE_PLAN.md`.
+
 ### Changed
 
 - `be-147` is derived, not assumed. `PhysJS.Arrhenius.arrhenius_eq` used to take `k = A exp(−Ea/(R T))` as its hypothesis `hk` and conclude `k exp(Ea/(R T)) = A`, which is `hk` multiplied out, and the same formula with `−Ea/(R T)` rewritten as `−ε/(k_B T)`. `A` and `T` were plain reals, so nothing said `A` does not depend on `T`. The theorem now takes a rate `k : ℝ → ℝ`, positive and differentiable on `T > 0`, whose activation energy `R T² d(ln k)/dT` is one constant `Ea` at every `T > 0`. It concludes that one constant `A > 0` gives `k T = A exp(−Ea/(R T))` at every `T > 0`, and that at `R = N_A k_B` and `ε = Ea/N_A` the same `k T` is `A` times the share above `ε` of a Boltzmann weight `exp(−E/(k_B T))` on `E > 0`. New statements in the same file: `boltzmann_tail` (that share is `exp(−ε/(k_B T))`, from the improper integrals), `molar_exponent` (the `R = N_A k_B` step), `activation_energy` (the converse), `log_linear` (`ln k = ln A − (Ea/R)(1/T)`), `two_temperature` (`ln(k₂/k₁) = −(Ea/R)(1/T₂ − 1/T₁)`), `rate_pos`, and `rate_strictMonoOn` (strict increase in `T` for `Ea > 0`). The signature of `arrhenius_eq` changes. `PhysJS.Eyring.molar_matches_molecular` now calls `molar_exponent` and drops three hypotheses it no longer uses (`0 < T`, `k_B ≠ 0`, `h ≠ 0`). The be-147 and be-148 covers lines and the README rows say so.

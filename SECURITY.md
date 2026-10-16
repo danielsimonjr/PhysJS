@@ -23,4 +23,4 @@ Please allow a few days for a first reply. A fix for a confirmed report is prepa
 
 ## What this repository builds
 
-CI runs `lake build` and an axiom audit. It does not publish packages, and it does not receive credentials beyond the default read-only checkout token.
+CI installs, builds, typechecks, tests and lints the Bun workspace. It does not publish packages, and it does not receive credentials beyond the default read-only checkout token.

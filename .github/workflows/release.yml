@@ -39,7 +39,7 @@ jobs:
       - name: List workspace packages that are not private
         id: scan
         run: |
-          public=$(jq -r 'select(.private != true) | .name' packages/*/package.json)
+          public=$(jq -r 'select(.private != true) | .name' core/package.json functions/package.json)
           if [ -n "${public}" ]; then
             echo "public packages:"
             echo "${public}"

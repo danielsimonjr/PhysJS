@@ -1,0 +1,43 @@
+{
+  "name": "@danielsimonjr/physjs-core",
+  "version": "0.0.0",
+  "description": "Core types, data catalogs and configuration for PhysJS",
+  "author": "Daniel Simon Jr.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsdown && tsc -p tsconfig.dts.json",
+    "test": "bun test",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
+    "lint": "oxlint src",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielsimonjr/PhysJS.git",
+    "directory": "core"
+  },
+  "keywords": [
+    "physics",
+    "physics-engine",
+    "typescript"
+  ]
+}

@@ -18,6 +18,7 @@ import {
   type NumericOutput,
   type World,
 } from '@danielsimonjr/physjs-core';
+import { removeBodyColliders } from './colliders';
 import { packHandle, requireSlot, slotOf } from './handles';
 import { FIELD_NAMES, allocateSlot, readColumn, releaseSlot, writeColumn } from './storage';
 import { readValue, rejectUnknownKeys, requireRecord } from './validate';
@@ -59,7 +60,7 @@ function readField(name: DescriptorFieldName, value: unknown, row: BodyTypeRecor
 }
 
 /** Recomputes the derived columns (reciprocals of mass and inertia) of `slot`. */
-function refreshDerived(world: World, slot: number): void {
+export function refreshDerived(world: World, slot: number): void {
   const { fields } = world.bodies;
   for (const { name, source, components } of DERIVED_FIELDS) {
     const from = fields[source];
@@ -70,6 +71,23 @@ function refreshDerived(world: World, slot: number): void {
 }
 
 /**
+ * Writes collider-derived mass and principal inertia into a dynamic body's
+ * columns. Returns false, leaving the columns alone, on a body that is not
+ * dynamic (its mass stays infinite).
+ */
+export function writeMassProperties(
+  world: World,
+  slot: number,
+  mass: number,
+  inertia: readonly number[]
+): boolean {
+  if (!typeRow(world, slot).dynamic) return false;
+  writeColumn(world.bodies, 'mass', slot, [mass]);
+  writeColumn(world.bodies, 'inertia', slot, inertia);
+  return true;
+}
+
+/**
  * Adds a body and returns its handle.
  *
  * ```ts
@@ -77,7 +95,9 @@ function refreshDerived(world: World, slot: number): void {
  * ```
  *
  * Omitted fields take their `BODY_FIELDS` defaults. Mass and inertia are used
- * only by dynamic bodies. The whole descriptor is checked before anything is
+ * only by dynamic bodies; a dynamic body takes them from `addCollider` (by
+ * density, through MathTS `massProperties`) or from explicit `mass` and
+ * `inertia`. The whole descriptor is checked before anything is
  * stored, so a rejected descriptor leaves the world unchanged.
  */
 export function addBody(world: World, descriptor: BodyDescriptor): BodyHandle {
@@ -89,9 +109,6 @@ export function addBody(world: World, descriptor: BodyDescriptor): BodyHandle {
     throw new RangeError(`body type must be one of ${known}; got ${String(descriptor.type)}`);
   }
   const row: BodyTypeRecord = BODY_TYPES[typeIndex]!;
-  for (const key of row.requires) {
-    if (descriptor[key] === undefined) throw new RangeError(`a ${row.name} body needs ${key}`);
-  }
   const given = new Map<BodyFieldName, readonly number[]>();
   for (const name of DESCRIPTOR_FIELDS) {
     const value = descriptor[name];
@@ -112,7 +129,9 @@ export function addBody(world: World, descriptor: BodyDescriptor): BodyHandle {
 
 /** Removes a body. Its handle, and every copy of it, becomes invalid. */
 export function removeBody(world: World, handle: BodyHandle): void {
-  releaseSlot(world.bodies, requireSlot(world.bodies, handle));
+  const slot = requireSlot(world.bodies, handle);
+  removeBodyColliders(world, handle);
+  releaseSlot(world.bodies, slot);
 }
 
 /** Whether `handle` names a live body of `world`. */

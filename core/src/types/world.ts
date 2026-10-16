@@ -6,6 +6,7 @@
 import type { BodyFieldName } from '../catalog/body-fields';
 import type { IntegratorName } from '../catalog/integrators';
 import type { SupportedDims } from '../config';
+import type { ColliderStore } from './collider';
 import type { NumericInput } from './numeric';
 
 /** What `createWorld` takes. */
@@ -54,4 +55,6 @@ export interface World {
   steps: number;
   /** Body storage. */
   readonly bodies: BodyStore;
+  /** Colliders, keyed by handle. */
+  readonly colliders: ColliderStore;
 }

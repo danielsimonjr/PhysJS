@@ -27,7 +27,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@danielsimonjr/mathts-functions": "^0.68.5",
+    "@danielsimonjr/mathts-functions": "^0.69.0",
     "@danielsimonjr/physjs-core": "workspace:*"
   },
   "publishConfig": {

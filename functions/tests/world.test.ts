@@ -105,7 +105,6 @@ describe('addBody', () => {
   it('rejects invalid descriptors with the offending field named', () => {
     const world = createWorld({ dims: 3 });
     expect(() => addBody(world, { type: 'ghost' as 'static' })).toThrow(RangeError);
-    expect(() => addBody(world, { type: 'dynamic' })).toThrow(/mass/);
     expect(() => addBody(world, { type: 'dynamic', mass: 0 })).toThrow(/mass/);
     expect(() => addBody(world, { type: 'dynamic', mass: Infinity })).toThrow(/mass/);
     expect(() => addBody(world, { type: 'dynamic', mass: 1, inertia: [1, 0, 1] })).toThrow(

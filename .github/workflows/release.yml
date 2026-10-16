@@ -32,11 +32,26 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       any: ${{ steps.scan.outputs.any }}
+      bumped: ${{ steps.bump.outputs.bumped }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0
+
+      - name: Did this push change a package version?
+        id: bump
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          bumped=false
+          if [ -n "${BEFORE_SHA}" ] && git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            if git diff "${BEFORE_SHA}" HEAD -- core/package.json functions/package.json | grep -q '^[+-]  "version"'; then
+              bumped=true
+            fi
+          fi
+          echo "bumped=${bumped}" >> "$GITHUB_OUTPUT"
 
       - name: List workspace packages that are not private
         id: scan
@@ -87,3 +102,13 @@ jobs:
           version-script: bun run version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    name: Publish
+    needs: public
+    if: needs.public.outputs.any == 'true' && needs.public.outputs.bumped == 'true'
+    permissions:
+      contents: read
+    uses: ./.github/workflows/publish.yml
+    secrets:
+      NPM: ${{ secrets.NPM }}

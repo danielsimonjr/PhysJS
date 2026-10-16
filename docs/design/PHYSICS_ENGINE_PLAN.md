@@ -1,6 +1,6 @@
 # PhysJS physics engine plan
 
-**Status:** design only, for Daniel's review. No code lands with this document.
+**Status:** approved by Daniel on 2026-10-15 (PR #77), including all six recommendations in section 10. No code lands with this document.
 **Decisions (Daniel, 2026-10-15):** package `@danielsimonjr/physjs`, starting at 0.x; mirror MathTS's directory tree, packages and API style; template is a *core subset* of fourJS's physics; units, constants and all mathematics come from MathTS; the Lean proofs leave PhysJS (UPT `lean/` is canonical); this work comes before UPT 11.0.0 dogfooding.
 **Inputs studied (pulled to latest on 2026-10-15):** MathTS `main` @ `c7a33f69`, fourJS `main` @ `ee5de9a`, PhysJS `main` @ `a737eab`.
 
@@ -39,25 +39,25 @@ PhysJS/
   package.json            private root "physjs", bun@1.4.2, workspaces, turbo scripts
   turbo.json  bunfig.toml  .oxlintrc.json  .prettierrc  .husky/
   .changeset/config.json  access public, baseBranch main
-  .github/workflows/      ci.yml, release.yml, publish.yml (copied from MathTS shape)
-  AGENTS.md CLAUDE.md CONTRIBUTING.md README.md CHANGELOG.md
+  .github/workflows/      ci.yml, release.yml (MathTS shape)
+  AGENTS.md CONTRIBUTING.md README.md CHANGELOG.md
   core/                   @danielsimonjr/physjs-core
     src/types/            Body, Shape, Material, Joint, World, Contact, Event, Query records (plain data)
     src/config.ts         world defaults (gravity from MathTS, iterations, sleep thresholds)
-    src/catalog/          DATA tables: shapes.ts, joints.ts, integrators.ts, material-combine.ts
-    src/factory.ts        same factory/typed pattern as mathts-core
+    src/catalog/          DATA tables: shapes, joints, integrators, material-combine rules
     src/index.ts
-  dynamics/               @danielsimonjr/physjs-dynamics   integrators, forces, mass properties, sleeping
-  collision/              @danielsimonjr/physjs-collision  broadphase, narrowphase, manifolds, queries
-  constraints/            @danielsimonjr/physjs-constraints contact + joint solver (sequential impulse / PGS)
-  functions/              @danielsimonjr/physjs-functions  the user-facing barrel (mathTyped dispatch), world step
-  physjs/                 @danielsimonjr/physjs            umbrella package re-exporting functions (the name Daniel chose)
+  functions/              @danielsimonjr/physjs   the public package (Daniel's chosen name)
+    src/dynamics/         integrators, forces, mass properties, sleeping
+    src/collision/        broadphase, narrowphase (analytic + GJK/EPA), ray-vs-shape, manifolds, queries
+    src/constraints/      contact + joint solver (sequential impulse / PGS)
+    src/world/            createWorld, step, events, snapshot
+    src/index.ts
   tools/benchmark/        step benchmarks (same scenes as fourJS benchmarks/physics-step.mjs)
-  tests/                  cross-package conformance (fourJS adapter contract scenarios)
+  tests/                  cross-package and fourJS-adapter conformance scenarios
   docs/design/            this file
 ```
 
-The core/functions split matches MathTS exactly; `dynamics`, `collision`, `constraints` play the role of MathTS's `matrix`/`linalg`/`units` (focused internals with their own versions). If Daniel prefers fewer packages at 0.x, `dynamics`/`collision`/`constraints` can start as directories inside `functions/` and split later without API change.
+**Decision (2):** 0.x ships only `core` and `functions`. `dynamics`, `collision` and `constraints` are directories inside `functions/` and split into their own packages later without an API change. **Decision (1):** GJK/EPA, support mapping and ray-vs-shape tests live in PhysJS `functions/src/collision/`. **Decision (4):** 2D runs on the same engine with `dims: 2`.
 
 **Data-driven, not hand lists.** Each shape kind is one record in `core/src/catalog/shapes.ts` (`{ kind, dims, params schema, support, massProperties, aabb, raycast }`); the narrowphase picks an algorithm per *pair of capabilities* (sphere-like, convex-support, mesh) from a table, not a `switch` per pair. Joints are rows of constrained DOFs (`{ kind, linearAxes, angularAxes, limits, motor }`) solved by one generic constraint row solver. Integrators are the same table fourJS already uses (`INTEGRATORS`). Adding a shape or joint means adding a row, not a file.
 
@@ -105,25 +105,24 @@ Handles are opaque numbers (generation-tagged, like fourJS's `stale-handle.ts`).
 
 PhysJS uses MathTS for: units (`@danielsimonjr/mathts-units`, including world length/mass scaling now done by fourJS `world-units.ts`), constants (`gravity`, CODATA 2022 set in `mathts-functions`), vectors/matrices/linear algebra (`dot`, `cross`, `norm`, `inv`, `det`, `eigs`, `cholesky`, `lusolve`), quaternions (`quaternionMultiply/Normalize/FromAxisAngle/Rotate/ToRotationMatrix/Slerp/Inverse/...`), geometry (`convexHull`, halfspace intersection).
 
-Gaps found (to be filed as MathTS issues; nothing copied into PhysJS):
+Gaps filed as MathTS issues (label `physjs`; nothing copied into PhysJS). GJK/EPA and ray-vs-shape tests are not a MathTS gap: they live in PhysJS collision (decision 1).
 
-1. **Allocation-free fixed-size vec2/vec3/quat/mat3 kernels.** MathTS quaternion/vector helpers take `number[]` and return new arrays. A solver inner loop needs `out`-parameter or strided `Float64Array` variants (e.g. `vec3.cross(out, a, b)`, `quat.integrate(out, q, omega, dt)`). fourJS's `alloc-counter.ts` shows this matters.
-2. **Duplicate quaternion modules.** `functions/src/geometry-extra.ts` and `functions/src/geometry/geometry-extra.ts` both define quaternion functions; one canonical set is needed before PhysJS depends on it.
-3. **Symmetric 3x3 eigen-decomposition (Jacobi) and inertia-tensor ops** (rotate tensor `R I R^T`, parallel-axis shift). `eigs` is general N x N and allocates.
-4. **Mass properties of shapes/polyhedra** (volume, centroid, inertia tensor of convex polyhedron, capsule, cylinder, cone). Pure geometry, belongs next to `convexHull`.
-5. **Convex computational geometry for collision:** support-mapping functions, GJK distance, EPA penetration, closest points segment-segment / point-triangle, ray-vs-primitive intersection, AABB type and ops. (Proposed as a MathTS `geometry` addition; if Daniel decides GJK/EPA is "physics", it moves to PhysJS `collision/` instead. Open question below.)
-6. **Small dense box-constrained LCP / projected Gauss-Seidel solver** (generic numerics; PhysJS uses it for contacts and joints).
-7. **Determinism controls:** a documented deterministic mode (no FMA/reordering differences between JS and WASM tiers) so `checksum()`/snapshot replay match across runs.
-8. **Mat4 / affine transforms and Frustum** are used heavily by fourJS rendering (Matrix4 ~330 uses, Frustum 24). Not needed by PhysJS, but needed for the "fourJS math replaced by MathTS" end goal.
+1. **Allocation-free fixed-size vec2/vec3/quat/mat3 kernels.** MathTS quaternion/vector helpers take `number[]` and return new arrays. A solver inner loop needs `out`-parameter or strided `Float64Array` variants (e.g. `vec3.cross(out, a, b)`, `quat.integrate(out, q, omega, dt)`). fourJS's `alloc-counter.ts` shows this matters. [MathTS #375](https://github.com/danielsimonjr/MathTS/issues/375)
+2. **Duplicate quaternion modules.** `functions/src/geometry-extra.ts` and `functions/src/geometry/geometry-extra.ts` both define quaternion functions; one canonical set is needed before PhysJS depends on it. [MathTS #376](https://github.com/danielsimonjr/MathTS/issues/376)
+3. **Symmetric 3x3 eigen-decomposition (Jacobi) and inertia-tensor ops** (rotate tensor `R I R^T`, parallel-axis shift). `eigs` is general N x N and allocates. [MathTS #377](https://github.com/danielsimonjr/MathTS/issues/377)
+4. **Mass properties of shapes/polyhedra** (volume, centroid, inertia tensor of convex polyhedron, capsule, cylinder, cone). Pure geometry, belongs next to `convexHull`. [MathTS #378](https://github.com/danielsimonjr/MathTS/issues/378)
+5. **Small dense box-constrained LCP / projected Gauss-Seidel solver** (generic numerics; PhysJS uses it for contacts and joints). [MathTS #379](https://github.com/danielsimonjr/MathTS/issues/379)
+6. **Determinism controls:** a documented deterministic mode (no FMA/reordering differences between JS and WASM tiers) so `checksum()`/snapshot replay match across runs. [MathTS #380](https://github.com/danielsimonjr/MathTS/issues/380)
+7. **Mat4 / affine transforms and Frustum** are used heavily by fourJS rendering (Matrix4 ~330 uses, Frustum 24). Not needed by PhysJS, but needed for the "fourJS math replaced by MathTS" end goal. [MathTS #381](https://github.com/danielsimonjr/MathTS/issues/381)
 
 ## 7. Lean removal plan
 
 UPT `lean/` became canonical in UPT 11.0.0 (merged with full history, `f0aa620c`). In PhysJS, one PR (milestone 0.0.0) will:
 
 - delete `lean/`, `lean.lean`, `lakefile.toml`, `lean-toolchain`, `lake-manifest.json`, `manifest/`, `packages/proofs`, `scripts/check-proofs-changeset.ts`, `scripts/manifest-kind.ts`, `scripts/check-tier0-markers.ts`, `tests/lean-layout.test.ts`, `tests/manifest-kind.test.ts`, the Lean jobs in `.github/workflows/`, and the proof-only changesets in `.changeset/`;
-- delete the private bridge scaffolding packages (`bridges, em, fluids, gr, mechanics, optics, plasma, thermo`, current `core`), which are UPT bridge material, not an engine;
+- delete the private bridge packages (`bridges, em, fluids, gr, mechanics, optics, plasma, thermo`, current `core`) and the Modelica plan (decision 5, clean start);
 - rewrite `README.md`: "Lean proofs moved to [UPT `lean/`](https://github.com/danielsimonjr/Universal-Physics-Tensor/tree/master/lean); history before commit `<sha>` holds them";
-- mark `docs/design/library-architecture.md` as superseded by this plan;
+- delete `docs/design/library-architecture.md` (with its Modelica plan) and `docs/feasibility/`; this plan replaces them;
 - git history stays; nothing is rewritten or force-pushed. Tag the last proof commit `lean-archive` for easy reference.
 
 ## 8. FourJS migration map
@@ -132,7 +131,7 @@ UPT `lean/` became canonical in UPT 11.0.0 (merged with full history, `f0aa620c`
 |---|---|
 | `@fourjs/math` `Vector2/3/4`, `Quaternion`, `Matrix3` (Vector3 ~3.4k uses, 1.35k in physics) | MathTS fixed-size kernels (gap 1); fourJS keeps thin classes over them during transition |
 | `@fourjs/math` `Matrix4`, `Frustum`, color | MathTS (gap 8); rendering migration is separate from physics |
-| `@fourjs/physics` `PhysicsSolverAdapter` | new `@fourjs/physics-physjs` adapter (or direct calls) mapping 1:1 to PhysJS `createWorld/addBody/addCollider/addJoint/step/drainEvents/raycast/overlap/pointQuery/snapshot` |
+| `@fourjs/physics` `PhysicsSolverAdapter` | new `@fourjs/physics-physjs` adapter behind `SolverRegistry` (decision 3) mapping 1:1 to PhysJS `createWorld/addBody/addCollider/addJoint/step/drainEvents/raycast/overlap/pointQuery/snapshot` |
 | `RigidBodyDescriptor`, `ColliderDescriptor`, `JointDescriptor`, shape unions | PhysJS core types use the same field names; adapter is pass-through |
 | `world-units.ts` (`toSiLength`, `toSiMass`) | MathTS units |
 | `@fourjs/motion` `INTEGRATORS` | PhysJS `dynamics` integrator table (same names) |
@@ -146,22 +145,22 @@ Acceptance gate for migration: fourJS's existing physics tests run against the P
 
 | Version | Content |
 |---|---|
-| 0.0.0 | Lean removal, README pointer, MathTS-shaped skeleton (root, turbo, changesets, CI, empty packages), MathTS issues filed |
+| 0.0.0 | Lean + bridge packages + Modelica plan removed, README points to UPT `lean/`, MathTS-shaped skeleton (`core` + `functions`, turbo, changesets, CI, oxlint, vitest + bun test) |
 | 0.1.0 | core types + catalog tables, `createWorld`, bodies, semi-implicit Euler, gravity, sphere/box/capsule mass properties |
 | 0.2.0 | broadphase (SAP), narrowphase (analytic + GJK/EPA), contact manifolds, overlap/raycast/point queries |
 | 0.3.0 | PGS contact solver w/ friction, restitution, warm start, sleeping; events |
 | 0.4.0 | joints (fixed, hinge, spherical, spring); snapshot/restore/checksum |
 | 0.5.0 | 2D world (circle, rectangle, capsule, polygon) on the same engine |
 | 0.6.0 | `@fourjs/physics-physjs` adapter in fourJS; conformance + benchmark report |
-| 0.7.0+ | later-column items (convex hull/mesh/heightfield, shapeCast, slider/rope/motors, CCD, WASM tier) |
+| 0.7.0+ | later-column items (convex hull/mesh/heightfield, shapeCast, slider/rope/motors, CCD, WASM tier); split `functions/` subdirectories into packages when warranted |
 
 Each release goes through changesets and CI publish; each MathTS gap must be released in MathTS before the PhysJS milestone that needs it.
 
-## 10. Open questions for Daniel
+## 10. Decisions (Daniel, 2026-10-15)
 
-1. GJK/EPA, support mapping and ray-primitive tests: MathTS `geometry` (general computational geometry) or PhysJS `collision`?
-2. Package granularity at 0.x: five packages (`core, dynamics, collision, constraints, functions` + umbrella) or `core` + `functions` only, splitting later?
-3. fourJS integration: a `@fourjs/physics-physjs` adapter behind `SolverRegistry` (recommended; keeps fourJS's API stable) or fourJS calling PhysJS directly, as `library-architecture.md` said?
-4. 2D: same engine with `dims: 2` (recommended) or a separate 2D package?
-5. The existing private bridge packages (`em, fluids, gr, ...`) and the Modelica plan in `library-architecture.md`: delete with the Lean removal, or keep for a later "physics formulas" package?
-6. Test runner: MathTS uses vitest + bun test; mirror both, or bun test only?
+1. GJK/EPA, support mapping and ray-vs-shape tests live in PhysJS `collision`.
+2. 0.x ships only `core` and `functions`; split later.
+3. fourJS uses a `@fourjs/physics-physjs` adapter behind `SolverRegistry`.
+4. 2D runs on the same engine with `dims: 2`.
+5. The private bridge packages and the Modelica plan are deleted with the Lean proofs, for a clean start.
+6. Tests use both vitest and `bun test`, like MathTS.

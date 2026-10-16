@@ -71,3 +71,6 @@ jobs:
 
       - name: Publish unpublished versions
         run: bunx changeset publish
+
+      - name: Verify the versions are visible on npm
+        run: node scripts/verify-published.mjs

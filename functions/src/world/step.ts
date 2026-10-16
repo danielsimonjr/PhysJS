@@ -19,6 +19,7 @@ import { updateSleep, wakeTouched } from '../dynamics/sleep';
 import { solveConstraints } from '../dynamics/solver';
 import { applySpringLoads, jointLinks, jointRows } from '../joints/rows';
 import { updateTouching } from './events';
+import { flattenBodies } from './planar';
 import { FIELD_NAMES } from './storage';
 
 const ACCUMULATORS = FIELD_NAMES.filter((name) => BODY_FIELDS[name].role === 'accumulator');
@@ -44,7 +45,7 @@ function* integrating(world: World): Generator<[number, BodyTypeRecord]> {
  *    touched by moving bodies and queueing `contactBegin` / `contactEnd`;
  * 3. the constraint solver: contacts (PGS with friction, restitution and warm
  *    start) and joint rows; spring joints act as loads before step 1;
- * 4. the position phase;
+ * 4. the position phase, then (2-D only) every body projected back onto the plane;
  * 5. sleep timers, then every applied force and torque is reset.
  *
  * The result depends only on the world state and `dt`.
@@ -65,6 +66,7 @@ export function step(world: World, dt: number): void {
   updateTouching(world, manifolds);
   solveConstraints(world, manifolds, jointRows, dt);
   for (const [slot] of integrating(world)) integrator.position(store, slot, dt);
+  flattenBodies(world);
   updateSleep(world, dt);
   for (const name of ACCUMULATORS) {
     store.fields[name].fill(0, 0, store.size * BODY_FIELDS[name].components);

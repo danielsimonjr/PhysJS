@@ -19,6 +19,7 @@ import { bodyPose, directionToLocal, pointToLocal } from '../collision/pose';
 import { length, sub, unit } from '../collision/vector';
 import { wakeSlot } from '../dynamics/sleep';
 import { requireSlot } from '../world/handles';
+import { readWorldVector } from '../world/planar';
 import { readValue, rejectUnknownKeys, requireRecord } from '../world/validate';
 
 const SHARED_KEYS = ['type', 'bodyA', 'bodyB', 'anchorA', 'anchorB', 'collideConnected'];
@@ -64,16 +65,19 @@ export function addJoint(world: World, descriptor: JointDescriptor): JointHandle
     throw new RangeError(`joint type must be one of ${known}; got ${String(descriptor.type)}`);
   }
   const { row, keys } = entry;
+  if (!row.dims.includes(world.dims)) {
+    throw new RangeError(`${row.name} joints need a ${row.dims.join(' or ')}-D world`);
+  }
   rejectUnknownKeys(`${row.name} joint`, descriptor, keys);
   const { bodyA, bodyB } = descriptor;
   requireSlot(world.bodies, bodyA);
   requireSlot(world.bodies, bodyB);
   if (bodyA === bodyB) throw new RangeError('a joint needs two different bodies');
-  const anchorA = readValue('anchorA', descriptor.anchorA, { components: 3, rule: 'finite' });
+  const anchorA = readWorldVector(world, 'anchorA', descriptor.anchorA);
   const anchorB =
     descriptor.anchorB === undefined
       ? anchorA
-      : readValue('anchorB', descriptor.anchorB, { components: 3, rule: 'finite' });
+      : readWorldVector(world, 'anchorB', descriptor.anchorB);
   const collideConnected = descriptor.collideConnected ?? false;
   if (typeof collideConnected !== 'boolean') {
     throw new TypeError('collideConnected must be a boolean');

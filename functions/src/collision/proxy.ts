@@ -10,7 +10,7 @@ import {
   type CollisionCoreName,
   type ShapeDescriptor,
 } from '@danielsimonjr/physjs-core';
-import { kernelOf } from './kernels';
+import { kernelOf } from './shape-kernels';
 import { directionToLocal, pointToWorld, type Pose } from './pose';
 import type { Vec } from './vector';
 

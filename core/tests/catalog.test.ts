@@ -129,19 +129,35 @@ describe('INTEGRATOR_CATALOG', () => {
 });
 
 describe('SHAPES', () => {
-  it('has the 0.x 3D core shapes with fourJS parameter names', () => {
+  it('has the 0.x 3D and 2D core shapes with fourJS parameter names', () => {
     const byType = Object.fromEntries(SHAPES.map((s) => [s.type, s]));
-    expect(Object.keys(byType).sort()).toEqual(['box', 'capsule', 'sphere']);
+    expect(Object.keys(byType).sort()).toEqual([
+      'box',
+      'capsule',
+      'capsule2d',
+      'circle',
+      'polygon',
+      'rectangle',
+      'sphere',
+    ]);
+    expect(SHAPES.filter((s) => s.dims === 2).map((s) => s.type)).toEqual([
+      'circle',
+      'rectangle',
+      'capsule2d',
+      'polygon',
+    ]);
+    const polygon = byType['polygon']!.params as Record<string, { points?: unknown }>;
+    expect(polygon['vertices']!.points).toEqual({ min: 3 });
     expect(Object.keys(byType['sphere']!.params)).toEqual(['radius']);
     expect(Object.keys(byType['box']!.params)).toEqual(['halfExtents']);
     expect(Object.keys(byType['capsule']!.params).sort()).toEqual(['halfHeight', 'radius']);
   });
 
-  it('gives every parameter a positive rule and a component count', () => {
+  it('gives every size parameter a positive rule and a component count', () => {
     for (const shape of SHAPES) {
       expect(SUPPORTED_DIMS as readonly number[]).toContain(shape.dims);
       for (const param of Object.values(shape.params)) {
-        expect(param.rule).toBe('positive');
+        expect(param.rule).toBe(param.points ? 'finite' : 'positive');
         expect(param.components).toBeGreaterThan(0);
       }
     }

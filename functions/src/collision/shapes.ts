@@ -1,7 +1,8 @@
 /** Shape checks, generated from the `SHAPES` catalog. */
 
 import { SHAPES, type ShapeDescriptor, type ShapeRecord } from '@danielsimonjr/physjs-core';
-import { readValue, rejectUnknownKeys, requireRecord } from '../world/validate';
+import { readParam, rejectUnknownKeys, requireRecord } from '../world/validate';
+import { kernelOf } from './shape-kernels';
 
 /** Each shape row with the descriptor keys it allows. */
 const BY_TYPE = new Map<string, { record: ShapeRecord; keys: ReadonlySet<string> }>(
@@ -13,7 +14,8 @@ const BY_TYPE = new Map<string, { record: ShapeRecord; keys: ReadonlySet<string>
 
 /**
  * Checks a shape against its `SHAPES` row: a known type, exactly that row's
- * parameters, and every number within its rule. Throws a `TypeError` or
+ * parameters, every number within its rule, and the kernel's own check (a
+ * polygon must be convex and counter-clockwise). Throws a `TypeError` or
  * `RangeError` naming the parameter.
  */
 export function validateShape(shape: ShapeDescriptor): void {
@@ -26,10 +28,11 @@ export function validateShape(shape: ShapeDescriptor): void {
   const { record, keys } = entry;
   rejectUnknownKeys(`${record.type} shape`, shape, keys);
   for (const [name, schema] of Object.entries(record.params)) {
-    readValue(
+    readParam(
       `${record.type}.${name}`,
       (shape as unknown as Record<string, unknown>)[name],
       schema
     );
   }
+  kernelOf(shape).check?.(shape);
 }

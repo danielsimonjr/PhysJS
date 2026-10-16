@@ -18,6 +18,7 @@ export type {
   BodyFieldName,
   BodyFieldRecord,
   BodyFieldRole,
+  PlanarView,
   DescriptorFieldName,
 } from './catalog/body-fields';
 export { BODY_TYPES } from './catalog/body-types';
@@ -67,5 +68,14 @@ export type { BodyEvent, PairEvent, PhysicsEvent } from './types/events';
 export type { CachedImpulse, SolverState, TouchingPair } from './types/solver';
 export type { JointDescriptor, JointHandle, JointRecord, JointStore } from './types/joint';
 export type { NumericInput, NumericOutput } from './types/numeric';
-export type { BoxShape, CapsuleShape, ShapeDescriptor, SphereShape } from './types/shape';
+export type {
+  BoxShape,
+  Capsule2dShape,
+  CapsuleShape,
+  CircleShape,
+  PolygonShape,
+  RectangleShape,
+  ShapeDescriptor,
+  SphereShape,
+} from './types/shape';
 export type { BodyStore, World, WorldOptions } from './types/world';

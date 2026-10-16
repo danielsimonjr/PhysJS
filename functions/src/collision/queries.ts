@@ -12,20 +12,19 @@ import type {
   World,
 } from '@danielsimonjr/physjs-core';
 import { BODY_FIELDS } from '@danielsimonjr/physjs-core';
+import { readWorldRotation, readWorldVector } from '../world/planar';
 import { readValue } from '../world/validate';
 import { aabbOverlap, colliderAabb, poseAabb } from './broadphase';
 import { colliderProxy } from './contacts';
-import { kernelOf } from './kernels';
+import { kernelOf } from './shape-kernels';
 import { proximity } from './narrowphase';
 import { bodyPose, directionToLocal, directionToWorld, makePose, pointToLocal } from './pose';
 import { pointProxy, shapeProxy, type Proxy } from './proxy';
-import { copyShape } from '../world/colliders';
+import { copyShape, requireWorldShape } from '../world/colliders';
 import { validateShape } from './shapes';
 import { add, scale, unit } from './vector';
 
 const triple = (v: readonly number[]): [number, number, number] => [v[0]!, v[1]!, v[2]!];
-const readPoint = (label: string, value: NumericInput) =>
-  readValue(label, value, { components: 3, rule: 'finite' });
 
 /** The ray's entry distance into a box, or `undefined` when it misses within `limit`. */
 function rayAabb(
@@ -65,8 +64,8 @@ export function raycast(
   direction: NumericInput,
   maxDistance = Infinity
 ): RayHit | undefined {
-  const o = readPoint('origin', origin);
-  const d = unit(readPoint('direction', direction));
+  const o = readWorldVector(world, 'origin', origin);
+  const d = unit(readWorldVector(world, 'direction', direction));
   if (d === undefined) throw new RangeError('direction must not be the zero vector');
   readValue('maxDistance', maxDistance, {
     components: 1,
@@ -122,13 +121,16 @@ export function overlap(
   world: World,
   shape: ShapeDescriptor,
   position: NumericInput,
-  rotation: NumericInput = BODY_FIELDS.rotation.initial
+  rotation?: NumericInput
 ): ColliderHandle[] {
   validateShape(shape);
+  requireWorldShape(world, shape);
   const local = copyShape(shape);
   const pose = makePose(
-    readPoint('position', position),
-    readValue('rotation', rotation, { components: 4, rule: 'finite' })
+    readWorldVector(world, 'position', position),
+    rotation === undefined
+      ? [...BODY_FIELDS.rotation.initial]
+      : readWorldRotation(world, 'rotation', rotation)
   );
   const box = poseAabb(pose, kernelOf(local).halfExtents(local), 0);
   return touching(world, shapeProxy(local, pose), box);
@@ -136,7 +138,7 @@ export function overlap(
 
 /** Colliders containing `point` (boundary included), in handle order. */
 export function pointQuery(world: World, point: NumericInput): ColliderHandle[] {
-  const p = readPoint('point', point);
+  const p = readWorldVector(world, 'point', point);
   const at = triple(p);
   return touching(world, pointProxy(p), { min: at, max: at });
 }

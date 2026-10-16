@@ -24,17 +24,19 @@ import {
 import { validateShape } from '../collision/shapes';
 import { refreshDerived, writeMassProperties } from './bodies';
 import { requireSlot } from './handles';
-import { readValue, rejectUnknownKeys, requireRecord } from './validate';
+import { readParam, readValue, rejectUnknownKeys, requireRecord } from './validate';
+import { length } from '../collision/vector';
 
 const MATERIAL_NAMES = Object.keys(MATERIAL_FIELDS) as MaterialFieldName[];
 const DESCRIPTOR_KEYS: ReadonlySet<string> = new Set(['shape', 'density', ...MATERIAL_NAMES]);
 const PARAMS = new Map(SHAPES.map((row) => [row.type as string, row.params]));
+const SHAPE_DIMS = new Map<string, number>(SHAPES.map((row) => [row.type, row.dims]));
 
 /** A plain-array copy of a validated shape, in the MathTS shape form. */
 export function copyShape(shape: ShapeDescriptor): ShapeDescriptor {
   const out: Record<string, unknown> = { type: shape.type };
   for (const [name, schema] of Object.entries(PARAMS.get(shape.type)!)) {
-    const values = readValue(name, (shape as unknown as Record<string, unknown>)[name], schema);
+    const values = readParam(name, (shape as unknown as Record<string, unknown>)[name], schema);
     out[name] = 'scalar' in schema && schema.scalar ? values[0] : values;
   }
   return out as unknown as ShapeDescriptor;
@@ -81,6 +83,7 @@ export function addCollider(
   requireRecord('collider descriptor', descriptor);
   rejectUnknownKeys('collider descriptor', descriptor, DESCRIPTOR_KEYS);
   validateShape(descriptor.shape);
+  requireWorldShape(world, descriptor.shape);
   const shape = copyShape(descriptor.shape);
   const [density] = readValue('density', descriptor.density, {
     components: 1,
@@ -88,7 +91,17 @@ export function addCollider(
     rule: 'positive',
   });
   const props = massProperties(shape as MassPropertyShape, density);
-  if (props.dims !== 3) throw new RangeError(`${shape.type} is not a 3-D shape`);
+  // 0.x colliders sit at the body origin, so the shape's centroid must too.
+  if (length(props.centroid) > 1e-9 * Math.max(1, Math.sqrt(props.mass / density!))) {
+    throw new RangeError(
+      `${shape.type} must be centred on its centroid; it is at [${props.centroid}]`
+    );
+  }
+  // A 2-D polar moment is the z moment; the x and y axes are locked (infinite).
+  const inertia: [number, number, number] =
+    props.dims === 3
+      ? [props.inertia[0][0], props.inertia[1][1], props.inertia[2][2]]
+      : [Infinity, Infinity, props.inertia];
   // Each material field from its MATERIAL_FIELDS row: default, then rule.
   const materials = Object.fromEntries(
     MATERIAL_NAMES.map((name) => {
@@ -102,7 +115,7 @@ export function addCollider(
     shape,
     density: density!,
     mass: props.mass,
-    inertia: [props.inertia[0][0], props.inertia[1][1], props.inertia[2][2]],
+    inertia,
     ...materials,
   };
   const handle = world.colliders.next++ as ColliderHandle;
@@ -129,5 +142,13 @@ export function getCollider(world: World, handle: ColliderHandle): ColliderRecor
 export function removeBodyColliders(world: World, body: BodyHandle): void {
   for (const [handle, collider] of world.colliders.byHandle) {
     if (collider.body === body) world.colliders.byHandle.delete(handle);
+  }
+}
+
+/** Throws unless `shape`'s `SHAPES` row has the world's dimension. */
+export function requireWorldShape(world: World, shape: ShapeDescriptor): void {
+  const dims = SHAPE_DIMS.get(shape.type);
+  if (dims !== world.dims) {
+    throw new RangeError(`${shape.type} is a ${dims}-D shape; this world is ${world.dims}-D`);
   }
 }

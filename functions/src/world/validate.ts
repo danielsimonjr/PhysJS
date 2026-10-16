@@ -80,3 +80,28 @@ export function rejectUnknownKeys(
     }
   }
 }
+
+/** A parameter schema: a value schema, or a list of points when `points` is set. */
+export interface ParamSchema extends ValueSchema {
+  /** The value is a list of at least `min` points of `components` numbers each. */
+  readonly points?: { readonly min: number };
+}
+
+/**
+ * Checks a shape or joint parameter against its schema: a value as in
+ * {@link readValue}, or a list of points. Returns new arrays.
+ */
+export function readParam(
+  label: string,
+  value: unknown,
+  schema: ParamSchema
+): number[] | number[][] {
+  if (schema.points === undefined) return readValue(label, value, schema);
+  const { min } = schema.points;
+  if (!Array.isArray(value) || value.length < min) {
+    throw new TypeError(`${label} must be an array of at least ${min} points; got ${show(value)}`);
+  }
+  return value.map((point, i) =>
+    readValue(`${label}[${i}]`, point, { components: schema.components, rule: schema.rule })
+  );
+}

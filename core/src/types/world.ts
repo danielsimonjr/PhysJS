@@ -15,9 +15,9 @@ import type { NumericInput } from './numeric';
 
 /** What `createWorld` takes. */
 export interface WorldOptions {
-  /** World dimension. 0.x supports 3; 2D worlds run on the same engine later. */
+  /** World dimension: 3, or 2 for the plane z = 0 of the same engine (vectors are `[x, y]`). */
   dims: SupportedDims;
-  /** Gravity, m/s^2. Defaults to MathTS standard gravity along -up. */
+  /** Gravity, m/s^2 (`[gx, gy]` in 2-D). Defaults to MathTS standard gravity along -up. */
   gravity?: NumericInput;
   /** Integrator name. Defaults to `WORLD_DEFAULTS.integrator`. */
   integrator?: IntegratorName;

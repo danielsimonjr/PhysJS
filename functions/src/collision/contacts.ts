@@ -4,9 +4,11 @@ import {
   COLLISION_DEFAULTS,
   type ColliderRecord,
   type ContactManifold,
+  type ContactPoint,
   type World,
 } from '@danielsimonjr/physjs-core';
 import { readValue, rejectUnknownKeys, requireRecord } from '../world/validate';
+import { isPlanar } from '../world/planar';
 import { sweepAndPrune } from './broadphase';
 import { manifoldPoints, proximity } from './narrowphase';
 import { bodyPose } from './pose';
@@ -63,15 +65,41 @@ export function findContacts(world: World, options?: ContactOptions): ContactMan
     const B = colliderProxy(world, b);
     const near = proximity(A, B);
     if (near.separation > margin) continue;
-    const [nx, ny, nz] = near.normal;
+    const planar = isPlanar(world);
+    const points = manifoldPoints(A, B, near, margin);
+    const [nx, ny, nz] = planar ? planarNormal(near.normal) : near.normal;
     manifolds.push({
       colliderA: ha,
       colliderB: hb,
       bodyA: a.body,
       bodyB: b.body,
       normal: [nx!, ny!, nz!],
-      points: manifoldPoints(A, B, near, margin),
+      points: planar ? planarPoints(points) : points,
     });
   }
   return manifolds;
+}
+
+/** Points closer than this in the plane are one 2-D contact, metres. */
+const PLANAR_MERGE = 1e-6;
+
+/** A 2-D normal lies in the plane: drop z and renormalize (a prism cap never touches in 2-D). */
+function planarNormal(normal: readonly number[]): number[] {
+  const len = Math.hypot(normal[0]!, normal[1]!);
+  return len > 0 ? [normal[0]! / len, normal[1]! / len, 0] : [...normal];
+}
+
+/** Flattens prism contacts onto z = 0; each merged pair keeps its deepest point. */
+function planarPoints(points: readonly ContactPoint[]): ContactPoint[] {
+  const out: ContactPoint[] = [];
+  for (const point of points) {
+    const [x, y] = point.position;
+    const twin = out.findIndex(
+      (p) => Math.hypot(p.position[0] - x, p.position[1] - y) <= PLANAR_MERGE
+    );
+    const flat: ContactPoint = { position: [x, y, 0], depth: point.depth };
+    if (twin < 0) out.push(flat);
+    else if (point.depth > out[twin]!.depth) out[twin] = flat;
+  }
+  return out;
 }

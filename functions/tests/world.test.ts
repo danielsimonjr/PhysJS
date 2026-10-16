@@ -48,7 +48,8 @@ describe('createWorld', () => {
   });
 
   it('rejects unsupported dimensions, bad gravity, unknown integrators and unknown options', () => {
-    expect(() => createWorld({ dims: 2 as 3 })).toThrow(RangeError);
+    expect(() => createWorld({ dims: 4 as 3 })).toThrow(RangeError);
+    expect(() => createWorld({ dims: 2, gravity: [0, -9.8, 0] })).toThrow();
     expect(() => createWorld({ dims: 3, gravity: [0, -1] })).toThrow(TypeError);
     expect(() => createWorld({ dims: 3, gravity: [0, NaN, 0] })).toThrow(RangeError);
     expect(() => createWorld({ dims: 3, integrator: 'rk9' as 'semi-implicit-euler' })).toThrow(

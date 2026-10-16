@@ -18,6 +18,8 @@ export interface ShapeParamRecord {
   readonly scalar?: boolean;
   /** Rule every component must satisfy. */
   readonly rule: ValueRule;
+  /** The parameter is a list of at least `min` points of `components` numbers each. */
+  readonly points?: { readonly min: number };
 }
 
 /** One shape type. */
@@ -32,7 +34,11 @@ export interface ShapeRecord {
   readonly params: Readonly<Record<string, ShapeParamRecord>>;
 }
 
-/** Every shape type. Lengths are metres; a capsule's axis is local +Y. */
+/**
+ * Every shape type. Lengths are metres; a capsule's axis is local +Y. The 2-D
+ * shapes (MathTS `massProperties` names) live in `dims: 2` worlds; a polygon is
+ * convex, counter-clockwise and centred on its centroid.
+ */
 export const SHAPES = deepFreeze([
   {
     type: 'sphere',
@@ -54,6 +60,33 @@ export const SHAPES = deepFreeze([
       radius: { components: 1, scalar: true, rule: 'positive' },
       halfHeight: { components: 1, scalar: true, rule: 'positive' },
     },
+  },
+  {
+    type: 'circle',
+    dims: 2,
+    core: 'point',
+    params: { radius: { components: 1, scalar: true, rule: 'positive' } },
+  },
+  {
+    type: 'rectangle',
+    dims: 2,
+    core: 'polytope',
+    params: { halfExtents: { components: 2, rule: 'positive' } },
+  },
+  {
+    type: 'capsule2d',
+    dims: 2,
+    core: 'segment',
+    params: {
+      radius: { components: 1, scalar: true, rule: 'positive' },
+      halfHeight: { components: 1, scalar: true, rule: 'positive' },
+    },
+  },
+  {
+    type: 'polygon',
+    dims: 2,
+    core: 'polytope',
+    params: { vertices: { components: 2, rule: 'finite', points: { min: 3 } } },
   },
 ] as const satisfies readonly ShapeRecord[]);
 

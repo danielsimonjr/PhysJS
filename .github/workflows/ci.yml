@@ -3,11 +3,10 @@ name: CI
 on:
   push:
     branches: [main]
-  # Every pull request, including one stacked on another PhysJS branch.
   pull_request:
   workflow_dispatch:
 
-# This workflow builds and audits. It does not push, tag, or publish.
+# Installs, builds, typechecks, tests, lints and checks formatting. It does not publish.
 permissions:
   contents: read
 
@@ -16,32 +15,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: lake build and axiom audit
+  workspace:
+    name: bun workspace
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      # `lake build` with the Mathlib cache, then an axiom audit.
-      # `lean.lean` is the module `lean`. `lean/<Name>.lean` is the module `lean.<Name>`.
-      # There is no `lean/PhysJS/` directory.
-      # `axiom-audit-root` is the Lean module `lean`. The audit imports that
-      # module and checks declarations defined in `lean` and `lean.*`.
-      # Theorem names stay `PhysJS.*`; those are namespaces, not module paths.
-      # The audit fails if any declaration in those modules depends on `sorryAx`
-      # (`sorry` / `admit`), `Lean.ofReduceBool` (`native_decide`), or any
-      # axiom outside propext, Classical.choice, and Quot.sound.
-      - name: Build and axiom audit
-        uses: leanprover/lean-action@f061402b660e0c34644504b324e830f2991d4865 # v1
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          build: "true"
-          test: "false"
-          lint: "false"
-          use-mathlib-cache: "true"
-          axiom-audit: "true"
-          axiom-audit-root: "lean"
-          axiom-audit-allow: "propext,Classical.choice,Quot.sound"
+          bun-version: 1.4.2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      - name: Type check
+        run: bun run typecheck
+
+      - name: Test (bun test per package, then vitest)
+        run: bun run test
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Format check
+        run: bun run format:check

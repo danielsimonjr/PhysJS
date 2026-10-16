@@ -1,0 +1,45 @@
+{
+  "name": "@danielsimonjr/physjs",
+  "version": "0.0.0",
+  "description": "PhysJS: a TypeScript physics engine built on MathTS",
+  "author": "Daniel Simon Jr.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsdown && tsc -p tsconfig.dts.json",
+    "test": "bun test",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
+    "lint": "oxlint src",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@danielsimonjr/physjs-core": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielsimonjr/PhysJS.git",
+    "directory": "functions"
+  },
+  "keywords": [
+    "physics",
+    "physics-engine",
+    "typescript"
+  ]
+}

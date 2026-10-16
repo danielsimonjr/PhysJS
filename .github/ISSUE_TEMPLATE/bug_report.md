@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: A theorem, build, or manifest entry that is wrong
+about: Wrong simulation results, a crash, or a build problem
 title: ''
 labels: bug
 assignees: ''
@@ -8,16 +8,12 @@ assignees: ''
 
 ## What is wrong
 
-## Bridge id
-
-`ab-...`, if this is about a UPT bridge. Otherwise leave blank.
-
 ## How to reproduce
 
-`lake build` output, or the statement that fails.
+A minimal scene or code snippet, and the PhysJS and MathTS versions.
 
 ## Expected
 
-## Lean toolchain
+## Environment
 
-The contents of `lean-toolchain`.
+Runtime (Bun, Node, browser) and OS.

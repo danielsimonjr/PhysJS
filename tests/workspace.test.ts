@@ -26,8 +26,11 @@ describe('workspace', () => {
     });
   }
 
-  it('functions depends on core through the workspace', () => {
+  // A semver range, not `workspace:*`: `changeset publish` runs npm, which does not
+  // rewrite workspace protocols, and changesets keeps this range in step with core.
+  it('functions depends on the current core version by caret range', () => {
+    const core = read('core/package.json') as { version: string };
     const fns = read('functions/package.json') as { dependencies: Record<string, string> };
-    expect(fns.dependencies['@danielsimonjr/physjs-core']).toBe('workspace:*');
+    expect(fns.dependencies['@danielsimonjr/physjs-core']).toBe(`^${core.version}`);
   });
 });

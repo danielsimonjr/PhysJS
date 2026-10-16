@@ -1,5 +1,16 @@
 # @danielsimonjr/physjs
 
+## 0.5.0
+
+### Minor Changes
+
+- 1a0947c: 2-D worlds through `dims: 2` on the same engine: circle, rectangle, capsule2d and convex polygon shapes; `[x, y]` vectors, a rotation angle and scalar angular velocity/torque through each `BODY_FIELDS` row's `planar` view; in-plane contacts; joint rows declare the dims they support.
+
+### Patch Changes
+
+- Updated dependencies [1a0947c]
+  - @danielsimonjr/physjs-core@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes
